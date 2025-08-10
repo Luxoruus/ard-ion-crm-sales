@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-10 19:22:39.507222",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "field_label",
+  "field_name",
+  "field_type",
+  "field_value"
+ ],
+ "fields": [
+  {
+   "fieldname": "field_label",
+   "fieldtype": "Data",
+   "label": "Field Label",
+   "read_only": 1
+  },
+  {
+   "fieldname": "field_name",
+   "fieldtype": "Data",
+   "label": "Field Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "field_type",
+   "fieldtype": "Data",
+   "label": "Field Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "field_value",
+   "fieldtype": "Text",
+   "label": "Field Value"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-08-10 19:23:36.258870",
+ "modified_by": "Administrator",
+ "module": "Ion Crm Sales",
+ "name": "Technical Survey Field",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
