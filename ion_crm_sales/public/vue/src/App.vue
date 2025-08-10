@@ -144,7 +144,7 @@
             <div class="text-center mb-8">
               <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ t('selectOpportunity') }}</h2>
               <p class="text-gray-600">Choose an opportunity to begin the technical assessment survey</p>
-              <p class="text-sm text-blue-600 mt-2">Only showing opportunities where no surveyor has been assigned yet
+              <p class="text-sm text-blue-600 mt-2">Only showing opportunities in "Surveying" state without an assigned surveyor
               </p>
             </div>
 
@@ -180,8 +180,7 @@
                 </path>
               </svg>
               <p class="text-gray-500 text-lg font-medium">{{ t('noAvailableOpportunities') }}</p>
-              <p class="text-gray-400 mt-2">All opportunities in the "Surveying" state have already been assigned to a
-                surveyor</p>
+              <p class="text-gray-400 mt-2">All opportunities in the "Surveying" workflow state have already been assigned to a surveyor</p>
             </div>
 
             <div v-else class="grid gap-4">
@@ -391,8 +390,19 @@
               </svg>
               {{ t('mySurveys') }}
             </h2>
-            <div class="text-sm text-gray-500">
-              {{ filteredSurveyResponses.length }} {{ filteredSurveyResponses.length === 1 ? 'survey' : 'surveys' }}
+            <div class="flex items-center space-x-4">
+              <div class="text-sm text-gray-500">
+                {{ filteredSurveyResponses.length }} {{ filteredSurveyResponses.length === 1 ? 'survey' : 'surveys' }} assigned to you
+              </div>
+              <button @click="fetchSurveyResponses" :disabled="isLoading"
+                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                  </path>
+                </svg>
+                {{ t('refresh') }}
+              </button>
             </div>
           </div>
 
@@ -403,7 +413,7 @@
               <select v-model="filters.doctype"
                 class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 <option value="">{{ t('allDoctypes') }}</option>
-                <option value="Opportunity Dedicated">Opportunity Dedicated</option>
+                <option value="Opportunity">Opportunity</option>
                 <option value="Opportunity Hotels">Opportunity Hotels</option>
                 <option value="Opportunity SM">Opportunity SM</option>
                 <option value="Opportunity Tenders">Opportunity Tenders</option>
@@ -415,7 +425,7 @@
               <select v-model="filters.status"
                 class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 <option value="">{{ t('allStatuses') }}</option>
-                <option value="Draft">{{ t('draft') }}</option>
+                <option value="In Progress">{{ t('inProgress') }}</option>
                 <option value="Submitted">{{ t('submitted') }}</option>
               </select>
             </div>
@@ -444,14 +454,6 @@
                     <p class="flex items-center">
                       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6M8 8v10l4-2 4 2V8">
-                        </path>
-                      </svg>
-                      {{ response.title }}
-                    </p>
-                    <p class="flex items-center">
-                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6">
                         </path>
                       </svg>
@@ -460,20 +462,27 @@
                     <p class="flex items-center">
                       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                      </svg>
+                      {{ response.customer_name }}
+                    </p>
+                    <p class="flex items-center">
+                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10"></path>
                       </svg>
-                      {{ t('submitted') }}: {{ formatDate(response.creation) }}
+                      {{ t('assigned') }}: {{ formatDate(response.creation) }}
                     </p>
                   </div>
                 </div>
                 <div class="flex items-center space-x-3">
                   <span :class="[
                     'px-3 py-1 text-xs font-medium rounded-full',
-                    response.status === 'Draft'
+                    response.status === 'In Progress'
                       ? 'bg-yellow-100 text-yellow-800'
                       : 'bg-green-100 text-green-800'
                   ]">
-                    {{ response.status === 'Draft' ? t('draft') : t('submitted') }}
+                    {{ response.status === 'In Progress' ? t('inProgress') : t('submitted') }}
                   </span>
                   <button @click="viewSurveyResponse(response)"
                     class="px-4 py-2 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors flex items-center">
@@ -484,7 +493,7 @@
                         d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
                       </path>
                     </svg>
-                    {{ response.status === 'Draft' ? t('edit') : t('view') }}
+                    {{ response.status === 'In Progress' ? t('continue') : t('view') }}
                   </button>
                 </div>
               </div>
@@ -498,7 +507,7 @@
               </path>
             </svg>
             <p class="text-gray-500 text-lg font-medium">{{ t('noSurveys') }}</p>
-            <p class="text-gray-400 mt-2">Complete your first survey to see it here</p>
+            <p class="text-gray-400 mt-2">No opportunities have been assigned to you yet</p>
           </div>
         </div>
       </div>
@@ -588,8 +597,11 @@ export default {
         allStatuses: 'All Statuses',
         draft: 'Draft',
         submitted: 'Submitted',
+        inProgress: 'In Progress',
         edit: 'Edit',
         view: 'View',
+        continue: 'Continue',
+        assigned: 'Assigned',
         noSurveys: 'No surveys found',
         noAvailableOpportunities: 'No available opportunities',
         refresh: 'Refresh',
@@ -626,8 +638,11 @@ export default {
         allStatuses: 'جميع الحالات',
         draft: 'مسودة',
         submitted: 'مرسل',
+        inProgress: 'قيد التقدم',
         edit: 'تعديل',
         view: 'عرض',
+        continue: 'متابعة',
+        assigned: 'مُعيَّن',
         noSurveys: 'لا توجد استطلاعات',
         noAvailableOpportunities: 'لا توجد فرص متاحة',
         refresh: 'تحديث',
@@ -754,8 +769,7 @@ export default {
               full_name: 'Technical Assessment User',
               roles: ['Technical Assessment']
             }
-            await fetchOpportunities()
-            await fetchSurveyResponses()
+            await Promise.all([fetchOpportunities(), fetchSurveyResponses()])
             showToast('Login successful!')
 
             return { success: true };
@@ -1088,15 +1102,8 @@ export default {
 
         showToast(t('submitSuccess'))
 
-        // Add to survey responses
-        surveyResponses.value.unshift({
-          name: `SURV-RESP-${Date.now()}`,
-          survey_template: currentSurveyTemplate.value.title,
-          title: selectedOpportunity.value.title,
-          doctype: selectedOpportunity.value.doctype,
-          status: 'Submitted',
-          creation: new Date().toISOString()
-        })
+        // Refresh the survey responses to reflect the updated status
+        await fetchSurveyResponses()
 
         // Reset form
         selectedOpportunity.value = null
@@ -1117,38 +1124,97 @@ export default {
     }
 
     const fetchSurveyResponses = async () => {
-      // Mock survey responses
-      surveyResponses.value = [
-        {
-          name: 'SURV-RESP-001',
-          survey_template: 'Dedicated Server Technical Assessment',
-          title: 'Enterprise Cloud Migration Project',
-          doctype: 'Opportunity Dedicated',
-          status: 'Submitted',
-          creation: '2024-01-15T10:30:00'
-        },
-        {
-          name: 'SURV-RESP-002',
-          survey_template: 'Hotel Management System Assessment',
-          title: 'Hotel Management System Implementation',
-          doctype: 'Opportunity Hotels',
-          status: 'Draft',
-          creation: '2024-01-14T14:20:00'
-        },
-        {
-          name: 'SURV-RESP-003',
-          survey_template: 'Small Business Technical Assessment',
-          title: 'Small Business CRM Solution',
-          doctype: 'Opportunity SM',
-          status: 'Submitted',
-          creation: '2024-01-13T09:15:00'
+      isLoading.value = true
+      surveyResponses.value = [] // Clear existing responses
+
+      const fields = encodeURIComponent(JSON.stringify(['name', 'customer_name', 'opportunity_from', 'title', 'status', 'workflow_state', 'custom_surveyor', 'creation', 'modified']));
+      const filters = encodeURIComponent(JSON.stringify([
+        ['custom_surveyor', '=', currentUser.value.name]
+      ]));
+
+      try {
+        for (const oppType of ["Opportunity", "Opportunity Hotels", "Opportunity SM", "Opportunity Tenders"]) {
+          try {
+            const resp = await fetch(`/api/resource/${oppType}?fields=${fields}&filters=${filters}`, {
+              credentials: 'include',
+            });
+
+            if (resp.ok) {
+              const data = await resp.json();
+              const userOpportunities = data.data
+                .filter(opp => opp.custom_surveyor === currentUser.value.name)
+                .map(opp => ({
+                  name: opp.name,
+                  survey_template: getSurveyTemplateTitle(oppType),
+                  title: opp.title,
+                  doctype: oppType,
+                  status: opp.workflow_state === 'Surveying' ? 'In Progress' : 'Submitted',
+                  creation: opp.creation,
+                  workflow_state: opp.workflow_state,
+                  customer_name: opp.customer_name
+                }));
+
+              surveyResponses.value.push(...userOpportunities);
+            }
+          } catch (error) {
+            console.error(`Error fetching ${oppType}:`, error);
+          }
         }
-      ]
+
+        console.log('Fetched survey responses:', surveyResponses.value)
+      } finally {
+        isLoading.value = false
+      }
     }
 
-    const viewSurveyResponse = (response) => {
-      showToast(`Opening ${response.status === 'Draft' ? 'editor' : 'viewer'} for: ${response.survey_template}`)
-      // Implementation for viewing/editing survey response would go here
+    const getSurveyTemplateTitle = (doctype) => {
+      const templates = {
+        'Opportunity': 'Dedicated Server Technical Assessment',
+        'Opportunity Hotels': 'Hotel Management System Assessment',
+        'Opportunity SM': 'Small Business Technical Assessment',
+        'Opportunity Tenders': 'Tender Opportunity Assessment'
+      };
+      return templates[doctype] || 'Technical Assessment Survey';
+    }
+
+    const viewSurveyResponse = async (response) => {
+      if (response.status === 'In Progress') {
+        // If survey is in progress, allow user to continue filling it out
+        isLoading.value = true
+        try {
+          // Fetch the full opportunity data
+          const oppResponse = await fetch(`/api/resource/${response.doctype}/${response.name}`, {
+            credentials: 'include'
+          })
+          
+          if (oppResponse.ok) {
+            const oppData = await oppResponse.json()
+            selectedOpportunity.value = {
+              name: oppData.data.name,
+              title: oppData.data.title,
+              doctype: response.doctype,
+              customer_name: oppData.data.customer_name,
+              status: oppData.data.status,
+              workflow_state: oppData.data.workflow_state
+            }
+            
+            await fetchSurveyTemplate(response.doctype)
+            startAutoSave()
+            activeTab.value = 'fill-survey'
+            showToast(`Continuing survey for: ${response.title}`)
+          } else {
+            throw new Error('Failed to fetch opportunity data')
+          }
+        } catch (error) {
+          showToast('Error loading survey: ' + error.message, 'error')
+        } finally {
+          isLoading.value = false
+        }
+      } else {
+        // For submitted surveys, just show a message (could be extended to show survey results)
+        showToast(`Viewing submitted survey for: ${response.title}`)
+        // Implementation for viewing submitted survey response would go here
+      }
     }
 
     const formatDate = (dateString) => {
@@ -1169,7 +1235,7 @@ export default {
         currentLanguage.value = savedLanguage
       }
 
-      checkLoggedIn().then(({ loggedIn, user }) => {
+      checkLoggedIn().then(async ({ loggedIn, user }) => {
 
         if (loggedIn) {
           isAuthenticated.value = true
@@ -1178,8 +1244,7 @@ export default {
             full_name: 'Technical Assessment User',
             roles: ['Technical Assessment']
           }
-          fetchOpportunities()
-          fetchSurveyResponses()
+          await Promise.all([fetchOpportunities(), fetchSurveyResponses()])
         } else {
           isAuthenticated.value = false
         }
@@ -1227,7 +1292,9 @@ export default {
       submitSurvey,
       viewSurveyResponse,
       formatDate,
-      fetchOpportunities
+      fetchOpportunities,
+      fetchSurveyResponses,
+      getSurveyTemplateTitle
     }
   }
 }
