@@ -5,6 +5,36 @@ app_description = "Ion Crm Sales App"
 app_email = "d.jaziri@ard.ly"
 app_license = "mit"
 
+# doc_events = {
+#     "Lead": {
+#         "on_update": "ion_crm_sales.ion_crm_sales.doc_events.lead_handlers.handle_lead",
+#     }
+# }
+
+doc_events = {
+    "Opportunity": {
+        # "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+        "before_save": ["ion_crm_sales.ion_crm_sales.doc_events.opportunity_dedicated_handlers.before_save",
+                        "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
+                       ]
+    },
+    "Opportunity SM": {
+        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
+    },
+    "Opportunity Hotels": {
+        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
+    },
+    "Opportunity Tenders": {
+        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
+    },
+}
+
+# scheduler_events = {
+#     "hourly": [
+#         "ion_crm_sales.ion_crm_sales.api_sync.sync_rmt_opportunities"
+#     ]
+# }
+
 # Apps
 # ------------------
 
