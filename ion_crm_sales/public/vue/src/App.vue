@@ -796,7 +796,8 @@ export default {
     const fetchOpportunities = async () => {
       // Mock opportunities data
       const fields = encodeURIComponent(JSON.stringify(['name', 'customer_name', 'opportunity_from', 'title', 'status', 'workflow_state']));
-      const resp = await fetch(`/api/resource/Opportunity?fields=${fields}`, {
+      const filters = encodeURIComponent(JSON.stringify([['custom_surveyor', 'is', 'not set']]));
+      const resp = await fetch(`/api/resource/Opportunity?fields=${fields}&filters=${filters}`, {
         credentials: 'include', // important for auth!
       });
 
@@ -811,9 +812,36 @@ export default {
     }
 
     const selectOpportunity = async (opportunity) => {
-      selectedOpportunity.value = opportunity
-      await fetchSurveyTemplate(opportunity.doctype)
-      startAutoSave()
+      // Show confirmation modal
+      if (confirm(`Are you sure you want to survey "${opportunity.title}"? You will be assigned as the surveyor for this opportunity.`)) {
+      isLoading.value = true
+      try {
+        // Assign current user as surveyor in ERPNext
+        const response = await fetch(`/api/resource/${opportunity.doctype}/${opportunity.name}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          custom_surveyor: currentUser.value.name
+        })
+        })
+        
+        if (!response.ok) {
+        throw new Error('Failed to assign surveyor')
+        }
+        
+        selectedOpportunity.value = opportunity
+        await fetchSurveyTemplate(opportunity.doctype)
+        startAutoSave()
+        showToast('You have been assigned as the surveyor for this opportunity')
+      } catch (error) {
+        showToast('Error assigning surveyor: ' + error.message, 'error')
+      } finally {
+        isLoading.value = false
+      }
+      }
     }
 
     const fetchSurveyTemplate = async (doctype) => {
