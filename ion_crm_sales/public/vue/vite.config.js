@@ -10,6 +10,12 @@ export default defineConfig({
     //   input: resolve(__dirname, 'SurveyPage.vue'),
       output: {
         entryFileNames: 'js/survey.bundle.js', // Output to public/js/
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'assets/survey.bundle.css';
+          }
+          return 'assets/[name].[ext]';
+        },
         format: 'es'
       }
     },
