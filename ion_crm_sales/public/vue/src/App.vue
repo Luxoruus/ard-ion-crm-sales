@@ -249,8 +249,31 @@
               </button>
             </div>
 
+            <!-- Survey Template Selection -->
+            <div class="bg-blue-50 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-lg font-medium text-gray-900 flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                    </path>
+                  </svg>
+                  {{ t('selectSurveyTemplate') }}
+                </h3>
+                <span v-if="currentSurveyTemplate" class="text-sm text-green-600 font-medium">{{ t('templateSelected') }}</span>
+              </div>
+              <select v-model="selectedTemplateId" @click="fetchSurveyTemplates" @change="selectSurveyTemplate(selectedTemplateId)"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="">{{ t('chooseTemplate') }}</option>
+                <option v-for="template in surveyTemplates" :key="template.name" :value="template.name">
+                  {{ template.template_name }}
+                </option>
+              </select>
+              <p class="text-sm text-gray-600 mt-2">{{ t('templateSelectionHint') }}</p>
+            </div>
+
             <!-- Progress Bar -->
-            <div class="bg-gray-100 rounded-lg p-4">
+            <div v-if="currentSurveyTemplate" class="bg-gray-100 rounded-lg p-4">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-sm font-medium text-gray-700">{{ t('progress') }}</span>
                 <span class="text-sm font-medium text-blue-600">{{ Math.round(surveyProgress) }}%</span>
@@ -263,7 +286,7 @@
             </div>
 
             <!-- Survey Questions -->
-            <div class="space-y-8">
+            <div v-if="currentSurveyTemplate" class="space-y-8">
               <div v-for="(question, index) in currentSurveyTemplate?.questions" :key="question.name"
                 class="p-6 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-start">
@@ -276,18 +299,29 @@
                     <span v-if="question.required" class="text-red-500 ml-1">*</span>
                   </span>
                 </h3>
+                
+                <!-- Field Description -->
+                <div v-if="question.description" class="ml-11 mb-3">
+                  <p class="text-sm text-gray-600 italic">{{ question.description }}</p>
+                </div>
 
                 <!-- Text Input -->
                 <div v-if="question.question_type === 'Text'" class="ml-11">
-                  <textarea v-model="surveyAnswers[question.name]"
+                  <textarea 
+                    v-model="surveyAnswers[question.name]"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    rows="4" :placeholder="t('enterAnswer')"></textarea>
+                    rows="4" 
+                    :placeholder="question.default_value || t('enterAnswer')"
+                    @focus="initializeFieldValue(question)"></textarea>
                 </div>
 
                 <!-- Rating -->
                 <div v-else-if="question.question_type === 'Rating'" class="ml-11">
                   <div class="flex space-x-2">
-                    <button v-for="rating in 5" :key="rating" @click="surveyAnswers[question.name] = rating" :class="[
+                    <button v-for="rating in 5" :key="rating" 
+                      @click="surveyAnswers[question.name] = rating" 
+                      @mouseenter="initializeFieldValue(question)"
+                      :class="[
                       'w-12 h-12 rounded-full border-2 transition-all duration-200 flex items-center justify-center text-xl',
                       surveyAnswers[question.name] >= rating
                         ? 'bg-yellow-400 border-yellow-400 text-white shadow-md transform scale-110'
@@ -302,7 +336,9 @@
                 <!-- Yes/No -->
                 <div v-else-if="question.question_type === 'Yes/No'" class="ml-11">
                   <div class="flex space-x-4">
-                    <button @click="surveyAnswers[question.name] = 'Yes'" :class="[
+                    <button @click="surveyAnswers[question.name] = 'Yes'" 
+                      @mouseenter="initializeFieldValue(question)"
+                      :class="[
                       'px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center',
                       surveyAnswers[question.name] === 'Yes'
                         ? 'bg-green-500 border-green-500 text-white shadow-md'
@@ -332,8 +368,12 @@
                 <div v-else-if="question.question_type === 'Multi-choice'" class="ml-11 space-y-3">
                   <div v-for="option in question.options" :key="option"
                     class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <input :id="`${question.name}-${option}`" v-model="surveyAnswers[question.name]" :value="option"
-                      type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" />
+                    <input :id="`${question.name}-${option}`" 
+                      v-model="surveyAnswers[question.name]" 
+                      :value="option"
+                      type="radio" 
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      @focus="initializeFieldValue(question)" />
                     <label :for="`${question.name}-${option}`"
                       class="ml-3 block text-sm font-medium text-gray-700 cursor-pointer flex-1">
                       {{ option }}
@@ -551,6 +591,8 @@ export default {
     const opportunities = ref([])
     const selectedOpportunity = ref(null)
     const currentSurveyTemplate = ref(null)
+    const surveyTemplates = ref([])
+    const selectedTemplateId = ref(null)
     const surveyAnswers = reactive({})
     const validationErrors = reactive({})
     const opportunitySearch = ref('')
@@ -606,9 +648,20 @@ export default {
         noAvailableOpportunities: 'No available opportunities',
         refresh: 'Refresh',
         loginError: 'Invalid username or password',
+        selectSurveyTemplate: 'Select Survey Template',
+        templateSelected: 'Template Selected',
+        chooseTemplate: 'Choose a template...',
+        templateSelectionHint: 'Please select a survey template to begin the assessment',
         saveSuccess: 'Survey saved successfully',
         submitSuccess: 'Survey submitted successfully',
-        validationError: 'This field is required'
+        validationError: 'This field is required',
+        saveSuccess: 'Survey saved successfully',
+        submitSuccess: 'Survey submitted successfully',
+        validationError: 'This field is required',
+        selectSurveyTemplate: 'Select Survey Template',
+        templateSelected: 'Template Selected',
+        chooseTemplate: 'Choose a survey template...',
+        templateSelectionHint: 'Please select a survey template to begin the assessment'
       },
       ar: {
         welcome: 'مرحباً',
@@ -649,7 +702,11 @@ export default {
         loginError: 'اسم المستخدم أو كلمة المرور غير صحيحة',
         saveSuccess: 'تم حفظ الاستطلاع بنجاح',
         submitSuccess: 'تم إرسال الاستطلاع بنجاح',
-        validationError: 'هذا الحقل مطلوب'
+        validationError: 'هذا الحقل مطلوب',
+        selectSurveyTemplate: 'اختر نموذج الاستطلاع',
+        templateSelected: 'تم اختيار النموذج',
+        chooseTemplate: 'اختر نموذج استطلاع...',
+        templateSelectionHint: 'يرجى اختيار نموذج استطلاع لبدء التقييم'
       }
     }
 
@@ -831,6 +888,8 @@ export default {
       currentUser.value = null
       selectedOpportunity.value = null
       currentSurveyTemplate.value = null
+      surveyTemplates.value = []
+      selectedTemplateId.value = null
       Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
       if (autoSaveInterval) {
         clearInterval(autoSaveInterval)
@@ -872,6 +931,26 @@ export default {
       console.log('Filtered opportunities:', opportunities.value)
     }
 
+    const fetchSurveyTemplates = async () => {
+      try {
+        const fields = encodeURIComponent(JSON.stringify(['name', 'template_name', 'fields']));
+        const resp = await fetch(`/api/resource/Technical Survey Template?fields=${fields}&limit_page_length=0`, {
+          credentials: 'include',
+        });
+
+        if (resp.ok) {
+          const data = await resp.json();
+          surveyTemplates.value = data.data || [];
+          console.log('Fetched survey templates:', surveyTemplates.value);
+        } else {
+          throw new Error('Failed to fetch survey templates');
+        }
+      } catch (error) {
+        console.error('Error fetching survey templates:', error);
+        showToast('Error loading survey templates', 'error');
+      }
+    };
+
     const selectOpportunity = async (opportunity) => {
       // Show confirmation modal
       if (confirm(`Are you sure you want to survey "${opportunity.title}"? You will be assigned as the surveyor for this opportunity.`)) {
@@ -895,9 +974,9 @@ export default {
           }
 
           selectedOpportunity.value = opportunity
-          await fetchSurveyTemplate(opportunity.doctype)
-          startAutoSave()
-
+          await fetchSurveyTemplates()
+          // Don't start auto-save yet - wait for template selection
+          
           // Refresh opportunities list to remove the assigned opportunity
           await fetchOpportunities()
 
@@ -910,144 +989,73 @@ export default {
       }
     }
 
-    const fetchSurveyTemplate = async (doctype) => {
-      // Mock survey template based on doctype
-      const templates = {
-        'Opportunity Dedicated': {
-          title: 'Dedicated Server Technical Assessment',
-          questions: [
-            {
-              name: 'technical_requirements',
-              question: 'What are the detailed technical requirements for this dedicated server project?',
-              question_type: 'Text',
-              required: true
-            },
-            {
-              name: 'complexity_rating',
-              question: 'How would you rate the overall complexity of this project?',
-              question_type: 'Rating',
-              required: true
-            },
-            {
-              name: 'feasible',
-              question: 'Is this project technically feasible with our current infrastructure?',
-              question_type: 'Yes/No',
-              required: true
-            },
-            {
-              name: 'timeline',
-              question: 'What is the estimated timeline for project completion?',
-              question_type: 'Multi-choice',
-              options: ['1-3 months', '3-6 months', '6-12 months', 'More than 12 months'],
-              required: true
-            },
-            {
-              name: 'resources_needed',
-              question: 'What additional resources or expertise will be required?',
-              question_type: 'Text',
-              required: false
-            }
-          ]
-        },
-        'Opportunity Hotels': {
-          title: 'Hotel Management System Assessment',
-          questions: [
-            {
-              name: 'hotel_size',
-              question: 'What is the size category of this hotel?',
-              question_type: 'Multi-choice',
-              options: ['Small (1-50 rooms)', 'Medium (51-200 rooms)', 'Large (200+ rooms)', 'Resort/Chain (500+ rooms)'],
-              required: true
-            },
-            {
-              name: 'integration_complexity',
-              question: 'Rate the complexity of integrating with existing hotel systems',
-              question_type: 'Rating',
-              required: true
-            },
-            {
-              name: 'pms_integration',
-              question: 'Does the hotel require Property Management System integration?',
-              question_type: 'Yes/No',
-              required: true
-            },
-            {
-              name: 'special_requirements',
-              question: 'Are there any special requirements or customizations needed?',
-              question_type: 'Text',
-              required: false
-            }
-          ]
-        },
-        'Opportunity SM': {
-          title: 'Small Business Technical Assessment',
-          questions: [
-            {
-              name: 'business_type',
-              question: 'What type of business is this and what industry do they operate in?',
-              question_type: 'Text',
-              required: true
-            },
-            {
-              name: 'budget_appropriate',
-              question: 'Is the proposed budget appropriate for the project scope?',
-              question_type: 'Yes/No',
-              required: true
-            },
-            {
-              name: 'scalability_rating',
-              question: 'How would you rate the scalability requirements?',
-              question_type: 'Rating',
-              required: true
-            },
-            {
-              name: 'implementation_approach',
-              question: 'What implementation approach would you recommend?',
-              question_type: 'Multi-choice',
-              options: ['Phased rollout', 'Full implementation', 'Pilot program first', 'Custom development needed'],
-              required: true
-            }
-          ]
-        },
-        'Opportunity Tenders': {
-          title: 'Tender Opportunity Assessment',
-          questions: [
-            {
-              name: 'tender_requirements',
-              question: 'What are the key technical requirements outlined in the tender?',
-              question_type: 'Text',
-              required: true
-            },
-            {
-              name: 'compliance_rating',
-              question: 'How well do we meet the compliance requirements?',
-              question_type: 'Rating',
-              required: true
-            },
-            {
-              name: 'competitive_advantage',
-              question: 'Do we have a competitive advantage for this tender?',
-              question_type: 'Yes/No',
-              required: true
-            },
-            {
-              name: 'risk_level',
-              question: 'What is the risk level associated with this tender?',
-              question_type: 'Multi-choice',
-              options: ['Low risk', 'Medium risk', 'High risk', 'Very high risk'],
-              required: true
-            },
-            {
-              name: 'additional_notes',
-              question: 'Any additional technical notes or concerns?',
-              question_type: 'Text',
-              required: false
-            }
-          ]
+    const selectSurveyTemplate = async (templateId) => {
+      if (!templateId) return;
+      
+      isLoading.value = true;
+      try {
+        // Fetch the complete template data including child table fields
+        const resp = await fetch(`/api/resource/Technical Survey Template/${templateId}`, {
+          credentials: 'include',
+        });
+        
+        if (!resp.ok) {
+          throw new Error('Failed to fetch template details');
         }
+        
+        const data = await resp.json();
+        const template = data.data;
+        
+        if (!template) {
+          throw new Error('Template not found');
+        }
+        
+        selectedTemplateId.value = templateId;
+        
+        // Check if fields exist and is an array
+        const templateFields = template.fields || [];
+        console.log('Template fields:', templateFields);
+        
+        // Convert template fields to survey questions format
+        currentSurveyTemplate.value = {
+          title: template.template_name,
+          questions: templateFields.map(field => ({
+            name: field.field_name,
+            question: field.field_label,
+            description: field.description || '',
+            question_type: mapFieldTypeToQuestionType(field.field_type),
+            required: field.is_mandatory === 1,
+            options: field.options ? field.options.split('\n').filter(opt => opt.trim() !== '') : undefined
+          }))
+        };
+        
+        // Initialize survey answers based on template fields
+        surveyAnswers.value = {};
+        templateFields.forEach(field => {
+          surveyAnswers.value[field.field_name] = initializeFieldValue(field);
+        });
+        
+        // Start auto-save now that template is selected
+        startAutoSave();
+        activeTab.value = 'fill-survey';
+        
+        showToast(`Template "${template.template_name}" selected successfully`);
+      } catch (error) {
+        showToast('Error selecting template: ' + error.message, 'error');
+      } finally {
+        isLoading.value = false;
       }
+    };
 
-      currentSurveyTemplate.value = templates[doctype] || templates['Opportunity Dedicated']
+    const mapFieldTypeToQuestionType = (fieldType) => {
+      const typeMap = {
+        'Data': 'Text',
+        'Long Text': 'Text', 
+        'Select': 'Multi-choice',
+        'Rating': 'Rating',
+        'Question': 'Yes/No'
+      };
+      return typeMap[fieldType] || 'Text';
     }
 
     const startAutoSave = () => {
@@ -1108,6 +1116,8 @@ export default {
         // Reset form
         selectedOpportunity.value = null
         currentSurveyTemplate.value = null
+        surveyTemplates.value = []
+        selectedTemplateId.value = null
         Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
 
         if (autoSaveInterval) {
@@ -1198,10 +1208,11 @@ export default {
               workflow_state: oppData.data.workflow_state
             }
             
-            await fetchSurveyTemplate(response.doctype)
-            startAutoSave()
+            // Load available survey templates for selection
+            await fetchSurveyTemplates()
             activeTab.value = 'fill-survey'
             showToast(`Continuing survey for: ${response.title}`)
+            // Note: User will need to select a template to continue
           } else {
             throw new Error('Failed to fetch opportunity data')
           }
@@ -1226,6 +1237,32 @@ export default {
         minute: '2-digit'
       })
     }
+
+    // Initialize field value based on type and default
+    const initializeFieldValue = (field) => {
+      if (field.default_value) {
+        return field.default_value;
+      }
+      
+      switch (field.field_type) {
+        case 'Check':
+          return false;
+        case 'Int':
+        case 'Float':
+          return 0;
+        case 'Select':
+          // Return first option if available
+          if (field.options) {
+            const options = field.options.split('\n').filter(opt => opt.trim() !== '');
+            return options.length > 0 ? options[0] : '';
+          }
+          return '';
+        case 'Table':
+          return [];
+        default:
+          return '';
+      }
+    };
 
     // Lifecycle hooks
     onMounted(() => {
@@ -1271,6 +1308,8 @@ export default {
       opportunities,
       selectedOpportunity,
       currentSurveyTemplate,
+      surveyTemplates,
+      selectedTemplateId,
       surveyAnswers,
       validationErrors,
       opportunitySearch,
@@ -1288,6 +1327,10 @@ export default {
       login,
       logout,
       selectOpportunity,
+      selectSurveyTemplate,
+      fetchSurveyTemplates,
+      initializeFieldValue,
+      mapFieldTypeToQuestionType,
       saveDraft,
       submitSurvey,
       viewSurveyResponse,
