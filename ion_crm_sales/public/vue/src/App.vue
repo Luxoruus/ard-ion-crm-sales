@@ -229,14 +229,14 @@
             <!-- Survey Header -->
             <div class="flex items-center justify-between pb-6 border-b">
               <div>
-                <h2 class="text-2xl font-bold text-gray-900">{{ currentSurveyTemplate?.title }}</h2>
+                <h2 class="text-2xl font-bold text-gray-900">{{ selectedOpportunity.title }}</h2>
                 <p class="text-gray-600 mt-1 flex items-center">
                   <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6M8 8v10l4-2 4 2V8">
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6">
                     </path>
                   </svg>
-                  {{ selectedOpportunity.title }}
+                  {{ selectedOpportunity.doctype }}
                 </p>
               </div>
               <button @click="selectedOpportunity = null"
@@ -449,7 +449,7 @@
               class="p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200">
               <div class="flex justify-between items-start">
                 <div class="flex-1">
-                  <h3 class="font-semibold text-gray-900 text-lg mb-2">{{ response.survey_template }}</h3>
+                  <h3 class="font-semibold text-gray-900 text-lg mb-2">{{ response.title }}</h3>
                   <div class="space-y-1 text-sm text-gray-600">
                     <p class="flex items-center">
                       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
