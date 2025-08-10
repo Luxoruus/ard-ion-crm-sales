@@ -144,23 +144,47 @@
             <div class="text-center mb-8">
               <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ t('selectOpportunity') }}</h2>
               <p class="text-gray-600">Choose an opportunity to begin the technical assessment survey</p>
+              <p class="text-sm text-blue-600 mt-2">Only showing opportunities where no surveyor has been assigned yet
+              </p>
             </div>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">{{ t('searchOpportunities') }}</label>
-              <div class="relative">
-                <input v-model="opportunitySearch" type="text"
-                  class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
-                  :placeholder="t('searchPlaceholder')" />
-                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-3.5" fill="none" stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
+            <div class="flex items-end justify-between">
+              <div class="flex-1">
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{ t('searchOpportunities') }}</label>
+                <div class="relative">
+                  <input v-model="opportunitySearch" type="text"
+                    class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
+                    :placeholder="t('searchPlaceholder')" />
+                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-3.5" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
               </div>
+              <button @click="fetchOpportunities" :disabled="isLoading"
+                class="ml-4 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                  </path>
+                </svg>
+                {{ t('refresh') }}
+              </button>
             </div>
 
-            <div class="grid gap-4">
+            <div v-if="filteredOpportunities.length === 0 && !isLoading" class="text-center py-12">
+              <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                </path>
+              </svg>
+              <p class="text-gray-500 text-lg font-medium">{{ t('noAvailableOpportunities') }}</p>
+              <p class="text-gray-400 mt-2">All opportunities in the "Surveying" state have already been assigned to a
+                surveyor</p>
+            </div>
+
+            <div v-else class="grid gap-4">
               <div v-for="opportunity in filteredOpportunities" :key="opportunity.name"
                 @click="selectOpportunity(opportunity)"
                 class="p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 cursor-pointer transition-all duration-200 hover:shadow-md">
@@ -567,6 +591,8 @@ export default {
         edit: 'Edit',
         view: 'View',
         noSurveys: 'No surveys found',
+        noAvailableOpportunities: 'No available opportunities',
+        refresh: 'Refresh',
         loginError: 'Invalid username or password',
         saveSuccess: 'Survey saved successfully',
         submitSuccess: 'Survey submitted successfully',
@@ -603,6 +629,8 @@ export default {
         edit: 'تعديل',
         view: 'عرض',
         noSurveys: 'لا توجد استطلاعات',
+        noAvailableOpportunities: 'لا توجد فرص متاحة',
+        refresh: 'تحديث',
         loginError: 'اسم المستخدم أو كلمة المرور غير صحيحة',
         saveSuccess: 'تم حفظ الاستطلاع بنجاح',
         submitSuccess: 'تم إرسال الاستطلاع بنجاح',
@@ -672,7 +700,7 @@ export default {
     async function checkLoggedIn() {
       try {
         // const ezgz = await fetch('/api/method/frappe.auth.get_csrf_token')
-// console.log(ezgz)
+        // console.log(ezgz)
         const response = await fetch('/api/method/frappe.auth.get_logged_user', {
           credentials: 'include', // ensures cookies are sent
         });
@@ -797,54 +825,74 @@ export default {
     }
 
     const fetchOpportunities = async () => {
-      // Mock opportunities data
-      const fields = encodeURIComponent(JSON.stringify(['name', 'customer_name', 'opportunity_from', 'title', 'status', 'workflow_state']));
-      const filters = encodeURIComponent(JSON.stringify([['custom_surveyor', 'is', 'not set']]));
-      const resp = await fetch(`/api/resource/Opportunity?fields=${fields}&filters=${filters}`, {
-        credentials: 'include', // important for auth!
-      });
+      opportunities.value = [] // Clear existing opportunities
+
+      const fields = encodeURIComponent(JSON.stringify(['name', 'customer_name', 'opportunity_from', 'title', 'status', 'workflow_state', 'custom_surveyor']));
+      const filters = encodeURIComponent(JSON.stringify([
+        ['workflow_state', '=', 'Surveying'],
+        ['custom_surveyor', 'is', 'not set']
+      ]));
 
       for (const oppType of ["Opportunity", "Opportunity Hotels", "Opportunity SM", "Opportunity Tenders"]) {
-        const resp = await fetch(`/api/resource/${oppType}?fields=${fields}`, {
-          credentials: 'include',
-        });
-        opportunities.value.push(...(await resp.json()).data.filter(x => x.workflow_state === 'Surveying').map(x => ({ ...x, doctype: oppType })));
+        try {
+          const resp = await fetch(`/api/resource/${oppType}?fields=${fields}&filters=${filters}`, {
+            credentials: 'include',
+          });
+
+          if (resp.ok) {
+            const data = await resp.json();
+            const filteredOpportunities = data.data
+              .filter(opp =>
+                opp.workflow_state === 'Surveying' &&
+                (!opp.custom_surveyor || opp.custom_surveyor === null || opp.custom_surveyor === '')
+              )
+              .map(opp => ({ ...opp, doctype: oppType }));
+
+            opportunities.value.push(...filteredOpportunities);
+          }
+        } catch (error) {
+          console.error(`Error fetching ${oppType}:`, error);
+        }
       }
 
-      console.log(opportunities.value)
+      console.log('Filtered opportunities:', opportunities.value)
     }
 
     const selectOpportunity = async (opportunity) => {
       // Show confirmation modal
       if (confirm(`Are you sure you want to survey "${opportunity.title}"? You will be assigned as the surveyor for this opportunity.`)) {
-      isLoading.value = true
-      try {
-        // Assign current user as surveyor in ERPNext
-        const response = await fetch(`/api/resource/${opportunity.doctype}/${opportunity.name}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Frappe-CSRF-Token': window.csrf_token
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          custom_surveyor: currentUser.value.name
-        })
-        })
-        
-        if (!response.ok) {
-        throw new Error('Failed to assign surveyor')
+        isLoading.value = true
+        try {
+          // Assign current user as surveyor in ERPNext
+          const response = await fetch(`/api/resource/${opportunity.doctype}/${opportunity.name}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Frappe-CSRF-Token': window.csrf_token
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+              custom_surveyor: currentUser.value.name
+            })
+          })
+
+          if (!response.ok) {
+            throw new Error('Failed to assign surveyor')
+          }
+
+          selectedOpportunity.value = opportunity
+          await fetchSurveyTemplate(opportunity.doctype)
+          startAutoSave()
+
+          // Refresh opportunities list to remove the assigned opportunity
+          await fetchOpportunities()
+
+          showToast('You have been assigned as the surveyor for this opportunity')
+        } catch (error) {
+          showToast('Error assigning surveyor: ' + error.message, 'error')
+        } finally {
+          isLoading.value = false
         }
-        
-        selectedOpportunity.value = opportunity
-        await fetchSurveyTemplate(opportunity.doctype)
-        startAutoSave()
-        showToast('You have been assigned as the surveyor for this opportunity')
-      } catch (error) {
-        showToast('Error assigning surveyor: ' + error.message, 'error')
-      } finally {
-        isLoading.value = false
-      }
       }
     }
 
@@ -1178,7 +1226,8 @@ export default {
       saveDraft,
       submitSurvey,
       viewSurveyResponse,
-      formatDate
+      formatDate,
+      fetchOpportunities
     }
   }
 }
