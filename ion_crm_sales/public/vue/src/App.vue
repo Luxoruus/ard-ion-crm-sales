@@ -488,6 +488,7 @@ import { ref, reactive, computed, onMounted, watch } from 'vue'
 export default {
   name: 'TechnicalAssessmentSurveyApp',
   setup() {
+
     // const tailwindScript = document.createElement('script')
     // tailwindScript.setAttribute('src', 'https://cdn.tailwindcss.com')
     // document.head.appendChild(tailwindScript)
@@ -670,6 +671,8 @@ export default {
 
     async function checkLoggedIn() {
       try {
+        // const ezgz = await fetch('/api/method/frappe.auth.get_csrf_token')
+// console.log(ezgz)
         const response = await fetch('/api/method/frappe.auth.get_logged_user', {
           credentials: 'include', // ensures cookies are sent
         });
@@ -820,7 +823,8 @@ export default {
         const response = await fetch(`/api/resource/${opportunity.doctype}/${opportunity.name}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'X-Frappe-CSRF-Token': window.csrf_token
         },
         credentials: 'include',
         body: JSON.stringify({

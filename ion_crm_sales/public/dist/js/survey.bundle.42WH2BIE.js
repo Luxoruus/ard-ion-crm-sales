@@ -2858,7 +2858,7 @@
       if (confirm(`Are you sure you want to survey "${S.title}"? You will be assigned as the surveyor for this opportunity.`)) {
         e.value = true;
         try {
-          if (!(await fetch(`/api/resource/${S.doctype}/${S.name}`, { method: "PUT", headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify({ custom_surveyor: s.value.name }) })).ok)
+          if (!(await fetch(`/api/resource/${S.doctype}/${S.name}`, { method: "PUT", headers: { "Content-Type": "application/json", "X-Frappe-CSRF-Token": window.csrf_token }, credentials: "include", body: JSON.stringify({ custom_surveyor: s.value.name }) })).ok)
             throw new Error("Failed to assign surveyor");
           a.value = S, await ft(S.doctype), Tt(), V("You have been assigned as the surveyor for this opportunity");
         } catch (E) {
@@ -3041,4 +3041,4 @@
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
-//# sourceMappingURL=survey.bundle.GPW7GTGS.js.map
+//# sourceMappingURL=survey.bundle.42WH2BIE.js.map
