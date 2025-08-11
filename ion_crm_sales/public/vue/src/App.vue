@@ -726,9 +726,33 @@ export default {
     const surveyProgress = computed(() => {
       if (!currentSurveyTemplate.value?.questions) return 0
       const totalQuestions = currentSurveyTemplate.value.questions.length
-      const answeredQuestions = Object.keys(surveyAnswers).filter(key =>
-        surveyAnswers[key] !== null && surveyAnswers[key] !== undefined && surveyAnswers[key] !== ''
-      ).length
+      
+      // Count fields that have been meaningfully filled by the user
+      const answeredQuestions = currentSurveyTemplate.value.questions.filter(question => {
+        const answer = surveyAnswers[question.name]
+        
+        // Skip if no answer
+        if (answer === null || answer === undefined || answer === '') return false
+        
+        // For checkbox fields, only count if explicitly set to true
+        if (question.question_type === 'Yes/No' && typeof answer === 'boolean') {
+          return answer !== false
+        }
+        
+        // For numeric fields, only count if not zero (unless zero is meaningful)
+        if (question.question_type === 'Text' && typeof answer === 'number') {
+          return answer !== 0
+        }
+        
+        // For select fields, check if it's not the default first option
+        if (question.question_type === 'Multi-choice' && question.options) {
+          return answer !== question.options[0]
+        }
+        
+        // For other fields, check if it's not empty or default value
+        return answer !== question.default_value && answer !== ''
+      }).length
+      
       return totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0
     })
 
