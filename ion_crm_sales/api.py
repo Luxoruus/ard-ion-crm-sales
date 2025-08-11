@@ -4,10 +4,6 @@ from ion_crm_sales.technical_survey import load_template_fields
 
 @frappe.whitelist()
 def submit_survey(survey_data):
-    print('########################################################')
-    print("Received survey data:", survey_data)
-    print('########################################################')
-
     # Validate and process the survey data
     if not survey_data.get("opportunity"):
         frappe.throw("Opportunity is required")
@@ -22,9 +18,16 @@ def submit_survey(survey_data):
 
     survey.save()
 
+
+    survey.reload()
     load_template_fields(survey_data.get("template"), survey.name)
 
+    survey.reload()
 
+    for field in survey.survey_fields:
+        field.field_value = str(survey_data.get('answers').get(field.field_name))
+
+    survey.save()
 
     # # Create a new Survey Submission document
     # submission = frappe.get_doc({

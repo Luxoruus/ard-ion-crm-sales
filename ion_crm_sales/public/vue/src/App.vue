@@ -1043,10 +1043,10 @@ export default {
           }))
         };
 
-        // Initialize survey answers based on template fields
-        surveyAnswers.value = {};
+        // Initialize survey answers based on template fields (reactive, not ref)
+        Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key]);
         templateFields.forEach(field => {
-          surveyAnswers.value[field.field_name] = initializeFieldValue(field);
+          surveyAnswers[field.field_name] = initializeFieldValue(field);
         });
 
         // Start auto-save now that template is selected
@@ -1119,11 +1119,11 @@ export default {
 
       isLoading.value = true
       try {
-        // Prepare survey data for backend
+        // Prepare survey data for backend (single response per survey)
         const payload = {
           opportunity: selectedOpportunity.value?.name,
           template: selectedTemplateId.value,
-          responses: surveyAnswers.value || surveyAnswers
+          answers: { ...surveyAnswers }
         }
 
         const resp = await fetch('/api/method/ion_crm_sales.api.submit_survey', {

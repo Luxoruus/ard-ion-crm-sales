@@ -68,17 +68,17 @@
   var St = (e) => Gt(e) === "[object Map]";
   var gs = (e) => Gt(e) === "[object Set]";
   var pr = (e) => Gt(e) === "[object Date]";
-  var F = (e) => typeof e == "function";
+  var j = (e) => typeof e == "function";
   var ne = (e) => typeof e == "string";
   var Le = (e) => typeof e == "symbol";
   var ee = (e) => e !== null && typeof e == "object";
-  var Wr = (e) => (ee(e) || F(e)) && F(e.then) && F(e.catch);
+  var Wr = (e) => (ee(e) || j(e)) && j(e.then) && j(e.catch);
   var zr = Object.prototype.toString;
   var Gt = (e) => zr.call(e);
   var Xn = (e) => Gt(e).slice(8, -1);
   var Jr = (e) => Gt(e) === "[object Object]";
   var qs = (e) => ne(e) && e !== "NaN" && e[0] !== "-" && "" + parseInt(e, 10) === e;
-  var jt = Qs(",key,ref,ref_for,ref_key,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted");
+  var Ft = Qs(",key,ref,ref_for,ref_key,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted");
   var ms = (e) => {
     const t = /* @__PURE__ */ Object.create(null);
     return (s) => t[s] || (t[s] = e(s));
@@ -183,7 +183,7 @@
     return e.findIndex((s) => kt(s, t));
   }
   var Qr = (e) => !!(e && e.__v_isRef === true);
-  var E = (e) => ne(e) ? e : e == null ? "" : P(e) || ee(e) && (e.toString === zr || !F(e.toString)) ? Qr(e) ? E(e.value) : JSON.stringify(e, Xr, 2) : String(e);
+  var E = (e) => ne(e) ? e : e == null ? "" : P(e) || ee(e) && (e.toString === zr || !j(e.toString)) ? Qr(e) ? E(e.value) : JSON.stringify(e, Xr, 2) : String(e);
   var Xr = (e, t) => Qr(t) ? Xr(e, t.value) : St(t) ? { [`Map(${t.size})`]: [...t.entries()].reduce((s, [r, n], i) => (s[Es(r, i) + " =>"] = n, s), {}) } : gs(t) ? { [`Set(${t.size})`]: [...t.values()].map((s) => Es(s)) } : Le(t) ? Es(t) : ee(t) && !P(t) && !Jr(t) ? String(t) : t;
   var Es = (e, t = "") => {
     var s;
@@ -848,7 +848,7 @@
   function hn(e) {
     return Tt(e) ? e : new Proxy(e, Ro);
   }
-  var Fo = class {
+  var jo = class {
     constructor(t, s, r) {
       this.fn = t, this.setter = s, this._value = void 0, this.dep = new sr(this), this.__v_isRef = true, this.deps = void 0, this.depsTail = void 0, this.flags = 16, this.globalVersion = Bt - 1, this.next = void 0, this.effect = this, this.__v_isReadonly = !s, this.isSSR = r;
     }
@@ -864,9 +864,9 @@
       this.setter && this.setter(t);
     }
   };
-  function jo(e, t, s = false) {
+  function Fo(e, t, s = false) {
     let r, n;
-    return F(e) ? r = e : (r = e.get, n = e.set), new Fo(r, n, s);
+    return j(e) ? r = e : (r = e.get, n = e.set), new jo(r, n, s);
   }
   var es = {};
   var cs = /* @__PURE__ */ new WeakMap();
@@ -879,15 +879,15 @@
   }
   function Lo(e, t, s = Q) {
     const { immediate: r, deep: n, once: i, scheduler: o, augmentJob: l, call: c } = s, h = (I) => n ? I : Ce(I) || n === false || n === 0 ? Je(I, 1) : Je(I);
-    let d, g, S, k, H = false, j = false;
-    if (ae(e) ? (g = () => e.value, H = Ce(e)) : Tt(e) ? (g = () => h(e), H = true) : P(e) ? (j = true, H = e.some((I) => Tt(I) || Ce(I)), g = () => e.map((I) => {
+    let d, g, S, k, H = false, F = false;
+    if (ae(e) ? (g = () => e.value, H = Ce(e)) : Tt(e) ? (g = () => h(e), H = true) : P(e) ? (F = true, H = e.some((I) => Tt(I) || Ce(I)), g = () => e.map((I) => {
       if (ae(I))
         return I.value;
       if (Tt(I))
         return h(I);
-      if (F(I))
+      if (j(I))
         return c ? c(I, 2) : I();
-    })) : F(e) ? t ? g = c ? () => c(e, 2) : e : g = () => {
+    })) : j(e) ? t ? g = c ? () => c(e, 2) : e : g = () => {
       if (S) {
         Qe();
         try {
@@ -916,17 +916,17 @@
         I(...re), U();
       };
     }
-    let te = j ? new Array(e.length).fill(es) : es;
+    let te = F ? new Array(e.length).fill(es) : es;
     const z = (I) => {
       if (!(!(d.flags & 1) || !d.dirty && !I))
         if (t) {
           const re = d.run();
-          if (n || H || (j ? re.some((ke, Y) => rt(ke, te[Y])) : rt(re, te))) {
+          if (n || H || (F ? re.some((ke, Y) => rt(ke, te[Y])) : rt(re, te))) {
             S && S();
             const ke = dt;
             dt = d;
             try {
-              const Y = [re, te === es ? void 0 : j && te[0] === es ? [] : te, k];
+              const Y = [re, te === es ? void 0 : F && te[0] === es ? [] : te, k];
               te = re, c ? c(t, 3, Y) : t(...Y);
             } finally {
               dt = ke;
@@ -975,7 +975,7 @@
     }
   }
   function He(e, t, s, r) {
-    if (F(e)) {
+    if (j(e)) {
       const n = Qt(e, t, s, r);
       return n && Wr(n) && n.catch((i) => {
         xs(i, t, s);
@@ -1015,7 +1015,7 @@
     console.error(e);
   }
   var fe = [];
-  var Fe = -1;
+  var je = -1;
   var Ct = [];
   var $e = null;
   var _t = 0;
@@ -1026,7 +1026,7 @@
     return e ? t.then(this ? e.bind(this) : e) : t;
   }
   function No(e) {
-    let t = Fe + 1, s = fe.length;
+    let t = je + 1, s = fe.length;
     for (; t < s; ) {
       const r = t + s >>> 1, n = fe[r], i = Wt(n);
       i < e || i === e && n.flags & 2 ? t = r + 1 : s = r;
@@ -1045,7 +1045,7 @@
   function Uo(e) {
     P(e) ? Ct.push(...e) : $e && e.id === -1 ? $e.splice(_t + 1, 0, e) : e.flags & 1 || (Ct.push(e), e.flags |= 1), mn();
   }
-  function vr(e, t, s = Fe + 1) {
+  function vr(e, t, s = je + 1) {
     for (; s < fe.length; s++) {
       const r = fe[s];
       if (r && r.flags & 2) {
@@ -1072,16 +1072,16 @@
   var Wt = (e) => e.id == null ? e.flags & 2 ? -1 : 1 / 0 : e.id;
   function vn(e) {
     try {
-      for (Fe = 0; Fe < fe.length; Fe++) {
-        const t = fe[Fe];
+      for (je = 0; je < fe.length; je++) {
+        const t = fe[je];
         t && !(t.flags & 8) && (t.flags & 4 && (t.flags &= -2), Qt(t, t.i, t.i ? 15 : 14), t.flags & 4 || (t.flags &= -2));
       }
     } finally {
-      for (; Fe < fe.length; Fe++) {
-        const t = fe[Fe];
+      for (; je < fe.length; je++) {
+        const t = fe[je];
         t && (t.flags &= -2);
       }
-      Fe = -1, fe.length = 0, yn(), us = null, (fe.length || Ct.length) && vn();
+      je = -1, fe.length = 0, yn(), us = null, (fe.length || Ct.length) && vn();
     }
   }
   var Te = null;
@@ -1112,7 +1112,7 @@
     const s = Ts(Te), r = e.dirs || (e.dirs = []);
     for (let n = 0; n < t.length; n++) {
       let [i, o, l, c = Q] = t[n];
-      i && (F(i) && (i = { mounted: i, updated: i }), i.deep && Je(o), r.push({ dir: i, instance: s, value: o, oldValue: void 0, arg: l, modifiers: c }));
+      i && (j(i) && (i = { mounted: i, updated: i }), i.deep && Je(o), r.push({ dir: i, instance: s, value: o, oldValue: void 0, arg: l, modifiers: c }));
     }
     return e;
   }
@@ -1135,7 +1135,7 @@
   }
   function Ht(e, t, s, r, n = false) {
     if (P(e)) {
-      e.forEach((H, j) => Ht(H, t && (P(t) ? t[j] : t), s, r, n));
+      e.forEach((H, F) => Ht(H, t && (P(t) ? t[F] : t), s, r, n));
       return;
     }
     if (Nt(r) && !n) {
@@ -1143,17 +1143,17 @@
       return;
     }
     const i = r.shapeFlag & 4 ? Ts(r.component) : r.el, o = n ? null : i, { i: l, r: c } = e, h = t && t.r, d = l.refs === Q ? l.refs = {} : l.refs, g = l.setupState, S = K(g), k = g === Q ? () => false : (H) => W(S, H);
-    if (h != null && h !== c && (ne(h) ? (d[h] = null, k(h) && (g[h] = null)) : ae(h) && (h.value = null)), F(c))
+    if (h != null && h !== c && (ne(h) ? (d[h] = null, k(h) && (g[h] = null)) : ae(h) && (h.value = null)), j(c))
       Qt(c, l, 12, [o, d]);
     else {
-      const H = ne(c), j = ae(c);
-      if (H || j) {
+      const H = ne(c), F = ae(c);
+      if (H || F) {
         const X = () => {
           if (e.f) {
             const U = H ? k(c) ? g[c] : d[c] : c.value;
             n ? P(U) && Zs(U, i) : P(U) ? U.includes(i) || U.push(i) : H ? (d[c] = [i], k(c) && (g[c] = d[c])) : (c.value = [i], e.k && (d[e.k] = c.value));
           } else
-            H ? (d[c] = o, k(c) && (g[c] = o)) : j && (c.value = o, e.k && (d[e.k] = o));
+            H ? (d[c] = o, k(c) && (g[c] = o)) : F && (c.value = o, e.k && (d[e.k] = o));
         };
         o ? (X.id = -1, be(X, s)) : X();
       }
@@ -1306,11 +1306,11 @@
   function ri(e) {
     const t = On(e), s = e.proxy, r = e.ctx;
     Ws = false, t.beforeCreate && xr(t.beforeCreate, e, "bc");
-    const { data: n, computed: i, methods: o, watch: l, provide: c, inject: h, created: d, beforeMount: g, mounted: S, beforeUpdate: k, updated: H, activated: j, deactivated: X, beforeDestroy: U, beforeUnmount: te, destroyed: z, unmounted: I, render: re, renderTracked: ke, renderTriggered: Y, errorCaptured: Ee, serverPrefetch: gt, expose: Ne, inheritAttrs: lt, components: mt, directives: Ue, filters: at } = t;
+    const { data: n, computed: i, methods: o, watch: l, provide: c, inject: h, created: d, beforeMount: g, mounted: S, beforeUpdate: k, updated: H, activated: F, deactivated: X, beforeDestroy: U, beforeUnmount: te, destroyed: z, unmounted: I, render: re, renderTracked: ke, renderTriggered: Y, errorCaptured: Ee, serverPrefetch: gt, expose: Ne, inheritAttrs: lt, components: mt, directives: Ue, filters: at } = t;
     if (h && ni(h, r, null), o)
       for (const Z in o) {
         const G = o[Z];
-        F(G) && (r[Z] = G.bind(s));
+        j(G) && (r[Z] = G.bind(s));
       }
     if (n) {
       const Z = n.call(s, s);
@@ -1318,14 +1318,14 @@
     }
     if (Ws = true, i)
       for (const Z in i) {
-        const G = i[Z], Ve = F(G) ? G.bind(s, s) : F(G.get) ? G.get.bind(s, s) : De, ct = !F(G) && F(G.set) ? G.set.bind(s) : De, Be = os({ get: Ve, set: ct });
+        const G = i[Z], Ve = j(G) ? G.bind(s, s) : j(G.get) ? G.get.bind(s, s) : De, ct = !j(G) && j(G.set) ? G.set.bind(s) : De, Be = os({ get: Ve, set: ct });
         Object.defineProperty(r, Z, { enumerable: true, configurable: true, get: () => Be.value, set: (ce) => Be.value = ce });
       }
     if (l)
       for (const Z in l)
         Cn(l[Z], r, s, Z);
     if (c) {
-      const Z = F(c) ? c.call(s) : c;
+      const Z = j(c) ? c.call(s) : c;
       Reflect.ownKeys(Z).forEach((G) => {
         ui(G, Z[G]);
       });
@@ -1334,7 +1334,7 @@
     function oe(Z, G) {
       P(G) ? G.forEach((Ve) => Z(Ve.bind(s))) : G && Z(G.bind(s));
     }
-    if (oe(Yo, g), oe(Sn, S), oe(Go, k), oe(Qo, H), oe(Wo, j), oe(zo, X), oe(ei, Ee), oe($o, ke), oe(qo, Y), oe(Xo, te), oe(Tn, I), oe(Zo, gt), P(Ne))
+    if (oe(Yo, g), oe(Sn, S), oe(Go, k), oe(Qo, H), oe(Wo, F), oe(zo, X), oe(ei, Ee), oe($o, ke), oe(qo, Y), oe(Xo, te), oe(Tn, I), oe(Zo, gt), P(Ne))
       if (Ne.length) {
         const Z = e.exposed || (e.exposed = {});
         Ne.forEach((G) => {
@@ -1359,15 +1359,15 @@
     let n = r.includes(".") ? Nn(s, r) : () => s[r];
     if (ne(e)) {
       const i = t[e];
-      F(i) && rs(n, i);
-    } else if (F(e))
+      j(i) && rs(n, i);
+    } else if (j(e))
       rs(n, e.bind(s));
     else if (ee(e))
       if (P(e))
         e.forEach((i) => Cn(i, t, s, r));
       else {
-        const i = F(e.handler) ? e.handler.bind(s) : t[e.handler];
-        F(i) && rs(n, i, e);
+        const i = j(e.handler) ? e.handler.bind(s) : t[e.handler];
+        j(i) && rs(n, i, e);
       }
   }
   function On(e) {
@@ -1385,14 +1385,14 @@
       }
     return e;
   }
-  var oi = { data: _r, props: wr, emits: wr, methods: Ft, computed: Ft, beforeCreate: ue, created: ue, beforeMount: ue, mounted: ue, beforeUpdate: ue, updated: ue, beforeDestroy: ue, beforeUnmount: ue, destroyed: ue, unmounted: ue, activated: ue, deactivated: ue, errorCaptured: ue, serverPrefetch: ue, components: Ft, directives: Ft, watch: li, provide: _r, inject: ii };
+  var oi = { data: _r, props: wr, emits: wr, methods: jt, computed: jt, beforeCreate: ue, created: ue, beforeMount: ue, mounted: ue, beforeUpdate: ue, updated: ue, beforeDestroy: ue, beforeUnmount: ue, destroyed: ue, unmounted: ue, activated: ue, deactivated: ue, errorCaptured: ue, serverPrefetch: ue, components: jt, directives: jt, watch: li, provide: _r, inject: ii };
   function _r(e, t) {
     return t ? e ? function() {
-      return pe(F(e) ? e.call(this, this) : e, F(t) ? t.call(this, this) : t);
+      return pe(j(e) ? e.call(this, this) : e, j(t) ? t.call(this, this) : t);
     } : t : e;
   }
   function ii(e, t) {
-    return Ft(zs(e), zs(t));
+    return jt(zs(e), zs(t));
   }
   function zs(e) {
     if (P(e)) {
@@ -1406,7 +1406,7 @@
   function ue(e, t) {
     return e ? [...new Set([].concat(e, t))] : t;
   }
-  function Ft(e, t) {
+  function jt(e, t) {
     return e ? pe(/* @__PURE__ */ Object.create(null), e, t) : t;
   }
   function wr(e, t) {
@@ -1428,14 +1428,14 @@
   var ai = 0;
   function ci(e, t) {
     return function(r, n = null) {
-      F(r) || (r = pe({}, r)), n != null && !ee(n) && (n = null);
+      j(r) || (r = pe({}, r)), n != null && !ee(n) && (n = null);
       const i = kn(), o = /* @__PURE__ */ new WeakSet(), l = [];
       let c = false;
       const h = i.app = { _uid: ai++, _component: r, _props: n, _container: null, _context: i, _instance: null, version: zi, get config() {
         return i.config;
       }, set config(d) {
       }, use(d, ...g) {
-        return o.has(d) || (d && F(d.install) ? (o.add(d), d.install(h, ...g)) : F(d) && (o.add(d), d(h, ...g))), h;
+        return o.has(d) || (d && j(d.install) ? (o.add(d), d.install(h, ...g)) : j(d) && (o.add(d), d(h, ...g))), h;
       }, mixin(d) {
         return i.mixins.includes(d) || i.mixins.push(d), h;
       }, component(d, g) {
@@ -1480,7 +1480,7 @@
       if (n && e in n)
         return n[e];
       if (arguments.length > 1)
-        return s && F(t) ? t.call(r && r.proxy) : t;
+        return s && j(t) ? t.call(r && r.proxy) : t;
     }
   }
   var En = {};
@@ -1531,7 +1531,7 @@
     let o = false, l;
     if (t)
       for (let c in t) {
-        if (jt(c))
+        if (Ft(c))
           continue;
         const h = t[c];
         let d;
@@ -1552,7 +1552,7 @@
       const l = W(o, "default");
       if (l && r === void 0) {
         const c = o.default;
-        if (o.type !== Function && !o.skipFactory && F(c)) {
+        if (o.type !== Function && !o.skipFactory && j(c)) {
           const { propsDefaults: h } = n;
           if (s in h)
             r = h[s];
@@ -1575,7 +1575,7 @@
       return n;
     const i = e.props, o = {}, l = [];
     let c = false;
-    if (!F(e)) {
+    if (!j(e)) {
       const d = (g) => {
         c = true;
         const [S, k] = In(g, t, true);
@@ -1594,30 +1594,30 @@
       for (const d in i) {
         const g = nt(d);
         if (Sr(g)) {
-          const S = i[d], k = o[g] = P(S) || F(S) ? { type: S } : pe({}, S), H = k.type;
-          let j = false, X = true;
+          const S = i[d], k = o[g] = P(S) || j(S) ? { type: S } : pe({}, S), H = k.type;
+          let F = false, X = true;
           if (P(H))
             for (let U = 0; U < H.length; ++U) {
-              const te = H[U], z = F(te) && te.name;
+              const te = H[U], z = j(te) && te.name;
               if (z === "Boolean") {
-                j = true;
+                F = true;
                 break;
               } else
                 z === "String" && (X = false);
             }
           else
-            j = F(H) && H.name === "Boolean";
-          k[0] = j, k[1] = X, (j || W(k, "default")) && l.push(g);
+            F = j(H) && H.name === "Boolean";
+          k[0] = F, k[1] = X, (F || W(k, "default")) && l.push(g);
         }
       }
     const h = [o, l];
     return ee(e) && r.set(e, h), h;
   }
   function Sr(e) {
-    return e[0] !== "$" && !jt(e);
+    return e[0] !== "$" && !Ft(e);
   }
   var ar = (e) => e === "_" || e === "__" || e === "_ctx" || e === "$stable";
-  var cr = (e) => P(e) ? e.map(je) : [je(e)];
+  var cr = (e) => P(e) ? e.map(Fe) : [Fe(e)];
   var pi = (e, t, s) => {
     if (t._n)
       return t;
@@ -1630,7 +1630,7 @@
       if (ar(n))
         continue;
       const i = e[n];
-      if (F(i))
+      if (j(i))
         t[n] = pi(n, i, r);
       else if (i != null) {
         const o = cr(i);
@@ -1638,11 +1638,11 @@
       }
     }
   };
-  var Fn = (e, t) => {
+  var jn = (e, t) => {
     const s = cr(t);
     e.slots.default = () => s;
   };
-  var jn = (e, t, s) => {
+  var Fn = (e, t, s) => {
     for (const r in t)
       (s || !ar(r)) && (e[r] = t[r]);
   };
@@ -1652,18 +1652,18 @@
       const n = t.__;
       n && Hs(r, "__", n, true);
       const i = t._;
-      i ? (jn(r, t, s), s && Hs(r, "_", i, true)) : Rn(t, r);
+      i ? (Fn(r, t, s), s && Hs(r, "_", i, true)) : Rn(t, r);
     } else
-      t && Fn(e, t);
+      t && jn(e, t);
   };
   var mi = (e, t, s) => {
     const { vnode: r, slots: n } = e;
     let i = true, o = Q;
     if (r.shapeFlag & 32) {
       const l = t._;
-      l ? s && l === 1 ? i = false : jn(n, t, s) : (i = !t.$stable, Rn(t, n)), o = t;
+      l ? s && l === 1 ? i = false : Fn(n, t, s) : (i = !t.$stable, Rn(t, n)), o = t;
     } else
-      t && (Fn(e, t), o = { default: 1 });
+      t && (jn(e, t), o = { default: 1 });
     if (i)
       for (const l in n)
         !ar(l) && o[l] == null && delete n[l];
@@ -1675,7 +1675,7 @@
   function vi(e, t) {
     const s = ys();
     s.__VUE__ = true;
-    const { insert: r, remove: n, patchProp: i, createElement: o, createText: l, createComment: c, setText: h, setElementText: d, parentNode: g, nextSibling: S, setScopeId: k = De, insertStaticContent: H } = e, j = (a, u, p, v = null, m = null, y = null, T = void 0, w = null, _ = !!u.dynamicChildren) => {
+    const { insert: r, remove: n, patchProp: i, createElement: o, createText: l, createComment: c, setText: h, setElementText: d, parentNode: g, nextSibling: S, setScopeId: k = De, insertStaticContent: H } = e, F = (a, u, p, v = null, m = null, y = null, T = void 0, w = null, _ = !!u.dynamicChildren) => {
       if (a === u)
         return;
       a && !Rt(a, u) && (v = x(a), ce(a, m, y, true), a = null), u.patchFlag === -2 && (_ = false, u.dynamicChildren = null);
@@ -1687,7 +1687,7 @@
         case it:
           U(a, u, p, v);
           break;
-        case Fs:
+        case js:
           a == null && te(u, p, v, T);
           break;
         case de:
@@ -1725,7 +1725,7 @@
       const { props: A, shapeFlag: C, transition: M, dirs: R } = a;
       if (_ = a.el = o(a.type, y, A && A.is, A), C & 8 ? d(_, a.children) : C & 16 && Ee(a.children, _, null, v, m, Rs(a, y), T, w), R && ut(a, null, v, "created"), Y(_, a, a.scopeId, T, v), A) {
         for (const q in A)
-          q !== "value" && !jt(q) && i(_, q, null, A[q], y, v);
+          q !== "value" && !Ft(q) && i(_, q, null, A[q], y, v);
         "value" in A && i(_, "value", null, A.value, y), (b = A.onVnodeBeforeMount) && Re(b, v, a);
       }
       R && ut(a, null, v, "beforeMount");
@@ -1746,8 +1746,8 @@
       }
     }, Ee = (a, u, p, v, m, y, T, w, _ = 0) => {
       for (let b = _; b < a.length; b++) {
-        const A = a[b] = w ? et(a[b]) : je(a[b]);
-        j(null, A, u, p, v, m, y, T, w);
+        const A = a[b] = w ? et(a[b]) : Fe(a[b]);
+        F(null, A, u, p, v, m, y, T, w);
       }
     }, gt = (a, u, p, v, m, y, T) => {
       const w = u.el = a.el;
@@ -1774,15 +1774,15 @@
     }, Ne = (a, u, p, v, m, y, T) => {
       for (let w = 0; w < u.length; w++) {
         const _ = a[w], b = u[w], A = _.el && (_.type === de || !Rt(_, b) || _.shapeFlag & 198) ? g(_.el) : p;
-        j(_, b, A, null, v, m, y, T, true);
+        F(_, b, A, null, v, m, y, T, true);
       }
     }, lt = (a, u, p, v, m) => {
       if (u !== p) {
         if (u !== Q)
           for (const y in u)
-            !jt(y) && !(y in p) && i(a, y, u[y], null, m, v);
+            !Ft(y) && !(y in p) && i(a, y, u[y], null, m, v);
         for (const y in p) {
-          if (jt(y))
+          if (Ft(y))
             continue;
           const T = p[y], w = u[y];
           T !== w && y !== "value" && i(a, y, w, T, m, v);
@@ -1830,7 +1830,7 @@
           let J = C, ge;
           ft(a, false), C ? (C.el = q.el, Z(a, C, T)) : C = q, M && ts(M), (ge = C.props && C.props.onVnodeBeforeUpdate) && Re(ge, B, C, q), ft(a, true);
           const me = Cr(a), Me = a.subTree;
-          a.subTree = me, j(Me, me, g(Me.el), x(Me), a, m, y), C.el = me.el, J === null && Mi(a, me.el), R && be(R, m), (ge = C.props && C.props.onVnodeUpdated) && be(() => Re(ge, B, C, q), m);
+          a.subTree = me, F(Me, me, g(Me.el), x(Me), a, m, y), C.el = me.el, J === null && Mi(a, me.el), R && be(R, m), (ge = C.props && C.props.onVnodeUpdated) && be(() => Re(ge, B, C, q), m);
         } else {
           let C;
           const { el: M, props: R } = u, { bm: B, m: q, parent: J, root: ge, type: me } = a, Me = Nt(u);
@@ -1838,7 +1838,7 @@
           {
             ge.ce && ge.ce._def.shadowRoot !== false && ge.ce._injectChildStyle(me);
             const Ae = a.subTree = Cr(a);
-            j(null, Ae, p, v, a, m, y), u.el = Ae.el;
+            F(null, Ae, p, v, a, m, y), u.el = Ae.el;
           }
           if (q && be(q, m), !Me && (C = R && R.onVnodeMounted)) {
             const Ae = u;
@@ -1873,8 +1873,8 @@
       const b = a.length, A = u.length, C = Math.min(b, A);
       let M;
       for (M = 0; M < C; M++) {
-        const R = u[M] = _ ? et(u[M]) : je(u[M]);
-        j(a[M], R, p, null, m, y, T, w, _);
+        const R = u[M] = _ ? et(u[M]) : Fe(u[M]);
+        F(a[M], R, p, null, m, y, T, w, _);
       }
       b > A ? qe(a, m, y, true, false, C) : Ee(u, p, v, m, y, T, w, _, C);
     }, ct = (a, u, p, v, m, y, T, w, _) => {
@@ -1882,17 +1882,17 @@
       const A = u.length;
       let C = a.length - 1, M = A - 1;
       for (; b <= C && b <= M; ) {
-        const R = a[b], B = u[b] = _ ? et(u[b]) : je(u[b]);
+        const R = a[b], B = u[b] = _ ? et(u[b]) : Fe(u[b]);
         if (Rt(R, B))
-          j(R, B, p, null, m, y, T, w, _);
+          F(R, B, p, null, m, y, T, w, _);
         else
           break;
         b++;
       }
       for (; b <= C && b <= M; ) {
-        const R = a[C], B = u[M] = _ ? et(u[M]) : je(u[M]);
+        const R = a[C], B = u[M] = _ ? et(u[M]) : Fe(u[M]);
         if (Rt(R, B))
-          j(R, B, p, null, m, y, T, w, _);
+          F(R, B, p, null, m, y, T, w, _);
         else
           break;
         C--, M--;
@@ -1901,7 +1901,7 @@
         if (b <= M) {
           const R = M + 1, B = R < A ? u[R].el : v;
           for (; b <= M; )
-            j(null, u[b] = _ ? et(u[b]) : je(u[b]), p, B, m, y, T, w, _), b++;
+            F(null, u[b] = _ ? et(u[b]) : Fe(u[b]), p, B, m, y, T, w, _), b++;
         }
       } else if (b > M)
         for (; b <= C; )
@@ -1909,7 +1909,7 @@
       else {
         const R = b, B = b, q = /* @__PURE__ */ new Map();
         for (b = B; b <= M; b++) {
-          const ve = u[b] = _ ? et(u[b]) : je(u[b]);
+          const ve = u[b] = _ ? et(u[b]) : Fe(u[b]);
           ve.key != null && q.set(ve.key, b);
         }
         let J, ge = 0;
@@ -1933,12 +1933,12 @@
                 Pe = J;
                 break;
               }
-          Pe === void 0 ? ce(ve, m, y, true) : (Pt[Pe - B] = b + 1, Pe >= Ae ? Ae = Pe : Me = true, j(ve, u[Pe], p, null, m, y, T, w, _), ge++);
+          Pe === void 0 ? ce(ve, m, y, true) : (Pt[Pe - B] = b + 1, Pe >= Ae ? Ae = Pe : Me = true, F(ve, u[Pe], p, null, m, y, T, w, _), ge++);
         }
         const fr = Me ? xi(Pt) : wt;
         for (J = fr.length - 1, b = me - 1; b >= 0; b--) {
           const ve = B + b, Pe = u[ve], dr = u[ve + 1], hr = ve + 1 < A ? dr.el || dr.placeholder : v;
-          Pt[b] === 0 ? j(null, Pe, p, hr, m, y, T, w, _) : Me && (J < 0 || b !== fr[J] ? Be(Pe, p, hr, 2) : J--);
+          Pt[b] === 0 ? F(null, Pe, p, hr, m, y, T, w, _) : Me && (J < 0 || b !== fr[J] ? Be(Pe, p, hr, 2) : J--);
         }
       }
     }, Be = (a, u, p, v, m = null) => {
@@ -1962,7 +1962,7 @@
         r(a.anchor, u, p);
         return;
       }
-      if (T === Fs) {
+      if (T === js) {
         z(a, u, p);
         return;
       }
@@ -2007,7 +2007,7 @@
         Cs(p, v);
         return;
       }
-      if (u === Fs) {
+      if (u === js) {
         I(a);
         return;
       }
@@ -2044,8 +2044,8 @@
     };
     let O = false;
     const L = (a, u, p) => {
-      a == null ? u._vnode && ce(u._vnode, null, null, true) : j(u._vnode || null, a, u, null, null, null, p), u._vnode = a, O || (O = true, vr(), yn(), O = false);
-    }, D = { p: j, um: ce, m: Be, r: At, mt: at, mc: Ee, pc: G, pbc: Ne, n: x, o: e };
+      a == null ? u._vnode && ce(u._vnode, null, null, true) : F(u._vnode || null, a, u, null, null, null, p), u._vnode = a, O || (O = true, vr(), yn(), O = false);
+    }, D = { p: F, um: ce, m: Be, r: At, mt: at, mc: Ee, pc: G, pbc: Ne, n: x, o: e };
     return { render: L, hydrate: void 0, createApp: ci(L) };
   }
   function Rs({ type: e, props: t }, s) {
@@ -2115,7 +2115,7 @@
       }
     }
     const d = he;
-    l.call = (k, H, j) => He(k, d, H, j);
+    l.call = (k, H, F) => He(k, d, H, F);
     let g = false;
     i === "post" ? l.scheduler = (k) => {
       be(k, d && d.suspense);
@@ -2130,7 +2130,7 @@
   function Si(e, t, s) {
     const r = this.proxy, n = ne(e) ? e.includes(".") ? Nn(r, e) : () => r[e] : e.bind(r, r);
     let i;
-    F(t) ? i = t : (i = t.handler, s = t);
+    j(t) ? i = t : (i = t.handler, s = t);
     const o = Xt(this), l = Hn(n, i.bind(r), s);
     return o(), l;
   }
@@ -2168,7 +2168,7 @@
       return n;
     const i = e.emits;
     let o = {}, l = false;
-    if (!F(e)) {
+    if (!j(e)) {
       const c = (h) => {
         const d = Un(h, t, true);
         d && (l = true, pe(o, d));
@@ -2181,21 +2181,21 @@
     return !e || !ps(t) ? false : (t = t.slice(2).replace(/Once$/, ""), W(e, t[0].toLowerCase() + t.slice(1)) || W(e, pt(t)) || W(e, t));
   }
   function Cr(e) {
-    const { type: t, vnode: s, proxy: r, withProxy: n, propsOptions: [i], slots: o, attrs: l, emit: c, render: h, renderCache: d, props: g, data: S, setupState: k, ctx: H, inheritAttrs: j } = e, X = fs(e);
+    const { type: t, vnode: s, proxy: r, withProxy: n, propsOptions: [i], slots: o, attrs: l, emit: c, render: h, renderCache: d, props: g, data: S, setupState: k, ctx: H, inheritAttrs: F } = e, X = fs(e);
     let U, te;
     try {
       if (s.shapeFlag & 4) {
         const I = n || r, re = I;
-        U = je(h.call(re, I, d, g, k, S, H)), te = l;
+        U = Fe(h.call(re, I, d, g, k, S, H)), te = l;
       } else {
         const I = t;
-        U = je(I.length > 1 ? I(g, { attrs: l, slots: o, emit: c }) : I(g, null)), te = t.props ? l : Oi(l);
+        U = Fe(I.length > 1 ? I(g, { attrs: l, slots: o, emit: c }) : I(g, null)), te = t.props ? l : Oi(l);
       }
     } catch (I) {
       Vt.length = 0, xs(I, e, 1), U = Ye(it);
     }
     let z = U;
-    if (te && j !== false) {
+    if (te && F !== false) {
       const I = Object.keys(te), { shapeFlag: re } = z;
       I.length && re & 7 && (i && I.some(Xs) && (te = ki(te, i)), z = Et(z, te, false, true));
     }
@@ -2261,7 +2261,7 @@
   var de = Symbol.for("v-fgt");
   var Ss = Symbol.for("v-txt");
   var it = Symbol.for("v-cmt");
-  var Fs = Symbol.for("v-stc");
+  var js = Symbol.for("v-stc");
   var Vt = [];
   var xe = null;
   function N(e = false) {
@@ -2290,7 +2290,7 @@
     return e.type === t.type && e.key === t.key;
   }
   var Wn = ({ key: e }) => e != null ? e : null;
-  var ns = ({ ref: e, ref_key: t, ref_for: s }) => (typeof e == "number" && (e = "" + e), e != null ? ne(e) || ae(e) || F(e) ? { i: Te, r: e, k: t, f: !!s } : e : null);
+  var ns = ({ ref: e, ref_key: t, ref_for: s }) => (typeof e == "number" && (e = "" + e), e != null ? ne(e) || ae(e) || j(e) ? { i: Te, r: e, k: t, f: !!s } : e : null);
   function f(e, t = null, s = null, r = 0, n = null, i = e === de ? 0 : 1, o = false, l = false) {
     const c = { __v_isVNode: true, __v_skip: true, type: e, props: t, key: t && Wn(t), ref: t && ns(t), scopeId: bn, slotScopeIds: null, children: s, component: null, suspense: null, ssContent: null, ssFallback: null, dirs: null, transition: null, el: null, anchor: null, target: null, targetStart: null, targetAnchor: null, staticCount: 0, shapeFlag: i, patchFlag: r, dynamicProps: n, dynamicChildren: null, appContext: null, ctx: Te };
     return l ? (ur(c, s), i & 128 && e.normalize(c)) : s && (c.shapeFlag |= ne(s) ? 8 : 16), zt > 0 && !o && xe && (c.patchFlag > 0 || i & 6) && c.patchFlag !== 32 && xe.push(c), c;
@@ -2302,18 +2302,18 @@
       return s && ur(l, s), zt > 0 && !i && xe && (l.shapeFlag & 6 ? xe[xe.indexOf(e)] = l : xe.push(l)), l.patchFlag = -2, l;
     }
     if (Wi(e) && (e = e.__vccOpts), t) {
-      t = Fi(t);
+      t = ji(t);
       let { class: l, style: c } = t;
       l && !ne(l) && (t.class = Se(l)), ee(c) && (or(c) && !P(c) && (c = pe({}, c)), t.style = vs(c));
     }
-    const o = ne(e) ? 1 : Vn(e) ? 128 : Ko(e) ? 64 : ee(e) ? 4 : F(e) ? 2 : 0;
+    const o = ne(e) ? 1 : Vn(e) ? 128 : Ko(e) ? 64 : ee(e) ? 4 : j(e) ? 2 : 0;
     return f(e, t, s, r, n, o, i, true);
   }
-  function Fi(e) {
+  function ji(e) {
     return e ? or(e) || An(e) ? pe({}, e) : e : null;
   }
   function Et(e, t, s = false, r = false) {
-    const { props: n, ref: i, patchFlag: o, children: l, transition: c } = e, h = t ? ji(n || {}, t) : n, d = { __v_isVNode: true, __v_skip: true, type: e.type, props: h, key: h && Wn(h), ref: t && t.ref ? s && i ? P(i) ? i.concat(ns(t)) : [i, ns(t)] : ns(t) : i, scopeId: e.scopeId, slotScopeIds: e.slotScopeIds, children: l, target: e.target, targetStart: e.targetStart, targetAnchor: e.targetAnchor, staticCount: e.staticCount, shapeFlag: e.shapeFlag, patchFlag: t && e.type !== de ? o === -1 ? 16 : o | 16 : o, dynamicProps: e.dynamicProps, dynamicChildren: e.dynamicChildren, appContext: e.appContext, dirs: e.dirs, transition: c, component: e.component, suspense: e.suspense, ssContent: e.ssContent && Et(e.ssContent), ssFallback: e.ssFallback && Et(e.ssFallback), placeholder: e.placeholder, el: e.el, anchor: e.anchor, ctx: e.ctx, ce: e.ce };
+    const { props: n, ref: i, patchFlag: o, children: l, transition: c } = e, h = t ? Fi(n || {}, t) : n, d = { __v_isVNode: true, __v_skip: true, type: e.type, props: h, key: h && Wn(h), ref: t && t.ref ? s && i ? P(i) ? i.concat(ns(t)) : [i, ns(t)] : ns(t) : i, scopeId: e.scopeId, slotScopeIds: e.slotScopeIds, children: l, target: e.target, targetStart: e.targetStart, targetAnchor: e.targetAnchor, staticCount: e.staticCount, shapeFlag: e.shapeFlag, patchFlag: t && e.type !== de ? o === -1 ? 16 : o | 16 : o, dynamicProps: e.dynamicProps, dynamicChildren: e.dynamicChildren, appContext: e.appContext, dirs: e.dirs, transition: c, component: e.component, suspense: e.suspense, ssContent: e.ssContent && Et(e.ssContent), ssFallback: e.ssFallback && Et(e.ssFallback), placeholder: e.placeholder, el: e.el, anchor: e.anchor, ctx: e.ctx, ce: e.ce };
     return c && r && lr(d, c.clone(d)), d;
   }
   function se(e = " ", t = 0) {
@@ -2322,7 +2322,7 @@
   function we(e = "", t = false) {
     return t ? (N(), Ii(it, null, e)) : Ye(it, null, e);
   }
-  function je(e) {
+  function Fe(e) {
     return e == null || typeof e == "boolean" ? Ye(it) : P(e) ? Ye(de, null, e.slice()) : Kn(e) ? et(e) : Ye(Ss, null, String(e));
   }
   function et(e) {
@@ -2346,10 +2346,10 @@
         !n && !An(t) ? t._ctx = Te : n === 3 && Te && (Te.slots._ === 1 ? t._ = 1 : (t._ = 2, e.patchFlag |= 1024));
       }
     else
-      F(t) ? (t = { default: t, _ctx: Te }, s = 32) : (t = String(t), r & 64 ? (s = 16, t = [se(t)]) : s = 8);
+      j(t) ? (t = { default: t, _ctx: Te }, s = 32) : (t = String(t), r & 64 ? (s = 16, t = [se(t)]) : s = 8);
     e.children = t, e.shapeFlag |= s;
   }
-  function ji(...e) {
+  function Fi(...e) {
     const t = {};
     for (let s = 0; s < e.length; s++) {
       const r = e[s];
@@ -2429,7 +2429,7 @@
       Jn(e);
   }
   function Mr(e, t, s) {
-    F(t) ? e.type.__ssrInlineRender ? e.ssrRender = t : e.render = t : ee(t) && (e.setupState = hn(t)), Jn(e);
+    j(t) ? e.type.__ssrInlineRender ? e.ssrRender = t : e.render = t : ee(t) && (e.setupState = hn(t)), Jn(e);
   }
   function Jn(e, t, s) {
     const r = e.type;
@@ -2464,9 +2464,9 @@
     } })) : e.proxy;
   }
   function Wi(e) {
-    return F(e) && "__vccOpts" in e;
+    return j(e) && "__vccOpts" in e;
   }
-  var os = (e, t) => jo(e, t, Jt);
+  var os = (e, t) => Fo(e, t, Jt);
   var zi = "3.5.18";
   var Gs;
   var Ar = typeof window < "u" && window.trustedTypes;
@@ -2556,26 +2556,26 @@
       Rr.test(s) ? e.setProperty(pt(r), s.replace(Rr, ""), "important") : e[r] = s;
     }
   }
-  var Fr = ["Webkit", "Moz", "ms"];
-  var js = {};
+  var jr = ["Webkit", "Moz", "ms"];
+  var Fs = {};
   function tl(e, t) {
-    const s = js[t];
+    const s = Fs[t];
     if (s)
       return s;
     let r = nt(t);
     if (r !== "filter" && r in e)
-      return js[t] = r;
+      return Fs[t] = r;
     r = Yr(r);
-    for (let n = 0; n < Fr.length; n++) {
-      const i = Fr[n] + r;
+    for (let n = 0; n < jr.length; n++) {
+      const i = jr[n] + r;
       if (i in e)
-        return js[t] = i;
+        return Fs[t] = i;
     }
     return t;
   }
-  var jr = "http://www.w3.org/1999/xlink";
+  var Fr = "http://www.w3.org/1999/xlink";
   function Dr(e, t, s, r, n, i = no(t)) {
-    r && t.startsWith("xlink:") ? s == null ? e.removeAttributeNS(jr, t.slice(6, t.length)) : e.setAttributeNS(jr, t, s) : s == null || i && !Gr(s) ? e.removeAttribute(t) : e.setAttribute(t, i ? "" : Le(s) ? String(s) : s);
+    r && t.startsWith("xlink:") ? s == null ? e.removeAttributeNS(Fr, t.slice(6, t.length)) : e.setAttributeNS(Fr, t, s) : s == null || i && !Gr(s) ? e.removeAttribute(t) : e.setAttribute(t, i ? "" : Le(s) ? String(s) : s);
   }
   function Lr(e, t, s, r, n) {
     if (t === "innerHTML" || t === "textContent") {
@@ -2659,7 +2659,7 @@
   };
   function ul(e, t, s, r) {
     if (r)
-      return !!(t === "innerHTML" || t === "textContent" || t in e && Ur(t) && F(s));
+      return !!(t === "innerHTML" || t === "textContent" || t in e && Ur(t) && j(s));
     if (t === "spellcheck" || t === "draggable" || t === "translate" || t === "autocorrect" || t === "form" || t === "list" && e.tagName === "INPUT" || t === "type" && e.tagName === "TEXTAREA")
       return false;
     if (t === "width" || t === "height") {
@@ -2769,7 +2769,7 @@
       if (!n)
         return;
       const i = t._component;
-      !F(i) && !i.render && !i.template && (i.template = n.innerHTML), n.nodeType === 1 && (n.textContent = "");
+      !j(i) && !i.render && !i.template && (i.template = n.innerHTML), n.nodeType === 1 && (n.textContent = "");
       const o = s(n, false, bl(n));
       return n instanceof Element && (n.removeAttribute("v-cloak"), n.setAttribute("data-v-app", "")), o;
     }, t;
@@ -2790,7 +2790,7 @@
     return s;
   };
   var wl = { name: "TechnicalAssessmentSurveyApp", setup() {
-    const e = _e(false), t = _e(false), s = _e(null), r = _e("fill-survey"), n = _e("en"), i = tt({ show: false, message: "", type: "success" }), o = tt({ username: "", password: "" }), l = _e([]), c = _e(null), h = _e(null), d = _e([]), g = _e(null), S = tt({}), k = tt({}), H = _e(""), j = _e([]), X = tt({ doctype: "", status: "", dateFrom: "", dateTo: "" });
+    const e = _e(false), t = _e(false), s = _e(null), r = _e("fill-survey"), n = _e("en"), i = tt({ show: false, message: "", type: "success" }), o = tt({ username: "", password: "" }), l = _e([]), c = _e(null), h = _e(null), d = _e([]), g = _e(null), S = tt({}), k = tt({}), H = _e(""), F = _e([]), X = tt({ doctype: "", status: "", dateFrom: "", dateTo: "" });
     let U = null;
     const te = { en: { welcome: "Welcome", loginSubtitle: "Technical Assessment Survey System", username: "Username", password: "Password", enterUsername: "Enter your username", enterPassword: "Enter your password", login: "Login", logout: "Logout", loading: "Loading...", surveyApp: "Survey Application", fillSurvey: "Fill Survey", mySurveys: "My Surveys", selectOpportunity: "Select an Opportunity", searchOpportunities: "Search Opportunities", searchPlaceholder: "Search by name or customer...", customer: "Customer", back: "Back", progress: "Progress", enterAnswer: "Enter your answer...", yes: "Yes", no: "No", saveDraft: "Save Draft", submitSurvey: "Submit Survey", allDoctypes: "All Doctypes", allStatuses: "All Statuses", draft: "Draft", submitted: "Submitted", inProgress: "In Progress", edit: "Edit", view: "View", continue: "Continue", assigned: "Assigned", noSurveys: "No surveys found", noAvailableOpportunities: "No available opportunities", refresh: "Refresh", loginError: "Invalid username or password", selectSurveyTemplate: "Select Survey Template", templateSelected: "Template Selected", chooseTemplate: "Choose a template...", templateSelectionHint: "Please select a survey template to begin the assessment", saveSuccess: "Survey saved successfully", submitSuccess: "Survey submitted successfully", validationError: "This field is required" }, ar: { welcome: "\u0645\u0631\u062D\u0628\u0627\u064B", loginSubtitle: "\u0646\u0638\u0627\u0645 \u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0641\u0646\u064A", username: "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645", password: "\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631", enterUsername: "\u0623\u062F\u062E\u0644 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645", enterPassword: "\u0623\u062F\u062E\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631", login: "\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062F\u062E\u0648\u0644", logout: "\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062E\u0631\u0648\u062C", loading: "\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...", surveyApp: "\u062A\u0637\u0628\u064A\u0642 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", fillSurvey: "\u0645\u0644\u0621 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", mySurveys: "\u0627\u0633\u062A\u0637\u0644\u0627\u0639\u0627\u062A\u064A", selectOpportunity: "\u0627\u062E\u062A\u0631 \u0641\u0631\u0635\u0629", searchOpportunities: "\u0627\u0644\u0628\u062D\u062B \u0641\u064A \u0627\u0644\u0641\u0631\u0635", searchPlaceholder: "\u0627\u0644\u0628\u062D\u062B \u0628\u0627\u0644\u0627\u0633\u0645 \u0623\u0648 \u0627\u0644\u0639\u0645\u064A\u0644...", customer: "\u0627\u0644\u0639\u0645\u064A\u0644", back: "\u0631\u062C\u0648\u0639", progress: "\u0627\u0644\u062A\u0642\u062F\u0645", enterAnswer: "\u0623\u062F\u062E\u0644 \u0625\u062C\u0627\u0628\u062A\u0643...", yes: "\u0646\u0639\u0645", no: "\u0644\u0627", saveDraft: "\u062D\u0641\u0638 \u0645\u0633\u0648\u062F\u0629", submitSurvey: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", allDoctypes: "\u062C\u0645\u064A\u0639 \u0627\u0644\u0623\u0646\u0648\u0627\u0639", allStatuses: "\u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0627\u0644\u0627\u062A", draft: "\u0645\u0633\u0648\u062F\u0629", submitted: "\u0645\u0631\u0633\u0644", inProgress: "\u0642\u064A\u062F \u0627\u0644\u062A\u0642\u062F\u0645", edit: "\u062A\u0639\u062F\u064A\u0644", view: "\u0639\u0631\u0636", continue: "\u0645\u062A\u0627\u0628\u0639\u0629", assigned: "\u0645\u064F\u0639\u064A\u064E\u0651\u0646", noSurveys: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0627\u0633\u062A\u0637\u0644\u0627\u0639\u0627\u062A", noAvailableOpportunities: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0641\u0631\u0635 \u0645\u062A\u0627\u062D\u0629", refresh: "\u062A\u062D\u062F\u064A\u062B", loginError: "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0623\u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u063A\u064A\u0631 \u0635\u062D\u064A\u062D\u0629", saveSuccess: "\u062A\u0645 \u062D\u0641\u0638 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0628\u0646\u062C\u0627\u062D", submitSuccess: "\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0628\u0646\u062C\u0627\u062D", validationError: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0642\u0644 \u0645\u0637\u0644\u0648\u0628", selectSurveyTemplate: "\u0627\u062E\u062A\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", templateSelected: "\u062A\u0645 \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0646\u0645\u0648\u0630\u062C", chooseTemplate: "\u0627\u062E\u062A\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0633\u062A\u0637\u0644\u0627\u0639...", templateSelectionHint: "\u064A\u0631\u062C\u0649 \u0627\u062E\u062A\u064A\u0627\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0644\u0628\u062F\u0621 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" } }, z = (x) => te[n.value][x] || x, I = os(() => {
       if (!H.value)
@@ -2807,7 +2807,7 @@
       }).length;
       return x > 0 ? O / x * 100 : 0;
     }), ke = os(() => {
-      let x = j.value;
+      let x = F.value;
       return X.doctype && (x = x.filter((O) => O.doctype === X.doctype)), X.status && (x = x.filter((O) => O.status === X.status)), X.dateFrom && (x = x.filter((O) => new Date(O.creation) >= new Date(X.dateFrom))), X.dateTo && (x = x.filter((O) => new Date(O.creation) <= new Date(X.dateTo))), x;
     }), Y = (x, O = "success") => {
       i.message = x, i.type = O, i.show = true, setTimeout(() => {
@@ -2900,8 +2900,8 @@
           g.value = x;
           const yt = D.fields || [];
           console.log("Template fields:", yt), h.value = { title: D.template_name, questions: yt.map((a) => ({ name: a.field_name, question: a.field_label, description: a.description || "", question_type: Z(a.field_type), required: a.is_mandatory === 1, options: a.options ? a.options.split(`
-`).filter((u) => u.trim() !== "") : void 0 })) }, S.value = {}, yt.forEach((a) => {
-            S.value[a.field_name] = qe(a);
+`).filter((u) => u.trim() !== "") : void 0 })) }, Object.keys(S).forEach((a) => delete S[a]), yt.forEach((a) => {
+            S[a.field_name] = qe(a);
           }), G(), r.value = "fill-survey", Y(`Template "${D.template_name}" selected successfully`);
         } catch (O) {
           Y("Error selecting template: " + O.message, "error");
@@ -2936,7 +2936,7 @@
       }
       e.value = true;
       try {
-        const x = { opportunity: (_a2 = c.value) == null ? void 0 : _a2.name, template: g.value, responses: S.value || S }, O = await fetch("/api/method/ion_crm_sales.api.submit_survey", { method: "POST", headers: { "Content-Type": "application/json", "X-Frappe-CSRF-Token": window.csrf_token }, credentials: "include", body: JSON.stringify({ survey_data: x }) }), L = await O.json();
+        const x = { opportunity: (_a2 = c.value) == null ? void 0 : _a2.name, template: g.value, answers: __spreadValues({}, S) }, O = await fetch("/api/method/ion_crm_sales.api.submit_survey", { method: "POST", headers: { "Content-Type": "application/json", "X-Frappe-CSRF-Token": window.csrf_token }, credentials: "include", body: JSON.stringify({ survey_data: x }) }), L = await O.json();
         if (!O.ok || (L == null ? void 0 : L.exc_type))
           throw new Error((L == null ? void 0 : L.message) || "Error submitting survey");
         Y(z("submitSuccess")), await ce(), c.value = null, h.value = null, d.value = [], g.value = null, Object.keys(S).forEach((D) => delete S[D]), U && clearInterval(U), r.value = "my-surveys";
@@ -2946,7 +2946,7 @@
         e.value = false;
       }
     }, ce = async () => {
-      e.value = true, j.value = [];
+      e.value = true, F.value = [];
       const x = encodeURIComponent(JSON.stringify(["name", "customer_name", "opportunity_from", "title", "status", "workflow_state", "custom_surveyor", "creation", "modified"])), O = encodeURIComponent(JSON.stringify([["custom_surveyor", "=", s.value.name]]));
       try {
         for (const L of ["Opportunity", "Opportunity Hotels", "Opportunity SM", "Opportunity Tenders"])
@@ -2954,12 +2954,12 @@
             const D = await fetch(`/api/resource/${L}?fields=${x}&filters=${O}`, { credentials: "include" });
             if (D.ok) {
               const a = (await D.json()).data.filter((u) => u.custom_surveyor === s.value.name).map((u) => ({ name: u.name, survey_template: At(L), title: u.title, doctype: L, status: u.workflow_state === "Surveying" ? "In Progress" : "Submitted", creation: u.creation, workflow_state: u.workflow_state, customer_name: u.customer_name }));
-              j.value.push(...a);
+              F.value.push(...a);
             }
           } catch (D) {
             console.error(`Error fetching ${L}:`, D);
           }
-        console.log("Fetched survey responses:", j.value);
+        console.log("Fetched survey responses:", F.value);
       } finally {
         e.value = false;
       }
@@ -3011,7 +3011,7 @@
       });
     }), rs(n, (x) => {
       document.documentElement.dir = x === "ar" ? "rtl" : "ltr", document.documentElement.lang = x;
-    }), { isLoading: e, isAuthenticated: t, currentUser: s, activeTab: r, currentLanguage: n, toast: i, loginForm: o, opportunities: l, selectedOpportunity: c, currentSurveyTemplate: h, surveyTemplates: d, selectedTemplateId: g, surveyAnswers: S, validationErrors: k, opportunitySearch: H, surveyResponses: j, filters: X, filteredOpportunities: I, surveyProgress: re, filteredSurveyResponses: ke, t: z, toggleLanguage: Ee, login: lt, logout: mt, selectOpportunity: Zt, selectSurveyTemplate: oe, fetchSurveyTemplates: at, initializeFieldValue: qe, mapFieldTypeToQuestionType: Z, saveDraft: ct, submitSurvey: Be, viewSurveyResponse: Cs, formatDate: Os, fetchOpportunities: Ue, fetchSurveyResponses: ce, getSurveyTemplateTitle: At };
+    }), { isLoading: e, isAuthenticated: t, currentUser: s, activeTab: r, currentLanguage: n, toast: i, loginForm: o, opportunities: l, selectedOpportunity: c, currentSurveyTemplate: h, surveyTemplates: d, selectedTemplateId: g, surveyAnswers: S, validationErrors: k, opportunitySearch: H, surveyResponses: F, filters: X, filteredOpportunities: I, surveyProgress: re, filteredSurveyResponses: ke, t: z, toggleLanguage: Ee, login: lt, logout: mt, selectOpportunity: Zt, selectSurveyTemplate: oe, fetchSurveyTemplates: at, initializeFieldValue: qe, mapFieldTypeToQuestionType: Z, saveDraft: ct, submitSurvey: Be, viewSurveyResponse: Cs, formatDate: Os, fetchOpportunities: Ue, fetchSurveyResponses: ce, getSurveyTemplateTitle: At };
   } };
   var Sl = { key: 0, class: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" };
   var Tl = { class: "bg-white rounded-lg p-6 flex items-center space-x-3" };
@@ -3024,8 +3024,8 @@
   var Pl = ["placeholder"];
   var Il = { class: "block text-sm font-medium text-gray-700 mb-2" };
   var Rl = ["placeholder"];
-  var Fl = ["disabled"];
-  var jl = { key: 0 };
+  var jl = ["disabled"];
+  var Fl = { key: 0 };
   var Dl = { key: 1, class: "flex items-center justify-center" };
   var Ll = { class: "mt-6 text-center" };
   var Hl = { key: 3, class: "min-h-screen bg-gray-50" };
@@ -3078,8 +3078,8 @@
   var Pa = { class: "text-sm font-medium text-blue-600" };
   var Ia = { class: "w-full bg-gray-200 rounded-full h-3" };
   var Ra = { key: 1, class: "space-y-8" };
-  var Fa = { class: "text-lg font-semibold text-gray-900 mb-4 flex items-start" };
-  var ja = { class: "flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5" };
+  var ja = { class: "text-lg font-semibold text-gray-900 mb-4 flex items-start" };
+  var Fa = { class: "flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5" };
   var Da = { key: 0, class: "text-red-500 ml-1" };
   var La = { key: 0, class: "ml-11 mb-3" };
   var Ha = { class: "text-sm text-gray-600 italic" };
@@ -3126,7 +3126,7 @@
   var Cc = { class: "text-gray-500 text-lg font-medium" };
   function Oc(e, t, s, r, n, i) {
     var _a2, _b;
-    return N(), V("div", { id: "app", class: Se(["w-full min-h-dvh", { rtl: r.currentLanguage === "ar" }]) }, [r.isLoading ? (N(), V("div", Sl, [f("div", Tl, [t[21] || (t[21] = f("div", { class: "animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600" }, null, -1)), f("span", null, E(r.t("loading")), 1)])])) : we("", true), r.toast.show ? (N(), V("div", { key: 1, class: Se(["fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300", r.toast.type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"]) }, E(r.toast.message), 3)) : we("", true), r.isAuthenticated ? (N(), V("div", Hl, [f("header", Nl, [f("div", Ul, [f("div", Vl, [f("div", Bl, [t[25] || (t[25] = f("div", { class: "w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center" }, [f("svg", { class: "w-5 h-5 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", Kl, E(r.t("surveyApp")), 1), f("span", Wl, E(r.t("welcome")) + ", " + E((_a2 = r.currentUser) == null ? void 0 : _a2.full_name), 1)]), f("div", zl, [f("button", { onClick: t[4] || (t[4] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "px-3 py-1 text-sm bg-gray-100 rounded-md hover:bg-gray-200 transition-colors" }, E(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1), f("button", { onClick: t[5] || (t[5] = (...o) => r.logout && r.logout(...o)), class: "px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors" }, E(r.t("logout")), 1)])])])]), f("div", Jl, [f("div", Yl, [f("nav", Gl, [f("button", { onClick: t[6] || (t[6] = (o) => r.activeTab = "fill-survey"), class: Se(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "fill-survey" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[26] || (t[26] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" })], -1)), se(" " + E(r.t("fillSurvey")), 1)], 2), f("button", { onClick: t[7] || (t[7] = (o) => r.activeTab = "my-surveys"), class: Se(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "my-surveys" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[27] || (t[27] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), se(" " + E(r.t("mySurveys")), 1)], 2)])])]), r.activeTab === "fill-survey" ? (N(), V("div", Ql, [f("div", Xl, [r.selectedOpportunity ? (N(), V("div", ya, [f("div", va, [f("div", null, [f("h2", ba, E(r.selectedOpportunity.title), 1), f("p", xa, [t[37] || (t[37] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), se(" " + E(r.selectedOpportunity.doctype), 1)])]), f("button", { onClick: t[10] || (t[10] = (o) => r.selectedOpportunity = null), class: "px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center" }, [t[38] || (t[38] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M10 19l-7-7m0 0l7-7m-7 7h18" })], -1)), se(" " + E(r.t("back")), 1)])]), f("div", _a, [f("div", wa, [f("h3", Sa, [t[39] || (t[39] = f("svg", { class: "w-5 h-5 mr-2 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), se(" " + E(r.t("selectSurveyTemplate")), 1)]), r.currentSurveyTemplate ? (N(), V("span", Ta, E(r.t("templateSelected")), 1)) : we("", true)]), Ie(f("select", { "onUpdate:modelValue": t[11] || (t[11] = (o) => r.selectedTemplateId = o), onClick: t[12] || (t[12] = (...o) => r.fetchSurveyTemplates && r.fetchSurveyTemplates(...o)), onChange: t[13] || (t[13] = (o) => r.selectSurveyTemplate(r.selectedTemplateId)), class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", Ca, E(r.t("chooseTemplate")), 1), (N(true), V(de, null, bt(r.surveyTemplates, (o) => (N(), V("option", { key: o.name, value: o.name }, E(o.template_name), 9, Oa))), 128))], 544), [[Ls, r.selectedTemplateId]]), f("p", ka, E(r.t("templateSelectionHint")), 1)]), r.currentSurveyTemplate ? (N(), V("div", Ea, [f("div", Ma, [f("span", Aa, E(r.t("progress")), 1), f("span", Pa, E(Math.round(r.surveyProgress)) + "%", 1)]), f("div", Ia, [f("div", { class: "bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500 ease-out", style: vs({ width: `${r.surveyProgress}%` }) }, null, 4)])])) : we("", true), r.currentSurveyTemplate ? (N(), V("div", Ra, [(N(true), V(de, null, bt((_b = r.currentSurveyTemplate) == null ? void 0 : _b.questions, (o, l) => (N(), V("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors" }, [f("h3", Fa, [f("span", ja, E(l + 1), 1), f("span", null, [se(E(o.question) + " ", 1), o.required ? (N(), V("span", Da, "*")) : we("", true)])]), o.description ? (N(), V("div", La, [f("p", Ha, E(o.description), 1)])) : we("", true), o.question_type === "Text" ? (N(), V("div", Na, [Ie(f("textarea", { "onUpdate:modelValue": (c) => r.surveyAnswers[o.name] = c, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", rows: "4", placeholder: o.default_value || r.t("enterAnswer"), onFocus: (c) => r.initializeFieldValue(o) }, null, 40, Ua), [[xt, r.surveyAnswers[o.name]]])])) : o.question_type === "Rating" ? (N(), V("div", Va, [f("div", Ba, [(N(), V(de, null, bt(5, (c) => f("button", { key: c, onClick: (h) => r.surveyAnswers[o.name] = c, onMouseenter: (h) => r.initializeFieldValue(o), class: Se(["w-12 h-12 rounded-full border-2 transition-all duration-200 flex items-center justify-center text-xl", r.surveyAnswers[o.name] >= c ? "bg-yellow-400 border-yellow-400 text-white shadow-md transform scale-110" : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-50 text-gray-400"]) }, " \u2605 ", 42, Ka)), 64))]), t[40] || (t[40] = f("p", { class: "text-sm text-gray-500 mt-2" }, "Click to rate from 1 to 5 stars", -1))])) : o.question_type === "Yes/No" ? (N(), V("div", Wa, [f("div", za, [f("button", { onClick: (c) => r.surveyAnswers[o.name] = "Yes", onMouseenter: (c) => r.initializeFieldValue(o), class: Se(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "Yes" ? "bg-green-500 border-green-500 text-white shadow-md" : "border-gray-300 hover:border-green-500 hover:bg-green-50 text-gray-700"]) }, [t[41] || (t[41] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M5 13l4 4L19 7" })], -1)), se(" " + E(r.t("yes")), 1)], 42, Ja), f("button", { onClick: (c) => r.surveyAnswers[o.name] = "No", class: Se(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "No" ? "bg-red-500 border-red-500 text-white shadow-md" : "border-gray-300 hover:border-red-500 hover:bg-red-50 text-gray-700"]) }, [t[42] || (t[42] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M6 18L18 6M6 6l12 12" })], -1)), se(" " + E(r.t("no")), 1)], 10, Ya)])])) : o.question_type === "Multi-choice" ? (N(), V("div", Ga, [(N(true), V(de, null, bt(o.options, (c) => (N(), V("div", { key: c, class: "flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors" }, [Ie(f("input", { id: `${o.name}-${c}`, "onUpdate:modelValue": (h) => r.surveyAnswers[o.name] = h, value: c, type: "radio", class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300", onFocus: (h) => r.initializeFieldValue(o) }, null, 40, Qa), [[dl, r.surveyAnswers[o.name]]]), f("label", { for: `${o.name}-${c}`, class: "ml-3 block text-sm font-medium text-gray-700 cursor-pointer flex-1" }, E(c), 9, Xa)]))), 128))])) : we("", true), r.validationErrors[o.name] ? (N(), V("div", Za, [f("p", qa, [t[43] || (t[43] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })], -1)), se(" " + E(r.validationErrors[o.name]), 1)])])) : we("", true)]))), 128))])) : we("", true), f("div", $a, [f("button", { onClick: t[14] || (t[14] = (...o) => r.saveDraft && r.saveDraft(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[44] || (t[44] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" })], -1)), se(" " + E(r.t("saveDraft")), 1)], 8, ec), f("button", { onClick: t[15] || (t[15] = (...o) => r.submitSurvey && r.submitSurvey(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[45] || (t[45] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 19l9 2-9-18-9 18 9-2zm0 0v-8" })], -1)), se(" " + E(r.t("submitSurvey")), 1)], 8, tc)])])) : (N(), V("div", Zl, [f("div", ql, [f("h2", $l, E(r.t("selectOpportunity")), 1), t[28] || (t[28] = f("p", { class: "text-gray-600" }, "Choose an opportunity to begin the technical assessment survey", -1)), t[29] || (t[29] = f("p", { class: "text-sm text-blue-600 mt-2" }, 'Only showing opportunities in "Surveying" state without an assigned surveyor ', -1))]), f("div", ea, [f("div", ta, [f("label", sa, E(r.t("searchOpportunities")), 1), f("div", ra, [Ie(f("input", { "onUpdate:modelValue": t[8] || (t[8] = (o) => r.opportunitySearch = o), type: "text", class: "w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all", placeholder: r.t("searchPlaceholder") }, null, 8, na), [[xt, r.opportunitySearch]]), t[30] || (t[30] = f("svg", { class: "w-5 h-5 text-gray-400 absolute left-3 top-3.5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" })], -1))])]), f("button", { onClick: t[9] || (t[9] = (...o) => r.fetchOpportunities && r.fetchOpportunities(...o)), disabled: r.isLoading, class: "ml-4 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[31] || (t[31] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), se(" " + E(r.t("refresh")), 1)], 8, oa)]), r.filteredOpportunities.length === 0 && !r.isLoading ? (N(), V("div", ia, [t[32] || (t[32] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", la, E(r.t("noAvailableOpportunities")), 1), t[33] || (t[33] = f("p", { class: "text-gray-400 mt-2" }, 'All opportunities in the "Surveying" workflow state have already been assigned to a surveyor', -1))])) : (N(), V("div", aa, [(N(true), V(de, null, bt(r.filteredOpportunities, (o) => (N(), V("div", { key: o.name, onClick: (l) => r.selectOpportunity(o), class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 cursor-pointer transition-all duration-200 hover:shadow-md" }, [f("div", ua, [f("div", fa, [f("h3", da, E(o.title), 1), f("div", ha, [f("span", pa, [t[34] || (t[34] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), se(" " + E(o.doctype), 1)]), f("span", ga, [t[35] || (t[35] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), se(" " + E(o.customer_name), 1)])])]), f("div", ma, [f("span", { class: Se(["px-3 py-1 text-xs font-medium rounded-full", o.status === "Open" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"]) }, E(o.status), 3), t[36] || (t[36] = f("svg", { class: "w-5 h-5 text-gray-400", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5l7 7-7 7" })], -1))])])], 8, ca))), 128))]))]))])])) : we("", true), r.activeTab === "my-surveys" ? (N(), V("div", sc, [f("div", rc, [f("div", nc, [f("h2", oc, [t[46] || (t[46] = f("svg", { class: "w-6 h-6 mr-3 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), se(" " + E(r.t("mySurveys")), 1)]), f("div", ic, [f("div", lc, E(r.filteredSurveyResponses.length) + " " + E(r.filteredSurveyResponses.length === 1 ? "survey" : "surveys") + " assigned to you ", 1), f("button", { onClick: t[16] || (t[16] = (...o) => r.fetchSurveyResponses && r.fetchSurveyResponses(...o)), disabled: r.isLoading, class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[47] || (t[47] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), se(" " + E(r.t("refresh")), 1)], 8, ac)])]), f("div", cc, [f("div", null, [t[52] || (t[52] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Doctype", -1)), Ie(f("select", { "onUpdate:modelValue": t[17] || (t[17] = (o) => r.filters.doctype = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", uc, E(r.t("allDoctypes")), 1), t[48] || (t[48] = f("option", { value: "Opportunity" }, "Opportunity", -1)), t[49] || (t[49] = f("option", { value: "Opportunity Hotels" }, "Opportunity Hotels", -1)), t[50] || (t[50] = f("option", { value: "Opportunity SM" }, "Opportunity SM", -1)), t[51] || (t[51] = f("option", { value: "Opportunity Tenders" }, "Opportunity Tenders", -1))], 512), [[Ls, r.filters.doctype]])]), f("div", null, [t[53] || (t[53] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Status", -1)), Ie(f("select", { "onUpdate:modelValue": t[18] || (t[18] = (o) => r.filters.status = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", fc, E(r.t("allStatuses")), 1), f("option", dc, E(r.t("inProgress")), 1), f("option", hc, E(r.t("submitted")), 1)], 512), [[Ls, r.filters.status]])]), f("div", null, [t[54] || (t[54] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "From Date", -1)), Ie(f("input", { "onUpdate:modelValue": t[19] || (t[19] = (o) => r.filters.dateFrom = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[xt, r.filters.dateFrom]])]), f("div", null, [t[55] || (t[55] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "To Date", -1)), Ie(f("input", { "onUpdate:modelValue": t[20] || (t[20] = (o) => r.filters.dateTo = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[xt, r.filters.dateTo]])])]), f("div", pc, [(N(true), V(de, null, bt(r.filteredSurveyResponses, (o) => (N(), V("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200" }, [f("div", gc, [f("div", mc, [f("h3", yc, E(o.title), 1), f("div", vc, [f("p", bc, [t[56] || (t[56] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), se(" " + E(o.doctype), 1)]), f("p", xc, [t[57] || (t[57] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), se(" " + E(o.customer_name), 1)]), f("p", _c, [t[58] || (t[58] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10" })], -1)), se(" " + E(r.t("assigned")) + ": " + E(r.formatDate(o.creation)), 1)])])]), f("div", wc, [f("span", { class: Se(["px-3 py-1 text-xs font-medium rounded-full", o.status === "In Progress" ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"]) }, E(o.status === "In Progress" ? r.t("inProgress") : r.t("submitted")), 3), f("button", { onClick: (l) => r.viewSurveyResponse(o), class: "px-4 py-2 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors flex items-center" }, [t[59] || (t[59] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" }), f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" })], -1)), se(" " + E(o.status === "In Progress" ? r.t("continue") : r.t("view")), 1)], 8, Sc)])])]))), 128))]), r.filteredSurveyResponses.length === 0 ? (N(), V("div", Tc, [t[60] || (t[60] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", Cc, E(r.t("noSurveys")), 1), t[61] || (t[61] = f("p", { class: "text-gray-400 mt-2" }, "No opportunities have been assigned to you yet", -1))])) : we("", true)])])) : we("", true)])) : (N(), V("div", Cl, [f("div", Ol, [f("div", kl, [t[22] || (t[22] = f("div", { class: "w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4" }, [f("svg", { class: "w-8 h-8 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", El, E(r.t("welcome")), 1), f("p", Ml, E(r.t("loginSubtitle")), 1)]), f("form", { onSubmit: t[2] || (t[2] = gl((...o) => r.login && r.login(...o), ["prevent"])), class: "space-y-6" }, [f("div", null, [f("label", Al, E(r.t("username")), 1), Ie(f("input", { "onUpdate:modelValue": t[0] || (t[0] = (o) => r.loginForm.username = o), type: "text", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterUsername") }, null, 8, Pl), [[xt, r.loginForm.username]])]), f("div", null, [f("label", Il, E(r.t("password")), 1), Ie(f("input", { "onUpdate:modelValue": t[1] || (t[1] = (o) => r.loginForm.password = o), type: "password", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterPassword") }, null, 8, Rl), [[xt, r.loginForm.password]])]), f("button", { type: "submit", disabled: r.isLoading, class: "w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium" }, [r.isLoading ? (N(), V("div", Dl, [t[23] || (t[23] = f("div", { class: "animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" }, null, -1)), se(" " + E(r.t("loading")), 1)])) : (N(), V("span", jl, E(r.t("login")), 1))], 8, Fl)], 32), f("div", Ll, [f("button", { onClick: t[3] || (t[3] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors" }, E(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1)]), t[24] || (t[24] = f("div", { class: "mt-6 p-4 bg-blue-50 rounded-lg" }, [f("p", { class: "text-sm text-blue-800 text-center" }, [f("strong", null, "Demo:"), se(" Enter any username and password to login ")])], -1))])]))], 2);
+    return N(), V("div", { id: "app", class: Se(["w-full min-h-dvh", { rtl: r.currentLanguage === "ar" }]) }, [r.isLoading ? (N(), V("div", Sl, [f("div", Tl, [t[21] || (t[21] = f("div", { class: "animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600" }, null, -1)), f("span", null, E(r.t("loading")), 1)])])) : we("", true), r.toast.show ? (N(), V("div", { key: 1, class: Se(["fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300", r.toast.type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"]) }, E(r.toast.message), 3)) : we("", true), r.isAuthenticated ? (N(), V("div", Hl, [f("header", Nl, [f("div", Ul, [f("div", Vl, [f("div", Bl, [t[25] || (t[25] = f("div", { class: "w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center" }, [f("svg", { class: "w-5 h-5 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", Kl, E(r.t("surveyApp")), 1), f("span", Wl, E(r.t("welcome")) + ", " + E((_a2 = r.currentUser) == null ? void 0 : _a2.full_name), 1)]), f("div", zl, [f("button", { onClick: t[4] || (t[4] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "px-3 py-1 text-sm bg-gray-100 rounded-md hover:bg-gray-200 transition-colors" }, E(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1), f("button", { onClick: t[5] || (t[5] = (...o) => r.logout && r.logout(...o)), class: "px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors" }, E(r.t("logout")), 1)])])])]), f("div", Jl, [f("div", Yl, [f("nav", Gl, [f("button", { onClick: t[6] || (t[6] = (o) => r.activeTab = "fill-survey"), class: Se(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "fill-survey" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[26] || (t[26] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" })], -1)), se(" " + E(r.t("fillSurvey")), 1)], 2), f("button", { onClick: t[7] || (t[7] = (o) => r.activeTab = "my-surveys"), class: Se(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "my-surveys" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[27] || (t[27] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), se(" " + E(r.t("mySurveys")), 1)], 2)])])]), r.activeTab === "fill-survey" ? (N(), V("div", Ql, [f("div", Xl, [r.selectedOpportunity ? (N(), V("div", ya, [f("div", va, [f("div", null, [f("h2", ba, E(r.selectedOpportunity.title), 1), f("p", xa, [t[37] || (t[37] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), se(" " + E(r.selectedOpportunity.doctype), 1)])]), f("button", { onClick: t[10] || (t[10] = (o) => r.selectedOpportunity = null), class: "px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center" }, [t[38] || (t[38] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M10 19l-7-7m0 0l7-7m-7 7h18" })], -1)), se(" " + E(r.t("back")), 1)])]), f("div", _a, [f("div", wa, [f("h3", Sa, [t[39] || (t[39] = f("svg", { class: "w-5 h-5 mr-2 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), se(" " + E(r.t("selectSurveyTemplate")), 1)]), r.currentSurveyTemplate ? (N(), V("span", Ta, E(r.t("templateSelected")), 1)) : we("", true)]), Ie(f("select", { "onUpdate:modelValue": t[11] || (t[11] = (o) => r.selectedTemplateId = o), onClick: t[12] || (t[12] = (...o) => r.fetchSurveyTemplates && r.fetchSurveyTemplates(...o)), onChange: t[13] || (t[13] = (o) => r.selectSurveyTemplate(r.selectedTemplateId)), class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", Ca, E(r.t("chooseTemplate")), 1), (N(true), V(de, null, bt(r.surveyTemplates, (o) => (N(), V("option", { key: o.name, value: o.name }, E(o.template_name), 9, Oa))), 128))], 544), [[Ls, r.selectedTemplateId]]), f("p", ka, E(r.t("templateSelectionHint")), 1)]), r.currentSurveyTemplate ? (N(), V("div", Ea, [f("div", Ma, [f("span", Aa, E(r.t("progress")), 1), f("span", Pa, E(Math.round(r.surveyProgress)) + "%", 1)]), f("div", Ia, [f("div", { class: "bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500 ease-out", style: vs({ width: `${r.surveyProgress}%` }) }, null, 4)])])) : we("", true), r.currentSurveyTemplate ? (N(), V("div", Ra, [(N(true), V(de, null, bt((_b = r.currentSurveyTemplate) == null ? void 0 : _b.questions, (o, l) => (N(), V("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors" }, [f("h3", ja, [f("span", Fa, E(l + 1), 1), f("span", null, [se(E(o.question) + " ", 1), o.required ? (N(), V("span", Da, "*")) : we("", true)])]), o.description ? (N(), V("div", La, [f("p", Ha, E(o.description), 1)])) : we("", true), o.question_type === "Text" ? (N(), V("div", Na, [Ie(f("textarea", { "onUpdate:modelValue": (c) => r.surveyAnswers[o.name] = c, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", rows: "4", placeholder: o.default_value || r.t("enterAnswer"), onFocus: (c) => r.initializeFieldValue(o) }, null, 40, Ua), [[xt, r.surveyAnswers[o.name]]])])) : o.question_type === "Rating" ? (N(), V("div", Va, [f("div", Ba, [(N(), V(de, null, bt(5, (c) => f("button", { key: c, onClick: (h) => r.surveyAnswers[o.name] = c, onMouseenter: (h) => r.initializeFieldValue(o), class: Se(["w-12 h-12 rounded-full border-2 transition-all duration-200 flex items-center justify-center text-xl", r.surveyAnswers[o.name] >= c ? "bg-yellow-400 border-yellow-400 text-white shadow-md transform scale-110" : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-50 text-gray-400"]) }, " \u2605 ", 42, Ka)), 64))]), t[40] || (t[40] = f("p", { class: "text-sm text-gray-500 mt-2" }, "Click to rate from 1 to 5 stars", -1))])) : o.question_type === "Yes/No" ? (N(), V("div", Wa, [f("div", za, [f("button", { onClick: (c) => r.surveyAnswers[o.name] = "Yes", onMouseenter: (c) => r.initializeFieldValue(o), class: Se(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "Yes" ? "bg-green-500 border-green-500 text-white shadow-md" : "border-gray-300 hover:border-green-500 hover:bg-green-50 text-gray-700"]) }, [t[41] || (t[41] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M5 13l4 4L19 7" })], -1)), se(" " + E(r.t("yes")), 1)], 42, Ja), f("button", { onClick: (c) => r.surveyAnswers[o.name] = "No", class: Se(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "No" ? "bg-red-500 border-red-500 text-white shadow-md" : "border-gray-300 hover:border-red-500 hover:bg-red-50 text-gray-700"]) }, [t[42] || (t[42] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M6 18L18 6M6 6l12 12" })], -1)), se(" " + E(r.t("no")), 1)], 10, Ya)])])) : o.question_type === "Multi-choice" ? (N(), V("div", Ga, [(N(true), V(de, null, bt(o.options, (c) => (N(), V("div", { key: c, class: "flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors" }, [Ie(f("input", { id: `${o.name}-${c}`, "onUpdate:modelValue": (h) => r.surveyAnswers[o.name] = h, value: c, type: "radio", class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300", onFocus: (h) => r.initializeFieldValue(o) }, null, 40, Qa), [[dl, r.surveyAnswers[o.name]]]), f("label", { for: `${o.name}-${c}`, class: "ml-3 block text-sm font-medium text-gray-700 cursor-pointer flex-1" }, E(c), 9, Xa)]))), 128))])) : we("", true), r.validationErrors[o.name] ? (N(), V("div", Za, [f("p", qa, [t[43] || (t[43] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })], -1)), se(" " + E(r.validationErrors[o.name]), 1)])])) : we("", true)]))), 128))])) : we("", true), f("div", $a, [f("button", { onClick: t[14] || (t[14] = (...o) => r.saveDraft && r.saveDraft(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[44] || (t[44] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" })], -1)), se(" " + E(r.t("saveDraft")), 1)], 8, ec), f("button", { onClick: t[15] || (t[15] = (...o) => r.submitSurvey && r.submitSurvey(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[45] || (t[45] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 19l9 2-9-18-9 18 9-2zm0 0v-8" })], -1)), se(" " + E(r.t("submitSurvey")), 1)], 8, tc)])])) : (N(), V("div", Zl, [f("div", ql, [f("h2", $l, E(r.t("selectOpportunity")), 1), t[28] || (t[28] = f("p", { class: "text-gray-600" }, "Choose an opportunity to begin the technical assessment survey", -1)), t[29] || (t[29] = f("p", { class: "text-sm text-blue-600 mt-2" }, 'Only showing opportunities in "Surveying" state without an assigned surveyor ', -1))]), f("div", ea, [f("div", ta, [f("label", sa, E(r.t("searchOpportunities")), 1), f("div", ra, [Ie(f("input", { "onUpdate:modelValue": t[8] || (t[8] = (o) => r.opportunitySearch = o), type: "text", class: "w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all", placeholder: r.t("searchPlaceholder") }, null, 8, na), [[xt, r.opportunitySearch]]), t[30] || (t[30] = f("svg", { class: "w-5 h-5 text-gray-400 absolute left-3 top-3.5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" })], -1))])]), f("button", { onClick: t[9] || (t[9] = (...o) => r.fetchOpportunities && r.fetchOpportunities(...o)), disabled: r.isLoading, class: "ml-4 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[31] || (t[31] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), se(" " + E(r.t("refresh")), 1)], 8, oa)]), r.filteredOpportunities.length === 0 && !r.isLoading ? (N(), V("div", ia, [t[32] || (t[32] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", la, E(r.t("noAvailableOpportunities")), 1), t[33] || (t[33] = f("p", { class: "text-gray-400 mt-2" }, 'All opportunities in the "Surveying" workflow state have already been assigned to a surveyor', -1))])) : (N(), V("div", aa, [(N(true), V(de, null, bt(r.filteredOpportunities, (o) => (N(), V("div", { key: o.name, onClick: (l) => r.selectOpportunity(o), class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 cursor-pointer transition-all duration-200 hover:shadow-md" }, [f("div", ua, [f("div", fa, [f("h3", da, E(o.title), 1), f("div", ha, [f("span", pa, [t[34] || (t[34] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), se(" " + E(o.doctype), 1)]), f("span", ga, [t[35] || (t[35] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), se(" " + E(o.customer_name), 1)])])]), f("div", ma, [f("span", { class: Se(["px-3 py-1 text-xs font-medium rounded-full", o.status === "Open" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"]) }, E(o.status), 3), t[36] || (t[36] = f("svg", { class: "w-5 h-5 text-gray-400", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5l7 7-7 7" })], -1))])])], 8, ca))), 128))]))]))])])) : we("", true), r.activeTab === "my-surveys" ? (N(), V("div", sc, [f("div", rc, [f("div", nc, [f("h2", oc, [t[46] || (t[46] = f("svg", { class: "w-6 h-6 mr-3 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), se(" " + E(r.t("mySurveys")), 1)]), f("div", ic, [f("div", lc, E(r.filteredSurveyResponses.length) + " " + E(r.filteredSurveyResponses.length === 1 ? "survey" : "surveys") + " assigned to you ", 1), f("button", { onClick: t[16] || (t[16] = (...o) => r.fetchSurveyResponses && r.fetchSurveyResponses(...o)), disabled: r.isLoading, class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[47] || (t[47] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), se(" " + E(r.t("refresh")), 1)], 8, ac)])]), f("div", cc, [f("div", null, [t[52] || (t[52] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Doctype", -1)), Ie(f("select", { "onUpdate:modelValue": t[17] || (t[17] = (o) => r.filters.doctype = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", uc, E(r.t("allDoctypes")), 1), t[48] || (t[48] = f("option", { value: "Opportunity" }, "Opportunity", -1)), t[49] || (t[49] = f("option", { value: "Opportunity Hotels" }, "Opportunity Hotels", -1)), t[50] || (t[50] = f("option", { value: "Opportunity SM" }, "Opportunity SM", -1)), t[51] || (t[51] = f("option", { value: "Opportunity Tenders" }, "Opportunity Tenders", -1))], 512), [[Ls, r.filters.doctype]])]), f("div", null, [t[53] || (t[53] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Status", -1)), Ie(f("select", { "onUpdate:modelValue": t[18] || (t[18] = (o) => r.filters.status = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", fc, E(r.t("allStatuses")), 1), f("option", dc, E(r.t("inProgress")), 1), f("option", hc, E(r.t("submitted")), 1)], 512), [[Ls, r.filters.status]])]), f("div", null, [t[54] || (t[54] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "From Date", -1)), Ie(f("input", { "onUpdate:modelValue": t[19] || (t[19] = (o) => r.filters.dateFrom = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[xt, r.filters.dateFrom]])]), f("div", null, [t[55] || (t[55] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "To Date", -1)), Ie(f("input", { "onUpdate:modelValue": t[20] || (t[20] = (o) => r.filters.dateTo = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[xt, r.filters.dateTo]])])]), f("div", pc, [(N(true), V(de, null, bt(r.filteredSurveyResponses, (o) => (N(), V("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200" }, [f("div", gc, [f("div", mc, [f("h3", yc, E(o.title), 1), f("div", vc, [f("p", bc, [t[56] || (t[56] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), se(" " + E(o.doctype), 1)]), f("p", xc, [t[57] || (t[57] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), se(" " + E(o.customer_name), 1)]), f("p", _c, [t[58] || (t[58] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10" })], -1)), se(" " + E(r.t("assigned")) + ": " + E(r.formatDate(o.creation)), 1)])])]), f("div", wc, [f("span", { class: Se(["px-3 py-1 text-xs font-medium rounded-full", o.status === "In Progress" ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"]) }, E(o.status === "In Progress" ? r.t("inProgress") : r.t("submitted")), 3), f("button", { onClick: (l) => r.viewSurveyResponse(o), class: "px-4 py-2 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors flex items-center" }, [t[59] || (t[59] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" }), f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" })], -1)), se(" " + E(o.status === "In Progress" ? r.t("continue") : r.t("view")), 1)], 8, Sc)])])]))), 128))]), r.filteredSurveyResponses.length === 0 ? (N(), V("div", Tc, [t[60] || (t[60] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", Cc, E(r.t("noSurveys")), 1), t[61] || (t[61] = f("p", { class: "text-gray-400 mt-2" }, "No opportunities have been assigned to you yet", -1))])) : we("", true)])])) : we("", true)])) : (N(), V("div", Cl, [f("div", Ol, [f("div", kl, [t[22] || (t[22] = f("div", { class: "w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4" }, [f("svg", { class: "w-8 h-8 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", El, E(r.t("welcome")), 1), f("p", Ml, E(r.t("loginSubtitle")), 1)]), f("form", { onSubmit: t[2] || (t[2] = gl((...o) => r.login && r.login(...o), ["prevent"])), class: "space-y-6" }, [f("div", null, [f("label", Al, E(r.t("username")), 1), Ie(f("input", { "onUpdate:modelValue": t[0] || (t[0] = (o) => r.loginForm.username = o), type: "text", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterUsername") }, null, 8, Pl), [[xt, r.loginForm.username]])]), f("div", null, [f("label", Il, E(r.t("password")), 1), Ie(f("input", { "onUpdate:modelValue": t[1] || (t[1] = (o) => r.loginForm.password = o), type: "password", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterPassword") }, null, 8, Rl), [[xt, r.loginForm.password]])]), f("button", { type: "submit", disabled: r.isLoading, class: "w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium" }, [r.isLoading ? (N(), V("div", Dl, [t[23] || (t[23] = f("div", { class: "animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" }, null, -1)), se(" " + E(r.t("loading")), 1)])) : (N(), V("span", Fl, E(r.t("login")), 1))], 8, jl)], 32), f("div", Ll, [f("button", { onClick: t[3] || (t[3] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors" }, E(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1)]), t[24] || (t[24] = f("div", { class: "mt-6 p-4 bg-blue-50 rounded-lg" }, [f("p", { class: "text-sm text-blue-800 text-center" }, [f("strong", null, "Demo:"), se(" Enter any username and password to login ")])], -1))])]))], 2);
   }
   var kc = _l(wl, [["render", Oc]]);
   vl(kc).mount("#app");
@@ -3152,4 +3152,4 @@
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
-//# sourceMappingURL=survey.bundle.JCW4DKFO.js.map
+//# sourceMappingURL=survey.bundle.RYAQQCVU.js.map
