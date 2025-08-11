@@ -144,7 +144,8 @@
             <div class="text-center mb-8">
               <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ t('selectOpportunity') }}</h2>
               <p class="text-gray-600">Choose an opportunity to begin the technical assessment survey</p>
-              <p class="text-sm text-blue-600 mt-2">Only showing opportunities in "Surveying" state without an assigned surveyor
+              <p class="text-sm text-blue-600 mt-2">Only showing opportunities in "Surveying" state without an assigned
+                surveyor
               </p>
             </div>
 
@@ -180,7 +181,8 @@
                 </path>
               </svg>
               <p class="text-gray-500 text-lg font-medium">{{ t('noAvailableOpportunities') }}</p>
-              <p class="text-gray-400 mt-2">All opportunities in the "Surveying" workflow state have already been assigned to a surveyor</p>
+              <p class="text-gray-400 mt-2">All opportunities in the "Surveying" workflow state have already been
+                assigned to a surveyor</p>
             </div>
 
             <div v-else class="grid gap-4">
@@ -260,9 +262,11 @@
                   </svg>
                   {{ t('selectSurveyTemplate') }}
                 </h3>
-                <span v-if="currentSurveyTemplate" class="text-sm text-green-600 font-medium">{{ t('templateSelected') }}</span>
+                <span v-if="currentSurveyTemplate" class="text-sm text-green-600 font-medium">{{ t('templateSelected')
+                  }}</span>
               </div>
-              <select v-model="selectedTemplateId" @click="fetchSurveyTemplates" @change="selectSurveyTemplate(selectedTemplateId)"
+              <select v-model="selectedTemplateId" @click="fetchSurveyTemplates"
+                @change="selectSurveyTemplate(selectedTemplateId)"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 <option value="">{{ t('chooseTemplate') }}</option>
                 <option v-for="template in surveyTemplates" :key="template.name" :value="template.name">
@@ -299,7 +303,7 @@
                     <span v-if="question.required" class="text-red-500 ml-1">*</span>
                   </span>
                 </h3>
-                
+
                 <!-- Field Description -->
                 <div v-if="question.description" class="ml-11 mb-3">
                   <p class="text-sm text-gray-600 italic">{{ question.description }}</p>
@@ -307,26 +311,22 @@
 
                 <!-- Text Input -->
                 <div v-if="question.question_type === 'Text'" class="ml-11">
-                  <textarea 
-                    v-model="surveyAnswers[question.name]"
+                  <textarea v-model="surveyAnswers[question.name]"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    rows="4" 
-                    :placeholder="question.default_value || t('enterAnswer')"
+                    rows="4" :placeholder="question.default_value || t('enterAnswer')"
                     @focus="initializeFieldValue(question)"></textarea>
                 </div>
 
                 <!-- Rating -->
                 <div v-else-if="question.question_type === 'Rating'" class="ml-11">
                   <div class="flex space-x-2">
-                    <button v-for="rating in 5" :key="rating" 
-                      @click="surveyAnswers[question.name] = rating" 
-                      @mouseenter="initializeFieldValue(question)"
-                      :class="[
-                      'w-12 h-12 rounded-full border-2 transition-all duration-200 flex items-center justify-center text-xl',
-                      surveyAnswers[question.name] >= rating
-                        ? 'bg-yellow-400 border-yellow-400 text-white shadow-md transform scale-110'
-                        : 'border-gray-300 hover:border-yellow-400 hover:bg-yellow-50 text-gray-400'
-                    ]">
+                    <button v-for="rating in 5" :key="rating" @click="surveyAnswers[question.name] = rating"
+                      @mouseenter="initializeFieldValue(question)" :class="[
+                        'w-12 h-12 rounded-full border-2 transition-all duration-200 flex items-center justify-center text-xl',
+                        surveyAnswers[question.name] >= rating
+                          ? 'bg-yellow-400 border-yellow-400 text-white shadow-md transform scale-110'
+                          : 'border-gray-300 hover:border-yellow-400 hover:bg-yellow-50 text-gray-400'
+                      ]">
                       ★
                     </button>
                   </div>
@@ -336,14 +336,13 @@
                 <!-- Yes/No -->
                 <div v-else-if="question.question_type === 'Yes/No'" class="ml-11">
                   <div class="flex space-x-4">
-                    <button @click="surveyAnswers[question.name] = 'Yes'" 
-                      @mouseenter="initializeFieldValue(question)"
+                    <button @click="surveyAnswers[question.name] = 'Yes'" @mouseenter="initializeFieldValue(question)"
                       :class="[
-                      'px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center',
-                      surveyAnswers[question.name] === 'Yes'
-                        ? 'bg-green-500 border-green-500 text-white shadow-md'
-                        : 'border-gray-300 hover:border-green-500 hover:bg-green-50 text-gray-700'
-                    ]">
+                        'px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center',
+                        surveyAnswers[question.name] === 'Yes'
+                          ? 'bg-green-500 border-green-500 text-white shadow-md'
+                          : 'border-gray-300 hover:border-green-500 hover:bg-green-50 text-gray-700'
+                      ]">
                       <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                       </svg>
@@ -368,11 +367,8 @@
                 <div v-else-if="question.question_type === 'Multi-choice'" class="ml-11 space-y-3">
                   <div v-for="option in question.options" :key="option"
                     class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <input :id="`${question.name}-${option}`" 
-                      v-model="surveyAnswers[question.name]" 
-                      :value="option"
-                      type="radio" 
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    <input :id="`${question.name}-${option}`" v-model="surveyAnswers[question.name]" :value="option"
+                      type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       @focus="initializeFieldValue(question)" />
                     <label :for="`${question.name}-${option}`"
                       class="ml-3 block text-sm font-medium text-gray-700 cursor-pointer flex-1">
@@ -432,7 +428,8 @@
             </h2>
             <div class="flex items-center space-x-4">
               <div class="text-sm text-gray-500">
-                {{ filteredSurveyResponses.length }} {{ filteredSurveyResponses.length === 1 ? 'survey' : 'surveys' }} assigned to you
+                {{ filteredSurveyResponses.length }} {{ filteredSurveyResponses.length === 1 ? 'survey' : 'surveys' }}
+                assigned to you
               </div>
               <button @click="fetchSurveyResponses" :disabled="isLoading"
                 class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center">
@@ -654,14 +651,7 @@ export default {
         templateSelectionHint: 'Please select a survey template to begin the assessment',
         saveSuccess: 'Survey saved successfully',
         submitSuccess: 'Survey submitted successfully',
-        validationError: 'This field is required',
-        saveSuccess: 'Survey saved successfully',
-        submitSuccess: 'Survey submitted successfully',
-        validationError: 'This field is required',
-        selectSurveyTemplate: 'Select Survey Template',
-        templateSelected: 'Template Selected',
-        chooseTemplate: 'Choose a survey template...',
-        templateSelectionHint: 'Please select a survey template to begin the assessment'
+        validationError: 'This field is required'
       },
       ar: {
         welcome: 'مرحباً',
@@ -726,33 +716,33 @@ export default {
     const surveyProgress = computed(() => {
       if (!currentSurveyTemplate.value?.questions) return 0
       const totalQuestions = currentSurveyTemplate.value.questions.length
-      
+
       // Count fields that have been meaningfully filled by the user
       const answeredQuestions = currentSurveyTemplate.value.questions.filter(question => {
         const answer = surveyAnswers[question.name]
-        
+
         // Skip if no answer
         if (answer === null || answer === undefined || answer === '') return false
-        
+
         // For checkbox fields, only count if explicitly set to true
         if (question.question_type === 'Yes/No' && typeof answer === 'boolean') {
           return answer !== false
         }
-        
+
         // For numeric fields, only count if not zero (unless zero is meaningful)
         if (question.question_type === 'Text' && typeof answer === 'number') {
           return answer !== 0
         }
-        
+
         // For select fields, check if it's not the default first option
         if (question.question_type === 'Multi-choice' && question.options) {
           return answer !== question.options[0]
         }
-        
+
         // For other fields, check if it's not empty or default value
         return answer !== question.default_value && answer !== ''
       }).length
-      
+
       return totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0
     })
 
@@ -1000,7 +990,7 @@ export default {
           selectedOpportunity.value = opportunity
           await fetchSurveyTemplates()
           // Don't start auto-save yet - wait for template selection
-          
+
           // Refresh opportunities list to remove the assigned opportunity
           await fetchOpportunities()
 
@@ -1015,31 +1005,31 @@ export default {
 
     const selectSurveyTemplate = async (templateId) => {
       if (!templateId) return;
-      
+
       isLoading.value = true;
       try {
         // Fetch the complete template data including child table fields
         const resp = await fetch(`/api/resource/Technical Survey Template/${templateId}`, {
           credentials: 'include',
         });
-        
+
         if (!resp.ok) {
           throw new Error('Failed to fetch template details');
         }
-        
+
         const data = await resp.json();
         const template = data.data;
-        
+
         if (!template) {
           throw new Error('Template not found');
         }
-        
+
         selectedTemplateId.value = templateId;
-        
+
         // Check if fields exist and is an array
         const templateFields = template.fields || [];
         console.log('Template fields:', templateFields);
-        
+
         // Convert template fields to survey questions format
         currentSurveyTemplate.value = {
           title: template.template_name,
@@ -1052,17 +1042,17 @@ export default {
             options: field.options ? field.options.split('\n').filter(opt => opt.trim() !== '') : undefined
           }))
         };
-        
+
         // Initialize survey answers based on template fields
         surveyAnswers.value = {};
         templateFields.forEach(field => {
           surveyAnswers.value[field.field_name] = initializeFieldValue(field);
         });
-        
+
         // Start auto-save now that template is selected
         startAutoSave();
         activeTab.value = 'fill-survey';
-        
+
         showToast(`Template "${template.template_name}" selected successfully`);
       } catch (error) {
         showToast('Error selecting template: ' + error.message, 'error');
@@ -1074,7 +1064,7 @@ export default {
     const mapFieldTypeToQuestionType = (fieldType) => {
       const typeMap = {
         'Data': 'Text',
-        'Long Text': 'Text', 
+        'Long Text': 'Text',
         'Select': 'Multi-choice',
         'Rating': 'Rating',
         'Question': 'Yes/No'
@@ -1129,8 +1119,27 @@ export default {
 
       isLoading.value = true
       try {
-        // Simulate API call to submit survey
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        // Prepare survey data for backend
+        const payload = {
+          opportunity: selectedOpportunity.value?.name,
+          template: selectedTemplateId.value,
+          responses: surveyAnswers.value || surveyAnswers
+        }
+
+        const resp = await fetch('/api/method/ion_crm_sales.api.submit_survey', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Frappe-CSRF-Token': window.csrf_token,
+          },
+          credentials: 'include',
+          body: JSON.stringify({ survey_data: payload })
+        })
+
+        const data = await resp.json()
+        if (!resp.ok || data?.exc_type) {
+          throw new Error(data?.message || 'Error submitting survey')
+        }
 
         showToast(t('submitSuccess'))
 
@@ -1151,7 +1160,7 @@ export default {
         // Switch to My Surveys tab
         activeTab.value = 'my-surveys'
       } catch (error) {
-        showToast('Error submitting survey', 'error')
+        showToast(error.message || 'Error submitting survey', 'error')
       } finally {
         isLoading.value = false
       }
@@ -1220,7 +1229,7 @@ export default {
           const oppResponse = await fetch(`/api/resource/${response.doctype}/${response.name}`, {
             credentials: 'include'
           })
-          
+
           if (oppResponse.ok) {
             const oppData = await oppResponse.json()
             selectedOpportunity.value = {
@@ -1231,7 +1240,7 @@ export default {
               status: oppData.data.status,
               workflow_state: oppData.data.workflow_state
             }
-            
+
             // Load available survey templates for selection
             await fetchSurveyTemplates()
             activeTab.value = 'fill-survey'
@@ -1267,7 +1276,7 @@ export default {
       if (field.default_value) {
         return field.default_value;
       }
-      
+
       switch (field.field_type) {
         case 'Check':
           return false;
