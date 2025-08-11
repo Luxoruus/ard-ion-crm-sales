@@ -1096,29 +1096,6 @@ export default {
     const saveDraft = async (silent = false) => {
       isLoading.value = !silent
       try {
-        // Simulate API call to save draft
-        await new Promise(resolve => setTimeout(resolve, 800))
-
-        if (!silent) {
-          showToast(t('saveSuccess'))
-        }
-      } catch (error) {
-        if (!silent) {
-          showToast('Error saving draft', 'error')
-        }
-      } finally {
-        isLoading.value = false
-      }
-    }
-
-    const submitSurvey = async () => {
-      if (!validateSurvey()) {
-        showToast(t('validationError'), 'error')
-        return
-      }
-
-      isLoading.value = true
-      try {
         // Prepare survey data for backend (single response per survey)
         const payload = {
           opportunity: selectedOpportunity.value?.name,
@@ -1126,7 +1103,7 @@ export default {
           answers: { ...surveyAnswers }
         }
 
-        const resp = await fetch('/api/method/ion_crm_sales.api.submit_survey', {
+        const resp = await fetch('/api/method/ion_crm_sales.api.save_survey', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1138,32 +1115,28 @@ export default {
 
         const data = await resp.json()
         if (!resp.ok || data?.exc_type) {
-          throw new Error(data?.message || 'Error submitting survey')
+          throw new Error(data?.message || 'Error saving draft')
         }
 
-        showToast(t('submitSuccess'))
-
-        // Refresh the survey responses to reflect the updated status
-        await fetchSurveyResponses()
-
-        // Reset form
-        selectedOpportunity.value = null
-        currentSurveyTemplate.value = null
-        surveyTemplates.value = []
-        selectedTemplateId.value = null
-        Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
-
-        if (autoSaveInterval) {
-          clearInterval(autoSaveInterval)
+        if (!silent) {
+          showToast(t('saveSuccess'))
         }
-
-        // Switch to My Surveys tab
-        activeTab.value = 'my-surveys'
       } catch (error) {
-        showToast(error.message || 'Error submitting survey', 'error')
+        if (!silent) {
+          showToast(error.message || 'Error saving draft', 'error')
+        }
       } finally {
         isLoading.value = false
       }
+    }
+
+    const submitSurvey = async () => {
+      // No-op or just validate for now
+      if (!validateSurvey()) {
+        showToast(t('validationError'), 'error')
+        return
+      }
+      showToast('Survey is valid. Please use Save Draft to save your progress.')
     }
 
     const fetchSurveyResponses = async () => {
