@@ -807,7 +807,7 @@ export default {
         credentials: 'include', // critical for session!
       });
       const data = await resp.json();
-      // Roles are in data.data.roles as an array of {role: "Pre-Sale"}, etc.
+      // Roles are in data.data.roles as an array of {role: "Surveyor"}, etc.
       return data.data.roles.map(r => r.role);
     }
 
@@ -832,7 +832,9 @@ export default {
 
           const roles = await getUserRoles(loginForm.username);
 
-          if (roles.includes('Pre-Sale')) {
+          console.log(roles)
+
+          if (roles.includes('Surveyor')) {
             // Success! Session cookie set, you can now call other APIs
             isAuthenticated.value = true
             currentUser.value = {
@@ -846,8 +848,8 @@ export default {
             return { success: true };
           } else {
             await fetch('/api/method/logout', { method: 'POST', credentials: 'include' });
-            console.log('User does not have Pre-Sale role, logging out');
-            let error = new Error('Access denied: You do not have the Pre-Sale role.');
+            console.log('User does not have Surveyor role, logging out');
+            let error = new Error('Access denied: You do not have the Surveyor role.');
             error.code = 401
             throw error
           }
@@ -897,7 +899,7 @@ export default {
     // }
 
     const logout = async () => {
-      await fetch('/api/method/logout', { method: 'POST', credentials: 'include' });
+      await fetch('/api/method/logout', { method: 'POST', credentials: 'include', headers: { 'X-Frappe-CSRF-Token': window.csrf_token } });
       isAuthenticated.value = false
       currentUser.value = null
       selectedOpportunity.value = null
@@ -1132,23 +1134,51 @@ export default {
 
       await saveDraft()
 
-      const payload = {
+      isLoading.value = true
+      try {
+        const payload = {
           opportunity: selectedOpportunity.value?.name,
-          opportunity_type: selectedOpportunity.value?.doctype
+          doctype: selectedOpportunity.value?.doctype
         }
 
-      const resp = await fetch('/api/method/ion_crm_sales.api.submit_survey', {
+        const resp = await fetch('/api/method/ion_crm_sales.api.submit_survey', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'X-Frappe-CSRF-Token': window.csrf_token,
+        'Content-Type': 'application/json',
+        'X-Frappe-CSRF-Token': window.csrf_token,
           },
           credentials: 'include',
           body: JSON.stringify({ opportunity_data: payload })
         })
 
+        const data = await resp.json()
 
-      showToast('Survey is valid. Please use Save Draft to save your progress.')
+        if (!resp.ok) {
+          throw new Error(`HTTP ${resp.status}: ${data?.message || 'Failed to submit survey'}`)
+        }
+
+        if (data?.exc_type) {
+          throw new Error(data.message || 'Server error occurred while submitting survey')
+        }
+
+        // Success
+        showToast(t('submitSuccess'))
+        
+        // Reset form and go back to opportunities list
+        selectedOpportunity.value = null
+        currentSurveyTemplate.value = null
+        selectedTemplateId.value = null
+        Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
+        
+        // Refresh data
+        await Promise.all([fetchOpportunities(), fetchSurveyResponses()])
+        
+      } catch (error) {
+        console.error('Error submitting survey:', error)
+        showToast(error.message || 'Failed to submit survey', 'error')
+      } finally {
+        isLoading.value = false
+      }
     }
 
     const fetchSurveyResponses = async () => {

@@ -54,16 +54,15 @@ def submit_survey(opportunity_data):
     if not opportunity_data.get("opportunity"):
         frappe.throw("Opportunity is required")
 
-    opportunity = frappe.get_doc("Opportunity", opportunity_data.get("opportunity"))
+    if not opportunity_data.get("doctype"):
+        frappe.throw("Document Type is required")
+
+    opportunity = frappe.get_doc(opportunity_data.get("doctype"), opportunity_data.get("opportunity"))
 
     if not opportunity:
         frappe.throw("Invalid Opportunity")
-
-    if opportunity_data.get("opportunity_type") == "Opportunity":
-        opportunity.workflow_state = "Technical Qualification"
-    elif opportunity_data.get("opportunity_type") == "Opportunity Hotels":
-        opportunity.workflow_state = "Technical Qualification"
-        
+    
+    opportunity.workflow_state = "Surveyed"
 
 
     opportunity.save(ignore_permissions=True)
