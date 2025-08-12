@@ -1235,43 +1235,54 @@ export default {
     }
 
     const viewSurveyResponse = async (response) => {
-      if (response.status === 'In Progress') {
-        // If survey is in progress, allow user to continue filling it out
-        isLoading.value = true
-        try {
-          // Fetch the full opportunity data
-          const oppResponse = await fetch(`/api/resource/${response.doctype}/${response.name}`, {
+      isLoading.value = true
+      try {
+        // Fetch the full opportunity data
+        const oppResponse = await fetch(`/api/resource/${response.doctype}/${response.name}`, {
+          credentials: 'include'
+        })
+        if (!oppResponse.ok) throw new Error('Failed to fetch opportunity data')
+        const oppData = await oppResponse.json()
+        const opp = oppData.data
+        selectedOpportunity.value = {
+          name: opp.name,
+          title: opp.title,
+          doctype: response.doctype,
+          customer_name: opp.customer_name,
+          status: opp.status,
+          workflow_state: opp.workflow_state
+        }
+
+        // Load available survey templates for selection
+        await fetchSurveyTemplates()
+
+        // If there is a linked Technical Survey, fetch and load its answers
+        if (opp.custom_technical_survey) {
+          const surveyResp = await fetch(`/api/resource/Technical Survey/${opp.custom_technical_survey}`, {
             credentials: 'include'
           })
-
-          if (oppResponse.ok) {
-            const oppData = await oppResponse.json()
-            selectedOpportunity.value = {
-              name: oppData.data.name,
-              title: oppData.data.title,
-              doctype: response.doctype,
-              customer_name: oppData.data.customer_name,
-              status: oppData.data.status,
-              workflow_state: oppData.data.workflow_state
+          if (surveyResp.ok) {
+            const surveyData = await surveyResp.json()
+            const survey = surveyData.data
+            selectedTemplateId.value = survey.survey_template
+            // Fetch the template details and set currentSurveyTemplate
+            await selectSurveyTemplate(survey.survey_template)
+            // Load answers into surveyAnswers
+            if (survey.survey_fields && Array.isArray(survey.survey_fields)) {
+              Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
+              survey.survey_fields.forEach(field => {
+                surveyAnswers[field.field_name] = field.field_value
+              })
             }
-
-            // Load available survey templates for selection
-            await fetchSurveyTemplates()
-            activeTab.value = 'fill-survey'
-            showToast(`Continuing survey for: ${response.title}`)
-            // Note: User will need to select a template to continue
-          } else {
-            throw new Error('Failed to fetch opportunity data')
           }
-        } catch (error) {
-          showToast('Error loading survey: ' + error.message, 'error')
-        } finally {
-          isLoading.value = false
         }
-      } else {
-        // For submitted surveys, just show a message (could be extended to show survey results)
-        showToast(`Viewing submitted survey for: ${response.title}`)
-        // Implementation for viewing submitted survey response would go here
+
+        activeTab.value = 'fill-survey'
+        showToast(`Loaded survey for: ${response.title}`)
+      } catch (error) {
+        showToast('Error loading survey: ' + error.message, 'error')
+      } finally {
+        isLoading.value = false
       }
     }
 
