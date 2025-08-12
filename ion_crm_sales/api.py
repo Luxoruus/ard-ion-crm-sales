@@ -4,9 +4,6 @@ from ion_crm_sales.technical_survey import load_template_fields
 
 @frappe.whitelist()
 def save_survey(survey_data):
-    print("############################")
-    print("SHIIIIIIIIIIIIIIIIIIIIIIIIIIT")
-    print("############################")
     # Validate and process the survey data
     if not survey_data.get("opportunity"):
         frappe.throw("Opportunity is required")
@@ -48,4 +45,27 @@ def save_survey(survey_data):
     #     "responses": survey_data.get("responses", [])
     # })
     # submission.insert()
+    return {"status": "success", "message": "Survey submitted successfully"}
+
+@frappe.whitelist()
+def submit_survey(opportunity_data):
+
+    # Validate and process the opportunity data
+    if not opportunity_data.get("opportunity"):
+        frappe.throw("Opportunity is required")
+
+    opportunity = frappe.get_doc("Opportunity", opportunity_data.get("opportunity"))
+
+    if not opportunity:
+        frappe.throw("Invalid Opportunity")
+
+    if opportunity_data.get("opportunity_type") == "Opportunity":
+        opportunity.workflow_state = "Technical Qualification"
+    elif opportunity_data.get("opportunity_type") == "Opportunity Hotels":
+        opportunity.workflow_state = "Technical Qualification"
+        
+
+
+    opportunity.save(ignore_permissions=True)
+
     return {"status": "success", "message": "Survey submitted successfully"}

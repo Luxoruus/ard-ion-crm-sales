@@ -1049,9 +1049,8 @@ export default {
           surveyAnswers[field.field_name] = initializeFieldValue(field);
         });
 
-        // Start auto-save now that template is selected
-        startAutoSave();
-        activeTab.value = 'fill-survey';
+  // Auto-save removed; just switch tab
+  activeTab.value = 'fill-survey';
 
         showToast(`Template "${template.template_name}" selected successfully`);
       } catch (error) {
@@ -1072,12 +1071,6 @@ export default {
       return typeMap[fieldType] || 'Text';
     }
 
-    const startAutoSave = () => {
-      if (autoSaveInterval) clearInterval(autoSaveInterval)
-      autoSaveInterval = setInterval(() => {
-        saveDraft(true) // Silent save
-      }, 300000) // Auto-save every 5 minutes
-    }
 
     const validateSurvey = () => {
       Object.keys(validationErrors).forEach(key => delete validationErrors[key])
@@ -1093,8 +1086,12 @@ export default {
       return isValid
     }
 
-    const saveDraft = async (silent = false) => {
-      isLoading.value = !silent
+    const saveDraft = async () => {
+      if (!validateSurvey()) {
+        showToast(t('validationError'), 'error')
+        return
+      }
+      isLoading.value = true
       try {
         // Prepare survey data for backend (single response per survey)
         const payload = {
@@ -1118,13 +1115,9 @@ export default {
           throw new Error(data?.message || 'Error saving draft')
         }
 
-        if (!silent) {
           showToast(t('saveSuccess'))
-        }
       } catch (error) {
-        if (!silent) {
           showToast(error.message || 'Error saving draft', 'error')
-        }
       } finally {
         isLoading.value = false
       }
@@ -1136,6 +1129,25 @@ export default {
         showToast(t('validationError'), 'error')
         return
       }
+
+      await saveDraft()
+
+      const payload = {
+          opportunity: selectedOpportunity.value?.name,
+          opportunity_type: selectedOpportunity.value?.doctype
+        }
+
+      const resp = await fetch('/api/method/ion_crm_sales.api.submit_survey', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Frappe-CSRF-Token': window.csrf_token,
+          },
+          credentials: 'include',
+          body: JSON.stringify({ opportunity_data: payload })
+        })
+
+
       showToast('Survey is valid. Please use Save Draft to save your progress.')
     }
 
