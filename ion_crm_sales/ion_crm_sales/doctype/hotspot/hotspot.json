@@ -15,17 +15,17 @@
   "section_break_grif",
   "request",
   "requirements",
-  "survey_tab",
-  "surveyor",
-  "column_break_tmwd",
-  "technical_survey",
   "proposal_tab",
   "column_break_cuvr",
   "description",
   "items",
   "total",
   "material",
-  "installation_tab",
+  "survey_tab",
+  "surveyor",
+  "column_break_tmwd",
+  "technical_survey",
+  "technical_tab",
   "stock_entry",
   "materials_received",
   "column_break_pedw",
@@ -148,11 +148,6 @@
    "label": "Total"
   },
   {
-   "fieldname": "installation_tab",
-   "fieldtype": "Tab Break",
-   "label": "Technical"
-  },
-  {
    "fieldname": "installation_note",
    "fieldtype": "Link",
    "label": "Installation Note",
@@ -202,12 +197,17 @@
    "fieldtype": "Table",
    "label": "Maintenance Log",
    "options": "Maintenance Item"
+  },
+  {
+   "fieldname": "technical_tab",
+   "fieldtype": "Tab Break",
+   "label": "Technical"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-15 17:43:09.192035",
+ "modified": "2025-08-15 18:23:46.152033",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Hotspot",

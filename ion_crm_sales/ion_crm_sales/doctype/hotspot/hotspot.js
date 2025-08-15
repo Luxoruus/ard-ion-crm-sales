@@ -12,37 +12,14 @@ frappe.provide("erpnext.crm");
 erpnext.pre_sales.set_as_lost("Hotspot");
 erpnext.sales_common.setup_selling_controller();
 
+
 frappe.ui.form.on("Hotspot", {
     refresh: function (frm) {
+        frm.trigger("handle_fields");
+
         var doc = frm.doc;
 
-        // frm.fields_dict['items'].grid.get_field('item').get_query = function(doc, cdt, cdn) {
-        //     return {
-        //         filters: {
-        //             'customer': frm.doc.party_name // filter by parent field
-        //         }
-        //     }
-        // }
-
         if (!frm.is_new() && doc.status !== "Lost") {
-            // if (doc.items) {
-            //     frm.add_custom_button(
-            //         __("Supplier Quotation"),
-            //         function () {
-            //             frm.trigger("make_supplier_quotation");
-            //         },
-            //         __("Create")
-            //     );
-
-            //     frm.add_custom_button(
-            //         __("Request For Quotation"),
-            //         function () {
-            //             frm.trigger("make_request_for_quotation");
-            //         },
-            //         __("Create")
-            //     );
-            // }
-
             if (frm.doc.hotspot_for != "Customer") {
                 frm.add_custom_button(
                     __("Customer"),
@@ -53,14 +30,6 @@ frappe.ui.form.on("Hotspot", {
                 );
             }
 
-            // frm.add_custom_button(
-            //     __("Quotation"),
-            //     function () {
-            //         frm.trigger("create_quotation");
-            //     },
-            //     __("Create")
-            // );
-
             let company_currency = erpnext.get_currency(frm.doc.company);
             if (company_currency != frm.doc.currency) {
                 frm.add_custom_button(__("Fetch Latest Exchange Rate"), function () {
@@ -68,35 +37,39 @@ frappe.ui.form.on("Hotspot", {
                 });
             }
         }
+
+
+        frm.set_df_property('party_name', 'label', String(frm.doc.hotspot_for))
+
+        if (['Requirements Gathering', 'Closed'].includes(frm.doc.workflow_state)) {
+            frm.set_df_property('requirements', 'hidden', false)
+        } else {
+            frm.set_df_property('requirements', 'hidden', true)
+        }
+
+
+        if (frm.doc.workflow_state == 'Qualifying') {
+            frm.$wrapper.find(".actions-btn-group").hide()
+        } else {
+            frm.$wrapper.find(".actions-btn-group").show()
+        }
     },
 
-    make_supplier_quotation: function (frm) {
-		frappe.model.open_mapped_doc({
-			method: "ion_crm_sales.ion_crm_sales.doctype.hotspot.hotspot.make_supplier_quotation",
-			frm: frm,
-		});
-	},
+    hotspot_for(frm) {
+        if (frm.doc.hotspot_for)
+            frm.set_df_property('party_name', 'label', String(frm.doc.hotspot_for))
+    },
 
-	make_request_for_quotation: function (frm) {
-		frappe.model.open_mapped_doc({
-			method: "ion_crm_sales.ion_crm_sales.doctype.hotspot.hotspot.make_request_for_quotation",
-			frm: frm,
-		});
-	},
+    validate(frm) {
+        frm.trigger("handle_fields");
+    },
 
-    create_quotation() {
-		frappe.model.open_mapped_doc({
-			method: "ion_crm_sales.ion_crm_sales.doctype.hotspot.hotspot.make_quotation",
-			frm: cur_frm,
-		});
-	},
-
-	make_customer() {
-		frappe.model.open_mapped_doc({
-			method: "ion_crm_sales.ion_crm_sales.doctype.hotspot.hotspot.make_customer",
-			frm: cur_frm,
-		});
-	},
+    make_customer() {
+        frappe.model.open_mapped_doc({
+            method: "ion_crm_sales.ion_crm_sales.doctype.hotspot.hotspot.make_customer",
+            frm: cur_frm,
+        });
+    },
 
     onload_post_render: function (frm) {
         frm.get_field("items").grid.set_multiple_add("item_code", "qty");
@@ -114,16 +87,56 @@ frappe.ui.form.on("Hotspot", {
         });
         frm.refresh_fields();
     },
-    
+
     calculate_total: function (frm) {
         let total = 0;
         frm.doc.items.forEach((item) => {
             total += item.amount;
         });
-    
+
         frm.set_value({
             total: flt(total),
         });
+    },
+
+    handle_fields: function (frm) {
+        frm.$wrapper.find("[data-fieldname='proposal_tab']").hide();
+        frm.$wrapper.find("[data-fieldname='survey_tab']").hide();
+        frm.$wrapper.find("[data-fieldname='technical_tab']").hide();
+
+        if (frm.doc.request && frm.doc.type == 'Reach'){
+            frm.$wrapper.find("[data-fieldname='proposal_tab']").show();
+        }
+
+
+        if (!['Qualifying', 'Proposed'].includes(frm.doc.workflow_state)){
+            frm.$wrapper.find("[data-fieldname='survey_tab']").show();
+        }
+
+
+        if ((frm.doc.workflow_state == "Qualifying" && frm.doc.request)) {
+            switch (frm.doc.type) {
+                case 'Reach':
+                    if (frm.doc.description && frm.doc.items.length > 0) {
+                        frm.doc.workflow_state = 'Proposed'
+                    }
+                    break;
+                case 'Received':
+                    // Do received
+                    break;
+                case 'Custom':
+                    // Do custom
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if ((frm.doc.workflow_state == 'Qualifying' && frm.doc.type == "Reach") || ['Surveying'].includes(frm.doc.workflow_state)) {
+            frm.$wrapper.find(".actions-btn-group").hide()
+        } else {
+            frm.$wrapper.find(".actions-btn-group").show()
+        }
     },
 });
 
