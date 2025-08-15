@@ -29,6 +29,23 @@ doc_events = {
     },
 }
 
+fixtures = [
+    'Client Script', 
+    'Number Card', 
+    'Report', 
+    'Gender', 
+    'Workflow', 
+    'Workflow State', 
+    'Workflow Action Master', 
+    'Custom Field', 
+    'Property Setter', 
+    'Print Format', 
+    'Role', 
+    'Custom DocPerm', 
+    'Web Form',
+    {"dt": "Dashboard Chart", "filters": [["is_standard", "=", 0]]},
+]
+
 # scheduler_events = {
 #     "hourly": [
 #         "ion_crm_sales.ion_crm_sales.api_sync.sync_rmt_opportunities"

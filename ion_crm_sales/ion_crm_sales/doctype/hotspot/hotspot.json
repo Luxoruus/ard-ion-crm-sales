@@ -1,0 +1,234 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:HOT-{MM}-{#####}",
+ "creation": "2025-08-13 13:52:54.944143",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_tab",
+  "hotspot_for",
+  "party_name",
+  "column_break_sdqv",
+  "type",
+  "quote",
+  "section_break_grif",
+  "request",
+  "requirements",
+  "survey_tab",
+  "surveyor",
+  "column_break_tmwd",
+  "technical_survey",
+  "proposal_tab",
+  "column_break_cuvr",
+  "description",
+  "items",
+  "total",
+  "material",
+  "installation_tab",
+  "stock_entry",
+  "materials_received",
+  "column_break_pedw",
+  "installation_note",
+  "service_marketed",
+  "cards_package",
+  "free_line",
+  "maintenance_section",
+  "maintenance_log"
+ ],
+ "fields": [
+  {
+   "fieldname": "surveyor",
+   "fieldtype": "Link",
+   "label": "Surveyor",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_tmwd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "technical_survey",
+   "fieldtype": "Link",
+   "label": "Technical Survey",
+   "options": "Technical Survey",
+   "read_only": 1
+  },
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "section_break_grif",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "requirements",
+   "fieldtype": "Long Text",
+   "label": "Requirements"
+  },
+  {
+   "fieldname": "request",
+   "fieldtype": "Long Text",
+   "label": "Request"
+  },
+  {
+   "default": "Prospect",
+   "fieldname": "hotspot_for",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Hotspot For",
+   "link_filters": "[[\"DocType\",\"name\",\"in\",[\"Prospect\",\"Customer\"]]]",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_sdqv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "Reach\nReceived\nCustom",
+   "reqd": 1
+  },
+  {
+   "fieldname": "survey_tab",
+   "fieldtype": "Tab Break",
+   "label": "Survey"
+  },
+  {
+   "fieldname": "party_name",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Party",
+   "options": "hotspot_for",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quote",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Quote",
+   "options": "Quotation"
+  },
+  {
+   "fieldname": "proposal_tab",
+   "fieldtype": "Tab Break",
+   "label": "Proposal"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Hotspot Item"
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Table",
+   "label": "Material",
+   "options": "Material Request Item"
+  },
+  {
+   "fieldname": "column_break_cuvr",
+   "fieldtype": "Column Break",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "label": "Total"
+  },
+  {
+   "fieldname": "installation_tab",
+   "fieldtype": "Tab Break",
+   "label": "Technical"
+  },
+  {
+   "fieldname": "installation_note",
+   "fieldtype": "Link",
+   "label": "Installation Note",
+   "options": "Installation Note"
+  },
+  {
+   "fieldname": "column_break_pedw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "stock_entry",
+   "fieldtype": "Link",
+   "label": "Stock Entry",
+   "options": "Stock Entry"
+  },
+  {
+   "default": "0",
+   "fieldname": "materials_received",
+   "fieldtype": "Check",
+   "label": "Materials Received"
+  },
+  {
+   "default": "0",
+   "fieldname": "service_marketed",
+   "fieldtype": "Check",
+   "label": "Service Marketed"
+  },
+  {
+   "default": "0",
+   "fieldname": "cards_package",
+   "fieldtype": "Check",
+   "label": "Cards Package"
+  },
+  {
+   "default": "0",
+   "fieldname": "free_line",
+   "fieldtype": "Check",
+   "label": "Free Line"
+  },
+  {
+   "fieldname": "maintenance_section",
+   "fieldtype": "Section Break",
+   "label": "Maintenance"
+  },
+  {
+   "fieldname": "maintenance_log",
+   "fieldtype": "Table",
+   "label": "Maintenance Log",
+   "options": "Maintenance Item"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-15 17:43:09.192035",
+ "modified_by": "Administrator",
+ "module": "Ion Crm Sales",
+ "name": "Hotspot",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

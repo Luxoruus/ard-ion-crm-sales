@@ -35,3 +35,12 @@ def before_save(doc, method):
         frappe.msgprint(f"Opportunity SM created: {target_doc.name}")
 
         return target_doc.name
+
+@frappe.whitelist()
+def price_list_fetch(doc, items):
+
+    frappe.msgprint('TEst')
+    return
+    if (doc.workflow_state in ['Surveyed', 'Approved', 'Accepted']):
+        price_list = frappe.get_doc("Price List", 'Dedicated')
+        

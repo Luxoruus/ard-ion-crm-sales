@@ -1,0 +1,93 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-26 16:43:57.090299",
+  "name": "Assign Pre-Sale",
+  "workflow_action_name": "Assign Pre-Sale"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:19:13.642340",
+  "name": "Request",
+  "workflow_action_name": "Request"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:41:02.119592",
+  "name": "Accept",
+  "workflow_action_name": "Accept"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-08-05 17:50:20.997258",
+  "name": "RFP",
+  "workflow_action_name": "RFP"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-25 22:36:40.155746",
+  "name": "Review",
+  "workflow_action_name": "Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-08-03 11:31:53.029493",
+  "name": "Convert to S&M",
+  "workflow_action_name": "Convert to S&M"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:43:53.601098",
+  "name": "Quote",
+  "workflow_action_name": "Quote"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:23:32.774649",
+  "name": "Qualify",
+  "workflow_action_name": "Qualify"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-27 12:52:38.279960",
+  "name": "Survey",
+  "workflow_action_name": "Survey"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:19:57.717957",
+  "name": "Gather",
+  "workflow_action_name": "Gather"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-25 22:36:40.155037",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:24:14.476591",
+  "name": "Scope",
+  "workflow_action_name": "Scope"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-25 22:36:40.154247",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
+ }
+]
