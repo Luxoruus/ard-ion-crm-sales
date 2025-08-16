@@ -16,16 +16,23 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:41:02.119592",
-  "name": "Accept",
-  "workflow_action_name": "Accept"
+  "modified": "2025-08-05 17:50:20.997258",
+  "name": "RFP",
+  "workflow_action_name": "RFP"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-08-05 17:50:20.997258",
-  "name": "RFP",
-  "workflow_action_name": "RFP"
+  "modified": "2025-08-13 14:09:42.666434",
+  "name": "Revise",
+  "workflow_action_name": "Revise"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-08-15 17:50:41.452801",
+  "name": "Propose",
+  "workflow_action_name": "Propose"
  },
  {
   "docstatus": 0,
@@ -44,9 +51,9 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:43:53.601098",
-  "name": "Quote",
-  "workflow_action_name": "Quote"
+  "modified": "2025-08-13 14:17:28.557549",
+  "name": "Close",
+  "workflow_action_name": "Close"
  },
  {
   "docstatus": 0,
@@ -58,9 +65,9 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-27 12:52:38.279960",
-  "name": "Survey",
-  "workflow_action_name": "Survey"
+  "modified": "2025-07-29 20:41:02.119592",
+  "name": "Accept",
+  "workflow_action_name": "Accept"
  },
  {
   "docstatus": 0,
@@ -72,9 +79,9 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-25 22:36:40.155037",
-  "name": "Reject",
-  "workflow_action_name": "Reject"
+  "modified": "2025-07-27 12:52:38.279960",
+  "name": "Survey",
+  "workflow_action_name": "Survey"
  },
  {
   "docstatus": 0,
@@ -82,6 +89,20 @@
   "modified": "2025-07-29 20:24:14.476591",
   "name": "Scope",
   "workflow_action_name": "Scope"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:43:53.601098",
+  "name": "Quote",
+  "workflow_action_name": "Quote"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-25 22:36:40.155037",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
  },
  {
   "docstatus": 0,
