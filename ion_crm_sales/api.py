@@ -7,19 +7,20 @@ def save_survey(survey_data):
     # Validate and process the survey data
     if not survey_data.get("opportunity"):
         frappe.throw("Opportunity is required")
-
     if not survey_data.get("template"):
         frappe.throw("Template is required")
-
     if not survey_data.get("answers"):
         frappe.throw("Answers are required")
 
-    # To change later, to accomodate all the types of opportunities
-    opportunity = frappe.get_doc("Opportunity", survey_data.get("opportunity"))
+    doctype = survey_data.get("doctype", "Opportunity")
+    custom_survey_field = survey_data.get("custom_survey_field", "custom_technical_survey")
+
+    opportunity = frappe.get_doc(doctype, survey_data.get("opportunity"))
 
     survey = None
+    survey_link = getattr(opportunity, custom_survey_field, None)
 
-    if not opportunity.custom_technical_survey:
+    if not survey_link:
         survey = frappe.new_doc("Technical Survey")
         survey.title = "Test Survey"
         survey.survey_template = survey_data.get("template")
@@ -27,24 +28,15 @@ def save_survey(survey_data):
         survey.reload()
         load_template_fields(survey_data.get("template"), survey.name)
         survey.reload()
-        opportunity.custom_technical_survey = survey.name
+        setattr(opportunity, custom_survey_field, survey.name)
         opportunity.save()
     else:
-        survey = frappe.get_doc("Technical Survey", opportunity.custom_technical_survey)
-
+        survey = frappe.get_doc("Technical Survey", survey_link)
 
     for field in survey.survey_fields:
         field.field_value = str(survey_data.get('answers').get(field.field_name))
 
     survey.save()
-
-    # # Create a new Survey Submission document
-    # submission = frappe.get_doc({
-    #     "doctype": "Survey Submission",
-    #     "opportunity": survey_data["opportunity"],
-    #     "responses": survey_data.get("responses", [])
-    # })
-    # submission.insert()
     return {"status": "success", "message": "Survey submitted successfully"}
 
 @frappe.whitelist()

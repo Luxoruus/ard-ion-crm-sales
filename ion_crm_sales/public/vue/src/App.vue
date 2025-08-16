@@ -453,6 +453,7 @@
                 <option value="Opportunity Hotels">Opportunity Hotels</option>
                 <option value="Opportunity SM">Opportunity SM</option>
                 <option value="Opportunity Tenders">Opportunity Tenders</option>
+                <option value="Hotspot">Hotspot</option>
               </select>
             </div>
 
@@ -706,10 +707,16 @@ export default {
     const filteredOpportunities = computed(() => {
       if (!opportunitySearch.value) return opportunities.value
       const search = opportunitySearch.value.toLowerCase()
-      return opportunities.value.filter(opp =>
-        opp.title.toLowerCase().includes(search) ||
-        opp.customer_name.toLowerCase().includes(search)
-      )
+      return opportunities.value.filter(opp => {
+        const title = opp.title ? opp.title.toLowerCase() : '';
+        const customer = opp.customer_name ? opp.customer_name.toLowerCase() : '';
+        const party = opp.party_name ? opp.party_name.toLowerCase() : '';
+        return (
+          title.includes(search) ||
+          customer.includes(search) ||
+          party.includes(search)
+        );
+      })
     })
 
     const surveyProgress = computed(() => {
@@ -816,7 +823,8 @@ export default {
         const response = await fetch('/api/method/login', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-Frappe-CSRF-Token': window.csrf_token
           },
           body: JSON.stringify({
             usr: loginForm.username,
@@ -898,7 +906,13 @@ export default {
     // }
 
     const logout = async () => {
-      await fetch('/api/method/logout', { method: 'POST', credentials: 'include', headers: { 'X-Frappe-CSRF-Token': window.csrf_token } });
+      await fetch('/api/method/logout', {
+        method: 'POST',
+        headers: {
+          'X-Frappe-CSRF-Token': window.csrf_token
+        },
+        credentials: 'include'
+      });
       isAuthenticated.value = false
       currentUser.value = null
       selectedOpportunity.value = null
@@ -912,39 +926,87 @@ export default {
       showToast('Logged out successfully')
     }
 
+    // Add Hotspot to the list of doctypes
+    const DOCTYPES = [
+      "Opportunity",
+      "Opportunity Hotels",
+      "Opportunity SM",
+      "Opportunity Tenders",
+      "Hotspot"
+    ];
+
+    // Helper to get the custom survey link field for a doctype
+    function getCustomSurveyField(doctype) {
+      if (doctype === "Hotspot") return "technical_survey";
+      return "custom_technical_survey";
+    }
+
+    // Helper to get the customer/party field for a doctype
+    function getCustomerField(doctype, doc) {
+      if (doctype === "Hotspot") return doc.party_name;
+      return doc.customer_name;
+    }
+
+    // Helper to get the title for a doctype
+    function getTitleField(doctype, doc) {
+      if (doctype === "Hotspot") return doc.name;
+      return doc.title;
+    }
+
+    // Helper to get the fetch fields for a doctype
+    function getFetchFields(doctype) {
+      if (doctype === "Hotspot") {
+        return [
+          'name', 'party_name', 'surveyor', 'workflow_state', 'technical_survey', 'type', 'creation', 'modified'
+        ];
+      }
+      // Remove 'type' for Opportunity doctype to avoid Frappe DataError
+      return [
+        'name', 'customer_name', 'opportunity_from', 'title', 'status', 'workflow_state', 'custom_surveyor', 'custom_technical_survey', 'creation', 'modified'
+      ];
+    }
+
+    // Helper to get the surveyor field for a doctype
+    function getSurveyorField(doctype) {
+      if (doctype === "Hotspot") return "surveyor";
+      return "custom_surveyor";
+    }
+
     const fetchOpportunities = async () => {
-      opportunities.value = [] // Clear existing opportunities
-
-      const fields = encodeURIComponent(JSON.stringify(['name', 'customer_name', 'opportunity_from', 'title', 'status', 'workflow_state', 'custom_surveyor']));
-      const filters = encodeURIComponent(JSON.stringify([
-        ['workflow_state', '=', 'Surveying'],
-        ['custom_surveyor', 'is', 'not set']
-      ]));
-
-      for (const oppType of ["Opportunity", "Opportunity Hotels", "Opportunity SM", "Opportunity Tenders"]) {
+      opportunities.value = [];
+      for (const oppType of DOCTYPES) {
+        const fields = encodeURIComponent(JSON.stringify(getFetchFields(oppType)));
+        const surveyorField = getSurveyorField(oppType);
+        const filters = encodeURIComponent(JSON.stringify([
+          ['workflow_state', '=', 'Surveying'],
+          [surveyorField, 'is', 'not set']
+        ]));
         try {
           const resp = await fetch(`/api/resource/${oppType}?fields=${fields}&filters=${filters}`, {
             credentials: 'include',
           });
-
           if (resp.ok) {
             const data = await resp.json();
-            const filteredOpportunities = data.data
-              .filter(opp =>
-                opp.workflow_state === 'Surveying' &&
-                (!opp.custom_surveyor || opp.custom_surveyor === null || opp.custom_surveyor === '')
-              )
-              .map(opp => ({ ...opp, doctype: oppType }));
-
-            opportunities.value.push(...filteredOpportunities);
+            const docs = data.data.map(opp => ({
+              name: opp.name,
+              survey_template: getSurveyTemplateTitle(oppType),
+              title: getTitleField(oppType, opp),
+              doctype: oppType,
+              status: opp.workflow_state === 'Surveying' ? 'In Progress' : 'Submitted',
+              creation: opp.creation,
+              workflow_state: opp.workflow_state,
+              customer_name: getCustomerField(oppType, opp),
+              party_name: opp.party_name,
+              type: opp.type
+            }));
+            opportunities.value.push(...docs);
           }
         } catch (error) {
           console.error(`Error fetching ${oppType}:`, error);
         }
       }
-
-      console.log('Filtered opportunities:', opportunities.value)
-    }
+      console.log('Opportunities for selection:', opportunities.value)
+    };
 
     const fetchSurveyTemplates = async () => {
       try {
@@ -972,6 +1034,8 @@ export default {
         isLoading.value = true
         try {
           // Assign current user as surveyor in ERPNext
+          // Use correct field for each doctype
+          const surveyorField = opportunity.doctype === 'Hotspot' ? 'surveyor' : 'custom_surveyor';
           const response = await fetch(`/api/resource/${opportunity.doctype}/${opportunity.name}`, {
             method: 'PUT',
             headers: {
@@ -980,7 +1044,7 @@ export default {
             },
             credentials: 'include',
             body: JSON.stringify({
-              custom_surveyor: currentUser.value.name
+              [surveyorField]: currentUser.value.name
             })
           })
 
@@ -1087,6 +1151,7 @@ export default {
       return isValid
     }
 
+    // When saving a survey, pass doctype and custom_survey_field
     const saveDraft = async () => {
       if (!validateSurvey()) {
         showToast(t('validationError'), 'error')
@@ -1094,134 +1159,158 @@ export default {
       }
       isLoading.value = true
       try {
-        // Prepare survey data for backend (single response per survey)
+        const customSurveyField = getCustomSurveyField(selectedOpportunity.value.doctype);
         const payload = {
-          opportunity: selectedOpportunity.value?.name,
+          opportunity: selectedOpportunity.value.name,
           template: selectedTemplateId.value,
-          answers: { ...surveyAnswers }
-        }
-
+          answers: { ...surveyAnswers },
+          doctype: selectedOpportunity.value.doctype,
+          custom_survey_field: customSurveyField
+        };
         const resp = await fetch('/api/method/ion_crm_sales.api.save_survey', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-Frappe-CSRF-Token': window.csrf_token,
+            'X-Frappe-CSRF-Token': window.csrf_token
           },
-          credentials: 'include',
-          body: JSON.stringify({ survey_data: payload })
-        })
-
-        const data = await resp.json()
+          body: JSON.stringify({ opportunity_data: payload })
+        });
+        const data = await resp.json();
         if (!resp.ok || data?.exc_type) {
           throw new Error(data?.message || 'Error saving draft')
         }
-
-          showToast(t('saveSuccess'))
+        showToast(t('saveSuccess'))
       } catch (error) {
-          showToast(error.message || 'Error saving draft', 'error')
+        showToast(error.message || 'Error saving draft', 'error')
       } finally {
         isLoading.value = false
       }
     }
 
+    // Add missing submitSurvey function
     const submitSurvey = async () => {
-      // No-op or just validate for now
       if (!validateSurvey()) {
         showToast(t('validationError'), 'error')
         return
       }
-
-      await saveDraft()
-
       isLoading.value = true
       try {
+        const customSurveyField = getCustomSurveyField(selectedOpportunity.value.doctype);
         const payload = {
-          opportunity: selectedOpportunity.value?.name,
-          doctype: selectedOpportunity.value?.doctype
-        }
-
+          opportunity: selectedOpportunity.value.name,
+          template: selectedTemplateId.value,
+          answers: { ...surveyAnswers },
+          doctype: selectedOpportunity.value.doctype,
+          custom_survey_field: customSurveyField
+        };
         const resp = await fetch('/api/method/ion_crm_sales.api.submit_survey', {
           method: 'POST',
           headers: {
-        'Content-Type': 'application/json',
-        'X-Frappe-CSRF-Token': window.csrf_token,
+            'Content-Type': 'application/json',
+            'X-Frappe-CSRF-Token': window.csrf_token
           },
-          credentials: 'include',
           body: JSON.stringify({ opportunity_data: payload })
-        })
-
-        const data = await resp.json()
-
-        if (!resp.ok) {
-          throw new Error(`HTTP ${resp.status}: ${data?.message || 'Failed to submit survey'}`)
+        });
+        const data = await resp.json();
+        if (!resp.ok || data?.exc_type) {
+          throw new Error(data?.message || 'Error submitting survey')
         }
-
-        if (data?.exc_type) {
-          throw new Error(data.message || 'Server error occurred while submitting survey')
-        }
-
-        // Success
         showToast(t('submitSuccess'))
-        
-        // Reset form and go back to opportunities list
-        selectedOpportunity.value = null
-        currentSurveyTemplate.value = null
-        selectedTemplateId.value = null
-        Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
-        
-        // Refresh data
-        await Promise.all([fetchOpportunities(), fetchSurveyResponses()])
-        
+        // Optionally, refresh survey responses or reset state
+        await fetchSurveyResponses();
+        selectedOpportunity.value = null;
+        currentSurveyTemplate.value = null;
+        selectedTemplateId.value = null;
       } catch (error) {
-        console.error('Error submitting survey:', error)
-        showToast(error.message || 'Failed to submit survey', 'error')
+        showToast(error.message || 'Error submitting survey', 'error')
+      } finally {
+        isLoading.value = false
+      }
+    }
+
+    // When loading a survey, use the correct custom survey field
+    const viewSurveyResponse = async (response) => {
+      isLoading.value = true
+      try {
+        const customSurveyField = getCustomSurveyField(response.doctype);
+        const oppResponse = await fetch(`/api/resource/${response.doctype}/${response.name}`, {
+          credentials: 'include'
+        })
+        if (!oppResponse.ok) throw new Error('Failed to fetch data')
+        const oppData = await oppResponse.json()
+        const opp = oppData.data
+        selectedOpportunity.value = {
+          name: opp.name,
+          title: getTitleField(response.doctype, opp),
+          doctype: response.doctype,
+          customer_name: getCustomerField(response.doctype, opp),
+          status: opp.workflow_state === 'Surveying' ? 'In Progress' : 'Submitted',
+          workflow_state: opp.workflow_state,
+          type: opp.type
+        }
+        await fetchSurveyTemplates()
+        if (opp[customSurveyField]) {
+          const surveyResp = await fetch(`/api/resource/Technical Survey/${opp[customSurveyField]}`, {
+            credentials: 'include'
+          })
+          if (surveyResp.ok) {
+            const surveyData = await surveyResp.json()
+            const survey = surveyData.data
+            selectedTemplateId.value = survey.survey_template
+            await selectSurveyTemplate(survey.survey_template)
+            if (survey.survey_fields && Array.isArray(survey.survey_fields)) {
+              Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
+              survey.survey_fields.forEach(field => {
+                surveyAnswers[field.field_name] = field.field_value
+              })
+            }
+          }
+        }
+        activeTab.value = 'fill-survey'
+        showToast(`Loaded survey for: ${getTitleField(response.doctype, opp)}`)
+      } catch (error) {
+        showToast('Error loading survey: ' + error.message, 'error')
       } finally {
         isLoading.value = false
       }
     }
 
     const fetchSurveyResponses = async () => {
-      isLoading.value = true
-      surveyResponses.value = [] // Clear existing responses
+      isLoading.value = true;
+      surveyResponses.value = [];
+      for (const oppType of DOCTYPES) {
+        const fields = encodeURIComponent(JSON.stringify(getFetchFields(oppType)));
+        const surveyorField = getSurveyorField(oppType);
+        const filters = encodeURIComponent(JSON.stringify([
+          [surveyorField, '=', currentUser.value.name]
+        ]));
+        try {
+          const resp = await fetch(`/api/resource/${oppType}?fields=${fields}&filters=${filters}`, {
+            credentials: 'include',
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            const userOpportunities = data.data
+              .map(opp => ({
+                name: opp.name,
+                survey_template: getSurveyTemplateTitle(oppType),
+                title: getTitleField(oppType, opp),
+                doctype: oppType,
+                status: opp.workflow_state === 'Surveying' ? 'In Progress' : 'Submitted',
+                creation: opp.creation,
+                workflow_state: opp.workflow_state,
+                customer_name: getCustomerField(oppType, opp),
+                type: opp.type
+              }));
 
-      const fields = encodeURIComponent(JSON.stringify(['name', 'customer_name', 'opportunity_from', 'title', 'status', 'workflow_state', 'custom_surveyor', 'creation', 'modified']));
-      const filters = encodeURIComponent(JSON.stringify([
-        ['custom_surveyor', '=', currentUser.value.name]
-      ]));
-
-      try {
-        for (const oppType of ["Opportunity", "Opportunity Hotels", "Opportunity SM", "Opportunity Tenders"]) {
-          try {
-            const resp = await fetch(`/api/resource/${oppType}?fields=${fields}&filters=${filters}`, {
-              credentials: 'include',
-            });
-
-            if (resp.ok) {
-              const data = await resp.json();
-              const userOpportunities = data.data
-                .filter(opp => opp.custom_surveyor === currentUser.value.name)
-                .map(opp => ({
-                  name: opp.name,
-                  survey_template: getSurveyTemplateTitle(oppType),
-                  title: opp.title,
-                  doctype: oppType,
-                  status: opp.workflow_state === 'Surveying' ? 'In Progress' : 'Submitted',
-                  creation: opp.creation,
-                  workflow_state: opp.workflow_state,
-                  customer_name: opp.customer_name
-                }));
-
-              surveyResponses.value.push(...userOpportunities);
-            }
-          } catch (error) {
-            console.error(`Error fetching ${oppType}:`, error);
+            surveyResponses.value.push(...userOpportunities);
           }
+        } catch (error) {
+          console.error(`Error fetching ${oppType}:`, error);
         }
-
-        console.log('Fetched survey responses:', surveyResponses.value)
-      } finally {
-        isLoading.value = false
       }
+      isLoading.value = false;
+      console.log('Fetched survey responses:', surveyResponses.value)
     }
 
     const getSurveyTemplateTitle = (doctype) => {
@@ -1232,58 +1321,6 @@ export default {
         'Opportunity Tenders': 'Tender Opportunity Assessment'
       };
       return templates[doctype] || 'Technical Assessment Survey';
-    }
-
-    const viewSurveyResponse = async (response) => {
-      isLoading.value = true
-      try {
-        // Fetch the full opportunity data
-        const oppResponse = await fetch(`/api/resource/${response.doctype}/${response.name}`, {
-          credentials: 'include'
-        })
-        if (!oppResponse.ok) throw new Error('Failed to fetch opportunity data')
-        const oppData = await oppResponse.json()
-        const opp = oppData.data
-        selectedOpportunity.value = {
-          name: opp.name,
-          title: opp.title,
-          doctype: response.doctype,
-          customer_name: opp.customer_name,
-          status: opp.status,
-          workflow_state: opp.workflow_state
-        }
-
-        // Load available survey templates for selection
-        await fetchSurveyTemplates()
-
-        // If there is a linked Technical Survey, fetch and load its answers
-        if (opp.custom_technical_survey) {
-          const surveyResp = await fetch(`/api/resource/Technical Survey/${opp.custom_technical_survey}`, {
-            credentials: 'include'
-          })
-          if (surveyResp.ok) {
-            const surveyData = await surveyResp.json()
-            const survey = surveyData.data
-            selectedTemplateId.value = survey.survey_template
-            // Fetch the template details and set currentSurveyTemplate
-            await selectSurveyTemplate(survey.survey_template)
-            // Load answers into surveyAnswers
-            if (survey.survey_fields && Array.isArray(survey.survey_fields)) {
-              Object.keys(surveyAnswers).forEach(key => delete surveyAnswers[key])
-              survey.survey_fields.forEach(field => {
-                surveyAnswers[field.field_name] = field.field_value
-              })
-            }
-          }
-        }
-
-        activeTab.value = 'fill-survey'
-        showToast(`Loaded survey for: ${response.title}`)
-      } catch (error) {
-        showToast('Error loading survey: ' + error.message, 'error')
-      } finally {
-        isLoading.value = false
-      }
     }
 
     const formatDate = (dateString) => {
@@ -1329,6 +1366,7 @@ export default {
       if (savedLanguage) {
         currentLanguage.value = savedLanguage
       }
+
 
       checkLoggedIn().then(async ({ loggedIn, user }) => {
 
@@ -1389,8 +1427,8 @@ export default {
       fetchSurveyTemplates,
       initializeFieldValue,
       mapFieldTypeToQuestionType,
-      saveDraft,
-      submitSurvey,
+  saveDraft,
+  submitSurvey,
       viewSurveyResponse,
       formatDate,
       fetchOpportunities,
