@@ -23,6 +23,13 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2025-08-17 12:24:42.190774",
+  "name": "Setup",
+  "workflow_action_name": "Setup"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2025-08-13 14:09:42.666434",
   "name": "Revise",
   "workflow_action_name": "Revise"
@@ -100,15 +107,15 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-25 22:36:40.155037",
-  "name": "Reject",
-  "workflow_action_name": "Reject"
+  "modified": "2025-07-25 22:36:40.154247",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-25 22:36:40.154247",
-  "name": "Approve",
-  "workflow_action_name": "Approve"
+  "modified": "2025-07-25 22:36:40.155037",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
  }
 ]

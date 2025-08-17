@@ -30,6 +30,24 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2025-08-17 12:22:40.706868",
+  "name": "Setup",
+  "style": "",
+  "workflow_state_name": "Setup"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-08-17 12:22:59.164614",
+  "name": "Active",
+  "style": "",
+  "workflow_state_name": "Active"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2025-07-26 16:45:23.980611",
   "name": "Reviewed",
   "style": "",
@@ -48,15 +66,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-08-15 17:50:03.477749",
-  "name": "Proposed",
-  "style": "",
-  "workflow_state_name": "Proposed"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2025-08-13 13:57:06.505914",
   "name": "Under Revision",
   "style": "",
@@ -70,6 +79,15 @@
   "name": "Closed",
   "style": "",
   "workflow_state_name": "Closed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-08-15 17:50:03.477749",
+  "name": "Proposed",
+  "style": "",
+  "workflow_state_name": "Proposed"
  },
  {
   "docstatus": 0,
