@@ -13,6 +13,7 @@
   "type",
   "quote",
   "section_break_grif",
+  "attachment",
   "request",
   "requirements",
   "proposal_tab",
@@ -25,6 +26,7 @@
   "surveyor",
   "column_break_tmwd",
   "technical_survey",
+  "survey_attachment",
   "technical_tab",
   "stock_entry",
   "materials_received",
@@ -65,7 +67,7 @@
   },
   {
    "fieldname": "requirements",
-   "fieldtype": "Long Text",
+   "fieldtype": "Text Editor",
    "label": "Requirements"
   },
   {
@@ -202,12 +204,22 @@
    "fieldname": "technical_tab",
    "fieldtype": "Tab Break",
    "label": "Technical"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "fieldname": "survey_attachment",
+   "fieldtype": "Attach",
+   "label": "Survey Attachment"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-15 18:23:46.152033",
+ "modified": "2025-08-17 13:25:52.046644",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Hotspot",

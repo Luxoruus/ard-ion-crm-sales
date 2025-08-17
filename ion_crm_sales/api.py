@@ -49,14 +49,21 @@ def submit_survey(opportunity_data):
     if not opportunity_data.get("doctype"):
         frappe.throw("Document Type is required")
 
+    # Save the survey answers before submitting
+    from ion_crm_sales.api import save_survey
+    save_survey({
+        "opportunity": opportunity_data.get("opportunity"),
+        "template": opportunity_data.get("template"),
+        "answers": opportunity_data.get("answers"),
+        "doctype": opportunity_data.get("doctype"),
+        "custom_survey_field": opportunity_data.get("custom_survey_field")
+    })
+
     opportunity = frappe.get_doc(opportunity_data.get("doctype"), opportunity_data.get("opportunity"))
 
     if not opportunity:
         frappe.throw("Invalid Opportunity")
     
     opportunity.workflow_state = "Surveyed"
-
-
     opportunity.save(ignore_permissions=True)
-
-    return {"status": "success", "message": "Survey submitted successfully"}
+    return {"status": "success", "message": "Survey submitted and saved successfully"}

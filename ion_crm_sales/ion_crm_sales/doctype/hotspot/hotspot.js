@@ -1,13 +1,6 @@
 // Copyright (c) 2025, ard.ly and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Hotspot", {
-// 	refresh(frm) {
-
-// 	},
-// });
-
-
 frappe.provide("erpnext.crm");
 erpnext.pre_sales.set_as_lost("Hotspot");
 erpnext.sales_common.setup_selling_controller();
@@ -41,15 +34,17 @@ frappe.ui.form.on("Hotspot", {
 
         frm.set_df_property('party_name', 'label', String(frm.doc.hotspot_for))
 
-        if (['Requirements Gathering', 'Closed'].includes(frm.doc.workflow_state)) {
+        if (['Requirements Gathering', 'Closed', 'Setup', 'Active'].includes(frm.doc.workflow_state)) {
             frm.set_df_property('requirements', 'hidden', false)
         } else {
             frm.set_df_property('requirements', 'hidden', true)
         }
 
 
-        if (frm.doc.workflow_state == 'Qualifying') {
-            frm.$wrapper.find(".actions-btn-group").hide()
+        if (['Qualifying', 'Requirements Gathering', 'Setup'].includes(frm.doc.workflow_state)) {
+            setTimeout(() => {
+                frm.$wrapper.find(".actions-btn-group").hide()
+            }, 600)
         } else {
             frm.$wrapper.find(".actions-btn-group").show()
         }
@@ -61,6 +56,7 @@ frappe.ui.form.on("Hotspot", {
     },
 
     validate(frm) {
+        frm.trigger("handle_state");
         frm.trigger("handle_fields");
     },
 
@@ -113,6 +109,9 @@ frappe.ui.form.on("Hotspot", {
             frm.$wrapper.find("[data-fieldname='survey_tab']").show();
         }
 
+        if (['Setup', 'Active', 'Closed'].includes(frm.doc.workflow_state)) {
+            frm.$wrapper.find("[data-fieldname='technical_tab']").show();
+        }
 
         if ((frm.doc.workflow_state == "Qualifying" && frm.doc.request)) {
             switch (frm.doc.type) {
@@ -122,10 +121,14 @@ frappe.ui.form.on("Hotspot", {
                     }
                     break;
                 case 'Received':
-                    // Do received
+                    if (frm.doc.description && frm.doc.items.length > 0) {
+                        frm.doc.workflow_state = 'Proposed'
+                    }
                     break;
                 case 'Custom':
-                    // Do custom
+                    if (frm.doc.description && frm.doc.items.length > 0) {
+                        frm.doc.workflow_state = 'Proposed'
+                    }
                     break;
                 default:
                     break;
@@ -138,6 +141,21 @@ frappe.ui.form.on("Hotspot", {
             frm.$wrapper.find(".actions-btn-group").show()
         }
     },
+
+    handle_state: function (frm) {
+        if (frm.doc.workflow_state == 'Requirements Gathering' && frm.doc.requirements) {
+            frm.doc.workflow_state = 'Setup';
+            frm.doc.refresh();
+        }
+
+        if (frm.doc.workflow_state == 'Setup') {
+            const doc = frm.doc
+            if (doc.stock_entry && doc.installation_note && doc.materials_received && doc.service_marketed && doc.cards_package && doc.free_line){
+                frm.doc.workflow_state = 'Active';
+                frm.doc.refresh();
+            }
+        }
+    }
 });
 
 

@@ -149,10 +149,10 @@
       return false;
     let s = true;
     for (let r = 0; s && r < e.length; r++)
-      s = kt(e[r], t[r]);
+      s = Ot(e[r], t[r]);
     return s;
   }
-  function kt(e, t) {
+  function Ot(e, t) {
     if (e === t)
       return true;
     let s = pr(e), r = pr(t);
@@ -170,17 +170,17 @@
         return false;
       for (const o in e) {
         const c = e.hasOwnProperty(o), u = t.hasOwnProperty(o);
-        if (c && !u || !c && u || !kt(e[o], t[o]))
+        if (c && !u || !c && u || !Ot(e[o], t[o]))
           return false;
       }
     }
     return String(e) === String(t);
   }
   function io(e, t) {
-    return e.findIndex((s) => kt(s, t));
+    return e.findIndex((s) => Ot(s, t));
   }
   var Xr = (e) => !!(e && e.__v_isRef === true);
-  var k = (e) => te(e) ? e : e == null ? "" : A(e) || Z(e) && (e.toString === zr || !R(e.toString)) ? Xr(e) ? k(e.value) : JSON.stringify(e, Qr, 2) : String(e);
+  var O = (e) => te(e) ? e : e == null ? "" : A(e) || Z(e) && (e.toString === zr || !R(e.toString)) ? Xr(e) ? O(e.value) : JSON.stringify(e, Qr, 2) : String(e);
   var Qr = (e, t) => Xr(t) ? Qr(e, t.value) : St(t) ? { [`Map(${t.size})`]: [...t.entries()].reduce((s, [r, n], i) => (s[Ms(r, i) + " =>"] = n, s), {}) } : ms(t) ? { [`Set(${t.size})`]: [...t.values()].map((s) => Ms(s)) } : He(t) ? Ms(t) : Z(t) && !A(t) && !Jr(t) ? String(t) : t;
   var Ms = (e, t = "") => {
     var s;
@@ -755,7 +755,7 @@
   var un = /* @__PURE__ */ new WeakMap();
   var fn = /* @__PURE__ */ new WeakMap();
   var Co = /* @__PURE__ */ new WeakMap();
-  function Oo(e) {
+  function ko(e) {
     switch (e) {
       case "Object":
       case "Array":
@@ -769,8 +769,8 @@
         return 0;
     }
   }
-  function ko(e) {
-    return e.__v_skip || !Object.isExtensible(e) ? 0 : Oo(Qn(e));
+  function Oo(e) {
+    return e.__v_skip || !Object.isExtensible(e) ? 0 : ko(Qn(e));
   }
   function $e(e) {
     return rt(e) ? e : nr(e, false, yo, wo, an);
@@ -784,7 +784,7 @@
   function nr(e, t, s, r, n) {
     if (!Z(e) || e.__v_raw && !(t && e.__v_isReactive))
       return e;
-    const i = ko(e);
+    const i = Oo(e);
     if (i === 0)
       return e;
     const o = n.get(e);
@@ -876,7 +876,7 @@
   }
   function Ho(e, t, s = z) {
     const { immediate: r, deep: n, once: i, scheduler: o, augmentJob: c, call: u } = s, p = (P) => n ? P : Se(P) || n === false || n === 0 ? We(P, 1) : We(P);
-    let h, v, T, O, j = false, I = false;
+    let h, v, T, k, j = false, I = false;
     if (oe(e) ? (v = () => e.value, j = Se(e)) : Tt(e) ? (v = () => p(e), j = true) : A(e) ? (I = true, j = e.some((P) => Tt(P) || Se(P)), v = () => e.map((P) => {
       if (oe(P))
         return P.value;
@@ -896,7 +896,7 @@
       const P = ht;
       ht = h;
       try {
-        return u ? u(e, 3, [O]) : e(O);
+        return u ? u(e, 3, [k]) : e(k);
       } finally {
         ht = P;
       }
@@ -923,7 +923,7 @@
             const Y = ht;
             ht = h;
             try {
-              const ve = [ee, U === es ? void 0 : I && U[0] === es ? [] : U, O];
+              const ve = [ee, U === es ? void 0 : I && U[0] === es ? [] : U, k];
               U = ee, u ? u(t, 3, ve) : t(...ve);
             } finally {
               ht = Y;
@@ -932,7 +932,7 @@
         } else
           h.run();
     };
-    return c && c(q), h = new Zr(v), h.scheduler = o ? () => o(q, false) : q, O = (P) => Do(P, false, h), T = h.onStop = () => {
+    return c && c(q), h = new Zr(v), h.scheduler = o ? () => o(q, false) : q, k = (P) => Do(P, false, h), T = h.onStop = () => {
       const P = us.get(h);
       if (P) {
         if (u)
@@ -1091,13 +1091,13 @@
     if (!t || e._n)
       return e;
     const r = (...n) => {
-      r._d && kr(-1);
+      r._d && Or(-1);
       const i = ds(t);
       let o;
       try {
         o = e(...n);
       } finally {
-        ds(i), r._d && kr(1);
+        ds(i), r._d && Or(1);
       }
       return o;
     };
@@ -1139,18 +1139,18 @@
       r.shapeFlag & 512 && r.type.__asyncResolved && r.component.subTree.component && Lt(e, t, s, r.component.subTree);
       return;
     }
-    const i = r.shapeFlag & 4 ? Cs(r.component) : r.el, o = n ? null : i, { i: c, r: u } = e, p = t && t.r, h = c.refs === z ? c.refs = {} : c.refs, v = c.setupState, T = V(v), O = v === z ? () => false : (j) => B(T, j);
-    if (p != null && p !== u && (te(p) ? (h[p] = null, O(p) && (v[p] = null)) : oe(p) && (p.value = null)), R(u))
+    const i = r.shapeFlag & 4 ? Cs(r.component) : r.el, o = n ? null : i, { i: c, r: u } = e, p = t && t.r, h = c.refs === z ? c.refs = {} : c.refs, v = c.setupState, T = V(v), k = v === z ? () => false : (j) => B(T, j);
+    if (p != null && p !== u && (te(p) ? (h[p] = null, k(p) && (v[p] = null)) : oe(p) && (p.value = null)), R(u))
       Xt(u, c, 12, [o, h]);
     else {
       const j = te(u), I = oe(u);
       if (j || I) {
         const J = () => {
           if (e.f) {
-            const K = j ? O(u) ? v[u] : h[u] : u.value;
-            n ? A(K) && Zs(K, i) : A(K) ? K.includes(i) || K.push(i) : j ? (h[u] = [i], O(u) && (v[u] = h[u])) : (u.value = [i], e.k && (h[e.k] = u.value));
+            const K = j ? k(u) ? v[u] : h[u] : u.value;
+            n ? A(K) && Zs(K, i) : A(K) ? K.includes(i) || K.push(i) : j ? (h[u] = [i], k(u) && (v[u] = h[u])) : (u.value = [i], e.k && (h[e.k] = u.value));
           } else
-            j ? (h[u] = o, O(u) && (v[u] = o)) : I && (u.value = o, e.k && (h[e.k] = o));
+            j ? (h[u] = o, k(u) && (v[u] = o)) : I && (u.value = o, e.k && (h[e.k] = o));
         };
         o ? (J.id = -1, me(J, s)) : J();
       }
@@ -1243,7 +1243,7 @@
     return n;
   }
   var Ks = (e) => e ? zn(e) ? Cs(e) : Ks(e.parent) : null;
-  var Ut = ue(/* @__PURE__ */ Object.create(null), { $: (e) => e, $el: (e) => e.vnode.el, $data: (e) => e.data, $props: (e) => e.props, $attrs: (e) => e.attrs, $slots: (e) => e.slots, $refs: (e) => e.refs, $parent: (e) => Ks(e.parent), $root: (e) => Ks(e.root), $host: (e) => e.ce, $emit: (e) => e.emit, $options: (e) => On(e), $forceUpdate: (e) => e.f || (e.f = () => {
+  var Ut = ue(/* @__PURE__ */ Object.create(null), { $: (e) => e, $el: (e) => e.vnode.el, $data: (e) => e.data, $props: (e) => e.props, $attrs: (e) => e.attrs, $slots: (e) => e.slots, $refs: (e) => e.refs, $parent: (e) => Ks(e.parent), $root: (e) => Ks(e.root), $host: (e) => e.ce, $emit: (e) => e.emit, $options: (e) => kn(e), $forceUpdate: (e) => e.f || (e.f = () => {
     ir(e.update);
   }), $nextTick: (e) => e.n || (e.n = gn.bind(e.proxy)), $watch: (e) => Si.bind(e) });
   var Rs = (e, t) => e !== z && !e.__isScriptSetup && B(e, t);
@@ -1253,9 +1253,9 @@
     const { ctx: s, setupState: r, data: n, props: i, accessCache: o, type: c, appContext: u } = e;
     let p;
     if (t[0] !== "$") {
-      const O = o[t];
-      if (O !== void 0)
-        switch (O) {
+      const k = o[t];
+      if (k !== void 0)
+        switch (k) {
           case 1:
             return r[t];
           case 2:
@@ -1301,9 +1301,9 @@
   }
   var Ws = true;
   function ri(e) {
-    const t = On(e), s = e.proxy, r = e.ctx;
+    const t = kn(e), s = e.proxy, r = e.ctx;
     Ws = false, t.beforeCreate && _r(t.beforeCreate, e, "bc");
-    const { data: n, computed: i, methods: o, watch: c, provide: u, inject: p, created: h, beforeMount: v, mounted: T, beforeUpdate: O, updated: j, activated: I, deactivated: J, beforeDestroy: K, beforeUnmount: U, destroyed: q, unmounted: P, render: ee, renderTracked: Y, renderTriggered: ve, errorCaptured: Oe, serverPrefetch: mt, expose: Ne, inheritAttrs: ot, components: it, directives: Xe, filters: lt } = t;
+    const { data: n, computed: i, methods: o, watch: c, provide: u, inject: p, created: h, beforeMount: v, mounted: T, beforeUpdate: k, updated: j, activated: I, deactivated: J, beforeDestroy: K, beforeUnmount: U, destroyed: q, unmounted: P, render: ee, renderTracked: Y, renderTriggered: ve, errorCaptured: ke, serverPrefetch: mt, expose: Ne, inheritAttrs: ot, components: it, directives: Xe, filters: lt } = t;
     if (p && ni(p, r, null), o)
       for (const G in o) {
         const N = o[G];
@@ -1315,8 +1315,8 @@
     }
     if (Ws = true, i)
       for (const G in i) {
-        const N = i[G], Te = R(N) ? N.bind(s, s) : R(N.get) ? N.get.bind(s, s) : je, yt = !R(N) && R(N.set) ? N.set.bind(s) : je, ke = is({ get: Te, set: yt });
-        Object.defineProperty(r, G, { enumerable: true, configurable: true, get: () => ke.value, set: (pe) => ke.value = pe });
+        const N = i[G], Te = R(N) ? N.bind(s, s) : R(N.get) ? N.get.bind(s, s) : je, yt = !R(N) && R(N.set) ? N.set.bind(s) : je, Oe = is({ get: Te, set: yt });
+        Object.defineProperty(r, G, { enumerable: true, configurable: true, get: () => Oe.value, set: (pe) => Oe.value = pe });
       }
     if (c)
       for (const G in c)
@@ -1331,7 +1331,7 @@
     function se(G, N) {
       A(N) ? N.forEach((Te) => G(Te.bind(s))) : N && G(N.bind(s));
     }
-    if (se(Yo, v), se(Sn, T), se(Go, O), se(Xo, j), se(Wo, I), se(zo, J), se(ei, Oe), se($o, Y), se(qo, ve), se(Qo, U), se(Tn, P), se(Zo, mt), A(Ne))
+    if (se(Yo, v), se(Sn, T), se(Go, k), se(Xo, j), se(Wo, I), se(zo, J), se(ei, ke), se($o, Y), se(qo, ve), se(Qo, U), se(Tn, P), se(Zo, mt), A(Ne))
       if (Ne.length) {
         const G = e.exposed || (e.exposed = {});
         Ne.forEach((N) => {
@@ -1367,7 +1367,7 @@
         R(i) && rs(n, i, e);
       }
   }
-  function On(e) {
+  function kn(e) {
     const t = e.type, { mixins: s, extends: r } = t, { mixins: n, optionsCache: i, config: { optionMergeStrategies: o } } = e.appContext, c = i.get(t);
     let u;
     return c ? u = c : !n.length && !s && !r ? u = t : (u = {}, n.length && n.forEach((p) => hs(u, p, o, true)), hs(u, t, o)), Z(t) && i.set(t, u), u;
@@ -1419,14 +1419,14 @@
       s[r] = ie(e[r], t[r]);
     return s;
   }
-  function kn() {
+  function On() {
     return { app: null, config: { isNativeTag: Gn, performance: false, globalProperties: {}, optionMergeStrategies: {}, errorHandler: void 0, warnHandler: void 0, compilerOptions: {} }, mixins: [], components: {}, directives: {}, provides: /* @__PURE__ */ Object.create(null), optionsCache: /* @__PURE__ */ new WeakMap(), propsCache: /* @__PURE__ */ new WeakMap(), emitsCache: /* @__PURE__ */ new WeakMap() };
   }
   var ci = 0;
   function ai(e, t) {
     return function(r, n = null) {
       R(r) || (r = ue({}, r)), n != null && !Z(n) && (n = null);
-      const i = kn(), o = /* @__PURE__ */ new WeakSet(), c = [];
+      const i = On(), o = /* @__PURE__ */ new WeakSet(), c = [];
       let u = false;
       const p = i.app = { _uid: ci++, _component: r, _props: n, _container: null, _context: i, _instance: null, version: Ji, get config() {
         return i.config;
@@ -1441,8 +1441,8 @@
         return v ? (i.directives[h] = v, p) : i.directives[h];
       }, mount(h, v, T) {
         if (!u) {
-          const O = p._ceVNode || De(r, n);
-          return O.appContext = i, T === true ? T = "svg" : T === false && (T = void 0), e(O, h, T), u = true, p._container = h, h.__vue_app__ = p, Cs(O.component);
+          const k = p._ceVNode || De(r, n);
+          return k.appContext = i, T === true ? T = "svg" : T === false && (T = void 0), e(k, h, T), u = true, p._container = h, h.__vue_app__ = p, Cs(k.component);
         }
       }, onUnmount(h) {
         c.push(h);
@@ -1451,18 +1451,18 @@
       }, provide(h, v) {
         return i.provides[h] = v, p;
       }, runWithContext(h) {
-        const v = Ot;
-        Ot = p;
+        const v = kt;
+        kt = p;
         try {
           return h();
         } finally {
-          Ot = v;
+          kt = v;
         }
       } };
       return p;
     };
   }
-  var Ot = null;
+  var kt = null;
   function ui(e, t) {
     if (ae) {
       let s = ae.provides;
@@ -1472,8 +1472,8 @@
   }
   function ss(e, t, s = false) {
     const r = Ui();
-    if (r || Ot) {
-      let n = Ot ? Ot._context.provides : r ? r.parent == null || r.ce ? r.vnode.appContext && r.vnode.appContext.provides : r.parent.provides : void 0;
+    if (r || kt) {
+      let n = kt ? kt._context.provides : r ? r.parent == null || r.ce ? r.vnode.appContext && r.vnode.appContext.provides : r.parent.provides : void 0;
       if (n && e in n)
         return n[e];
       if (arguments.length > 1)
@@ -1500,16 +1500,16 @@
           let T = h[v];
           if (Ss(e.emitsOptions, T))
             continue;
-          const O = t[T];
+          const k = t[T];
           if (u)
             if (B(i, T))
-              O !== i[T] && (i[T] = O, p = true);
+              k !== i[T] && (i[T] = k, p = true);
             else {
               const j = st(T);
-              n[j] = Js(u, c, j, O, e, false);
+              n[j] = Js(u, c, j, k, e, false);
             }
           else
-            O !== i[T] && (i[T] = O, p = true);
+            k !== i[T] && (i[T] = k, p = true);
         }
       }
     } else {
@@ -1575,8 +1575,8 @@
     if (!R(e)) {
       const h = (v) => {
         u = true;
-        const [T, O] = Fn(v, t, true);
-        ue(o, T), O && c.push(...O);
+        const [T, k] = Fn(v, t, true);
+        ue(o, T), k && c.push(...k);
       };
       !s && t.mixins.length && t.mixins.forEach(h), e.extends && h(e.extends), e.mixins && e.mixins.forEach(h);
     }
@@ -1591,7 +1591,7 @@
       for (const h in i) {
         const v = st(h);
         if (Sr(v)) {
-          const T = i[h], O = o[v] = A(T) || R(T) ? { type: T } : ue({}, T), j = O.type;
+          const T = i[h], k = o[v] = A(T) || R(T) ? { type: T } : ue({}, T), j = k.type;
           let I = false, J = true;
           if (A(j))
             for (let K = 0; K < j.length; ++K) {
@@ -1604,7 +1604,7 @@
             }
           else
             I = R(j) && j.name === "Boolean";
-          O[0] = I, O[1] = J, (I || B(O, "default")) && c.push(v);
+          k[0] = I, k[1] = J, (I || B(k, "default")) && c.push(v);
         }
       }
     const p = [o, c];
@@ -1672,7 +1672,7 @@
   function vi(e, t) {
     const s = vs();
     s.__VUE__ = true;
-    const { insert: r, remove: n, patchProp: i, createElement: o, createText: c, createComment: u, setText: p, setElementText: h, parentNode: v, nextSibling: T, setScopeId: O = je, insertStaticContent: j } = e, I = (l, a, d, g = null, m = null, b = null, _ = void 0, w = null, S = !!a.dynamicChildren) => {
+    const { insert: r, remove: n, patchProp: i, createElement: o, createText: c, createComment: u, setText: p, setElementText: h, parentNode: v, nextSibling: T, setScopeId: k = je, insertStaticContent: j } = e, I = (l, a, d, g = null, m = null, b = null, _ = void 0, w = null, S = !!a.dynamicChildren) => {
       if (l === a)
         return;
       l && !Rt(l, a) && (g = Ue(l), pe(l, m, b, true), l = null), a.patchFlag === -2 && (S = false, a.dynamicChildren = null);
@@ -1720,7 +1720,7 @@
     }, Y = (l, a, d, g, m, b, _, w) => {
       let S, x;
       const { props: M, shapeFlag: C, transition: E, dirs: F } = l;
-      if (S = l.el = o(l.type, b, M && M.is, M), C & 8 ? h(S, l.children) : C & 16 && Oe(l.children, S, null, g, m, Is(l, b), _, w), F && ft(l, null, g, "created"), ve(S, l, l.scopeId, _, g), M) {
+      if (S = l.el = o(l.type, b, M && M.is, M), C & 8 ? h(S, l.children) : C & 16 && ke(l.children, S, null, g, m, Is(l, b), _, w), F && ft(l, null, g, "created"), ve(S, l, l.scopeId, _, g), M) {
         for (const X in M)
           X !== "value" && !jt(X) && i(S, X, null, M[X], b, g);
         "value" in M && i(S, "value", null, M.value, b), (x = M.onVnodeBeforeMount) && Fe(x, g, l);
@@ -1731,9 +1731,9 @@
         x && Fe(x, g, l), L && E.enter(S), F && ft(l, null, g, "mounted");
       }, m);
     }, ve = (l, a, d, g, m) => {
-      if (d && O(l, d), g)
+      if (d && k(l, d), g)
         for (let b = 0; b < g.length; b++)
-          O(l, g[b]);
+          k(l, g[b]);
       if (m) {
         let b = m.subTree;
         if (a === b || Vn(b.type) && (b.ssContent === a || b.ssFallback === a)) {
@@ -1741,7 +1741,7 @@
           ve(l, _, _.scopeId, _.slotScopeIds, m.parent);
         }
       }
-    }, Oe = (l, a, d, g, m, b, _, w, S = 0) => {
+    }, ke = (l, a, d, g, m, b, _, w, S = 0) => {
       for (let x = S; x < l.length; x++) {
         const M = l[x] = w ? qe(l[x]) : Ie(l[x]);
         I(null, M, a, d, g, m, b, _, w);
@@ -1789,7 +1789,7 @@
     }, it = (l, a, d, g, m, b, _, w, S) => {
       const x = a.el = l ? l.el : c(""), M = a.anchor = l ? l.anchor : c("");
       let { patchFlag: C, dynamicChildren: E, slotScopeIds: F } = a;
-      F && (w = w ? w.concat(F) : F), l == null ? (r(x, d, g), r(M, d, g), Oe(a.children || [], d, M, m, b, _, w, S)) : C > 0 && C & 64 && E && l.dynamicChildren ? (Ne(l.dynamicChildren, E, d, m, b, _, w), (a.key != null || m && a === m.subTree) && Dn(l, a, true)) : N(l, a, d, M, m, b, _, w, S);
+      F && (w = w ? w.concat(F) : F), l == null ? (r(x, d, g), r(M, d, g), ke(a.children || [], d, M, m, b, _, w, S)) : C > 0 && C & 64 && E && l.dynamicChildren ? (Ne(l.dynamicChildren, E, d, m, b, _, w), (a.key != null || m && a === m.subTree) && Dn(l, a, true)) : N(l, a, d, M, m, b, _, w, S);
     }, Xe = (l, a, d, g, m, b, _, w, S) => {
       a.slotScopeIds = w, l == null ? a.shapeFlag & 512 ? m.ctx.activate(a, d, g, _, S) : lt(a, d, g, m, b, _, S) : ct(l, a, S);
     }, lt = (l, a, d, g, m, b, _) => {
@@ -1864,7 +1864,7 @@
           return;
         }
       }
-      F & 8 ? (M & 16 && at(x, m, b), C !== x && h(d, C)) : M & 16 ? F & 16 ? yt(x, C, d, g, m, b, _, w, S) : at(x, m, b, true) : (M & 8 && h(d, ""), F & 16 && Oe(C, d, g, m, b, _, w, S));
+      F & 8 ? (M & 16 && at(x, m, b), C !== x && h(d, C)) : M & 16 ? F & 16 ? yt(x, C, d, g, m, b, _, w, S) : at(x, m, b, true) : (M & 8 && h(d, ""), F & 16 && ke(C, d, g, m, b, _, w, S));
     }, Te = (l, a, d, g, m, b, _, w, S) => {
       l = l || wt, a = a || wt;
       const x = l.length, M = a.length, C = Math.min(x, M);
@@ -1873,7 +1873,7 @@
         const F = a[E] = S ? qe(a[E]) : Ie(a[E]);
         I(l[E], F, d, null, m, b, _, w, S);
       }
-      x > M ? at(l, m, b, true, false, C) : Oe(a, d, g, m, b, _, w, S, C);
+      x > M ? at(l, m, b, true, false, C) : ke(a, d, g, m, b, _, w, S, C);
     }, yt = (l, a, d, g, m, b, _, w, S) => {
       let x = 0;
       const M = a.length;
@@ -1935,13 +1935,13 @@
         const fr = Ee ? _i(Pt) : wt;
         for (W = fr.length - 1, x = de - 1; x >= 0; x--) {
           const ge = L + x, Ae = a[ge], dr = a[ge + 1], hr = ge + 1 < M ? dr.el || dr.placeholder : g;
-          Pt[x] === 0 ? I(null, Ae, d, hr, m, b, _, w, S) : Ee && (W < 0 || x !== fr[W] ? ke(Ae, d, hr, 2) : W--);
+          Pt[x] === 0 ? I(null, Ae, d, hr, m, b, _, w, S) : Ee && (W < 0 || x !== fr[W] ? Oe(Ae, d, hr, 2) : W--);
         }
       }
-    }, ke = (l, a, d, g, m = null) => {
+    }, Oe = (l, a, d, g, m = null) => {
       const { el: b, type: _, transition: w, children: S, shapeFlag: x } = l;
       if (x & 6) {
-        ke(l.component.subTree, a, d, g);
+        Oe(l.component.subTree, a, d, g);
         return;
       }
       if (x & 128) {
@@ -1955,7 +1955,7 @@
       if (_ === ce) {
         r(b, a, d);
         for (let C = 0; C < S.length; C++)
-          ke(S[C], a, d, g);
+          Oe(S[C], a, d, g);
         r(l.anchor, a, d);
         return;
       }
@@ -1987,7 +1987,7 @@
       const L = M & 1 && E, X = !Nt(l);
       let W;
       if (X && (W = _ && _.onVnodeBeforeUnmount) && Fe(W, a, l), M & 6)
-        ks(l.component, d, g);
+        Os(l.component, d, g);
       else {
         if (M & 128) {
           l.suspense.unmount(d, g);
@@ -2001,7 +2001,7 @@
     }, At = (l) => {
       const { type: a, el: d, anchor: g, transition: m } = l;
       if (a === ce) {
-        Os(d, g);
+        ks(d, g);
         return;
       }
       if (a === ns) {
@@ -2016,12 +2016,12 @@
         w ? w(l.el, b, S) : S();
       } else
         b();
-    }, Os = (l, a) => {
+    }, ks = (l, a) => {
       let d;
       for (; l !== a; )
         d = T(l), n(l), l = d;
       n(a);
-    }, ks = (l, a, d) => {
+    }, Os = (l, a, d) => {
       const { bum: g, scope: m, job: b, subTree: _, um: w, m: S, a: x, parent: M, slots: { __: C } } = l;
       Tr(S), Tr(x), g && ts(g), M && A(C) && C.forEach((E) => {
         M.renderCache[E] = void 0;
@@ -2042,7 +2042,7 @@
     let ut = false;
     const Zt = (l, a, d) => {
       l == null ? a._vnode && pe(a._vnode, null, null, true) : I(a._vnode || null, l, a, null, null, null, d), a._vnode = l, ut || (ut = true, vr(), yn(), ut = false);
-    }, Qe = { p: I, um: pe, m: ke, r: At, mt: lt, mc: Oe, pc: N, pbc: Ne, n: Ue, o: e };
+    }, Qe = { p: I, um: pe, m: Oe, r: At, mt: lt, mc: ke, pc: N, pbc: Ne, n: Ue, o: e };
     return { render: Zt, hydrate: void 0, createApp: ai(Zt) };
   }
   function Is({ type: e, props: t }, s) {
@@ -2103,23 +2103,23 @@
     let p;
     if (Jt) {
       if (i === "sync") {
-        const O = wi();
-        p = O.__watcherHandles || (O.__watcherHandles = []);
+        const k = wi();
+        p = k.__watcherHandles || (k.__watcherHandles = []);
       } else if (!u) {
-        const O = () => {
+        const k = () => {
         };
-        return O.stop = je, O.resume = je, O.pause = je, O;
+        return k.stop = je, k.resume = je, k.pause = je, k;
       }
     }
     const h = ae;
-    c.call = (O, j, I) => Le(O, h, j, I);
+    c.call = (k, j, I) => Le(k, h, j, I);
     let v = false;
-    i === "post" ? c.scheduler = (O) => {
-      me(O, h && h.suspense);
-    } : i !== "sync" && (v = true, c.scheduler = (O, j) => {
-      j ? O() : ir(O);
-    }), c.augmentJob = (O) => {
-      t && (O.flags |= 4), v && (O.flags |= 2, h && (O.id = h.uid, O.i = h));
+    i === "post" ? c.scheduler = (k) => {
+      me(k, h && h.suspense);
+    } : i !== "sync" && (v = true, c.scheduler = (k, j) => {
+      j ? k() : ir(k);
+    }), c.augmentJob = (k) => {
+      t && (k.flags |= 4), v && (k.flags |= 2, h && (k.id = h.uid, k.i = h));
     };
     const T = Ho(e, t, c);
     return Jt && (p ? p.push(T) : u && T()), T;
@@ -2178,15 +2178,15 @@
     return !e || !gs(t) ? false : (t = t.slice(2).replace(/Once$/, ""), B(e, t[0].toLowerCase() + t.slice(1)) || B(e, gt(t)) || B(e, t));
   }
   function Cr(e) {
-    const { type: t, vnode: s, proxy: r, withProxy: n, propsOptions: [i], slots: o, attrs: c, emit: u, render: p, renderCache: h, props: v, data: T, setupState: O, ctx: j, inheritAttrs: I } = e, J = ds(e);
+    const { type: t, vnode: s, proxy: r, withProxy: n, propsOptions: [i], slots: o, attrs: c, emit: u, render: p, renderCache: h, props: v, data: T, setupState: k, ctx: j, inheritAttrs: I } = e, J = ds(e);
     let K, U;
     try {
       if (s.shapeFlag & 4) {
         const P = n || r, ee = P;
-        K = Ie(p.call(ee, P, h, v, O, T, j)), U = c;
+        K = Ie(p.call(ee, P, h, v, k, T, j)), U = c;
       } else {
         const P = t;
-        K = Ie(P.length > 1 ? P(v, { attrs: c, slots: o, emit: u }) : P(v, null)), U = t.props ? c : Oi(c);
+        K = Ie(P.length > 1 ? P(v, { attrs: c, slots: o, emit: u }) : P(v, null)), U = t.props ? c : ki(c);
       }
     } catch (P) {
       Vt.length = 0, xs(P, e, 1), K = De(nt);
@@ -2194,17 +2194,17 @@
     let q = K;
     if (U && I !== false) {
       const P = Object.keys(U), { shapeFlag: ee } = q;
-      P.length && ee & 7 && (i && P.some(Qs) && (U = ki(U, i)), q = Et(q, U, false, true));
+      P.length && ee & 7 && (i && P.some(Qs) && (U = Oi(U, i)), q = Et(q, U, false, true));
     }
     return s.dirs && (q = Et(q, null, false, true), q.dirs = q.dirs ? q.dirs.concat(s.dirs) : s.dirs), s.transition && lr(q, s.transition), K = q, ds(J), K;
   }
-  var Oi = (e) => {
+  var ki = (e) => {
     let t;
     for (const s in e)
       (s === "class" || s === "style" || gs(s)) && ((t || (t = {}))[s] = e[s]);
     return t;
   };
-  var ki = (e, t) => {
+  var Oi = (e, t) => {
     const s = {};
     for (const r in e)
       (!Qs(r) || !(r.slice(9) in t)) && (s[r] = e[r]);
@@ -2218,7 +2218,7 @@
       if (u & 1024)
         return true;
       if (u & 16)
-        return r ? Or(r, o, p) : !!o;
+        return r ? kr(r, o, p) : !!o;
       if (u & 8) {
         const h = t.dynamicProps;
         for (let v = 0; v < h.length; v++) {
@@ -2228,10 +2228,10 @@
         }
       }
     } else
-      return (n || c) && (!c || !c.$stable) ? true : r === o ? false : r ? o ? Or(r, o, p) : true : !!o;
+      return (n || c) && (!c || !c.$stable) ? true : r === o ? false : r ? o ? kr(r, o, p) : true : !!o;
     return false;
   }
-  function Or(e, t, s) {
+  function kr(e, t, s) {
     const r = Object.keys(t);
     if (r.length !== Object.keys(e).length)
       return true;
@@ -2268,7 +2268,7 @@
     Vt.pop(), ye = Vt[Vt.length - 1] || null;
   }
   var zt = 1;
-  function kr(e, t = false) {
+  function Or(e, t = false) {
     zt += e, e < 0 && ye && t && (ye.hasOnce = true);
   }
   function Bn(e) {
@@ -2370,7 +2370,7 @@
   function Fe(e, t, s, r = null) {
     Le(e, t, 7, [s, r]);
   }
-  var Hi = kn();
+  var Hi = On();
   var Li = 0;
   function Ni(e, t, s) {
     const r = e.type, n = (t ? t.appContext : e.appContext) || Hi, i = { uid: Li++, vnode: e, type: r, parent: t, appContext: n, root: null, next: null, subTree: null, effect: null, update: null, job: null, scope: new lo(true), render: null, proxy: null, exposed: null, exposeProxy: null, withProxy: null, provides: t ? t.provides : Object.create(n.provides), ids: t ? t.ids : ["", 0, 0], accessCache: null, renderCache: [], components: null, directives: null, propsOptions: Fn(r, n), emitsOptions: Un(r, n), emit: null, emitted: null, propsDefaults: z, inheritAttrs: r.inheritAttrs, ctx: z, data: z, props: z, attrs: z, slots: z, refs: z, setupState: z, setupContext: null, suspense: s, suspenseId: s ? s.pendingId : 0, asyncDep: null, asyncResolved: false, isMounted: false, isUnmounted: false, isDeactivated: false, bc: null, c: null, bm: null, m: null, bu: null, u: null, um: null, bum: null, da: null, a: null, rtg: null, rtc: null, ec: null, sp: null };
@@ -2702,11 +2702,11 @@
     c !== u && (document.activeElement === e && e.type !== "range" && (r && t === s || n && e.value.trim() === u) || (e.value = u));
   } };
   var hl = { created(e, { value: t }, s) {
-    e.checked = kt(t, s.props.value), e[ze] = Mt(s), et(e, "change", () => {
+    e.checked = Ot(t, s.props.value), e[ze] = Mt(s), et(e, "change", () => {
       e[ze](Yt(e));
     });
   }, beforeUpdate(e, { value: t, oldValue: s }, r) {
-    e[ze] = Mt(r), t !== s && (e.checked = kt(t, r.props.value));
+    e[ze] = Mt(r), t !== s && (e.checked = Ot(t, r.props.value));
   } };
   var Hs = { deep: true, created(e, { value: t, modifiers: { number: s } }, r) {
     const n = ms(t);
@@ -2734,7 +2734,7 @@
             u === "string" || u === "number" ? o.selected = t.some((p) => String(p) === String(c)) : o.selected = io(t, c) > -1;
           } else
             o.selected = t.has(c);
-        else if (kt(Yt(o), t)) {
+        else if (Ot(Yt(o), t)) {
           e.selectedIndex !== n && (e.selectedIndex = n);
           return;
         }
@@ -2791,7 +2791,7 @@
     return s;
   };
   var Sl = { name: "TechnicalAssessmentSurveyApp", setup() {
-    const e = be(false), t = be(false), s = be(null), r = be("fill-survey"), n = be("en"), i = $e({ show: false, message: "", type: "success" }), o = $e({ username: "", password: "" }), c = be([]), u = be(null), p = be(null), h = be([]), v = be(null), T = $e({}), O = $e({}), j = be(""), I = be([]), J = $e({ doctype: "", status: "", dateFrom: "", dateTo: "" }), K = { en: { welcome: "Welcome", loginSubtitle: "Technical Assessment Survey System", username: "Username", password: "Password", enterUsername: "Enter your username", enterPassword: "Enter your password", login: "Login", logout: "Logout", loading: "Loading...", surveyApp: "Survey Application", fillSurvey: "Fill Survey", mySurveys: "My Surveys", selectOpportunity: "Select an Opportunity", searchOpportunities: "Search Opportunities", searchPlaceholder: "Search by name or customer...", customer: "Customer", back: "Back", progress: "Progress", enterAnswer: "Enter your answer...", yes: "Yes", no: "No", saveDraft: "Save Draft", submitSurvey: "Submit Survey", allDoctypes: "All Doctypes", allStatuses: "All Statuses", draft: "Draft", submitted: "Submitted", inProgress: "In Progress", edit: "Edit", view: "View", continue: "Continue", assigned: "Assigned", noSurveys: "No surveys found", noAvailableOpportunities: "No available opportunities", refresh: "Refresh", loginError: "Invalid username or password", selectSurveyTemplate: "Select Survey Template", templateSelected: "Template Selected", chooseTemplate: "Choose a template...", templateSelectionHint: "Please select a survey template to begin the assessment", saveSuccess: "Survey saved successfully", submitSuccess: "Survey submitted successfully", validationError: "This field is required" }, ar: { welcome: "\u0645\u0631\u062D\u0628\u0627\u064B", loginSubtitle: "\u0646\u0638\u0627\u0645 \u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0641\u0646\u064A", username: "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645", password: "\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631", enterUsername: "\u0623\u062F\u062E\u0644 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645", enterPassword: "\u0623\u062F\u062E\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631", login: "\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062F\u062E\u0648\u0644", logout: "\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062E\u0631\u0648\u062C", loading: "\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...", surveyApp: "\u062A\u0637\u0628\u064A\u0642 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", fillSurvey: "\u0645\u0644\u0621 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", mySurveys: "\u0627\u0633\u062A\u0637\u0644\u0627\u0639\u0627\u062A\u064A", selectOpportunity: "\u0627\u062E\u062A\u0631 \u0641\u0631\u0635\u0629", searchOpportunities: "\u0627\u0644\u0628\u062D\u062B \u0641\u064A \u0627\u0644\u0641\u0631\u0635", searchPlaceholder: "\u0627\u0644\u0628\u062D\u062B \u0628\u0627\u0644\u0627\u0633\u0645 \u0623\u0648 \u0627\u0644\u0639\u0645\u064A\u0644...", customer: "\u0627\u0644\u0639\u0645\u064A\u0644", back: "\u0631\u062C\u0648\u0639", progress: "\u0627\u0644\u062A\u0642\u062F\u0645", enterAnswer: "\u0623\u062F\u062E\u0644 \u0625\u062C\u0627\u0628\u062A\u0643...", yes: "\u0646\u0639\u0645", no: "\u0644\u0627", saveDraft: "\u062D\u0641\u0638 \u0645\u0633\u0648\u062F\u0629", submitSurvey: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", allDoctypes: "\u062C\u0645\u064A\u0639 \u0627\u0644\u0623\u0646\u0648\u0627\u0639", allStatuses: "\u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0627\u0644\u0627\u062A", draft: "\u0645\u0633\u0648\u062F\u0629", submitted: "\u0645\u0631\u0633\u0644", inProgress: "\u0642\u064A\u062F \u0627\u0644\u062A\u0642\u062F\u0645", edit: "\u062A\u0639\u062F\u064A\u0644", view: "\u0639\u0631\u0636", continue: "\u0645\u062A\u0627\u0628\u0639\u0629", assigned: "\u0645\u064F\u0639\u064A\u064E\u0651\u0646", noSurveys: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0627\u0633\u062A\u0637\u0644\u0627\u0639\u0627\u062A", noAvailableOpportunities: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0641\u0631\u0635 \u0645\u062A\u0627\u062D\u0629", refresh: "\u062A\u062D\u062F\u064A\u062B", loginError: "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0623\u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u063A\u064A\u0631 \u0635\u062D\u064A\u062D\u0629", saveSuccess: "\u062A\u0645 \u062D\u0641\u0638 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0628\u0646\u062C\u0627\u062D", submitSuccess: "\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0628\u0646\u062C\u0627\u062D", validationError: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0642\u0644 \u0645\u0637\u0644\u0648\u0628", selectSurveyTemplate: "\u0627\u062E\u062A\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", templateSelected: "\u062A\u0645 \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0646\u0645\u0648\u0630\u062C", chooseTemplate: "\u0627\u062E\u062A\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0633\u062A\u0637\u0644\u0627\u0639...", templateSelectionHint: "\u064A\u0631\u062C\u0649 \u0627\u062E\u062A\u064A\u0627\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0644\u0628\u062F\u0621 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" } }, U = (y) => K[n.value][y] || y, q = is(() => {
+    const e = be(false), t = be(false), s = be(null), r = be("fill-survey"), n = be("en"), i = $e({ show: false, message: "", type: "success" }), o = $e({ username: "", password: "" }), c = be([]), u = be(null), p = be(null), h = be([]), v = be(null), T = $e({}), k = $e({}), j = be(""), I = be([]), J = $e({ doctype: "", status: "", dateFrom: "", dateTo: "" }), K = { en: { welcome: "Welcome", loginSubtitle: "Technical Assessment Survey System", username: "Username", password: "Password", enterUsername: "Enter your username", enterPassword: "Enter your password", login: "Login", logout: "Logout", loading: "Loading...", surveyApp: "Survey Application", fillSurvey: "Fill Survey", mySurveys: "My Surveys", selectOpportunity: "Select a Record", searchOpportunities: "Search Records", searchPlaceholder: "Search by name or customer/party...", customer: "Customer/Party", back: "Back", progress: "Progress", enterAnswer: "Enter your answer...", yes: "Yes", no: "No", saveDraft: "Save Draft", submitSurvey: "Submit Survey", allDoctypes: "All Types", allStatuses: "All Statuses", draft: "Draft", submitted: "Submitted", inProgress: "In Progress", edit: "Edit", view: "View", continue: "Continue", assigned: "Assigned", noSurveys: "No surveys found", noAvailableOpportunities: "No available records", refresh: "Refresh", loginError: "Invalid username or password", selectSurveyTemplate: "Select Survey Template", templateSelected: "Template Selected", chooseTemplate: "Choose a template...", templateSelectionHint: "Please select a survey template to begin the assessment", saveSuccess: "Survey saved successfully", submitSuccess: "Survey submitted successfully", validationError: "This field is required" }, ar: { welcome: "\u0645\u0631\u062D\u0628\u0627\u064B", loginSubtitle: "\u0646\u0638\u0627\u0645 \u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0641\u0646\u064A", username: "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645", password: "\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631", enterUsername: "\u0623\u062F\u062E\u0644 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645", enterPassword: "\u0623\u062F\u062E\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631", login: "\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062F\u062E\u0648\u0644", logout: "\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062E\u0631\u0648\u062C", loading: "\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...", surveyApp: "\u062A\u0637\u0628\u064A\u0642 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", fillSurvey: "\u0645\u0644\u0621 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", mySurveys: "\u0627\u0633\u062A\u0637\u0644\u0627\u0639\u0627\u062A\u064A", selectOpportunity: "\u0627\u062E\u062A\u0631 \u0633\u062C\u0644\u0627\u064B", searchOpportunities: "\u0627\u0628\u062D\u062B \u0641\u064A \u0627\u0644\u0633\u062C\u0644\u0627\u062A", searchPlaceholder: "\u0627\u0628\u062D\u062B \u0628\u0627\u0644\u0627\u0633\u0645 \u0623\u0648 \u0627\u0644\u0639\u0645\u064A\u0644/\u0627\u0644\u0637\u0631\u0641...", customer: "\u0627\u0644\u0639\u0645\u064A\u0644/\u0627\u0644\u0637\u0631\u0641", back: "\u0631\u062C\u0648\u0639", progress: "\u0627\u0644\u062A\u0642\u062F\u0645", enterAnswer: "\u0623\u062F\u062E\u0644 \u0625\u062C\u0627\u0628\u062A\u0643...", yes: "\u0646\u0639\u0645", no: "\u0644\u0627", saveDraft: "\u062D\u0641\u0638 \u0645\u0633\u0648\u062F\u0629", submitSurvey: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", allDoctypes: "\u062C\u0645\u064A\u0639 \u0627\u0644\u0623\u0646\u0648\u0627\u0639", allStatuses: "\u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0627\u0644\u0627\u062A", draft: "\u0645\u0633\u0648\u062F\u0629", submitted: "\u0645\u0631\u0633\u0644", inProgress: "\u0642\u064A\u062F \u0627\u0644\u062A\u0642\u062F\u0645", edit: "\u062A\u0639\u062F\u064A\u0644", view: "\u0639\u0631\u0636", continue: "\u0645\u062A\u0627\u0628\u0639\u0629", assigned: "\u0645\u064F\u0639\u064A\u064E\u0651\u0646", noSurveys: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0627\u0633\u062A\u0637\u0644\u0627\u0639\u0627\u062A", noAvailableOpportunities: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0633\u062C\u0644\u0627\u062A \u0645\u062A\u0627\u062D\u0629", refresh: "\u062A\u062D\u062F\u064A\u062B", loginError: "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0623\u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u063A\u064A\u0631 \u0635\u062D\u064A\u062D\u0629", saveSuccess: "\u062A\u0645 \u062D\u0641\u0638 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0628\u0646\u062C\u0627\u062D", submitSuccess: "\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0628\u0646\u062C\u0627\u062D", validationError: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0642\u0644 \u0645\u0637\u0644\u0648\u0628", selectSurveyTemplate: "\u0627\u062E\u062A\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0644\u0627\u0633\u062A\u0637\u0644\u0627\u0639", templateSelected: "\u062A\u0645 \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0646\u0645\u0648\u0630\u062C", chooseTemplate: "\u0627\u062E\u062A\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0633\u062A\u0637\u0644\u0627\u0639...", templateSelectionHint: "\u064A\u0631\u062C\u0649 \u0627\u062E\u062A\u064A\u0627\u0631 \u0646\u0645\u0648\u0630\u062C \u0627\u0633\u062A\u0637\u0644\u0627\u0639 \u0644\u0628\u062F\u0621 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" } }, U = (y) => K[n.value][y] || y, q = is(() => {
       if (!j.value)
         return c.value;
       const y = j.value.toLowerCase();
@@ -2818,7 +2818,7 @@
     }, ve = () => {
       n.value = n.value === "en" ? "ar" : "en", localStorage.setItem("language", n.value);
     };
-    async function Oe() {
+    async function ke() {
       try {
         const l = await (await fetch("/api/method/frappe.auth.get_logged_user", { credentials: "include" })).json();
         return l.message ? { loggedIn: true, user: l.message } : { loggedIn: false };
@@ -2908,7 +2908,7 @@
           e.value = false;
         }
       }
-    }, ke = async (y) => {
+    }, Oe = async (y) => {
       if (y) {
         e.value = true;
         try {
@@ -2931,12 +2931,12 @@
         }
       }
     }, pe = (y) => ({ Data: "Text", "Long Text": "Text", Select: "Multi-choice", Rating: "Rating", Question: "Yes/No" })[y] || "Text", At = () => {
-      Object.keys(O).forEach((l) => delete O[l]);
+      Object.keys(k).forEach((l) => delete k[l]);
       let y = true;
       return p.value.questions.forEach((l) => {
-        l.required && (!T[l.name] || T[l.name] === "") && (O[l.name] = U("validationError"), y = false);
+        l.required && (!T[l.name] || T[l.name] === "") && (k[l.name] = U("validationError"), y = false);
       }), y;
-    }, Os = async () => {
+    }, ks = async () => {
       if (!At()) {
         Y(U("validationError"), "error");
         return;
@@ -2952,7 +2952,7 @@
       } finally {
         e.value = false;
       }
-    }, ks = async () => {
+    }, Os = async () => {
       if (!At()) {
         Y(U("validationError"), "error");
         return;
@@ -2979,7 +2979,7 @@
           const m = await fetch(`/api/resource/Technical Survey/${g[l]}`, { credentials: "include" });
           if (m.ok) {
             const _ = (await m.json()).data;
-            v.value = _.survey_template, await ke(_.survey_template), _.survey_fields && Array.isArray(_.survey_fields) && (Object.keys(T).forEach((w) => delete T[w]), _.survey_fields.forEach((w) => {
+            v.value = _.survey_template, await Oe(_.survey_template), _.survey_fields && Array.isArray(_.survey_fields) && (Object.keys(T).forEach((w) => delete T[w]), _.survey_fields.forEach((w) => {
               T[w.field_name] = w.field_value;
             }));
           }
@@ -3029,19 +3029,19 @@
     };
     return Sn(() => {
       const y = localStorage.getItem("language");
-      y && (n.value = y), Oe().then(async ({ loggedIn: l, user: a }) => {
+      y && (n.value = y), ke().then(async ({ loggedIn: l, user: a }) => {
         l ? (t.value = true, s.value = { name: a, full_name: "Technical Assessment User", roles: ["Technical Assessment"] }, await Promise.all([N(), Ue()])) : t.value = false;
       }).catch((l) => {
         console.error("Error checking login status:", l);
       });
     }), rs(n, (y) => {
       document.documentElement.dir = y === "ar" ? "rtl" : "ltr", document.documentElement.lang = y;
-    }), { isLoading: e, isAuthenticated: t, currentUser: s, activeTab: r, currentLanguage: n, toast: i, loginForm: o, opportunities: c, selectedOpportunity: u, currentSurveyTemplate: p, surveyTemplates: h, selectedTemplateId: v, surveyAnswers: T, validationErrors: O, opportunitySearch: j, surveyResponses: I, filters: J, filteredOpportunities: q, surveyProgress: P, filteredSurveyResponses: ee, t: U, toggleLanguage: ve, login: Ne, logout: ot, selectOpportunity: yt, selectSurveyTemplate: ke, fetchSurveyTemplates: Te, initializeFieldValue: Qe, mapFieldTypeToQuestionType: pe, saveDraft: Os, submitSurvey: ks, viewSurveyResponse: at, formatDate: Zt, fetchOpportunities: N, fetchSurveyResponses: Ue, getSurveyTemplateTitle: ut };
+    }), { isLoading: e, isAuthenticated: t, currentUser: s, activeTab: r, currentLanguage: n, toast: i, loginForm: o, opportunities: c, selectedOpportunity: u, currentSurveyTemplate: p, surveyTemplates: h, selectedTemplateId: v, surveyAnswers: T, validationErrors: k, opportunitySearch: j, surveyResponses: I, filters: J, filteredOpportunities: q, surveyProgress: P, filteredSurveyResponses: ee, t: U, toggleLanguage: ve, login: Ne, logout: ot, selectOpportunity: yt, selectSurveyTemplate: Oe, fetchSurveyTemplates: Te, initializeFieldValue: Qe, mapFieldTypeToQuestionType: pe, saveDraft: ks, submitSurvey: Os, viewSurveyResponse: at, formatDate: Zt, fetchOpportunities: N, fetchSurveyResponses: Ue, getSurveyTemplateTitle: ut };
   } };
   var Tl = { key: 0, class: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" };
   var Cl = { class: "bg-white rounded-lg p-6 flex items-center space-x-3" };
-  var Ol = { key: 2, class: "min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4" };
-  var kl = { class: "bg-white rounded-xl shadow-xl p-8 w-full max-w-md" };
+  var kl = { key: 2, class: "min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4" };
+  var Ol = { class: "bg-white rounded-xl shadow-xl p-8 w-full max-w-md" };
   var El = { class: "text-center mb-8" };
   var Ml = { class: "text-3xl font-bold text-gray-900 mb-2" };
   var Al = { class: "text-gray-600" };
@@ -3094,8 +3094,8 @@
   var Sc = { class: "flex items-center justify-between mb-3" };
   var Tc = { class: "text-lg font-medium text-gray-900 flex items-center" };
   var Cc = { key: 0, class: "text-sm text-green-600 font-medium" };
-  var Oc = ["value"];
-  var kc = { class: "text-sm text-gray-600 mt-2" };
+  var kc = ["value"];
+  var Oc = { class: "text-sm text-gray-600 mt-2" };
   var Ec = { key: 0, class: "bg-gray-100 rounded-lg p-4" };
   var Mc = { class: "flex justify-between items-center mb-2" };
   var Ac = { class: "text-sm font-medium text-gray-700" };
@@ -3148,12 +3148,12 @@
   var Sa = ["onClick"];
   var Ta = { key: 0, class: "text-center py-12" };
   var Ca = { class: "text-gray-500 text-lg font-medium" };
-  function Oa(e, t, s, r, n, i) {
+  function ka(e, t, s, r, n, i) {
     var _a2, _b;
-    return D(), H("div", { id: "app", class: xe(["w-full min-h-dvh", { rtl: r.currentLanguage === "ar" }]) }, [r.isLoading ? (D(), H("div", Tl, [f("div", Cl, [t[21] || (t[21] = f("div", { class: "animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600" }, null, -1)), f("span", null, k(r.t("loading")), 1)])])) : _e("", true), r.toast.show ? (D(), H("div", { key: 1, class: xe(["fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300", r.toast.type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"]) }, k(r.toast.message), 3)) : _e("", true), r.isAuthenticated ? (D(), H("div", Nl, [f("header", Ul, [f("div", Vl, [f("div", Bl, [f("div", Kl, [t[25] || (t[25] = f("div", { class: "w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center" }, [f("svg", { class: "w-5 h-5 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", Wl, k(r.t("surveyApp")), 1), f("span", zl, k(r.t("welcome")) + ", " + k((_a2 = r.currentUser) == null ? void 0 : _a2.full_name), 1)]), f("div", Jl, [f("button", { onClick: t[4] || (t[4] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "px-3 py-1 text-sm bg-gray-100 rounded-md hover:bg-gray-200 transition-colors" }, k(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1), f("button", { onClick: t[5] || (t[5] = (...o) => r.logout && r.logout(...o)), class: "px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors" }, k(r.t("logout")), 1)])])])]), f("div", Yl, [f("div", Gl, [f("nav", Xl, [f("button", { onClick: t[6] || (t[6] = (o) => r.activeTab = "fill-survey"), class: xe(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "fill-survey" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[26] || (t[26] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" })], -1)), $(" " + k(r.t("fillSurvey")), 1)], 2), f("button", { onClick: t[7] || (t[7] = (o) => r.activeTab = "my-surveys"), class: xe(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "my-surveys" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[27] || (t[27] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), $(" " + k(r.t("mySurveys")), 1)], 2)])])]), r.activeTab === "fill-survey" ? (D(), H("div", Ql, [f("div", Zl, [r.selectedOpportunity ? (D(), H("div", vc, [f("div", bc, [f("div", null, [f("h2", _c, k(r.selectedOpportunity.title), 1), f("p", xc, [t[37] || (t[37] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), $(" " + k(r.selectedOpportunity.doctype), 1)])]), f("button", { onClick: t[10] || (t[10] = (o) => r.selectedOpportunity = null), class: "px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center" }, [t[38] || (t[38] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M10 19l-7-7m0 0l7-7m-7 7h18" })], -1)), $(" " + k(r.t("back")), 1)])]), f("div", wc, [f("div", Sc, [f("h3", Tc, [t[39] || (t[39] = f("svg", { class: "w-5 h-5 mr-2 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), $(" " + k(r.t("selectSurveyTemplate")), 1)]), r.currentSurveyTemplate ? (D(), H("span", Cc, k(r.t("templateSelected")), 1)) : _e("", true)]), Pe(f("select", { "onUpdate:modelValue": t[11] || (t[11] = (o) => r.selectedTemplateId = o), onClick: t[12] || (t[12] = (...o) => r.fetchSurveyTemplates && r.fetchSurveyTemplates(...o)), onChange: t[13] || (t[13] = (o) => r.selectSurveyTemplate(r.selectedTemplateId)), class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [(D(true), H(ce, null, bt(r.surveyTemplates, (o) => (D(), H("option", { key: o.name, value: o.name }, k(o.template_name), 9, Oc))), 128))], 544), [[Hs, r.selectedTemplateId]]), f("p", kc, k(r.t("templateSelectionHint")), 1)]), r.currentSurveyTemplate ? (D(), H("div", Ec, [f("div", Mc, [f("span", Ac, k(r.t("progress")), 1), f("span", Pc, k(Math.round(r.surveyProgress)) + "%", 1)]), f("div", Fc, [f("div", { class: "bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500 ease-out", style: bs({ width: `${r.surveyProgress}%` }) }, null, 4)])])) : _e("", true), r.currentSurveyTemplate ? (D(), H("div", Rc, [(D(true), H(ce, null, bt((_b = r.currentSurveyTemplate) == null ? void 0 : _b.questions, (o, c) => (D(), H("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors" }, [f("h3", Ic, [f("span", jc, k(c + 1), 1), f("span", null, [$(k(o.question) + " ", 1), o.required ? (D(), H("span", Dc, "*")) : _e("", true)])]), o.description ? (D(), H("div", Hc, [f("p", Lc, k(o.description), 1)])) : _e("", true), o.question_type === "Text" ? (D(), H("div", Nc, [Pe(f("textarea", { "onUpdate:modelValue": (u) => r.surveyAnswers[o.name] = u, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", rows: "4", placeholder: o.default_value || r.t("enterAnswer"), onFocus: (u) => r.initializeFieldValue(o) }, null, 40, Uc), [[_t, r.surveyAnswers[o.name]]])])) : o.question_type === "Rating" ? (D(), H("div", Vc, [f("div", Bc, [(D(), H(ce, null, bt(5, (u) => f("button", { key: u, onClick: (p) => r.surveyAnswers[o.name] = u, onMouseenter: (p) => r.initializeFieldValue(o), class: xe(["w-12 h-12 rounded-full border-2 transition-all duration-200 flex items-center justify-center text-xl", r.surveyAnswers[o.name] >= u ? "bg-yellow-400 border-yellow-400 text-white shadow-md transform scale-110" : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-50 text-gray-400"]) }, " \u2605 ", 42, Kc)), 64))]), t[40] || (t[40] = f("p", { class: "text-sm text-gray-500 mt-2" }, "Click to rate from 1 to 5 stars", -1))])) : o.question_type === "Yes/No" ? (D(), H("div", Wc, [f("div", zc, [f("button", { onClick: (u) => r.surveyAnswers[o.name] = "Yes", onMouseenter: (u) => r.initializeFieldValue(o), class: xe(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "Yes" ? "bg-green-500 border-green-500 text-white shadow-md" : "border-gray-300 hover:border-green-500 hover:bg-green-50 text-gray-700"]) }, [t[41] || (t[41] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M5 13l4 4L19 7" })], -1)), $(" " + k(r.t("yes")), 1)], 42, Jc), f("button", { onClick: (u) => r.surveyAnswers[o.name] = "No", class: xe(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "No" ? "bg-red-500 border-red-500 text-white shadow-md" : "border-gray-300 hover:border-red-500 hover:bg-red-50 text-gray-700"]) }, [t[42] || (t[42] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M6 18L18 6M6 6l12 12" })], -1)), $(" " + k(r.t("no")), 1)], 10, Yc)])])) : o.question_type === "Multi-choice" ? (D(), H("div", Gc, [(D(true), H(ce, null, bt(o.options, (u) => (D(), H("div", { key: u, class: "flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors" }, [Pe(f("input", { id: `${o.name}-${u}`, "onUpdate:modelValue": (p) => r.surveyAnswers[o.name] = p, value: u, type: "radio", class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300", onFocus: (p) => r.initializeFieldValue(o) }, null, 40, Xc), [[hl, r.surveyAnswers[o.name]]]), f("label", { for: `${o.name}-${u}`, class: "ml-3 block text-sm font-medium text-gray-700 cursor-pointer flex-1" }, k(u), 9, Qc)]))), 128))])) : _e("", true), r.validationErrors[o.name] ? (D(), H("div", Zc, [f("p", qc, [t[43] || (t[43] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })], -1)), $(" " + k(r.validationErrors[o.name]), 1)])])) : _e("", true)]))), 128))])) : _e("", true), f("div", $c, [f("button", { onClick: t[14] || (t[14] = (...o) => r.saveDraft && r.saveDraft(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[44] || (t[44] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" })], -1)), $(" " + k(r.t("saveDraft")), 1)], 8, ea), f("button", { onClick: t[15] || (t[15] = (...o) => r.submitSurvey && r.submitSurvey(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[45] || (t[45] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 19l9 2-9-18-9 18 9-2zm0 0v-8" })], -1)), $(" " + k(r.t("submitSurvey")), 1)], 8, ta)])])) : (D(), H("div", ql, [f("div", $l, [f("h2", ec, k(r.t("selectOpportunity")), 1), t[28] || (t[28] = f("p", { class: "text-gray-600" }, "Choose an opportunity to begin the technical assessment survey", -1)), t[29] || (t[29] = f("p", { class: "text-sm text-blue-600 mt-2" }, 'Only showing opportunities in "Surveying" state without an assigned surveyor ', -1))]), f("div", tc, [f("div", sc, [f("label", rc, k(r.t("searchOpportunities")), 1), f("div", nc, [Pe(f("input", { "onUpdate:modelValue": t[8] || (t[8] = (o) => r.opportunitySearch = o), type: "text", class: "w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all", placeholder: r.t("searchPlaceholder") }, null, 8, oc), [[_t, r.opportunitySearch]]), t[30] || (t[30] = f("svg", { class: "w-5 h-5 text-gray-400 absolute left-3 top-3.5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" })], -1))])]), f("button", { onClick: t[9] || (t[9] = (...o) => r.fetchOpportunities && r.fetchOpportunities(...o)), disabled: r.isLoading, class: "ml-4 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[31] || (t[31] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), $(" " + k(r.t("refresh")), 1)], 8, ic)]), r.filteredOpportunities.length === 0 && !r.isLoading ? (D(), H("div", lc, [t[32] || (t[32] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", cc, k(r.t("noAvailableOpportunities")), 1), t[33] || (t[33] = f("p", { class: "text-gray-400 mt-2" }, 'All opportunities in the "Surveying" workflow state have already been assigned to a surveyor', -1))])) : (D(), H("div", ac, [(D(true), H(ce, null, bt(r.filteredOpportunities, (o) => (D(), H("div", { key: o.name, onClick: (c) => r.selectOpportunity(o), class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 cursor-pointer transition-all duration-200 hover:shadow-md" }, [f("div", fc, [f("div", dc, [f("h3", hc, k(o.title), 1), f("div", pc, [f("span", gc, [t[34] || (t[34] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), $(" " + k(o.doctype), 1)]), f("span", mc, [t[35] || (t[35] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), $(" " + k(o.customer_name), 1)])])]), f("div", yc, [f("span", { class: xe(["px-3 py-1 text-xs font-medium rounded-full", o.status === "Open" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"]) }, k(o.status), 3), t[36] || (t[36] = f("svg", { class: "w-5 h-5 text-gray-400", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5l7 7-7 7" })], -1))])])], 8, uc))), 128))]))]))])])) : _e("", true), r.activeTab === "my-surveys" ? (D(), H("div", sa, [f("div", ra, [f("div", na, [f("h2", oa, [t[46] || (t[46] = f("svg", { class: "w-6 h-6 mr-3 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), $(" " + k(r.t("mySurveys")), 1)]), f("div", ia, [f("div", la, k(r.filteredSurveyResponses.length) + " " + k(r.filteredSurveyResponses.length === 1 ? "survey" : "surveys") + " assigned to you ", 1), f("button", { onClick: t[16] || (t[16] = (...o) => r.fetchSurveyResponses && r.fetchSurveyResponses(...o)), disabled: r.isLoading, class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[47] || (t[47] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), $(" " + k(r.t("refresh")), 1)], 8, ca)])]), f("div", aa, [f("div", null, [t[49] || (t[49] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Doctype", -1)), Pe(f("select", { "onUpdate:modelValue": t[17] || (t[17] = (o) => r.filters.doctype = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", ua, k(r.t("allDoctypes")), 1), t[48] || (t[48] = ji('<option value="Opportunity">Opportunity</option><option value="Opportunity Hotels">Opportunity Hotels</option><option value="Opportunity SM">Opportunity SM</option><option value="Opportunity Tenders">Opportunity Tenders</option><option value="Hotspot">Hotspot</option>', 5))], 512), [[Hs, r.filters.doctype]])]), f("div", null, [t[50] || (t[50] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Status", -1)), Pe(f("select", { "onUpdate:modelValue": t[18] || (t[18] = (o) => r.filters.status = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", fa, k(r.t("allStatuses")), 1), f("option", da, k(r.t("inProgress")), 1), f("option", ha, k(r.t("submitted")), 1)], 512), [[Hs, r.filters.status]])]), f("div", null, [t[51] || (t[51] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "From Date", -1)), Pe(f("input", { "onUpdate:modelValue": t[19] || (t[19] = (o) => r.filters.dateFrom = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[_t, r.filters.dateFrom]])]), f("div", null, [t[52] || (t[52] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "To Date", -1)), Pe(f("input", { "onUpdate:modelValue": t[20] || (t[20] = (o) => r.filters.dateTo = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[_t, r.filters.dateTo]])])]), f("div", pa, [(D(true), H(ce, null, bt(r.filteredSurveyResponses, (o) => (D(), H("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200" }, [f("div", ga, [f("div", ma, [f("h3", ya, k(o.title), 1), f("div", va, [f("p", ba, [t[53] || (t[53] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), $(" " + k(o.doctype), 1)]), f("p", _a, [t[54] || (t[54] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), $(" " + k(o.customer_name), 1)]), f("p", xa, [t[55] || (t[55] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10" })], -1)), $(" " + k(r.t("assigned")) + ": " + k(r.formatDate(o.creation)), 1)])])]), f("div", wa, [f("span", { class: xe(["px-3 py-1 text-xs font-medium rounded-full", o.status === "In Progress" ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"]) }, k(o.status === "In Progress" ? r.t("inProgress") : r.t("submitted")), 3), f("button", { onClick: (c) => r.viewSurveyResponse(o), class: "px-4 py-2 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors flex items-center" }, [t[56] || (t[56] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" }), f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" })], -1)), $(" " + k(o.status === "In Progress" ? r.t("continue") : r.t("view")), 1)], 8, Sa)])])]))), 128))]), r.filteredSurveyResponses.length === 0 ? (D(), H("div", Ta, [t[57] || (t[57] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", Ca, k(r.t("noSurveys")), 1), t[58] || (t[58] = f("p", { class: "text-gray-400 mt-2" }, "No opportunities have been assigned to you yet", -1))])) : _e("", true)])])) : _e("", true)])) : (D(), H("div", Ol, [f("div", kl, [f("div", El, [t[22] || (t[22] = f("div", { class: "w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4" }, [f("svg", { class: "w-8 h-8 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", Ml, k(r.t("welcome")), 1), f("p", Al, k(r.t("loginSubtitle")), 1)]), f("form", { onSubmit: t[2] || (t[2] = ml((...o) => r.login && r.login(...o), ["prevent"])), class: "space-y-6" }, [f("div", null, [f("label", Pl, k(r.t("username")), 1), Pe(f("input", { "onUpdate:modelValue": t[0] || (t[0] = (o) => r.loginForm.username = o), type: "text", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterUsername") }, null, 8, Fl), [[_t, r.loginForm.username]])]), f("div", null, [f("label", Rl, k(r.t("password")), 1), Pe(f("input", { "onUpdate:modelValue": t[1] || (t[1] = (o) => r.loginForm.password = o), type: "password", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterPassword") }, null, 8, Il), [[_t, r.loginForm.password]])]), f("button", { type: "submit", disabled: r.isLoading, class: "w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium" }, [r.isLoading ? (D(), H("div", Hl, [t[23] || (t[23] = f("div", { class: "animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" }, null, -1)), $(" " + k(r.t("loading")), 1)])) : (D(), H("span", Dl, k(r.t("login")), 1))], 8, jl)], 32), f("div", Ll, [f("button", { onClick: t[3] || (t[3] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors" }, k(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1)]), t[24] || (t[24] = f("div", { class: "mt-6 p-4 bg-blue-50 rounded-lg" }, [f("p", { class: "text-sm text-blue-800 text-center" }, [f("strong", null, "Demo:"), $(" Enter any username and password to login ")])], -1))])]))], 2);
+    return D(), H("div", { id: "app", class: xe(["w-full min-h-dvh", { rtl: r.currentLanguage === "ar" }]) }, [r.isLoading ? (D(), H("div", Tl, [f("div", Cl, [t[21] || (t[21] = f("div", { class: "animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600" }, null, -1)), f("span", null, O(r.t("loading")), 1)])])) : _e("", true), r.toast.show ? (D(), H("div", { key: 1, class: xe(["fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300", r.toast.type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"]) }, O(r.toast.message), 3)) : _e("", true), r.isAuthenticated ? (D(), H("div", Nl, [f("header", Ul, [f("div", Vl, [f("div", Bl, [f("div", Kl, [t[25] || (t[25] = f("div", { class: "w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center" }, [f("svg", { class: "w-5 h-5 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", Wl, O(r.t("surveyApp")), 1), f("span", zl, O(r.t("welcome")) + ", " + O((_a2 = r.currentUser) == null ? void 0 : _a2.full_name), 1)]), f("div", Jl, [f("button", { onClick: t[4] || (t[4] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "px-3 py-1 text-sm bg-gray-100 rounded-md hover:bg-gray-200 transition-colors" }, O(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1), f("button", { onClick: t[5] || (t[5] = (...o) => r.logout && r.logout(...o)), class: "px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors" }, O(r.t("logout")), 1)])])])]), f("div", Yl, [f("div", Gl, [f("nav", Xl, [f("button", { onClick: t[6] || (t[6] = (o) => r.activeTab = "fill-survey"), class: xe(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "fill-survey" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[26] || (t[26] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" })], -1)), $(" " + O(r.t("fillSurvey")), 1)], 2), f("button", { onClick: t[7] || (t[7] = (o) => r.activeTab = "my-surveys"), class: xe(["py-2 px-1 border-b-2 font-medium text-sm transition-colors", r.activeTab === "my-surveys" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"]) }, [t[27] || (t[27] = f("svg", { class: "w-4 h-4 inline mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), $(" " + O(r.t("mySurveys")), 1)], 2)])])]), r.activeTab === "fill-survey" ? (D(), H("div", Ql, [f("div", Zl, [r.selectedOpportunity ? (D(), H("div", vc, [f("div", bc, [f("div", null, [f("h2", _c, O(r.selectedOpportunity.title), 1), f("p", xc, [t[37] || (t[37] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), $(" " + O(r.selectedOpportunity.doctype), 1)])]), f("button", { onClick: t[10] || (t[10] = (o) => r.selectedOpportunity = null), class: "px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center" }, [t[38] || (t[38] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M10 19l-7-7m0 0l7-7m-7 7h18" })], -1)), $(" " + O(r.t("back")), 1)])]), f("div", wc, [f("div", Sc, [f("h3", Tc, [t[39] || (t[39] = f("svg", { class: "w-5 h-5 mr-2 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), $(" " + O(r.t("selectSurveyTemplate")), 1)]), r.currentSurveyTemplate ? (D(), H("span", Cc, O(r.t("templateSelected")), 1)) : _e("", true)]), Pe(f("select", { "onUpdate:modelValue": t[11] || (t[11] = (o) => r.selectedTemplateId = o), onClick: t[12] || (t[12] = (...o) => r.fetchSurveyTemplates && r.fetchSurveyTemplates(...o)), onChange: t[13] || (t[13] = (o) => r.selectSurveyTemplate(r.selectedTemplateId)), class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [(D(true), H(ce, null, bt(r.surveyTemplates, (o) => (D(), H("option", { key: o.name, value: o.name }, O(o.template_name), 9, kc))), 128))], 544), [[Hs, r.selectedTemplateId]]), f("p", Oc, O(r.t("templateSelectionHint")), 1)]), r.currentSurveyTemplate ? (D(), H("div", Ec, [f("div", Mc, [f("span", Ac, O(r.t("progress")), 1), f("span", Pc, O(Math.round(r.surveyProgress)) + "%", 1)]), f("div", Fc, [f("div", { class: "bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500 ease-out", style: bs({ width: `${r.surveyProgress}%` }) }, null, 4)])])) : _e("", true), r.currentSurveyTemplate ? (D(), H("div", Rc, [(D(true), H(ce, null, bt((_b = r.currentSurveyTemplate) == null ? void 0 : _b.questions, (o, c) => (D(), H("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors" }, [f("h3", Ic, [f("span", jc, O(c + 1), 1), f("span", null, [$(O(o.question) + " ", 1), o.required ? (D(), H("span", Dc, "*")) : _e("", true)])]), o.description ? (D(), H("div", Hc, [f("p", Lc, O(o.description), 1)])) : _e("", true), o.question_type === "Text" ? (D(), H("div", Nc, [Pe(f("textarea", { "onUpdate:modelValue": (u) => r.surveyAnswers[o.name] = u, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", rows: "4", placeholder: o.default_value || r.t("enterAnswer"), onFocus: (u) => r.initializeFieldValue(o) }, null, 40, Uc), [[_t, r.surveyAnswers[o.name]]])])) : o.question_type === "Rating" ? (D(), H("div", Vc, [f("div", Bc, [(D(), H(ce, null, bt(5, (u) => f("button", { key: u, onClick: (p) => r.surveyAnswers[o.name] = u, onMouseenter: (p) => r.initializeFieldValue(o), class: xe(["w-12 h-12 rounded-full border-2 transition-all duration-200 flex items-center justify-center text-xl", r.surveyAnswers[o.name] >= u ? "bg-yellow-400 border-yellow-400 text-white shadow-md transform scale-110" : "border-gray-300 hover:border-yellow-400 hover:bg-yellow-50 text-gray-400"]) }, " \u2605 ", 42, Kc)), 64))]), t[40] || (t[40] = f("p", { class: "text-sm text-gray-500 mt-2" }, "Click to rate from 1 to 5 stars", -1))])) : o.question_type === "Yes/No" ? (D(), H("div", Wc, [f("div", zc, [f("button", { onClick: (u) => r.surveyAnswers[o.name] = "Yes", onMouseenter: (u) => r.initializeFieldValue(o), class: xe(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "Yes" ? "bg-green-500 border-green-500 text-white shadow-md" : "border-gray-300 hover:border-green-500 hover:bg-green-50 text-gray-700"]) }, [t[41] || (t[41] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M5 13l4 4L19 7" })], -1)), $(" " + O(r.t("yes")), 1)], 42, Jc), f("button", { onClick: (u) => r.surveyAnswers[o.name] = "No", class: xe(["px-8 py-3 rounded-lg border-2 transition-all duration-200 font-medium flex items-center", r.surveyAnswers[o.name] === "No" ? "bg-red-500 border-red-500 text-white shadow-md" : "border-gray-300 hover:border-red-500 hover:bg-red-50 text-gray-700"]) }, [t[42] || (t[42] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M6 18L18 6M6 6l12 12" })], -1)), $(" " + O(r.t("no")), 1)], 10, Yc)])])) : o.question_type === "Multi-choice" ? (D(), H("div", Gc, [(D(true), H(ce, null, bt(o.options, (u) => (D(), H("div", { key: u, class: "flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors" }, [Pe(f("input", { id: `${o.name}-${u}`, "onUpdate:modelValue": (p) => r.surveyAnswers[o.name] = p, value: u, type: "radio", class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300", onFocus: (p) => r.initializeFieldValue(o) }, null, 40, Xc), [[hl, r.surveyAnswers[o.name]]]), f("label", { for: `${o.name}-${u}`, class: "ml-3 block text-sm font-medium text-gray-700 cursor-pointer flex-1" }, O(u), 9, Qc)]))), 128))])) : _e("", true), r.validationErrors[o.name] ? (D(), H("div", Zc, [f("p", qc, [t[43] || (t[43] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })], -1)), $(" " + O(r.validationErrors[o.name]), 1)])])) : _e("", true)]))), 128))])) : _e("", true), f("div", $c, [f("button", { onClick: t[14] || (t[14] = (...o) => r.saveDraft && r.saveDraft(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[44] || (t[44] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" })], -1)), $(" " + O(r.t("saveDraft")), 1)], 8, ea), f("button", { onClick: t[15] || (t[15] = (...o) => r.submitSurvey && r.submitSurvey(...o)), disabled: r.isLoading, class: "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center font-medium" }, [t[45] || (t[45] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M12 19l9 2-9-18-9 18 9-2zm0 0v-8" })], -1)), $(" " + O(r.t("submitSurvey")), 1)], 8, ta)])])) : (D(), H("div", ql, [f("div", $l, [f("h2", ec, O(r.t("selectOpportunity")), 1), t[28] || (t[28] = f("p", { class: "text-gray-600" }, "Choose an opportunity to begin the technical assessment survey", -1)), t[29] || (t[29] = f("p", { class: "text-sm text-blue-600 mt-2" }, 'Only showing opportunities in "Surveying" state without an assigned surveyor ', -1))]), f("div", tc, [f("div", sc, [f("label", rc, O(r.t("searchOpportunities")), 1), f("div", nc, [Pe(f("input", { "onUpdate:modelValue": t[8] || (t[8] = (o) => r.opportunitySearch = o), type: "text", class: "w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all", placeholder: r.t("searchPlaceholder") }, null, 8, oc), [[_t, r.opportunitySearch]]), t[30] || (t[30] = f("svg", { class: "w-5 h-5 text-gray-400 absolute left-3 top-3.5", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" })], -1))])]), f("button", { onClick: t[9] || (t[9] = (...o) => r.fetchOpportunities && r.fetchOpportunities(...o)), disabled: r.isLoading, class: "ml-4 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[31] || (t[31] = f("svg", { class: "w-5 h-5 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), $(" " + O(r.t("refresh")), 1)], 8, ic)]), r.filteredOpportunities.length === 0 && !r.isLoading ? (D(), H("div", lc, [t[32] || (t[32] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", cc, O(r.t("noAvailableOpportunities")), 1), t[33] || (t[33] = f("p", { class: "text-gray-400 mt-2" }, 'All opportunities in the "Surveying" workflow state have already been assigned to a surveyor', -1))])) : (D(), H("div", ac, [(D(true), H(ce, null, bt(r.filteredOpportunities, (o) => (D(), H("div", { key: o.name, onClick: (c) => r.selectOpportunity(o), class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 cursor-pointer transition-all duration-200 hover:shadow-md" }, [f("div", fc, [f("div", dc, [f("h3", hc, O(o.title), 1), f("div", pc, [f("span", gc, [t[34] || (t[34] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), $(" " + O(o.doctype), 1)]), f("span", mc, [t[35] || (t[35] = f("svg", { class: "w-4 h-4 mr-1", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), $(" " + O(o.customer_name), 1)])])]), f("div", yc, [f("span", { class: xe(["px-3 py-1 text-xs font-medium rounded-full", o.status === "Open" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"]) }, O(o.status), 3), t[36] || (t[36] = f("svg", { class: "w-5 h-5 text-gray-400", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5l7 7-7 7" })], -1))])])], 8, uc))), 128))]))]))])])) : _e("", true), r.activeTab === "my-surveys" ? (D(), H("div", sa, [f("div", ra, [f("div", na, [f("h2", oa, [t[46] || (t[46] = f("svg", { class: "w-6 h-6 mr-3 text-blue-600", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), $(" " + O(r.t("mySurveys")), 1)]), f("div", ia, [f("div", la, O(r.filteredSurveyResponses.length) + " " + O(r.filteredSurveyResponses.length === 1 ? "survey" : "surveys") + " assigned to you ", 1), f("button", { onClick: t[16] || (t[16] = (...o) => r.fetchSurveyResponses && r.fetchSurveyResponses(...o)), disabled: r.isLoading, class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center" }, [t[47] || (t[47] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" })], -1)), $(" " + O(r.t("refresh")), 1)], 8, ca)])]), f("div", aa, [f("div", null, [t[49] || (t[49] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Doctype", -1)), Pe(f("select", { "onUpdate:modelValue": t[17] || (t[17] = (o) => r.filters.doctype = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", ua, O(r.t("allDoctypes")), 1), t[48] || (t[48] = ji('<option value="Opportunity">Opportunity</option><option value="Opportunity Hotels">Opportunity Hotels</option><option value="Opportunity SM">Opportunity SM</option><option value="Opportunity Tenders">Opportunity Tenders</option><option value="Hotspot">Hotspot</option>', 5))], 512), [[Hs, r.filters.doctype]])]), f("div", null, [t[50] || (t[50] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "Status", -1)), Pe(f("select", { "onUpdate:modelValue": t[18] || (t[18] = (o) => r.filters.status = o), class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, [f("option", fa, O(r.t("allStatuses")), 1), f("option", da, O(r.t("inProgress")), 1), f("option", ha, O(r.t("submitted")), 1)], 512), [[Hs, r.filters.status]])]), f("div", null, [t[51] || (t[51] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "From Date", -1)), Pe(f("input", { "onUpdate:modelValue": t[19] || (t[19] = (o) => r.filters.dateFrom = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[_t, r.filters.dateFrom]])]), f("div", null, [t[52] || (t[52] = f("label", { class: "block text-xs font-medium text-gray-700 mb-1" }, "To Date", -1)), Pe(f("input", { "onUpdate:modelValue": t[20] || (t[20] = (o) => r.filters.dateTo = o), type: "date", class: "w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" }, null, 512), [[_t, r.filters.dateTo]])])]), f("div", pa, [(D(true), H(ce, null, bt(r.filteredSurveyResponses, (o) => (D(), H("div", { key: o.name, class: "p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200" }, [f("div", ga, [f("div", ma, [f("h3", ya, O(o.title), 1), f("div", va, [f("p", ba, [t[53] || (t[53] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6" })], -1)), $(" " + O(o.doctype), 1)]), f("p", _a, [t[54] || (t[54] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" })], -1)), $(" " + O(o.customer_name), 1)]), f("p", xa, [t[55] || (t[55] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10" })], -1)), $(" " + O(r.t("assigned")) + ": " + O(r.formatDate(o.creation)), 1)])])]), f("div", wa, [f("span", { class: xe(["px-3 py-1 text-xs font-medium rounded-full", o.status === "In Progress" ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"]) }, O(o.status === "In Progress" ? r.t("inProgress") : r.t("submitted")), 3), f("button", { onClick: (c) => r.viewSurveyResponse(o), class: "px-4 py-2 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors flex items-center" }, [t[56] || (t[56] = f("svg", { class: "w-4 h-4 mr-2", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" }), f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" })], -1)), $(" " + O(o.status === "In Progress" ? r.t("continue") : r.t("view")), 1)], 8, Sa)])])]))), 128))]), r.filteredSurveyResponses.length === 0 ? (D(), H("div", Ta, [t[57] || (t[57] = f("svg", { class: "w-16 h-16 text-gray-300 mx-auto mb-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" })], -1)), f("p", Ca, O(r.t("noSurveys")), 1), t[58] || (t[58] = f("p", { class: "text-gray-400 mt-2" }, "No opportunities have been assigned to you yet", -1))])) : _e("", true)])])) : _e("", true)])) : (D(), H("div", kl, [f("div", Ol, [f("div", El, [t[22] || (t[22] = f("div", { class: "w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4" }, [f("svg", { class: "w-8 h-8 text-white", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, [f("path", { "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" })])], -1)), f("h1", Ml, O(r.t("welcome")), 1), f("p", Al, O(r.t("loginSubtitle")), 1)]), f("form", { onSubmit: t[2] || (t[2] = ml((...o) => r.login && r.login(...o), ["prevent"])), class: "space-y-6" }, [f("div", null, [f("label", Pl, O(r.t("username")), 1), Pe(f("input", { "onUpdate:modelValue": t[0] || (t[0] = (o) => r.loginForm.username = o), type: "text", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterUsername") }, null, 8, Fl), [[_t, r.loginForm.username]])]), f("div", null, [f("label", Rl, O(r.t("password")), 1), Pe(f("input", { "onUpdate:modelValue": t[1] || (t[1] = (o) => r.loginForm.password = o), type: "password", required: "", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all", placeholder: r.t("enterPassword") }, null, 8, Il), [[_t, r.loginForm.password]])]), f("button", { type: "submit", disabled: r.isLoading, class: "w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium" }, [r.isLoading ? (D(), H("div", Hl, [t[23] || (t[23] = f("div", { class: "animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" }, null, -1)), $(" " + O(r.t("loading")), 1)])) : (D(), H("span", Dl, O(r.t("login")), 1))], 8, jl)], 32), f("div", Ll, [f("button", { onClick: t[3] || (t[3] = (...o) => r.toggleLanguage && r.toggleLanguage(...o)), class: "text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors" }, O(r.currentLanguage === "en" ? "\u0627\u0644\u0639\u0631\u0628\u064A\u0629" : "English"), 1)]), t[24] || (t[24] = f("div", { class: "mt-6 p-4 bg-blue-50 rounded-lg" }, [f("p", { class: "text-sm text-blue-800 text-center" }, [f("strong", null, "Demo:"), $(" Enter any username and password to login ")])], -1))])]))], 2);
   }
-  var ka = wl(Sl, [["render", Oa]]);
-  bl(ka).mount("#app");
+  var Oa = wl(Sl, [["render", ka]]);
+  bl(Oa).mount("#app");
 })();
 /*! #__NO_SIDE_EFFECTS__ */
 /**
@@ -3176,4 +3176,4 @@
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
-//# sourceMappingURL=survey.bundle.4ZTVL6KV.js.map
+//# sourceMappingURL=survey.bundle.HBPW6J32.js.map

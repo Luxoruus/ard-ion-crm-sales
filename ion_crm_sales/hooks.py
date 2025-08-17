@@ -27,6 +27,9 @@ doc_events = {
     "Opportunity Tenders": {
         "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
     },
+    "Hotspot": {
+        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.hotspot_handlers.before_save"
+    }
 }
 
 fixtures = [

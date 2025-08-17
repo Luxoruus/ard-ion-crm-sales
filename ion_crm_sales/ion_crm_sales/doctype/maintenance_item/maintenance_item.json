@@ -7,7 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "schedule",
-  "entry_date"
+  "entry_date",
+  "agent",
+  "notified"
  ],
  "fields": [
   {
@@ -15,7 +17,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Schedule",
-   "options": "Maintenance Schedule"
+   "options": "Maintenance Schedule",
+   "reqd": 1
   },
   {
    "default": "Today",
@@ -23,13 +26,29 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Entry Date"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Agent",
+   "link_filters": "[[\"User\",\"role\",\"=\",\"Maintenance User\"]]",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "notified",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Notified"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-08-15 17:42:53.038617",
+ "modified": "2025-08-17 13:52:48.767656",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Maintenance Item",
