@@ -1,0 +1,144 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-17 19:43:36.921892",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "distributor_name",
+  "distributor_codeid",
+  "column_break_fzdl",
+  "status",
+  "distributor_type",
+  "contact_info_section",
+  "contact_person_name",
+  "contact_email",
+  "contact_phone_number",
+  "column_break_vwew",
+  "address",
+  "arearegion_covered",
+  "section_break_smlb",
+  "license_number",
+  "license_validity",
+  "column_break_nnhb",
+  "gstvat_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "distributor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Distributor Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "distributor_codeid",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Distributor Code/ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fzdl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nInactive"
+  },
+  {
+   "fieldname": "distributor_type",
+   "fieldtype": "Select",
+   "label": "Distributor Type",
+   "options": "Cards\nDevices\nSubscription"
+  },
+  {
+   "fieldname": "contact_info_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Info"
+  },
+  {
+   "fieldname": "contact_person_name",
+   "fieldtype": "Data",
+   "label": "Contact Person Name "
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Link",
+   "label": "Contact Email ",
+   "options": "Contact Email"
+  },
+  {
+   "fieldname": "contact_phone_number",
+   "fieldtype": "Data",
+   "label": "Contact Phone Number"
+  },
+  {
+   "fieldname": "column_break_vwew",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "arearegion_covered",
+   "fieldtype": "Link",
+   "label": "Area/Region Covered",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "section_break_smlb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "license_number",
+   "fieldtype": "Data",
+   "label": "License Number"
+  },
+  {
+   "fieldname": "license_validity",
+   "fieldtype": "Data",
+   "label": "License Validity"
+  },
+  {
+   "fieldname": "column_break_nnhb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gstvat_number",
+   "fieldtype": "Data",
+   "label": "GST/VAT Number"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-17 19:49:27.330242",
+ "modified_by": "Administrator",
+ "module": "Ion Crm Sales",
+ "name": "Distributor",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
