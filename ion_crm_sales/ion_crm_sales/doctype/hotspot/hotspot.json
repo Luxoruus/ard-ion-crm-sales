@@ -14,6 +14,7 @@
   "quote",
   "section_break_grif",
   "attachment",
+  "presales",
   "request",
   "requirements",
   "proposal_tab",
@@ -214,12 +215,20 @@
    "fieldname": "survey_attachment",
    "fieldtype": "Attach",
    "label": "Survey Attachment"
+  },
+  {
+   "fieldname": "presales",
+   "fieldtype": "Link",
+   "label": "Pre-Sales",
+   "link_filters": "[[\"User\",\"role\",\"=\",\"Pre-Sales\"]]",
+   "options": "User",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-17 13:25:52.046644",
+ "modified": "2025-08-23 13:19:36.195918",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Hotspot",
