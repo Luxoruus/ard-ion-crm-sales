@@ -39,19 +39,19 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-08-17 12:22:59.164614",
-  "name": "Active",
+  "modified": "2025-07-26 16:45:23.980611",
+  "name": "Reviewed",
   "style": "",
-  "workflow_state_name": "Active"
+  "workflow_state_name": "Reviewed"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-26 16:45:23.980611",
-  "name": "Reviewed",
+  "modified": "2025-08-17 12:22:59.164614",
+  "name": "Active",
   "style": "",
-  "workflow_state_name": "Reviewed"
+  "workflow_state_name": "Active"
  },
  {
   "docstatus": 0,
@@ -66,28 +66,10 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-08-13 13:57:06.505914",
-  "name": "Under Revision",
-  "style": "",
-  "workflow_state_name": "Under Revision"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2025-08-13 14:07:59.368921",
   "name": "Closed",
   "style": "",
   "workflow_state_name": "Closed"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-08-15 17:50:03.477749",
-  "name": "Proposed",
-  "style": "",
-  "workflow_state_name": "Proposed"
  },
  {
   "docstatus": 0,
@@ -120,6 +102,24 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2025-08-13 13:57:06.505914",
+  "name": "Under Revision",
+  "style": "",
+  "workflow_state_name": "Under Revision"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-08-15 17:50:03.477749",
+  "name": "Proposed",
+  "style": "",
+  "workflow_state_name": "Proposed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2025-07-26 16:37:20.649072",
   "name": "Open",
   "style": "",
@@ -146,20 +146,20 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-07-27 12:51:12.274114",
-  "name": "Surveyed",
-  "style": "",
-  "workflow_state_name": "Surveyed"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
   "icon": "remove",
   "modified": "2025-07-25 22:36:40.143521",
   "name": "Rejected",
   "style": "Danger",
   "workflow_state_name": "Rejected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-07-27 12:51:12.274114",
+  "name": "Surveyed",
+  "style": "",
+  "workflow_state_name": "Surveyed"
  },
  {
   "docstatus": 0,
@@ -201,18 +201,18 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-29 20:16:45.547039",
-  "name": "Surveying",
+  "modified": "2025-07-29 20:22:19.788897",
+  "name": "Qualifying",
   "style": "",
-  "workflow_state_name": "Surveying"
+  "workflow_state_name": "Qualifying"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-29 20:22:19.788897",
-  "name": "Qualifying",
+  "modified": "2025-07-29 20:16:45.547039",
+  "name": "Surveying",
   "style": "",
-  "workflow_state_name": "Qualifying"
+  "workflow_state_name": "Surveying"
  }
 ]
