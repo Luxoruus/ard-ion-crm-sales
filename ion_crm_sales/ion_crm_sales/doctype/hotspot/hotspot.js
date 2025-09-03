@@ -55,10 +55,85 @@ frappe.ui.form.on("Hotspot", {
             frm.set_df_property('party_name', 'label', String(frm.doc.hotspot_for))
     },
 
+    type(frm) {
+        if (frm.doc.type == 'Based on Company Proposal') {
+            frm.set_df_property('request', 'hidden', true)
+        } else {
+            frm.set_df_property('request', 'hidden', false)
+        }
+    },
+
     validate(frm) {
         frm.trigger("handle_state");
         frm.trigger("handle_fields");
     },
+
+    get_item_data: function (frm, item, overwrite_warehouse = false) {
+		if (item && !item.item_code) {
+			return;
+		}
+
+		frappe.call({
+			method: "erpnext.stock.get_item_details.get_item_details",
+			args: {
+				args: {
+					item_code: item.item_code,
+					from_warehouse: item.from_warehouse,
+					warehouse: item.warehouse,
+					doctype: frm.doc.doctype,
+					buying_price_list: frm.doc.buying_price_list
+						? frm.doc.buying_price_list
+						: frappe.defaults.get_default("buying_price_list"),
+					currency: frappe.defaults.get_default("Currency"),
+					name: frm.doc.name,
+					qty: item.qty || 1,
+					stock_qty: item.stock_qty,
+					company: frm.doc.company,
+					conversion_rate: 1,
+					material_request_type: frm.doc.material_request_type,
+					plc_conversion_rate: 1,
+					rate: item.rate,
+					uom: item.uom,
+					conversion_factor: item.conversion_factor,
+					project: item.project,
+				},
+				overwrite_warehouse: overwrite_warehouse,
+			},
+			callback: function (r) {
+				const d = item;
+				let allow_to_change_fields = [
+					"actual_qty",
+					"projected_qty",
+					"min_order_qty",
+					"item_name",
+					"stock_uom",
+					"uom",
+					"conversion_factor",
+					"stock_qty",
+				];
+
+				if (overwrite_warehouse) {
+					allow_to_change_fields.push("description");
+				}
+
+				if (!r.exc) {
+					$.each(r.message, function (key, value) {
+						if (!d[key] || allow_to_change_fields.includes(key)) {
+							d[key] = value;
+						}
+					});
+
+					if (d.price_list_rate != r.message.price_list_rate) {
+						d.rate = 0.0;
+						d.price_list_rate = r.message.price_list_rate;
+						frappe.model.set_value(d.doctype, d.name, "rate", d.price_list_rate);
+					}
+
+					refresh_field("items");
+				}
+			},
+		});
+	},
 
     make_customer() {
         frappe.model.open_mapped_doc({
@@ -100,7 +175,17 @@ frappe.ui.form.on("Hotspot", {
         frm.$wrapper.find("[data-fieldname='survey_tab']").hide();
         frm.$wrapper.find("[data-fieldname='technical_tab']").hide();
 
-        if (frm.doc.request && frm.doc.type == 'Reach'){
+        if (frm.doc.type == 'Based on Company Proposal') {
+            frm.set_df_property('request', 'hidden', true)
+        } else {
+            frm.set_df_property('request', 'hidden', false)
+        }
+
+        if (frm.doc.workflow_state == 'Qualifying' && frm.doc.type == 'Based on Company Proposal'){
+            frm.$wrapper.find("[data-fieldname='proposal_tab']").show();
+        }
+
+        if (frm.doc.request && frm.doc.type == 'Based on Customer Request'){
             frm.$wrapper.find("[data-fieldname='proposal_tab']").show();
         }
 
@@ -115,12 +200,12 @@ frappe.ui.form.on("Hotspot", {
 
         if ((frm.doc.workflow_state == "Qualifying" && frm.doc.request)) {
             switch (frm.doc.type) {
-                case 'Reach':
+                case 'Based on Company Proposal':
                     if (frm.doc.description && frm.doc.items.length > 0) {
                         frm.doc.workflow_state = 'Proposed'
                     }
                     break;
-                case 'Received':
+                case 'Based on Customer Request':
                     if (frm.doc.description && frm.doc.items.length > 0) {
                         frm.doc.workflow_state = 'Proposed'
                     }
@@ -135,7 +220,7 @@ frappe.ui.form.on("Hotspot", {
             }
         }
 
-        if ((frm.doc.workflow_state == 'Qualifying' && frm.doc.type == "Reach") || ['Surveying'].includes(frm.doc.workflow_state)) {
+        if ((frm.doc.workflow_state == 'Qualifying' && frm.doc.type == "Based on Company Proposal") || ['Surveying'].includes(frm.doc.workflow_state)) {
             frm.$wrapper.find(".actions-btn-group").hide()
         } else {
             frm.$wrapper.find(".actions-btn-group").show()
@@ -179,3 +264,66 @@ frappe.ui.form.on("Hotspot Item", {
         frm.trigger("calculate", cdt, cdn);
     },
 });
+
+frappe.ui.form.on("Material Request Item", {
+	qty: function (frm, doctype, name) {
+		const item = locals[doctype][name];
+		if (flt(item.qty) < flt(item.min_order_qty)) {
+			frappe.msgprint(__("Warning: Material Requested Qty is less than Minimum Order Qty"));
+		}
+		frm.events.get_item_data(frm, item, false);
+	},
+
+	from_warehouse: function (frm, doctype, name) {
+		const item = locals[doctype][name];
+		frm.events.get_item_data(frm, item, false);
+	},
+
+	warehouse: function (frm, doctype, name) {
+		const item = locals[doctype][name];
+		frm.events.get_item_data(frm, item, false);
+	},
+
+	rate(frm, doctype, name) {
+		const item = locals[doctype][name];
+		item.amount = flt(item.qty) * flt(item.rate);
+		frappe.model.set_value(doctype, name, "amount", item.amount);
+		refresh_field("amount", item.name, item.parentfield);
+	},
+
+	item_code: function (frm, doctype, name) {
+		const item = locals[doctype][name];
+		item.rate = 0;
+		item.uom = "";
+		set_schedule_date(frm);
+		frm.events.get_item_data(frm, item, true);
+	},
+
+	schedule_date: function (frm, cdt, cdn) {
+		var row = locals[cdt][cdn];
+		if (row.schedule_date) {
+			if (!frm.doc.schedule_date) {
+				erpnext.utils.copy_value_in_all_rows(frm.doc, cdt, cdn, "items", "schedule_date");
+			} else {
+				set_schedule_date(frm);
+			}
+		}
+	},
+
+	conversion_factor: function (frm, doctype, name) {
+		const item = locals[doctype][name];
+		frm.events.get_item_data(frm, item, false);
+	},
+});
+
+function set_schedule_date(frm) {
+	if (frm.doc.schedule_date) {
+		erpnext.utils.copy_value_in_all_rows(
+			frm.doc,
+			frm.doc.doctype,
+			frm.doc.name,
+			"items",
+			"schedule_date"
+		);
+	}
+}
