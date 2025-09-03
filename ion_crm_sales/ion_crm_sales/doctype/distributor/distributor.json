@@ -1,27 +1,36 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:DISTRIBUTOR-{YY}-{#####}",
  "creation": "2025-08-17 19:43:36.921892",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "distributor_name",
   "distributor_codeid",
+  "distribution_type",
   "column_break_fzdl",
   "status",
-  "distributor_type",
+  "distributor_category",
   "contact_info_section",
   "contact_person_name",
   "contact_email",
   "contact_phone_number",
+  "contact_phone_number_2",
+  "contact_phone_number_3",
   "column_break_vwew",
   "address",
+  "city",
   "arearegion_covered",
   "section_break_smlb",
   "license_number",
   "license_validity",
   "column_break_nnhb",
-  "gstvat_number"
+  "gstvat_number",
+  "section_break_wttk",
+  "technician_name",
+  "column_break_isal",
+  "technician_phone_number"
  ],
  "fields": [
   {
@@ -47,12 +56,6 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Active\nInactive"
-  },
-  {
-   "fieldname": "distributor_type",
-   "fieldtype": "Select",
-   "label": "Distributor Type",
-   "options": "Cards\nDevices\nSubscription"
   },
   {
    "fieldname": "contact_info_section",
@@ -113,15 +116,61 @@
    "fieldname": "gstvat_number",
    "fieldtype": "Data",
    "label": "GST/VAT Number"
+  },
+  {
+   "fieldname": "distribution_type",
+   "fieldtype": "Table",
+   "label": "Distribution Type",
+   "options": "Distribution Type"
+  },
+  {
+   "fieldname": "distributor_category",
+   "fieldtype": "Table",
+   "label": "Distributor Category",
+   "options": "Distributor Category"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "contact_phone_number_2",
+   "fieldtype": "Data",
+   "label": "Contact Phone Number 2"
+  },
+  {
+   "fieldname": "contact_phone_number_3",
+   "fieldtype": "Data",
+   "label": "Contact Phone Number 3"
+  },
+  {
+   "fieldname": "section_break_wttk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "technician_name",
+   "fieldtype": "Data",
+   "label": "Technician Name"
+  },
+  {
+   "fieldname": "column_break_isal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "technician_phone_number",
+   "fieldtype": "Data",
+   "label": "Technician Phone Number"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-17 19:49:27.330242",
+ "modified": "2025-09-03 15:20:01.582738",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Distributor",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

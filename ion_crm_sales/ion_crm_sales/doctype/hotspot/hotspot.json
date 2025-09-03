@@ -36,7 +36,11 @@
   "installation_note",
   "service_marketed",
   "cards_package",
+  "section_break_zfrz",
   "free_line",
+  "column_break_blzz",
+  "username",
+  "password",
   "maintenance_section",
   "maintenance_log"
  ],
@@ -186,12 +190,6 @@
    "label": "Cards Package"
   },
   {
-   "default": "0",
-   "fieldname": "free_line",
-   "fieldtype": "Check",
-   "label": "Free Line"
-  },
-  {
    "fieldname": "maintenance_section",
    "fieldtype": "Section Break",
    "label": "Maintenance"
@@ -230,12 +228,36 @@
    "fieldtype": "Link",
    "label": "Company",
    "options": "Company"
+  },
+  {
+   "fieldname": "section_break_zfrz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "free_line",
+   "fieldtype": "Check",
+   "label": "Free Line"
+  },
+  {
+   "fieldname": "column_break_blzz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "label": "Username"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-27 10:30:10.105123",
+ "modified": "2025-09-03 15:23:10.454788",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Hotspot",

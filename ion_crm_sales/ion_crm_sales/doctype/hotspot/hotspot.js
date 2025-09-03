@@ -235,7 +235,7 @@ frappe.ui.form.on("Hotspot", {
 
         if (frm.doc.workflow_state == 'Setup') {
             const doc = frm.doc
-            if (doc.stock_entry && doc.installation_note && doc.materials_received && doc.service_marketed && doc.cards_package && doc.free_line){
+            if (doc.stock_entry && doc.installation_note && doc.materials_received && doc.service_marketed && doc.cards_package && doc.free_line && doc.username != '' && doc.password != '') {
                 frm.doc.workflow_state = 'Active';
                 frm.doc.refresh();
             }
