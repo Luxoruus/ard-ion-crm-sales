@@ -86,16 +86,16 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:24:14.476591",
-  "name": "Scope",
-  "workflow_action_name": "Scope"
+  "modified": "2025-07-29 20:43:53.601098",
+  "name": "Quote",
+  "workflow_action_name": "Quote"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:43:53.601098",
-  "name": "Quote",
-  "workflow_action_name": "Quote"
+  "modified": "2025-07-29 20:24:14.476591",
+  "name": "Scope",
+  "workflow_action_name": "Scope"
  },
  {
   "docstatus": 0,
