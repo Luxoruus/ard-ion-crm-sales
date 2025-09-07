@@ -62,13 +62,6 @@
             {{ currentLanguage === 'en' ? 'العربية' : 'English' }}
           </button>
         </div>
-
-        <!-- Demo credentials hint -->
-        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-          <p class="text-sm text-blue-800 text-center">
-            <strong>Demo:</strong> Enter any username and password to login
-          </p>
-        </div>
       </div>
     </div>
 
@@ -106,19 +99,6 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div class="border-b border-gray-200">
           <nav class="-mb-px flex space-x-8">
-            <button @click="activeTab = 'fill-survey'" :class="[
-              'py-2 px-1 border-b-2 font-medium text-sm transition-colors',
-              activeTab === 'fill-survey'
-                ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            ]">
-              <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                </path>
-              </svg>
-              {{ t('fillSurvey') }}
-            </button>
             <button @click="activeTab = 'my-surveys'" :class="[
               'py-2 px-1 border-b-2 font-medium text-sm transition-colors',
               activeTab === 'my-surveys'
@@ -136,36 +116,26 @@
         </div>
       </div>
 
-      <!-- Fill Survey Tab -->
-      <div v-if="activeTab === 'fill-survey'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <!-- Opportunity Selection -->
-          <div v-if="!selectedOpportunity" class="space-y-6">
-            <div class="text-center mb-8">
-              <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ t('selectOpportunity') }}</h2>
-              <p class="text-gray-600">Choose an opportunity to begin the technical assessment survey</p>
-              <p class="text-sm text-blue-600 mt-2">Only showing opportunities in "Surveying" state without an assigned
-                surveyor
-              </p>
-            </div>
-
-            <div class="flex items-end justify-between">
-              <div class="flex-1">
-                <label class="block text-sm font-medium text-gray-700 mb-2">{{ t('searchOpportunities') }}</label>
-                <div class="relative">
-                  <input v-model="opportunitySearch" type="text"
-                    class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
-                    :placeholder="t('searchPlaceholder')" />
-                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-3.5" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
-                </div>
+      <!-- My Surveys Tab -->
+      <div v-if="activeTab === 'my-surveys'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div v-if="!selectedOpportunity" class="bg-white rounded-lg shadow-sm p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+              <svg class="w-6 h-6 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                </path>
+              </svg>
+              {{ t('mySurveys') }}
+            </h2>
+            <div class="flex items-center space-x-4">
+              <div class="text-sm text-gray-500">
+                {{ filteredSurveyResponses.length }} {{ filteredSurveyResponses.length === 1 ? 'survey' : 'surveys' }}
+                assigned to you
               </div>
-              <button @click="fetchOpportunities" :disabled="isLoading"
-                class="ml-4 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button @click="fetchSurveyResponses" :disabled="isLoading"
+                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
                   </path>
@@ -173,60 +143,114 @@
                 {{ t('refresh') }}
               </button>
             </div>
+          </div>
 
-            <div v-if="filteredOpportunities.length === 0 && !isLoading" class="text-center py-12">
-              <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
-                </path>
-              </svg>
-              <p class="text-gray-500 text-lg font-medium">{{ t('noAvailableOpportunities') }}</p>
-              <p class="text-gray-400 mt-2">All opportunities in the "Surveying" workflow state have already been
-                assigned to a surveyor</p>
+          <!-- Filters -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Doctype</label>
+              <select v-model="filters.doctype"
+                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="">{{ t('allDoctypes') }}</option>
+                <option value="Opportunity">Opportunity</option>
+                <option value="Opportunity Hotels">Opportunity Hotels</option>
+                <option value="Opportunity SM">Opportunity SM</option>
+                <option value="Opportunity Tenders">Opportunity Tenders</option>
+                <option value="Hotspot">Hotspot</option>
+              </select>
             </div>
 
-            <div v-else class="grid gap-4">
-              <div v-for="opportunity in filteredOpportunities" :key="opportunity.name"
-                @click="selectOpportunity(opportunity)"
-                class="p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 cursor-pointer transition-all duration-200 hover:shadow-md">
-                <div class="flex justify-between items-start">
-                  <div class="flex-1">
-                    <h3 class="font-semibold text-gray-900 text-lg mb-2">{{ opportunity.title }}</h3>
-                    <div class="flex items-center space-x-4 text-sm text-gray-600">
-                      <span class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6">
-                          </path>
-                        </svg>
-                        {{ opportunity.doctype }}
-                      </span>
-                      <span class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                        {{ opportunity.customer_name }}
-                      </span>
-                    </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Status</label>
+              <select v-model="filters.status"
+                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="">{{ t('allStatuses') }}</option>
+                <option value="In Progress">{{ t('inProgress') }}</option>
+                <option value="Submitted">{{ t('submitted') }}</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">From Date</label>
+              <input v-model="filters.dateFrom" type="date"
+                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">To Date</label>
+              <input v-model="filters.dateTo" type="date"
+                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+            </div>
+          </div>
+
+          <!-- Survey Responses List -->
+          <div class="space-y-4">
+            <div v-for="response in filteredSurveyResponses" :key="response.name"
+              class="p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <h3 class="font-semibold text-gray-900 text-lg mb-2">{{ response.title }}</h3>
+                  <div class="space-y-1 text-sm text-gray-600">
+                    <p class="flex items-center">
+                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6">
+                        </path>
+                      </svg>
+                      {{ response.doctype }}
+                    </p>
+                    <p class="flex items-center">
+                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                      </svg>
+                      {{ response.customer_name }}
+                    </p>
+                    <p class="flex items-center">
+                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10"></path>
+                      </svg>
+                      {{ t('assigned') }}: {{ formatDate(response.creation) }}
+                    </p>
                   </div>
-                  <div class="flex flex-col items-end space-y-2">
-                    <span :class="[
-                      'px-3 py-1 text-xs font-medium rounded-full',
-                      opportunity.status === 'Open' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
-                    ]">
-                      {{ opportunity.status }}
-                    </span>
-                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <span :class="[
+                    'px-3 py-1 text-xs font-medium rounded-full',
+                    response.status === 'In Progress'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-green-100 text-green-800'
+                  ]">
+                    {{ response.status === 'In Progress' ? t('inProgress') : t('submitted') }}
+                  </span>
+                  <button @click="viewSurveyResponse(response)"
+                    class="px-4 py-2 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                      </path>
                     </svg>
-                  </div>
+                    {{ response.status === 'In Progress' ? t('continue') : t('view') }}
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Survey Form -->
+          <div v-if="filteredSurveyResponses.length === 0" class="text-center py-12">
+            <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+              </path>
+            </svg>
+            <p class="text-gray-500 text-lg font-medium">{{ t('noSurveys') }}</p>
+            <p class="text-gray-400 mt-2">No opportunities have been assigned to you yet</p>
+          </div>
+        </div>
+        <!-- Survey Form -->
           <div v-else class="space-y-6">
             <!-- Survey Header -->
             <div class="flex items-center justify-between pb-6 border-b">
@@ -410,143 +434,6 @@
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- My Surveys Tab -->
-      <div v-if="activeTab === 'my-surveys'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 flex items-center">
-              <svg class="w-6 h-6 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
-                </path>
-              </svg>
-              {{ t('mySurveys') }}
-            </h2>
-            <div class="flex items-center space-x-4">
-              <div class="text-sm text-gray-500">
-                {{ filteredSurveyResponses.length }} {{ filteredSurveyResponses.length === 1 ? 'survey' : 'surveys' }}
-                assigned to you
-              </div>
-              <button @click="fetchSurveyResponses" :disabled="isLoading"
-                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
-                  </path>
-                </svg>
-                {{ t('refresh') }}
-              </button>
-            </div>
-          </div>
-
-          <!-- Filters -->
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-            <div>
-              <label class="block text-xs font-medium text-gray-700 mb-1">Doctype</label>
-              <select v-model="filters.doctype"
-                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                <option value="">{{ t('allDoctypes') }}</option>
-                <option value="Opportunity">Opportunity</option>
-                <option value="Opportunity Hotels">Opportunity Hotels</option>
-                <option value="Opportunity SM">Opportunity SM</option>
-                <option value="Opportunity Tenders">Opportunity Tenders</option>
-                <option value="Hotspot">Hotspot</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-medium text-gray-700 mb-1">Status</label>
-              <select v-model="filters.status"
-                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                <option value="">{{ t('allStatuses') }}</option>
-                <option value="In Progress">{{ t('inProgress') }}</option>
-                <option value="Submitted">{{ t('submitted') }}</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-medium text-gray-700 mb-1">From Date</label>
-              <input v-model="filters.dateFrom" type="date"
-                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-medium text-gray-700 mb-1">To Date</label>
-              <input v-model="filters.dateTo" type="date"
-                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-            </div>
-          </div>
-
-          <!-- Survey Responses List -->
-          <div class="space-y-4">
-            <div v-for="response in filteredSurveyResponses" :key="response.name"
-              class="p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="font-semibold text-gray-900 text-lg mb-2">{{ response.title }}</h3>
-                  <div class="space-y-1 text-sm text-gray-600">
-                    <p class="flex items-center">
-                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6">
-                        </path>
-                      </svg>
-                      {{ response.doctype }}
-                    </p>
-                    <p class="flex items-center">
-                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                      </svg>
-                      {{ response.customer_name }}
-                    </p>
-                    <p class="flex items-center">
-                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10"></path>
-                      </svg>
-                      {{ t('assigned') }}: {{ formatDate(response.creation) }}
-                    </p>
-                  </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                  <span :class="[
-                    'px-3 py-1 text-xs font-medium rounded-full',
-                    response.status === 'In Progress'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : 'bg-green-100 text-green-800'
-                  ]">
-                    {{ response.status === 'In Progress' ? t('inProgress') : t('submitted') }}
-                  </span>
-                  <button @click="viewSurveyResponse(response)"
-                    class="px-4 py-2 text-sm bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                      </path>
-                    </svg>
-                    {{ response.status === 'In Progress' ? t('continue') : t('view') }}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div v-if="filteredSurveyResponses.length === 0" class="text-center py-12">
-            <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
-              </path>
-            </svg>
-            <p class="text-gray-500 text-lg font-medium">{{ t('noSurveys') }}</p>
-            <p class="text-gray-400 mt-2">No opportunities have been assigned to you yet</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -568,7 +455,7 @@ export default {
     const isLoading = ref(false)
     const isAuthenticated = ref(false)
     const currentUser = ref(null)
-    const activeTab = ref('fill-survey')
+    const activeTab = ref('my-surveys')
     const currentLanguage = ref('en')
 
     // Toast notifications
@@ -849,7 +736,7 @@ export default {
               full_name: 'Technical Assessment User',
               roles: ['Technical Assessment']
             }
-            await Promise.all([fetchOpportunities(), fetchSurveyResponses()])
+            await Promise.all([fetchSurveyResponses()])
             showToast('Login successful!')
 
             return { success: true };
@@ -972,41 +859,6 @@ export default {
       return "custom_surveyor";
     }
 
-    const fetchOpportunities = async () => {
-      opportunities.value = [];
-      for (const oppType of DOCTYPES) {
-        const fields = encodeURIComponent(JSON.stringify(getFetchFields(oppType)));
-        const surveyorField = getSurveyorField(oppType);
-        const filters = encodeURIComponent(JSON.stringify([
-          ['workflow_state', '=', 'Surveying'],
-          [surveyorField, 'is', 'not set']
-        ]));
-        try {
-          const resp = await fetch(`/api/resource/${oppType}?fields=${fields}&filters=${filters}`, {
-            credentials: 'include',
-          });
-          if (resp.ok) {
-            const data = await resp.json();
-            const docs = data.data.map(opp => ({
-              name: opp.name,
-              survey_template: getSurveyTemplateTitle(oppType),
-              title: getTitleField(oppType, opp),
-              doctype: oppType,
-              status: opp.workflow_state === 'Surveying' ? 'In Progress' : 'Submitted',
-              creation: opp.creation,
-              workflow_state: opp.workflow_state,
-              customer_name: getCustomerField(oppType, opp),
-              party_name: opp.party_name,
-              type: opp.type
-            }));
-            opportunities.value.push(...docs);
-          }
-        } catch (error) {
-          console.error(`Error fetching ${oppType}:`, error);
-        }
-      }
-      console.log('Opportunities for selection:', opportunities.value)
-    };
 
     const fetchSurveyTemplates = async () => {
       try {
@@ -1055,9 +907,6 @@ export default {
           selectedOpportunity.value = opportunity
           await fetchSurveyTemplates()
           // Don't start auto-save yet - wait for template selection
-
-          // Refresh opportunities list to remove the assigned opportunity
-          await fetchOpportunities()
 
           showToast('You have been assigned as the surveyor for this opportunity')
         } catch (error) {
@@ -1115,7 +964,7 @@ export default {
         });
 
   // Auto-save removed; just switch tab
-  activeTab.value = 'fill-survey';
+  activeTab.value = 'my-surveys';
 
         showToast(`Template "${template.template_name}" selected successfully`);
       } catch (error) {
@@ -1266,7 +1115,7 @@ export default {
             }
           }
         }
-        activeTab.value = 'fill-survey'
+        activeTab.value = 'my-surveys'
         showToast(`Loaded survey for: ${getTitleField(response.doctype, opp)}`)
       } catch (error) {
         showToast('Error loading survey: ' + error.message, 'error')
@@ -1377,7 +1226,7 @@ export default {
             full_name: 'Technical Assessment User',
             roles: ['Technical Assessment']
           }
-          await Promise.all([fetchOpportunities(), fetchSurveyResponses()])
+          await Promise.all([fetchSurveyResponses()])
         } else {
           isAuthenticated.value = false
         }
@@ -1431,7 +1280,6 @@ export default {
   submitSurvey,
       viewSurveyResponse,
       formatDate,
-      fetchOpportunities,
       fetchSurveyResponses,
       getSurveyTemplateTitle
     }
