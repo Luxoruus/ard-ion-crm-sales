@@ -1,0 +1,401 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-24 11:06:37.823566",
+  "name": "AM",
+  "role_profile": "AM",
+  "roles": [
+   {
+    "role": "Requirements Gathering User"
+   },
+   {
+    "role": "Dedicated Sales"
+   },
+   {
+    "role": "Dedicated Scope"
+   },
+   {
+    "role": "Dedicated QA"
+   },
+   {
+    "role": "Hotels Sales"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:53:43.752309",
+  "name": "PMO",
+  "role_profile": "PMO",
+  "roles": [
+   {
+    "role": "Hotels Sales"
+   },
+   {
+    "role": "S&M Sales"
+   },
+   {
+    "role": "Surveyor Manager"
+   },
+   {
+    "role": "Sales User"
+   },
+   {
+    "role": "Stock Manager"
+   },
+   {
+    "role": "Accounts Manager"
+   },
+   {
+    "role": "Manufacturing User"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:10:25.623053",
+  "name": "CCO",
+  "role_profile": "CCO",
+  "roles": [
+   {
+    "role": "Tenders Sales"
+   },
+   {
+    "role": "Sales User"
+   },
+   {
+    "role": "Sales Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:11:26.000360",
+  "name": "GM",
+  "role_profile": "GM",
+  "roles": [
+   {
+    "role": "Tenders Sales"
+   },
+   {
+    "role": "Sales User"
+   },
+   {
+    "role": "Sales Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:41:19.666183",
+  "name": "SE",
+  "role_profile": "SE",
+  "roles": [
+   {
+    "role": "Dedicated Sales"
+   },
+   {
+    "role": "Dedicated QA"
+   },
+   {
+    "role": "Surveyor Manager"
+   },
+   {
+    "role": "Hotels Sales"
+   },
+   {
+    "role": "Pre-Sales"
+   },
+   {
+    "role": "S&M Sales"
+   },
+   {
+    "role": "Sales Manager"
+   },
+   {
+    "role": "Sales User"
+   },
+   {
+    "role": "Manufacturing User"
+   },
+   {
+    "role": "Stock User"
+   },
+   {
+    "role": "Accounts Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:40:29.058270",
+  "name": "Finance",
+  "role_profile": "Finance",
+  "roles": [
+   {
+    "role": "Sales Manager"
+   },
+   {
+    "role": "Sales User"
+   },
+   {
+    "role": "Hotels Sales"
+   },
+   {
+    "role": "Accounts Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:43:44.054420",
+  "name": "TECH",
+  "role_profile": "TECH",
+  "roles": [
+   {
+    "role": "Surveyor"
+   },
+   {
+    "role": "Pre-Sales"
+   },
+   {
+    "role": "S&M Sales"
+   },
+   {
+    "role": "Dedicated QA"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:45:49.126636",
+  "name": "ACCESS",
+  "role_profile": "ACCESS",
+  "roles": [
+   {
+    "role": "Surveyor"
+   },
+   {
+    "role": "Pre-Sales"
+   },
+   {
+    "role": "S&M Sales"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:52:43.916589",
+  "name": "PRO",
+  "role_profile": "PRO",
+  "roles": [
+   {
+    "role": "Manufacturing User"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:57:55.630988",
+  "name": "CORE",
+  "role_profile": "CORE",
+  "roles": [
+   {
+    "role": "Surveyor"
+   },
+   {
+    "role": "Pre-Sales"
+   },
+   {
+    "role": "Dedicated QA"
+   },
+   {
+    "role": "S&M Sales"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:01:02.364478",
+  "name": "IT",
+  "role_profile": "IT",
+  "roles": [
+   {
+    "role": "Surveyor"
+   },
+   {
+    "role": "Pre-Sales"
+   },
+   {
+    "role": "Dedicated QA"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:03:03.473017",
+  "name": "CTO",
+  "role_profile": "CTO",
+  "roles": [
+   {
+    "role": "Surveyor Manager"
+   },
+   {
+    "role": "Dedicated QA"
+   },
+   {
+    "role": "Tenders Sales"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:04:27.377477",
+  "name": "SURVEY TEAM",
+  "role_profile": "SURVEY TEAM",
+  "roles": [
+   {
+    "role": "Surveyor"
+   },
+   {
+    "role": "Pre-Sales"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:08:14.618549",
+  "name": "CXO TEAM",
+  "role_profile": "CXO TEAM",
+  "roles": [
+   {
+    "role": "Manufacturing User"
+   },
+   {
+    "role": "Surveyor Manager"
+   },
+   {
+    "role": "Surveyor"
+   },
+   {
+    "role": "Accounts Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:08:42.735028",
+  "name": "TEAM LEADER",
+  "role_profile": "TEAM LEADER",
+  "roles": [
+   {
+    "role": "Surveyor Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:32:12.791915",
+  "name": "Inventory",
+  "role_profile": "Inventory",
+  "roles": [
+   {
+    "role": "Stock User"
+   },
+   {
+    "role": "Stock Manager"
+   },
+   {
+    "role": "Item Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:32:12.796653",
+  "name": "Manufacturing",
+  "role_profile": "Manufacturing",
+  "roles": [
+   {
+    "role": "Stock User"
+   },
+   {
+    "role": "Manufacturing User"
+   },
+   {
+    "role": "Manufacturing Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:32:12.803421",
+  "name": "Accounts",
+  "role_profile": "Accounts",
+  "roles": [
+   {
+    "role": "Accounts User"
+   },
+   {
+    "role": "Accounts Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:32:12.806141",
+  "name": "Sales",
+  "role_profile": "Sales",
+  "roles": [
+   {
+    "role": "Sales User"
+   },
+   {
+    "role": "Stock User"
+   },
+   {
+    "role": "Sales Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 18:32:12.809643",
+  "name": "Purchase",
+  "role_profile": "Purchase",
+  "roles": [
+   {
+    "role": "Item Manager"
+   },
+   {
+    "role": "Stock User"
+   },
+   {
+    "role": "Purchase User"
+   },
+   {
+    "role": "Purchase Manager"
+   }
+  ]
+ }
+]

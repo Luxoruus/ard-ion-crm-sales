@@ -12,6 +12,7 @@
   "column_break_fzdl",
   "status",
   "distributor_category",
+  "voucher_distribution_type",
   "contact_info_section",
   "contact_person_name",
   "contact_email",
@@ -45,7 +46,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Distributor Code/ID",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "column_break_fzdl",
@@ -161,12 +162,18 @@
    "fieldname": "technician_phone_number",
    "fieldtype": "Data",
    "label": "Technician Phone Number"
+  },
+  {
+   "fieldname": "voucher_distribution_type",
+   "fieldtype": "Table",
+   "label": "Voucher Distribution Type",
+   "options": "Voucher Distribution Type"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-03 15:20:01.582738",
+ "modified": "2025-09-21 13:18:29.746492",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Distributor",

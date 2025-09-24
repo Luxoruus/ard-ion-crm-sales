@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-09-03 14:47:57.928653",
+ "creation": "2025-09-21 12:24:56.622659",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -14,21 +14,21 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Type",
-   "options": "Home Vouchers\nHotspot Vouchers\nEquipment\\Devices\nSubscription"
+   "options": "Paper\nElectronic"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-09-21 12:22:54.669955",
+ "modified": "2025-09-21 12:25:18.602121",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
- "name": "Distribution Type",
+ "name": "Voucher Distribution Type",
  "owner": "Administrator",
  "permissions": [],
  "row_format": "Dynamic",
- "sort_field": "modified",
+ "sort_field": "creation",
  "sort_order": "DESC",
  "states": []
 }

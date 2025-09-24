@@ -1,5 +1,169 @@
 [
  {
+  "add_total_row": 1,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": "ALYF GmbH",
+  "modified": "2023-10-11 00:58:30.639078",
+  "module": "Projects",
+  "name": "Timesheet Billing Summary",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Timesheet",
+  "reference_report": null,
+  "report_name": "Timesheet Billing Summary",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "role": "Projects User"
+   },
+   {
+    "role": "Employee"
+   },
+   {
+    "role": "Accounts User"
+   },
+   {
+    "role": "Manufacturing User"
+   },
+   {
+    "role": "HR User"
+   },
+   {
+    "role": "Employee Self Service"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2024-07-08 15:56:56.975098",
+  "module": "Core",
+  "name": "User Doctype Permissions",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "User",
+  "reference_report": null,
+  "report_name": "User Doctype Permissions",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "role": "System Manager"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": "{}",
+  "letter_head": null,
+  "modified": "2025-07-31 14:37:37.141783",
+  "module": "Stock",
+  "name": "Landed Cost Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Landed Cost Voucher",
+  "reference_report": null,
+  "report_name": "Landed Cost Report",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "role": "Stock Manager"
+   },
+   {
+    "role": "Stock User"
+   },
+   {
+    "role": "Purchase Manager"
+   },
+   {
+    "role": "Purchase User"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2025-08-05 13:41:28.654684",
+  "module": "Stock",
+  "name": "Serial No and Batch Traceability",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Serial and Batch Bundle",
+  "reference_report": null,
+  "report_name": "Serial No and Batch Traceability",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "role": "System Manager"
+   },
+   {
+    "role": "Purchase User"
+   },
+   {
+    "role": "Purchase Manager"
+   },
+   {
+    "role": "Stock User"
+   },
+   {
+    "role": "Stock Manager"
+   },
+   {
+    "role": "Delivery User"
+   },
+   {
+    "role": "Delivery Manager"
+   },
+   {
+    "role": "Manufacturing User"
+   },
+   {
+    "role": "Manufacturing Manager"
+   }
+  ],
+  "timeout": 0
+ },
+ {
   "add_total_row": 0,
   "add_translate_data": 0,
   "columns": [],
@@ -23,15 +187,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "BOM Stock Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "BOM Stock Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -61,15 +219,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Work Order Stock Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Work Order Stock Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -99,21 +251,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Prospects Engaged But Not Converted",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Prospects Engaged But Not Converted",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Prospects Engaged But Not Converted",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -143,21 +286,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Campaign Efficiency",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Campaign Efficiency",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Campaign Efficiency",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -187,21 +321,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Lead Owner Efficiency",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Lead Owner Efficiency",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Lead Owner Efficiency",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -231,27 +356,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Total Stock Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Total Stock Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Total Stock Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "Total Stock Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    }
   ],
@@ -281,15 +394,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Support Hour Distribution",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Support Team"
    },
    {
-    "parent": "Support Hour Distribution",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -319,9 +426,6 @@
   "report_type": "Report Builder",
   "roles": [
    {
-    "parent": "Asset Maintenance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -351,15 +455,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Payment Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Sales Payment Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -389,51 +487,27 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Item Variant Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    }
   ],
@@ -463,51 +537,27 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    },
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Item Price Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -537,15 +587,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Share Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Administrator"
    },
    {
-    "parent": "Share Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -575,9 +619,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Share Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -607,27 +648,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Warehouse wise Item Balance Age and Value",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Warehouse wise Item Balance Age and Value",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Warehouse wise Item Balance Age and Value",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Warehouse wise Item Balance Age and Value",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    }
   ],
@@ -657,21 +686,12 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Item Balance (Simple)",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Item Balance (Simple)",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Item Balance (Simple)",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -701,15 +721,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Transaction Log Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Administrator"
    },
    {
-    "parent": "Transaction Log Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -739,33 +753,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Consolidated Financial Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Consolidated Financial Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    },
    {
-    "parent": "Consolidated Financial Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Consolidated Financial Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Consolidated Financial Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -795,15 +794,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "BOM Stock Calculated",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "BOM Stock Calculated",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -833,21 +826,12 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Customers Without Any Sales Transactions",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Customers Without Any Sales Transactions",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Customers Without Any Sales Transactions",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -877,27 +861,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "BOM Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "BOM Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "BOM Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "BOM Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -927,27 +899,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Address And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Address And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Address And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Address And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -977,27 +937,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "TDS Computation Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "TDS Computation Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "TDS Computation Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "TDS Computation Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -1027,27 +975,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Tax Withholding Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Tax Withholding Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Tax Withholding Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Tax Withholding Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -1077,15 +1013,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Lead Conversion Time",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Lead Conversion Time",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    }
   ],
@@ -1115,15 +1045,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "IRS 1099",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "IRS 1099",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -1153,15 +1077,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Person Commission Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Person Commission Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    }
   ],
@@ -1191,27 +1109,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    }
   ],
@@ -1241,15 +1147,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Purchase Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Purchase Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -1279,27 +1179,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "Stock Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Stock Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Stock Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -1329,15 +1217,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Production Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Production Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -1367,15 +1249,9 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Review",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Review",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Quality Manager"
    }
   ],
@@ -1405,33 +1281,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Pending SO Items For Purchase Request",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Pending SO Items For Purchase Request",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Pending SO Items For Purchase Request",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Pending SO Items For Purchase Request",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Pending SO Items For Purchase Request",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    }
   ],
@@ -1461,21 +1322,12 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Trial Balance (Simple)",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Trial Balance (Simple)",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Trial Balance (Simple)",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -1505,15 +1357,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Customer Ledger Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Customer Ledger Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -1543,15 +1389,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Supplier Ledger Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Supplier Ledger Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -1581,15 +1421,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Lost Opportunity",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Lost Opportunity",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    }
   ],
@@ -1669,21 +1503,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Gross and Net Profit Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Gross and Net Profit Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Gross and Net Profit Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -1713,9 +1538,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Product Bundle Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -1745,33 +1567,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Employee Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects User"
    },
    {
-    "parent": "Employee Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "HR User"
    },
    {
-    "parent": "Employee Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Employee Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Employee"
    },
    {
-    "parent": "Employee Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -1801,33 +1608,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Project Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects User"
    },
    {
-    "parent": "Project Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "HR User"
    },
    {
-    "parent": "Project Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Project Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Employee"
    },
    {
-    "parent": "Project Billing Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -1857,15 +1649,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Partner Commission Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Partner Commission Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    }
   ],
@@ -1895,33 +1681,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Partner Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Sales Partner Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Partner Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Sales Partner Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Sales Partner Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -1951,33 +1722,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Partner Target Variance based on Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Sales Partner Target Variance based on Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Partner Target Variance based on Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Sales Partner Target Variance based on Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Sales Partner Target Variance based on Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -2007,33 +1763,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Person Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Sales Person Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Person Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Sales Person Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Sales Person Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -2063,33 +1804,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Territory Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Territory Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Territory Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Territory Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Territory Target Variance Based On Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -2119,15 +1845,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Procurement Tracker",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Procurement Tracker",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -2157,21 +1877,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Inactive Sales Items",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Inactive Sales Items",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Inactive Sales Items",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -2201,21 +1912,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Subcontracted Item To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Subcontracted Item To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Subcontracted Item To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -2245,21 +1947,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Subcontracted Raw Materials To Be Transferred",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Subcontracted Raw Materials To Be Transferred",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Subcontracted Raw Materials To Be Transferred",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -2289,15 +1982,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "BOM Explorer",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "BOM Explorer",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -2327,45 +2014,24 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Customer-wise Item Price",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Customer-wise Item Price",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Customer-wise Item Price",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Customer-wise Item Price",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Customer-wise Item Price",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Customer-wise Item Price",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Master Manager"
    },
    {
-    "parent": "Customer-wise Item Price",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -2395,33 +2061,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Delayed Item Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Delayed Item Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Delayed Item Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Delayed Item Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Delayed Item Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    }
   ],
@@ -2451,33 +2102,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Delayed Order Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Delayed Order Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Delayed Order Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Delayed Order Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Delayed Order Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    }
   ],
@@ -2507,15 +2143,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Fixed Asset Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Fixed Asset Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Quality Manager"
    }
   ],
@@ -2545,15 +2175,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock and Account Value Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Stock and Account Value Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -2583,15 +2207,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Territory-wise Sales",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Territory-wise Sales",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    }
   ],
@@ -2621,15 +2239,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "BOM Operations Time",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "BOM Operations Time",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -2659,21 +2271,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Production Planning Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Production Planning Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Production Planning Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    }
   ],
@@ -2703,15 +2306,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Website Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Website Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Website Manager"
    }
   ],
@@ -2741,21 +2338,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Work Order Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Work Order Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Work Order Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    }
   ],
@@ -2785,27 +2373,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Job Card Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Job Card Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Job Card Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "Job Card Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    }
   ],
@@ -2835,21 +2411,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Downtime Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Downtime Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Downtime Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    }
   ],
@@ -2879,21 +2446,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Quality Inspection Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Quality Manager"
    },
    {
-    "parent": "Quality Inspection Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Quality Inspection Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    }
   ],
@@ -2923,27 +2481,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Purchase Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Purchase Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Purchase Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Purchase Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Supplier"
    }
   ],
@@ -2973,15 +2519,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Project Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects User"
    },
    {
-    "parent": "Project Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects Manager"
    }
   ],
@@ -3011,39 +2551,21 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Exponential Smoothing Forecasting",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Exponential Smoothing Forecasting",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Exponential Smoothing Forecasting",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "Exponential Smoothing Forecasting",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Exponential Smoothing Forecasting",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Exponential Smoothing Forecasting",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    }
   ],
@@ -3073,33 +2595,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Sales Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Sales Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Sales Order Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -3129,27 +2636,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Requested Items to Order and Receive",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Requested Items to Order and Receive",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Requested Items to Order and Receive",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Requested Items to Order and Receive",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -3179,15 +2674,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock Qty vs Serial No Count",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Stock Qty vs Serial No Count",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -3217,15 +2706,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "YouTube Interactions",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "All"
    },
    {
-    "parent": "YouTube Interactions",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -3255,9 +2738,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "First Response Time for Issues",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Support Team"
    }
   ],
@@ -3287,15 +2767,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "First Response Time for Opportunity",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "First Response Time for Opportunity",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    }
   ],
@@ -3350,15 +2824,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "POS Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "POS Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -3388,9 +2856,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Issue Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Support Team"
    }
   ],
@@ -3420,9 +2885,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Issue Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Support Team"
    }
   ],
@@ -3452,9 +2914,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Production Plan Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -3484,21 +2943,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Cost of Poor Quality Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Cost of Poor Quality Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Cost of Poor Quality Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    }
   ],
@@ -3528,15 +2978,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Delayed Tasks Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects User"
    },
    {
-    "parent": "Delayed Tasks Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects Manager"
    }
   ],
@@ -3566,33 +3010,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Billed Items To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Billed Items To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Billed Items To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Billed Items To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    },
    {
-    "parent": "Billed Items To Be Received",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -3647,21 +3076,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Serial No Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Serial No Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Serial No Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    }
   ],
@@ -3691,21 +3111,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Incorrect Balance Qty After Transaction",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Incorrect Balance Qty After Transaction",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Incorrect Balance Qty After Transaction",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -3735,27 +3146,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Incorrect Serial No Valuation",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Incorrect Serial No Valuation",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Incorrect Serial No Valuation",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Incorrect Serial No Valuation",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    }
   ],
@@ -3785,21 +3184,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Subcontract Order Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Subcontract Order Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Subcontract Order Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -3829,21 +3219,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "COGS By Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "COGS By Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "COGS By Item Group",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -3873,15 +3254,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Incorrect Stock Value Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Incorrect Stock Value Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -3911,15 +3286,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Pipeline Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Sales Pipeline Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    }
   ],
@@ -3974,15 +3343,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Opportunity Summary by Sales Stage",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Opportunity Summary by Sales Stage",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    }
   ],
@@ -4012,9 +3375,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Process Loss Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -4044,15 +3404,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Work Order Consumed Materials",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Work Order Consumed Materials",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -4082,21 +3436,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Deferred Revenue and Expense",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Deferred Revenue and Expense",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Deferred Revenue and Expense",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -4126,9 +3471,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock Ledger Invariant Check",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -4158,33 +3500,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Payment Terms Status for Sales Order",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Payment Terms Status for Sales Order",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Payment Terms Status for Sales Order",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Payment Terms Status for Sales Order",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Payment Terms Status for Sales Order",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -4214,9 +3541,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "FIFO Queue vs Qty After Transaction Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Administrator"
    }
   ],
@@ -4246,21 +3570,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Payment Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Payment Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Payment Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -4290,9 +3605,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Database Storage Usage By Tables",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -4322,15 +3634,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Warehouse Wise Stock Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Warehouse Wise Stock Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -4360,9 +3666,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Audit System Hooks",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -4392,21 +3695,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Voucher-wise Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Voucher-wise Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Voucher-wise Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -4436,33 +3730,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Financial Ratios",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Financial Ratios",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    },
    {
-    "parent": "Financial Ratios",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Financial Ratios",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Financial Ratios",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -4492,33 +3771,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Serial and Batch Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Serial and Batch Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Serial and Batch Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Serial and Batch Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Serial and Batch Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    }
   ],
@@ -4548,21 +3812,12 @@
   "report_type": "Report Builder",
   "roles": [
    {
-    "parent": "Asset Activity",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Asset Activity",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Asset Activity",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Quality Manager"
    }
   ],
@@ -4592,21 +3847,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "General and Payment Ledger Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "General and Payment Ledger Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "General and Payment Ledger Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -4636,9 +3882,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Reserved Stock",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -4693,15 +3936,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Lost Quotations",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Lost Quotations",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    }
   ],
@@ -4731,15 +3968,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Available Batch Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Available Batch Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -4769,15 +4000,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Cheques and Deposits Incorrectly cleared",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Cheques and Deposits Incorrectly cleared",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -4832,9 +4057,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Prepared Report Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -4864,63 +4086,33 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Delivery Manager"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Delivery User"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "Incorrect Serial and Batch Bundle",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    }
   ],
@@ -4950,15 +4142,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Available Serial No",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Available Serial No",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -4988,27 +4174,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Calculated Discount Mismatch",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "Calculated Discount Mismatch",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Administrator"
    },
    {
-    "parent": "Calculated Discount Mismatch",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Calculated Discount Mismatch",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -5038,39 +4212,21 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Opportunities",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Opportunities",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Opportunities",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Pre-Sales"
    },
    {
-    "parent": "Opportunities",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Surveyor"
    },
    {
-    "parent": "Opportunities",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "QA"
+    "role": "Dedicated QA"
    },
    {
-    "parent": "Opportunities",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Dedicated Sales"
    }
   ],
@@ -5125,21 +4281,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Balance Sheet",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Balance Sheet",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Balance Sheet",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -5169,21 +4316,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Profit and Loss Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Profit and Loss Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Profit and Loss Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -5213,21 +4351,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Trial Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Trial Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Trial Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -5257,45 +4386,24 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Master Manager"
    },
    {
-    "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -5325,15 +4433,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Stock Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -5363,15 +4465,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Accounts Receivable Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Accounts Receivable Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -5401,27 +4497,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Accounts Payable Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Accounts Payable Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Accounts Payable Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Accounts Payable Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -5451,9 +4535,6 @@
   "report_type": "Report Builder",
   "roles": [
    {
-    "parent": "Document Share Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -5483,15 +4564,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "BOM Search",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "BOM Search",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -5521,21 +4596,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Trial Balance for Party",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Trial Balance for Party",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Trial Balance for Party",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -5565,21 +4631,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Cash Flow",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Cash Flow",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Cash Flow",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -5609,33 +4666,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Inactive Customers",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Inactive Customers",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Inactive Customers",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Inactive Customers",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Inactive Customers",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -5665,9 +4707,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Asset Depreciations and Balances",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -5697,27 +4736,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Daily Timesheet Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects User"
    },
    {
-    "parent": "Daily Timesheet Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "HR User"
    },
    {
-    "parent": "Daily Timesheet Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Daily Timesheet Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -5747,27 +4774,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Supplier Quotation Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "Supplier Quotation Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Supplier Quotation Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Supplier Quotation Comparison",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -5797,21 +4812,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Profitability Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Profitability Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Profitability Analysis",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -5841,15 +4847,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Batch Item Expiry Status",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Batch Item Expiry Status",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -5879,27 +4879,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Addresses And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Addresses And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Addresses And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Addresses And Contacts",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -5929,21 +4917,12 @@
   "report_type": "Report Builder",
   "roles": [
    {
-    "parent": "Serial No Service Contract Expiry",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    },
    {
-    "parent": "Serial No Service Contract Expiry",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Serial No Service Contract Expiry",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -5973,21 +4952,12 @@
   "report_type": "Report Builder",
   "roles": [
    {
-    "parent": "Serial No Warranty Expiry",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    },
    {
-    "parent": "Serial No Warranty Expiry",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Serial No Warranty Expiry",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -6017,9 +4987,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "ToDo",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -6049,15 +5016,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Gross Profit",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Gross Profit",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -6087,15 +5048,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Accounts Receivable",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Accounts Receivable",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -6125,27 +5080,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Accounts Payable",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Accounts Payable",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Accounts Payable",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Accounts Payable",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -6175,15 +5118,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Sales Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -6213,27 +5150,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -6263,21 +5188,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Bank Reconciliation Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Bank Reconciliation Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Bank Reconciliation Statement",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -6307,21 +5223,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Bank Clearance Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Bank Clearance Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Bank Clearance Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -6351,33 +5258,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Person-wise Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Sales Person-wise Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Person-wise Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Sales Person-wise Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Sales Person-wise Transaction Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -6407,15 +5299,9 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Issued Items Against Work Order",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Issued Items Against Work Order",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -6445,27 +5331,15 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Requested Items To Be Transferred",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Requested Items To Be Transferred",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Requested Items To Be Transferred",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing Manager"
    },
    {
-    "parent": "Requested Items To Be Transferred",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    }
   ],
@@ -6495,15 +5369,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item-wise Sales Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Item-wise Sales Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -6533,33 +5401,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item-wise Sales History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Item-wise Sales History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Item-wise Sales History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Item-wise Sales History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Item-wise Sales History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -6589,15 +5442,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Project wise Stock Tracking",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects User"
    },
    {
-    "parent": "Project wise Stock Tracking",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Projects Manager"
    }
   ],
@@ -6627,15 +5474,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Batch-Wise Balance History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Batch-Wise Balance History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -6665,15 +5506,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item Prices",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Item Prices",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -6703,27 +5538,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item-wise Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Item-wise Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Item-wise Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    },
    {
-    "parent": "Item-wise Purchase Register",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -6753,51 +5576,27 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    },
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Itemwise Recommended Reorder Level",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -6827,27 +5626,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Quotation Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Quotation Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Quotation Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance Manager"
    },
    {
-    "parent": "Quotation Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    }
   ],
@@ -6877,27 +5664,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Delivery Note Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Delivery Note Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Delivery Note Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Delivery Note Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -6927,33 +5702,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Sales Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Sales Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Sales Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Sales Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -6983,15 +5743,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Sales Invoice Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Sales Invoice Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -7021,21 +5775,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Purchase Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Purchase Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Purchase Order Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -7065,27 +5810,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Purchase Receipt Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Purchase Receipt Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Purchase Receipt Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Purchase Receipt Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -7115,27 +5848,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Purchase Invoice Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Purchase Invoice Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Purchase Invoice Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Purchase Invoice Trends",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -7165,33 +5886,18 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Budget Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Budget Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    },
    {
-    "parent": "Budget Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Budget Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Budget Variance Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -7221,21 +5927,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Available Stock for Packing Items",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Available Stock for Packing Items",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Available Stock for Packing Items",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    }
   ],
@@ -7265,15 +5962,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Delivered Items To Be Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Delivered Items To Be Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -7303,27 +5994,15 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Received Items To Be Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Received Items To Be Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Received Items To Be Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Received Items To Be Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -7353,27 +6032,15 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Material Requests for which Supplier Quotations are not created",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Material Requests for which Supplier Quotations are not created",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Material Requests for which Supplier Quotations are not created",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Material Requests for which Supplier Quotations are not created",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -7403,15 +6070,9 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Open Work Orders",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Open Work Orders",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -7441,15 +6102,9 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Work Orders in Progress",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Work Orders in Progress",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -7479,15 +6134,9 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Completed Work Orders",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    },
    {
-    "parent": "Completed Work Orders",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -7517,21 +6166,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item Shortage Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Item Shortage Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Item Shortage Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -7561,27 +6201,15 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Items To Be Requested",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Items To Be Requested",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Items To Be Requested",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Items To Be Requested",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -7611,15 +6239,9 @@
   "report_type": "Report Builder",
   "roles": [
    {
-    "parent": "Item-wise Price List Rate",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Master Manager"
    },
    {
-    "parent": "Item-wise Price List Rate",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Master Manager"
    }
   ],
@@ -7649,21 +6271,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Lead Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Lead Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Lead Details",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -7693,45 +6306,24 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Customer Acquisition and Loyalty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Customer Acquisition and Loyalty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Manager"
    },
    {
-    "parent": "Customer Acquisition and Loyalty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales Master Manager"
    },
    {
-    "parent": "Customer Acquisition and Loyalty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Customer Acquisition and Loyalty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Customer Acquisition and Loyalty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Customer Acquisition and Loyalty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -7761,15 +6353,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Supplier-Wise Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Supplier-Wise Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -7799,15 +6385,9 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Stock Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    }
   ],
@@ -7837,21 +6417,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Payment Period Based On Invoice Date",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Payment Period Based On Invoice Date",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Payment Period Based On Invoice Date",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -7881,51 +6452,27 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    },
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Stock Ageing",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
@@ -7955,58 +6502,34 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    },
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Sales User"
    },
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    },
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Maintenance User"
    },
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "Stock Projected Qty",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Manufacturing User"
    }
   ],
   "timeout": 0
  },
  {
-  "add_total_row": 0,
+  "add_total_row": 1,
   "add_translate_data": 0,
   "columns": [],
   "disabled": 0,
@@ -8029,21 +6552,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "General Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    },
    {
-    "parent": "General Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "General Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Auditor"
    }
   ],
@@ -8073,9 +6587,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Permitted Documents For User",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "System Manager"
    }
   ],
@@ -8105,21 +6616,12 @@
   "report_type": "Report Builder",
   "roles": [
    {
-    "parent": "Serial No Status",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Item Manager"
    },
    {
-    "parent": "Serial No Status",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock Manager"
    },
    {
-    "parent": "Serial No Status",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    }
   ],
@@ -8149,21 +6651,12 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Item-wise Purchase History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Stock User"
    },
    {
-    "parent": "Item-wise Purchase History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase Manager"
    },
    {
-    "parent": "Item-wise Purchase History",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Purchase User"
    }
   ],
@@ -8193,15 +6686,9 @@
   "report_type": "Query Report",
   "roles": [
    {
-    "parent": "Sales Partners Commission",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts Manager"
    },
    {
-    "parent": "Sales Partners Commission",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],
@@ -8231,9 +6718,6 @@
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Asset Depreciation Ledger",
-    "parentfield": "roles",
-    "parenttype": "Report",
     "role": "Accounts User"
    }
   ],

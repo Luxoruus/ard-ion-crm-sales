@@ -29,6 +29,9 @@ doc_events = {
     },
     "Hotspot": {
         "before_save": "ion_crm_sales.ion_crm_sales.doc_events.hotspot_handlers.before_save"
+    },
+    "Distributor": {
+        "before_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.before_insert"
     }
 }
 
@@ -44,6 +47,7 @@ fixtures = [
     'Property Setter', 
     'Print Format', 
     'Role', 
+    'Role Profile', 
     'Custom DocPerm', 
     'Web Form',
     {"dt": "Dashboard Chart", "filters": [["is_standard", "=", 0]]},

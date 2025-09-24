@@ -93,15 +93,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-08-03 11:29:28.550859",
-  "name": "Converted",
-  "style": "",
-  "workflow_state_name": "Converted"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2025-07-26 16:37:20.649072",
   "name": "Open",
   "style": "",
@@ -146,56 +137,11 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
-  "icon": "remove",
-  "modified": "2025-07-25 22:36:40.143521",
-  "name": "Rejected",
-  "style": "Danger",
-  "workflow_state_name": "Rejected"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
   "icon": "",
   "modified": "2025-07-29 20:40:26.983192",
   "name": "Accepted",
   "style": "",
   "workflow_state_name": "Accepted"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-07-27 12:51:12.274114",
-  "name": "Surveyed",
-  "style": "",
-  "workflow_state_name": "Surveyed"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-07-29 20:13:07.331986",
-  "name": "Requirements Gathering",
-  "style": "",
-  "workflow_state_name": "Requirements Gathering"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "ok-sign",
-  "modified": "2025-07-25 22:36:40.142595",
-  "name": "Approved",
-  "style": "Success",
-  "workflow_state_name": "Approved"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-07-29 20:14:00.723435",
-  "name": "Scoping",
-  "style": "",
-  "workflow_state_name": "Scoping"
  },
  {
   "docstatus": 0,
@@ -214,5 +160,59 @@
   "name": "Surveying",
   "style": "",
   "workflow_state_name": "Surveying"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-08-03 11:29:28.550859",
+  "name": "Converted",
+  "style": "",
+  "workflow_state_name": "Converted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-07-29 20:13:07.331986",
+  "name": "Requirements Gathering",
+  "style": "",
+  "workflow_state_name": "Requirements Gathering"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-07-29 20:14:00.723435",
+  "name": "Scoping",
+  "style": "",
+  "workflow_state_name": "Scoping"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "remove",
+  "modified": "2025-07-25 22:36:40.143521",
+  "name": "Rejected",
+  "style": "Danger",
+  "workflow_state_name": "Rejected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-07-27 12:51:12.274114",
+  "name": "Surveyed",
+  "style": "",
+  "workflow_state_name": "Surveyed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "modified": "2025-07-25 22:36:40.142595",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
  }
 ]

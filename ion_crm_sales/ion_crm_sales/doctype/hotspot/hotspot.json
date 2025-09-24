@@ -41,6 +41,7 @@
   "column_break_blzz",
   "username",
   "password",
+  "voucher",
   "maintenance_section",
   "maintenance_log"
  ],
@@ -252,12 +253,17 @@
    "fieldname": "password",
    "fieldtype": "Password",
    "label": "Password"
+  },
+  {
+   "fieldname": "voucher",
+   "fieldtype": "Data",
+   "label": "Voucher"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-03 15:23:10.454788",
+ "modified": "2025-09-21 12:22:18.460821",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Hotspot",

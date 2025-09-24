@@ -58,13 +58,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-08-03 11:31:53.029493",
-  "name": "Convert to S&M",
-  "workflow_action_name": "Convert to S&M"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2025-08-13 14:17:28.557549",
   "name": "Close",
   "workflow_action_name": "Close"
@@ -75,13 +68,6 @@
   "modified": "2025-07-27 12:52:38.279960",
   "name": "Survey",
   "workflow_action_name": "Survey"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:23:32.774649",
-  "name": "Qualify",
-  "workflow_action_name": "Qualify"
  },
  {
   "docstatus": 0,
@@ -100,13 +86,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:19:57.717957",
-  "name": "Gather",
-  "workflow_action_name": "Gather"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2025-07-25 22:36:40.154247",
   "name": "Approve",
   "workflow_action_name": "Approve"
@@ -117,5 +96,26 @@
   "modified": "2025-07-25 22:36:40.155037",
   "name": "Reject",
   "workflow_action_name": "Reject"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-08-03 11:31:53.029493",
+  "name": "Convert to S&M",
+  "workflow_action_name": "Convert to S&M"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:23:32.774649",
+  "name": "Qualify",
+  "workflow_action_name": "Qualify"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:19:57.717957",
+  "name": "Gather",
+  "workflow_action_name": "Gather"
  }
 ]
