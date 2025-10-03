@@ -1,0 +1,65 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.351458",
+  "name": "Prospecting",
+  "stage_name": "Prospecting"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.357127",
+  "name": "Qualification",
+  "stage_name": "Qualification"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.359569",
+  "name": "Needs Analysis",
+  "stage_name": "Needs Analysis"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.363791",
+  "name": "Value Proposition",
+  "stage_name": "Value Proposition"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.366046",
+  "name": "Identifying Decision Makers",
+  "stage_name": "Identifying Decision Makers"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.367852",
+  "name": "Perception Analysis",
+  "stage_name": "Perception Analysis"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.369540",
+  "name": "Proposal/Price Quote",
+  "stage_name": "Proposal/Price Quote"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-09-27 12:12:38.371214",
+  "name": "Negotiation/Review",
+  "stage_name": "Negotiation/Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Sales Stage",
+  "modified": "2025-10-03 10:22:07.937424",
+  "name": "Opportunity",
+  "stage_name": "Opportunity"
+ }
+]

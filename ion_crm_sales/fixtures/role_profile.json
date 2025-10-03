@@ -2,24 +2,99 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-24 11:06:37.823566",
+  "modified": "2025-09-27 13:42:30.431028",
   "name": "AM",
   "role_profile": "AM",
   "roles": [
    {
-    "role": "Requirements Gathering User"
-   },
-   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated Sales"
    },
    {
-    "role": "Dedicated Scope"
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated RG"
    },
    {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated QA"
    },
    {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated Scope"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Hotels Sales"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels QA"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels RG"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels Scope"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Sales"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M RG"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Scope Small"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Small"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Scope Medium"
    }
   ]
  },
@@ -31,24 +106,45 @@
   "role_profile": "PMO",
   "roles": [
    {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Hotels Sales"
    },
    {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "S&M Sales"
    },
    {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor Manager"
    },
    {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales User"
    },
    {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Stock Manager"
    },
    {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Accounts Manager"
    },
    {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Manufacturing User"
    }
   ]
@@ -61,12 +157,21 @@
   "role_profile": "CCO",
   "roles": [
    {
+    "parent": "CCO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Tenders Sales"
    },
    {
+    "parent": "CCO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales User"
    },
    {
+    "parent": "CCO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales Manager"
    }
   ]
@@ -79,12 +184,21 @@
   "role_profile": "GM",
   "roles": [
    {
+    "parent": "GM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Tenders Sales"
    },
    {
+    "parent": "GM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales User"
    },
    {
+    "parent": "GM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales Manager"
    }
   ]
@@ -97,36 +211,69 @@
   "role_profile": "SE",
   "roles": [
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated Sales"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated QA"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor Manager"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Hotels Sales"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Pre-Sales"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "S&M Sales"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales Manager"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales User"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Manufacturing User"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Stock User"
    },
    {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Accounts Manager"
    }
   ]
@@ -139,15 +286,27 @@
   "role_profile": "Finance",
   "roles": [
    {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales Manager"
    },
    {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales User"
    },
    {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Hotels Sales"
    },
    {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Accounts Manager"
    }
   ]
@@ -160,15 +319,27 @@
   "role_profile": "TECH",
   "roles": [
    {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Pre-Sales"
    },
    {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "S&M Sales"
    },
    {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated QA"
    }
   ]
@@ -181,12 +352,21 @@
   "role_profile": "ACCESS",
   "roles": [
    {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Pre-Sales"
    },
    {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "S&M Sales"
    }
   ]
@@ -199,6 +379,9 @@
   "role_profile": "PRO",
   "roles": [
    {
+    "parent": "PRO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Manufacturing User"
    }
   ]
@@ -211,15 +394,27 @@
   "role_profile": "CORE",
   "roles": [
    {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Pre-Sales"
    },
    {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated QA"
    },
    {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "S&M Sales"
    }
   ]
@@ -232,12 +427,21 @@
   "role_profile": "IT",
   "roles": [
    {
+    "parent": "IT",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
+    "parent": "IT",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Pre-Sales"
    },
    {
+    "parent": "IT",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated QA"
    }
   ]
@@ -250,12 +454,21 @@
   "role_profile": "CTO",
   "roles": [
    {
+    "parent": "CTO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor Manager"
    },
    {
+    "parent": "CTO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Dedicated QA"
    },
    {
+    "parent": "CTO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Tenders Sales"
    }
   ]
@@ -268,9 +481,15 @@
   "role_profile": "SURVEY TEAM",
   "roles": [
    {
+    "parent": "SURVEY TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
+    "parent": "SURVEY TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Pre-Sales"
    }
   ]
@@ -283,15 +502,27 @@
   "role_profile": "CXO TEAM",
   "roles": [
    {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Manufacturing User"
    },
    {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor Manager"
    },
    {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Accounts Manager"
    }
   ]
@@ -304,6 +535,9 @@
   "role_profile": "TEAM LEADER",
   "roles": [
    {
+    "parent": "TEAM LEADER",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor Manager"
    }
   ]
@@ -316,12 +550,21 @@
   "role_profile": "Inventory",
   "roles": [
    {
+    "parent": "Inventory",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Stock User"
    },
    {
+    "parent": "Inventory",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Stock Manager"
    },
    {
+    "parent": "Inventory",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Item Manager"
    }
   ]
@@ -334,12 +577,21 @@
   "role_profile": "Manufacturing",
   "roles": [
    {
+    "parent": "Manufacturing",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Stock User"
    },
    {
+    "parent": "Manufacturing",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Manufacturing User"
    },
    {
+    "parent": "Manufacturing",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Manufacturing Manager"
    }
   ]
@@ -352,9 +604,15 @@
   "role_profile": "Accounts",
   "roles": [
    {
+    "parent": "Accounts",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Accounts User"
    },
    {
+    "parent": "Accounts",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Accounts Manager"
    }
   ]
@@ -367,12 +625,21 @@
   "role_profile": "Sales",
   "roles": [
    {
+    "parent": "Sales",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales User"
    },
    {
+    "parent": "Sales",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Stock User"
    },
    {
+    "parent": "Sales",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Sales Manager"
    }
   ]
@@ -385,15 +652,27 @@
   "role_profile": "Purchase",
   "roles": [
    {
+    "parent": "Purchase",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Item Manager"
    },
    {
+    "parent": "Purchase",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Stock User"
    },
    {
+    "parent": "Purchase",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Purchase User"
    },
    {
+    "parent": "Purchase",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Purchase Manager"
    }
   ]

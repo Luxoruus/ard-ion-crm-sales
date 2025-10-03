@@ -1,0 +1,51 @@
+[
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-09-27 12:12:38.104701",
+  "name": "Sales"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-09-27 12:12:38.121715",
+  "name": "Support"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-09-27 12:12:38.125401",
+  "name": "Maintenance"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-10-03 10:21:33.316658",
+  "name": "Dedicated"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-10-03 10:21:41.998489",
+  "name": "S&M"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-10-03 10:21:46.714144",
+  "name": "Hotels"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-10-03 10:21:52.307728",
+  "name": "Tenders"
+ }
+]

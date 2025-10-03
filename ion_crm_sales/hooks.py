@@ -50,6 +50,9 @@ fixtures = [
     'Role Profile', 
     'Custom DocPerm', 
     'Web Form',
+    'Opportunity Type',
+    'Sales Stage',
+    'Price List',
     {"dt": "Dashboard Chart", "filters": [["is_standard", "=", 0]]},
 ]
 

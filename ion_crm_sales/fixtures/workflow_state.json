@@ -138,33 +138,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-29 20:40:26.983192",
-  "name": "Accepted",
-  "style": "",
-  "workflow_state_name": "Accepted"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-07-29 20:22:19.788897",
-  "name": "Qualifying",
-  "style": "",
-  "workflow_state_name": "Qualifying"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-07-29 20:16:45.547039",
-  "name": "Surveying",
-  "style": "",
-  "workflow_state_name": "Surveying"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2025-08-03 11:29:28.550859",
   "name": "Converted",
   "style": "",
@@ -183,10 +156,10 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-29 20:14:00.723435",
-  "name": "Scoping",
+  "modified": "2025-07-29 20:40:26.983192",
+  "name": "Accepted",
   "style": "",
-  "workflow_state_name": "Scoping"
+  "workflow_state_name": "Accepted"
  },
  {
   "docstatus": 0,
@@ -200,6 +173,24 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "modified": "2025-07-25 22:36:40.142595",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-07-29 20:14:00.723435",
+  "name": "Scoping",
+  "style": "",
+  "workflow_state_name": "Scoping"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
   "icon": "",
   "modified": "2025-07-27 12:51:12.274114",
   "name": "Surveyed",
@@ -209,10 +200,19 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
-  "icon": "ok-sign",
-  "modified": "2025-07-25 22:36:40.142595",
-  "name": "Approved",
-  "style": "Success",
-  "workflow_state_name": "Approved"
+  "icon": "",
+  "modified": "2025-07-29 20:22:19.788897",
+  "name": "Qualifying",
+  "style": "",
+  "workflow_state_name": "Qualifying"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-07-29 20:16:45.547039",
+  "name": "Surveying",
+  "style": "",
+  "workflow_state_name": "Surveying"
  }
 ]
