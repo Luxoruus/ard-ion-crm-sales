@@ -152,7 +152,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:10:25.623053",
+  "modified": "2025-10-03 10:50:27.616220",
   "name": "CCO",
   "role_profile": "CCO",
   "roles": [
@@ -173,6 +173,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Sales Manager"
+   },
+   {
+    "parent": "CCO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "CCO"
    }
   ]
  },
@@ -206,16 +212,10 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:41:19.666183",
+  "modified": "2025-10-03 11:12:14.998103",
   "name": "SE",
   "role_profile": "SE",
   "roles": [
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated Sales"
-   },
    {
     "parent": "SE",
     "parentfield": "roles",
@@ -226,43 +226,19 @@
     "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Surveyor Manager"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels Sales"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Pre-Sales"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Sales"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Sales Manager"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Sales User"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
     "role": "Manufacturing User"
+   },
+   {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels QA"
+   },
+   {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels TA"
    },
    {
     "parent": "SE",
@@ -274,47 +250,26 @@
     "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Accounts Manager"
-   }
-  ]
- },
- {
-  "docstatus": 0,
-  "doctype": "Role Profile",
-  "modified": "2025-09-20 17:40:29.058270",
-  "name": "Finance",
-  "role_profile": "Finance",
-  "roles": [
-   {
-    "parent": "Finance",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Sales Manager"
-   },
-   {
-    "parent": "Finance",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
     "role": "Sales User"
    },
    {
-    "parent": "Finance",
+    "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Hotels Sales"
+    "role": "S&M QA Small"
    },
    {
-    "parent": "Finance",
+    "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Accounts Manager"
+    "role": "S&M Scope Medium"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:43:44.054420",
+  "modified": "2025-10-03 11:14:57.419753",
   "name": "TECH",
   "role_profile": "TECH",
   "roles": [
@@ -322,32 +277,68 @@
     "parent": "TECH",
     "parentfield": "roles",
     "parenttype": "Role Profile",
+    "role": "Dedicated Surveyor"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated TA"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels TA"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels Surveyor"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
     "parent": "TECH",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Pre-Sales"
+    "role": "S&M Scope Small"
    },
    {
     "parent": "TECH",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "S&M Sales"
+    "role": "S&M Surveyor"
    },
    {
     "parent": "TECH",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Dedicated QA"
+    "role": "S&M Scope Medium"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Medium"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M TA"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:45:49.126636",
+  "modified": "2025-10-03 11:17:43.791813",
   "name": "ACCESS",
   "role_profile": "ACCESS",
   "roles": [
@@ -355,26 +346,50 @@
     "parent": "ACCESS",
     "parentfield": "roles",
     "parenttype": "Role Profile",
+    "role": "Hotels Surveyor"
+   },
+   {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels TA"
+   },
+   {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Surveyor"
+   },
+   {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
     "parent": "ACCESS",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Pre-Sales"
+    "role": "S&M TA"
    },
    {
     "parent": "ACCESS",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "S&M Sales"
+    "role": "S&M RG"
+   },
+   {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Medium"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:52:43.916589",
+  "modified": "2025-10-03 15:11:38.336274",
   "name": "PRO",
   "role_profile": "PRO",
   "roles": [
@@ -383,6 +398,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Manufacturing User"
+   },
+   {
+    "parent": "PRO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock User"
    }
   ]
  },
@@ -674,6 +695,39 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Purchase Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-09-20 17:40:29.058270",
+  "name": "Finance",
+  "role_profile": "Finance",
+  "roles": [
+   {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels Sales"
+   },
+   {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts Manager"
    }
   ]
  }

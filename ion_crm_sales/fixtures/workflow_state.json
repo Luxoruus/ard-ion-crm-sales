@@ -147,19 +147,19 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-29 20:13:07.331986",
-  "name": "Requirements Gathering",
+  "modified": "2025-07-29 20:40:26.983192",
+  "name": "Accepted",
   "style": "",
-  "workflow_state_name": "Requirements Gathering"
+  "workflow_state_name": "Accepted"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-29 20:40:26.983192",
-  "name": "Accepted",
+  "modified": "2025-07-29 20:13:07.331986",
+  "name": "Requirements Gathering",
   "style": "",
-  "workflow_state_name": "Accepted"
+  "workflow_state_name": "Requirements Gathering"
  },
  {
   "docstatus": 0,

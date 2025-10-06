@@ -24,13 +24,6 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Opportunity Type",
-  "modified": "2025-10-03 10:21:33.316658",
-  "name": "Dedicated"
- },
- {
-  "description": null,
-  "docstatus": 0,
-  "doctype": "Opportunity Type",
   "modified": "2025-10-03 10:21:41.998489",
   "name": "S&M"
  },
@@ -47,5 +40,12 @@
   "doctype": "Opportunity Type",
   "modified": "2025-10-03 10:21:52.307728",
   "name": "Tenders"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-10-03 10:21:33.316658",
+  "name": "Dedicated"
  }
 ]
