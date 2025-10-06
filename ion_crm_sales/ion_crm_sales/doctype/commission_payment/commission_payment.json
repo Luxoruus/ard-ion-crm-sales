@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-06 10:36:25.998646",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "commission_transaction",
+  "date_of_payment"
+ ],
+ "fields": [
+  {
+   "fieldname": "commission_transaction",
+   "fieldtype": "Link",
+   "label": "Commission Transaction",
+   "options": "Commission Transaction"
+  },
+  {
+   "fieldname": "date_of_payment",
+   "fieldtype": "Date",
+   "label": "Date of Payment"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-06 10:37:13.401296",
+ "modified_by": "Administrator",
+ "module": "Ion Crm Sales",
+ "name": "Commission Payment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
