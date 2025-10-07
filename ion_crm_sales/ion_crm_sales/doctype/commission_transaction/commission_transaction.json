@@ -1,12 +1,14 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:COMTR-{MM}-{YY}-{#####}",
  "creation": "2025-10-06 10:20:31.291024",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "amount",
   "date",
+  "percentage",
   "column_break_felj",
   "invoice",
   "invoice_status",
@@ -21,6 +23,7 @@
    "label": "Amount"
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date"
@@ -33,17 +36,20 @@
    "fieldname": "invoice",
    "fieldtype": "Link",
    "label": "Invoice",
-   "options": "Sales Invoice"
+   "options": "Sales Invoice",
+   "read_only": 1
   },
   {
    "fieldname": "invoice_status",
    "fieldtype": "Data",
-   "label": "Invoice Status"
+   "label": "Invoice Status",
+   "read_only": 1
   },
   {
    "fieldname": "commission_status",
    "fieldtype": "Data",
-   "label": "Commission Status"
+   "label": "Commission Status",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_xugh",
@@ -53,16 +59,24 @@
    "fieldname": "beneficiaries",
    "fieldtype": "Table",
    "label": "Beneficiaries",
-   "options": "Commission Beneficiary"
+   "options": "Commission Beneficiary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Percent",
+   "label": "Percentage",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-06 10:33:23.566107",
+ "modified": "2025-10-06 21:39:06.931231",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Commission Transaction",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

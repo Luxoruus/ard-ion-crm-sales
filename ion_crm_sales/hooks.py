@@ -32,6 +32,9 @@ doc_events = {
     },
     "Distributor": {
         "before_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.before_insert"
+    },
+    "Sales Invoice": {
+        "on_submit": "ion_crm_sales.ion_crm_sales.doc_events.sales_invoice_handlers.on_submit"
     }
 }
 

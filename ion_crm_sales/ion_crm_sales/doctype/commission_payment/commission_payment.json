@@ -6,7 +6,10 @@
  "engine": "InnoDB",
  "field_order": [
   "commission_transaction",
-  "date_of_payment"
+  "date_of_payment",
+  "column_break_xibm",
+  "party",
+  "beneficiary"
  ],
  "fields": [
   {
@@ -19,12 +22,28 @@
    "fieldname": "date_of_payment",
    "fieldtype": "Date",
    "label": "Date of Payment"
+  },
+  {
+   "fieldname": "column_break_xibm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Link",
+   "label": "Party",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Dynamic Link",
+   "label": "Beneficiary",
+   "options": "party"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-06 10:37:13.401296",
+ "modified": "2025-10-06 21:46:48.311050",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Commission Payment",
