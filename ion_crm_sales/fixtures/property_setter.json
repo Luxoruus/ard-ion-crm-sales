@@ -2270,5 +2270,37 @@
   "property_type": "Data",
   "row_name": null,
   "value": "[\"workflow_state\", \"naming_series\", \"opportunity_from\", \"party_name\", \"customer_name\", \"status\", \"column_break0\", \"opportunity_type\", \"source\", \"opportunity_owner\", \"column_break_10\", \"sales_stage\", \"expected_closing\", \"probability\", \"custom_section_break_u9qdh\", \"custom_presales\", \"custom_column_break_wdwqg\", \"custom_attachment\", \"custom_section_break_3vjkf\", \"custom_request\", \"custom_requirements\", \"organization_details_section\", \"no_of_employees\", \"annual_revenue\", \"customer_group\", \"column_break_23\", \"industry\", \"market_segment\", \"website\", \"column_break_31\", \"city\", \"state\", \"country\", \"territory\", \"section_break_14\", \"currency\", \"column_break_36\", \"conversion_rate\", \"column_break_17\", \"opportunity_amount\", \"base_opportunity_amount\", \"more_info\", \"company\", \"campaign\", \"transaction_date\", \"column_break1\", \"language\", \"amended_from\", \"title\", \"first_response_time\", \"lost_detail_section\", \"lost_reasons\", \"order_lost_reason\", \"column_break_56\", \"competitors\", \"contact_info\", \"primary_contact_section\", \"contact_person\", \"job_title\", \"column_break_54\", \"contact_email\", \"contact_mobile\", \"column_break_22\", \"whatsapp\", \"phone\", \"phone_ext\", \"address_contact_section\", \"address_html\", \"customer_address\", \"address_display\", \"column_break3\", \"contact_html\", \"contact_display\", \"activities_tab\", \"open_activities_html\", \"all_activities_section\", \"all_activities_html\", \"custom_scope\", \"custom_scope_description\", \"custom_deliverables\", \"custom_out_of_scope\", \"items_section\", \"items\", \"custom_price_list\", \"warehouse\", \"section_break_32\", \"base_total\", \"column_break_33\", \"total\", \"notes_tab\", \"notes_html\", \"notes\", \"custom_qa\", \"custom_qa_report\", \"custom_survey\", \"custom_section_break_ikapp\", \"custom_surveyor\", \"custom_column_break_crv4b\", \"custom_technical_survey\", \"custom_survey_attachment\", \"dashboard_tab\", \"custom_logs\", \"custom_audit_log\"]"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Subscription",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2025-10-07 13:04:40.430930",
+  "module": null,
+  "name": "Subscription-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"party_type\", \"party\", \"cb_1\", \"company\", \"status\", \"subscription_period\", \"start_date\", \"end_date\", \"cancelation_date\", \"trial_period_start\", \"trial_period_end\", \"follow_calendar_months\", \"generate_new_invoices_past_due_date\", \"submit_invoice\", \"column_break_11\", \"current_invoice_start\", \"current_invoice_end\", \"days_until_due\", \"generate_invoice_at\", \"number_of_days\", \"cancel_at_period_end\", \"sb_4\", \"plans\", \"sb_1\", \"sales_tax_template\", \"purchase_tax_template\", \"sb_2\", \"apply_additional_discount\", \"cb_2\", \"additional_discount_percentage\", \"additional_discount_amount\", \"accounting_dimensions_section\", \"cost_center\", \"custom_active_parties\", \"custom_type\", \"custom_parties\"]"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Subscription",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "submit_invoice",
+  "is_system_generated": 0,
+  "modified": "2025-10-07 13:04:40.612050",
+  "module": null,
+  "name": "Subscription-submit_invoice-default",
+  "property": "default",
+  "property_type": "Text",
+  "row_name": null,
+  "value": "0"
  }
 ]
