@@ -1,22 +1,24 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:COM-PAY-{MM}-{YY}-{#####}",
  "creation": "2025-10-06 10:36:25.998646",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "commission_transaction",
-  "date_of_payment",
   "column_break_xibm",
-  "party",
-  "beneficiary"
+  "date_of_payment",
+  "section_break_ghrs",
+  "beneficiaries"
  ],
  "fields": [
   {
    "fieldname": "commission_transaction",
    "fieldtype": "Link",
    "label": "Commission Transaction",
-   "options": "Commission Transaction"
+   "options": "Commission Transaction",
+   "read_only": 1
   },
   {
    "fieldname": "date_of_payment",
@@ -28,25 +30,25 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "party",
-   "fieldtype": "Link",
-   "label": "Party",
-   "options": "DocType"
+   "fieldname": "section_break_ghrs",
+   "fieldtype": "Section Break"
   },
   {
-   "fieldname": "beneficiary",
-   "fieldtype": "Dynamic Link",
-   "label": "Beneficiary",
-   "options": "party"
+   "fieldname": "beneficiaries",
+   "fieldtype": "Table",
+   "label": "Beneficiaries",
+   "options": "Commission Payment Beneficiary",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-06 21:46:48.311050",
+ "modified": "2025-10-07 15:29:21.721159",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Commission Payment",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

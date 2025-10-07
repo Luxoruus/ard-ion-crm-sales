@@ -3,7 +3,7 @@
 
 frappe.ui.form.on("Commission Transaction", {
 	refresh(frm) {
-        if (frm.doc.docstatus === 0) { // DocStatus 0 is Draft
+        if (frm.doc.commission_status === 'Unpaid') { // DocStatus 0 is Draft
             // Add the custom button
             frm.add_custom_button(__('Create Commission Payment'), function() {
                 // Confirm action with the user (optional, but recommended)
@@ -15,8 +15,8 @@ frappe.ui.form.on("Commission Transaction", {
                             method: 'ion_crm_sales.ion_crm_sales.doctype.commission_transaction.commission_transaction.create_commission_payment',
                             args: {
                                 source_docname: frm.doc.name,
-                                party: frm.doc.party,
-                                amount: frm.doc.total_commission_amount
+                                amount: frm.doc.amount,
+                                beneficiaries: frm.doc.beneficiaries,
                                 // Add any other key fields you need to pass
                             },
                             callback: function(r) {
@@ -30,7 +30,7 @@ frappe.ui.form.on("Commission Transaction", {
                         });
                     }
                 );
-            }).css({ 'background-color': '#27ae60', 'color': 'white' }); // Green button
+            })
         }
 	},
 });

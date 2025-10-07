@@ -32,3 +32,27 @@ def on_submit(doc, method):
         
 
         comtr.save()
+
+def on_change(doc, method):
+    print("#############################")
+    print("#############################")
+    print("#############################")
+    print("#############################")
+    print("#############################")
+    print(doc.status)
+    print("#############################")
+    print("#############################")
+    print("#############################")
+    print("#############################")
+    print("#############################")
+    print("#############################")
+
+    if (not doc.has_value_changed("status")):
+        return
+    
+    if (doc.subscription):
+        comtr_name = frappe.get_value("Commission Transaction", {"invoice": doc.name}, "name")
+        if comtr_name:
+            comtr = frappe.get_doc("Commission Transaction", comtr_name)
+            comtr.invoice_status = doc.status
+            comtr.save()
