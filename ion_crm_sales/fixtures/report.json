@@ -8462,5 +8462,37 @@
    }
   ],
   "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2025-10-07 19:17:52.574519",
+  "module": "Ion Crm Sales",
+  "name": "Commission Report",
+  "prepared_report": 0,
+  "query": "SELECT\n    t1.name AS Id,\n    t1.invoice AS Invoice,\n    t1.invoice_status AS 'Invoice Status',\n    t1.commission_status AS 'Commission Status',\n    t1.amount AS Amount,\n    t1.percentage AS Percentage,\n    (t1.amount / (t1.percentage / 100)) AS 'Grand Total'\nFROM\n    `tabCommission Transaction` t1",
+  "ref_doctype": "Commission Transaction",
+  "reference_report": null,
+  "report_name": "Commission Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Commission Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ],
+  "timeout": 0
  }
 ]
