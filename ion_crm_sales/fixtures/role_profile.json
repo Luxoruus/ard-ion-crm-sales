@@ -101,7 +101,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:53:43.752309",
+  "modified": "2025-10-12 12:41:32.576249",
   "name": "PMO",
   "role_profile": "PMO",
   "roles": [
@@ -146,6 +146,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Manufacturing User"
+   },
+   {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Tenders Scope"
    }
   ]
  },
@@ -410,40 +416,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:57:55.630988",
-  "name": "CORE",
-  "role_profile": "CORE",
-  "roles": [
-   {
-    "parent": "CORE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Surveyor"
-   },
-   {
-    "parent": "CORE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Pre-Sales"
-   },
-   {
-    "parent": "CORE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated QA"
-   },
-   {
-    "parent": "CORE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Sales"
-   }
-  ]
- },
- {
-  "docstatus": 0,
-  "doctype": "Role Profile",
-  "modified": "2025-09-20 18:01:02.364478",
+  "modified": "2025-10-12 12:39:40.902991",
   "name": "IT",
   "role_profile": "IT",
   "roles": [
@@ -451,26 +424,38 @@
     "parent": "IT",
     "parentfield": "roles",
     "parenttype": "Role Profile",
+    "role": "S&M RG"
+   },
+   {
+    "parent": "IT",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Surveyor"
+   },
+   {
+    "parent": "IT",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
     "role": "Surveyor"
    },
    {
     "parent": "IT",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Pre-Sales"
+    "role": "S&M TA"
    },
    {
     "parent": "IT",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Dedicated QA"
+    "role": "S&M QA Medium"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 18:03:03.473017",
+  "modified": "2025-10-12 12:35:42.843908",
   "name": "CTO",
   "role_profile": "CTO",
   "roles": [
@@ -491,13 +476,19 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Tenders Sales"
+   },
+   {
+    "parent": "CTO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Tenders Scope"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 18:04:27.377477",
+  "modified": "2025-10-12 12:35:10.304635",
   "name": "SURVEY TEAM",
   "role_profile": "SURVEY TEAM",
   "roles": [
@@ -505,20 +496,26 @@
     "parent": "SURVEY TEAM",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Surveyor"
+    "role": "Tenders Surveyor"
    },
    {
     "parent": "SURVEY TEAM",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Pre-Sales"
+    "role": "Tenders TA"
+   },
+   {
+    "parent": "SURVEY TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Surveyor"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 18:08:14.618549",
+  "modified": "2025-10-12 12:35:21.029900",
   "name": "CXO TEAM",
   "role_profile": "CXO TEAM",
   "roles": [
@@ -544,14 +541,20 @@
     "parent": "CXO TEAM",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Accounts Manager"
+    "role": "Accounts User"
+   },
+   {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Tenders Surveyor"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 18:08:42.735028",
+  "modified": "2025-10-12 12:33:28.315381",
   "name": "TEAM LEADER",
   "role_profile": "TEAM LEADER",
   "roles": [
@@ -560,6 +563,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Surveyor Manager"
+   },
+   {
+    "parent": "TEAM LEADER",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Tenders Scope"
    }
   ]
  },
@@ -701,16 +710,49 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-20 17:40:29.058270",
+  "modified": "2025-10-12 12:41:01.558394",
+  "name": "CORE",
+  "role_profile": "CORE",
+  "roles": [
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M RG"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Surveyor"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Surveyor"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M TA"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Medium"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-10-12 12:32:35.582179",
   "name": "Finance",
   "role_profile": "Finance",
   "roles": [
-   {
-    "parent": "Finance",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Sales Manager"
-   },
    {
     "parent": "Finance",
     "parentfield": "roles",
@@ -727,7 +769,13 @@
     "parent": "Finance",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Accounts Manager"
+    "role": "Tenders Scope"
+   },
+   {
+    "parent": "Finance",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts User"
    }
   ]
  }
