@@ -23,15 +23,23 @@
   "address",
   "city",
   "arearegion_covered",
+  "location",
   "section_break_smlb",
   "license_number",
   "license_validity",
   "column_break_nnhb",
   "gstvat_number",
+  "connect_subscription_contractco",
   "section_break_wttk",
   "technician_name",
   "column_break_isal",
-  "technician_phone_number"
+  "technician_phone_number",
+  "section_break_lwoo",
+  "rmt_username",
+  "rmt_password",
+  "column_break_tieb",
+  "pos_username",
+  "pos_password"
  ],
  "fields": [
   {
@@ -168,12 +176,50 @@
    "fieldtype": "Table",
    "label": "Voucher Distribution Type",
    "options": "Voucher Distribution Type"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Geolocation",
+   "label": "Location"
+  },
+  {
+   "fieldname": "connect_subscription_contractco",
+   "fieldtype": "Data",
+   "label": "Connect Subscription Contract.Co"
+  },
+  {
+   "fieldname": "section_break_lwoo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "rmt_username",
+   "fieldtype": "Data",
+   "label": "RMT Username"
+  },
+  {
+   "fieldname": "rmt_password",
+   "fieldtype": "Password",
+   "label": "RMT Password"
+  },
+  {
+   "fieldname": "column_break_tieb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pos_username",
+   "fieldtype": "Data",
+   "label": "POS Username"
+  },
+  {
+   "fieldname": "pos_password",
+   "fieldtype": "Password",
+   "label": "POS Password"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-21 13:18:29.746492",
+ "modified": "2025-10-10 10:33:41.821242",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Distributor",

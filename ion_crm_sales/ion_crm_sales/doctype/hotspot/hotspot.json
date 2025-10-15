@@ -9,14 +9,40 @@
   "details_tab",
   "hotspot_for",
   "party_name",
+  "hotspot_type",
+  "product",
   "column_break_sdqv",
   "type",
   "quote",
+  "reseller_type",
+  "section_break_spvo",
+  "contact_no",
+  "vip_hotspot",
+  "status",
+  "column_break_jhcf",
+  "hotspot_name_english",
+  "hotspot_name_arabic",
   "section_break_grif",
   "attachment",
   "presales",
   "request",
   "requirements",
+  "section_break_tlbo",
+  "city",
+  "area",
+  "address_details",
+  "owner_name",
+  "owner_phone_number",
+  "employee_name",
+  "employee_phone_number",
+  "additional_phone_number",
+  "column_break_pyen",
+  "location",
+  "section_break_jirh",
+  "building_type_and_specifications",
+  "location_coordinates",
+  "column_break_nzic",
+  "sales_departement_notes",
   "proposal_tab",
   "column_break_cuvr",
   "description",
@@ -42,6 +68,26 @@
   "username",
   "password",
   "voucher",
+  "section_break_tayk",
+  "assets",
+  "section_break_wvxg",
+  "hotspot_network",
+  "network_mode",
+  "access_controller",
+  "access_point_ip",
+  "column_break_jjqc",
+  "ssid_name",
+  "cpe_ip",
+  "vlan",
+  "software",
+  "column_break_gljl",
+  "tower",
+  "sector",
+  "number_of_equipment",
+  "wireless_mac_address",
+  "section_break_kczs",
+  "equipment_dismantle",
+  "technical_notes",
   "maintenance_section",
   "maintenance_log"
  ],
@@ -258,12 +304,239 @@
    "fieldname": "voucher",
    "fieldtype": "Data",
    "label": "Voucher"
+  },
+  {
+   "fieldname": "hotspot_type",
+   "fieldtype": "Select",
+   "label": "Hotspot Type",
+   "options": "Caf\u00e9\nRestaurant\nVia Connect\nSea Resort\nResort\nPrivate Villa\nLabor House\nPrivate Chalet\nChalet Resort\nUniversity\nSchool\nHospital\nMall"
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Select",
+   "label": "Product",
+   "options": "Hotel\nHotspot\nStreet Wifi\nMall"
+  },
+  {
+   "fieldname": "reseller_type",
+   "fieldtype": "Data",
+   "label": "Reseller Type"
+  },
+  {
+   "fieldname": "section_break_spvo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "contact_no",
+   "fieldtype": "Data",
+   "label": "Contact No"
+  },
+  {
+   "default": "0",
+   "fieldname": "vip_hotspot",
+   "fieldtype": "Check",
+   "label": "VIP Hotspot"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nNot Active"
+  },
+  {
+   "fieldname": "column_break_jhcf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hotspot_name_english",
+   "fieldtype": "Data",
+   "label": "Hotspot Name (English)"
+  },
+  {
+   "fieldname": "hotspot_name_arabic",
+   "fieldtype": "Data",
+   "label": "Hotspot Name (Arabic)"
+  },
+  {
+   "fieldname": "section_break_tlbo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area"
+  },
+  {
+   "fieldname": "address_details",
+   "fieldtype": "Data",
+   "label": "Address Details"
+  },
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name"
+  },
+  {
+   "fieldname": "owner_phone_number",
+   "fieldtype": "Phone",
+   "label": "Owner Phone Number"
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fieldname": "employee_phone_number",
+   "fieldtype": "Phone",
+   "label": "Employee Phone Number"
+  },
+  {
+   "fieldname": "additional_phone_number",
+   "fieldtype": "Phone",
+   "label": "Additional Phone Number"
+  },
+  {
+   "fieldname": "column_break_pyen",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Geolocation",
+   "label": "Location"
+  },
+  {
+   "fieldname": "section_break_jirh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "building_type_and_specifications",
+   "fieldtype": "Data",
+   "label": "Building Type and Specifications"
+  },
+  {
+   "fieldname": "location_coordinates",
+   "fieldtype": "Data",
+   "label": "Location (Coordinates)"
+  },
+  {
+   "fieldname": "column_break_nzic",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sales_departement_notes",
+   "fieldtype": "Small Text",
+   "label": "Sales Departement Notes"
+  },
+  {
+   "fieldname": "section_break_tayk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assets",
+   "fieldtype": "Table",
+   "label": "Assets",
+   "options": "Hotspot Asset"
+  },
+  {
+   "fieldname": "section_break_wvxg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "hotspot_network",
+   "fieldtype": "Select",
+   "label": "Hotspot Network",
+   "options": "ION / Connect\nOwner"
+  },
+  {
+   "fieldname": "network_mode",
+   "fieldtype": "Select",
+   "label": "Network Mode",
+   "options": "Standalone\nAccess Controller\nMesh"
+  },
+  {
+   "fieldname": "access_controller",
+   "fieldtype": "Data",
+   "label": "Access Controller"
+  },
+  {
+   "fieldname": "access_point_ip",
+   "fieldtype": "Data",
+   "label": "Access Point IP"
+  },
+  {
+   "fieldname": "column_break_jjqc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ssid_name",
+   "fieldtype": "Data",
+   "label": "SSID Name"
+  },
+  {
+   "fieldname": "cpe_ip",
+   "fieldtype": "Data",
+   "label": "CPE IP"
+  },
+  {
+   "fieldname": "vlan",
+   "fieldtype": "Data",
+   "label": "VLAN"
+  },
+  {
+   "fieldname": "software",
+   "fieldtype": "Data",
+   "label": "Software"
+  },
+  {
+   "fieldname": "column_break_gljl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tower",
+   "fieldtype": "Data",
+   "label": "Tower"
+  },
+  {
+   "fieldname": "sector",
+   "fieldtype": "Data",
+   "label": "Sector"
+  },
+  {
+   "fieldname": "number_of_equipment",
+   "fieldtype": "Data",
+   "label": "Number of Equipment"
+  },
+  {
+   "fieldname": "wireless_mac_address",
+   "fieldtype": "Data",
+   "label": "Wireless MAC Address"
+  },
+  {
+   "fieldname": "section_break_kczs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "equipment_dismantle",
+   "fieldtype": "Check",
+   "label": "Equipment Dismantle"
+  },
+  {
+   "fieldname": "technical_notes",
+   "fieldtype": "Small Text",
+   "label": "Technical Notes"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-21 12:22:18.460821",
+ "modified": "2025-10-10 10:55:48.597975",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Hotspot",
