@@ -15,6 +15,10 @@
   "type",
   "quote",
   "reseller_type",
+  "voucher_type_section",
+  "electronic",
+  "column_break_xjbk",
+  "physical",
   "section_break_spvo",
   "contact_no",
   "vip_hotspot",
@@ -319,8 +323,9 @@
   },
   {
    "fieldname": "reseller_type",
-   "fieldtype": "Data",
-   "label": "Reseller Type"
+   "fieldtype": "Select",
+   "label": "Reseller Type",
+   "options": "Type 1\nType 2\nType 3"
   },
   {
    "fieldname": "section_break_spvo",
@@ -531,12 +536,34 @@
    "fieldname": "technical_notes",
    "fieldtype": "Small Text",
    "label": "Technical Notes"
+  },
+  {
+   "default": "0",
+   "fieldname": "electronic",
+   "fieldtype": "Check",
+   "label": "Electronic",
+   "options": "Electronic\n"
+  },
+  {
+   "default": "0",
+   "fieldname": "physical",
+   "fieldtype": "Check",
+   "label": "Physical"
+  },
+  {
+   "fieldname": "voucher_type_section",
+   "fieldtype": "Section Break",
+   "label": "Voucher Type"
+  },
+  {
+   "fieldname": "column_break_xjbk",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-10 10:55:48.597975",
+ "modified": "2025-10-15 11:25:38.196292",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Hotspot",

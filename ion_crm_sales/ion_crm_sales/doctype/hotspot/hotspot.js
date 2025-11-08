@@ -8,6 +8,8 @@ erpnext.sales_common.setup_selling_controller();
 
 frappe.ui.form.on("Hotspot", {
     refresh: function (frm) {
+        
+
         frm.trigger("handle_fields");
 
         var doc = frm.doc;
@@ -171,7 +173,7 @@ frappe.ui.form.on("Hotspot", {
     },
 
     handle_fields: function (frm) {
-        frm.$wrapper.find("[data-fieldname='proposal_tab']").hide();
+        frm.$wrapper.find("[data-fieldname='proposal_tab']").show();
         frm.$wrapper.find("[data-fieldname='survey_tab']").hide();
         frm.$wrapper.find("[data-fieldname='technical_tab']").hide();
 
