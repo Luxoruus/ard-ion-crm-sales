@@ -2,7 +2,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-09-27 13:42:30.431028",
+  "modified": "2025-11-08 21:15:48.532904",
   "name": "AM",
   "role_profile": "AM",
   "roles": [
@@ -95,28 +95,22 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "S&M Scope Medium"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Manager"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-10-12 12:41:32.576249",
+  "modified": "2025-11-08 21:47:16.687194",
   "name": "PMO",
   "role_profile": "PMO",
   "roles": [
-   {
-    "parent": "PMO",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels Sales"
-   },
-   {
-    "parent": "PMO",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Sales"
-   },
    {
     "parent": "PMO",
     "parentfield": "roles",
@@ -128,30 +122,6 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Sales User"
-   },
-   {
-    "parent": "PMO",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Stock Manager"
-   },
-   {
-    "parent": "PMO",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Accounts Manager"
-   },
-   {
-    "parent": "PMO",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Manufacturing User"
-   },
-   {
-    "parent": "PMO",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Tenders Scope"
    }
   ]
  },
@@ -653,7 +623,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-10-03 11:14:57.419753",
+  "modified": "2025-11-08 22:11:08.188909",
   "name": "TECH",
   "role_profile": "TECH",
   "roles": [

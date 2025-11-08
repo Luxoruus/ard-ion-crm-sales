@@ -155,6 +155,15 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "modified": "2025-07-25 22:36:40.142595",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
   "icon": "",
   "modified": "2025-07-29 20:13:07.331986",
   "name": "Requirements Gathering",
@@ -173,20 +182,20 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
-  "icon": "ok-sign",
-  "modified": "2025-07-25 22:36:40.142595",
-  "name": "Approved",
-  "style": "Success",
-  "workflow_state_name": "Approved"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
   "icon": "",
   "modified": "2025-07-29 20:14:00.723435",
   "name": "Scoping",
   "style": "",
   "workflow_state_name": "Scoping"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-07-29 20:22:19.788897",
+  "name": "Qualifying",
+  "style": "",
+  "workflow_state_name": "Qualifying"
  },
  {
   "docstatus": 0,
@@ -205,14 +214,5 @@
   "name": "Surveying",
   "style": "",
   "workflow_state_name": "Surveying"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2025-07-29 20:22:19.788897",
-  "name": "Qualifying",
-  "style": "",
-  "workflow_state_name": "Qualifying"
  }
 ]

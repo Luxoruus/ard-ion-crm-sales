@@ -65,16 +65,16 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-25 22:36:40.154247",
-  "name": "Approve",
-  "workflow_action_name": "Approve"
+  "modified": "2025-07-29 20:43:53.601098",
+  "name": "Quote",
+  "workflow_action_name": "Quote"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-08-03 11:31:53.029493",
-  "name": "Convert to S&M",
-  "workflow_action_name": "Convert to S&M"
+  "modified": "2025-07-25 22:36:40.154247",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
  },
  {
   "docstatus": 0,
@@ -86,9 +86,9 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:43:53.601098",
-  "name": "Quote",
-  "workflow_action_name": "Quote"
+  "modified": "2025-08-03 11:31:53.029493",
+  "name": "Convert to S&M",
+  "workflow_action_name": "Convert to S&M"
  },
  {
   "docstatus": 0,
@@ -107,15 +107,15 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-25 22:36:40.155037",
-  "name": "Reject",
-  "workflow_action_name": "Reject"
+  "modified": "2025-07-29 20:19:57.717957",
+  "name": "Gather",
+  "workflow_action_name": "Gather"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:19:57.717957",
-  "name": "Gather",
-  "workflow_action_name": "Gather"
+  "modified": "2025-07-25 22:36:40.155037",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
  }
 ]

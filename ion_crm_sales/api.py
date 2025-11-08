@@ -29,7 +29,7 @@ def save_survey(survey_data):
         load_template_fields(survey_data.get("template"), survey.name)
         survey.reload()
         setattr(opportunity, custom_survey_field, survey.name)
-        opportunity.save()
+        opportunity.save(ignore_permissions=True)
     else:
         survey = frappe.get_doc("Technical Survey", survey_link)
 
