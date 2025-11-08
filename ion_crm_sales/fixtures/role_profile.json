@@ -218,133 +218,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-10-03 11:12:14.998103",
-  "name": "SE",
-  "role_profile": "SE",
-  "roles": [
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated QA"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Manufacturing User"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels QA"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels TA"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Stock User"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Sales User"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M QA Small"
-   },
-   {
-    "parent": "SE",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Scope Medium"
-   }
-  ]
- },
- {
-  "docstatus": 0,
-  "doctype": "Role Profile",
-  "modified": "2025-10-03 11:14:57.419753",
-  "name": "TECH",
-  "role_profile": "TECH",
-  "roles": [
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated Surveyor"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated TA"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels TA"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels Surveyor"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Surveyor"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Scope Small"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Surveyor"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Scope Medium"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M QA Medium"
-   },
-   {
-    "parent": "TECH",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M TA"
-   }
-  ]
- },
- {
-  "docstatus": 0,
-  "doctype": "Role Profile",
-  "modified": "2025-10-03 11:17:43.791813",
+  "modified": "2025-11-08 15:13:09.197611",
   "name": "ACCESS",
   "role_profile": "ACCESS",
   "roles": [
@@ -389,13 +263,19 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "S&M QA Medium"
+   },
+   {
+    "parent": "ACCESS",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Access"
    }
   ]
  },
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-10-03 15:11:38.336274",
+  "modified": "2025-11-08 15:21:00.695293",
   "name": "PRO",
   "role_profile": "PRO",
   "roles": [
@@ -410,6 +290,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Stock User"
+   },
+   {
+    "parent": "PRO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "PRO"
    }
   ]
  },
@@ -455,7 +341,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-10-12 12:35:42.843908",
+  "modified": "2025-10-15 09:44:26.924658",
   "name": "CTO",
   "role_profile": "CTO",
   "roles": [
@@ -482,6 +368,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Tenders Scope"
+   },
+   {
+    "parent": "CTO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "CTO"
    }
   ]
  },
@@ -509,45 +401,6 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Surveyor"
-   }
-  ]
- },
- {
-  "docstatus": 0,
-  "doctype": "Role Profile",
-  "modified": "2025-10-12 12:35:21.029900",
-  "name": "CXO TEAM",
-  "role_profile": "CXO TEAM",
-  "roles": [
-   {
-    "parent": "CXO TEAM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Manufacturing User"
-   },
-   {
-    "parent": "CXO TEAM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Surveyor Manager"
-   },
-   {
-    "parent": "CXO TEAM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Surveyor"
-   },
-   {
-    "parent": "CXO TEAM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Accounts User"
-   },
-   {
-    "parent": "CXO TEAM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Tenders Surveyor"
    }
   ]
  },
@@ -710,39 +563,57 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-10-12 12:41:01.558394",
-  "name": "CORE",
-  "role_profile": "CORE",
+  "modified": "2025-10-03 11:12:14.998103",
+  "name": "SE",
+  "role_profile": "SE",
   "roles": [
    {
-    "parent": "CORE",
+    "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "S&M RG"
+    "role": "Dedicated QA"
    },
    {
-    "parent": "CORE",
+    "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "S&M Surveyor"
+    "role": "Manufacturing User"
    },
    {
-    "parent": "CORE",
+    "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Surveyor"
+    "role": "Hotels QA"
    },
    {
-    "parent": "CORE",
+    "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "S&M TA"
+    "role": "Hotels TA"
    },
    {
-    "parent": "CORE",
+    "parent": "SE",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "S&M QA Medium"
+    "role": "Stock User"
+   },
+   {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Small"
+   },
+   {
+    "parent": "SE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Scope Medium"
    }
   ]
  },
@@ -776,6 +647,159 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Accounts User"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-10-03 11:14:57.419753",
+  "name": "TECH",
+  "role_profile": "TECH",
+  "roles": [
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated Surveyor"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated TA"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels TA"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels Surveyor"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Surveyor"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Scope Small"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Surveyor"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Scope Medium"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Medium"
+   },
+   {
+    "parent": "TECH",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M TA"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-10-12 12:35:21.029900",
+  "name": "CXO TEAM",
+  "role_profile": "CXO TEAM",
+  "roles": [
+   {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Surveyor Manager"
+   },
+   {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Surveyor"
+   },
+   {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "CXO TEAM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Tenders Surveyor"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-11-08 15:13:45.850774",
+  "name": "CORE",
+  "role_profile": "CORE",
+  "roles": [
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M RG"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Surveyor"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Surveyor"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M TA"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Medium"
+   },
+   {
+    "parent": "CORE",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Core"
    }
   ]
  }

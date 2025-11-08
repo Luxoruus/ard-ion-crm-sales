@@ -1038,5 +1038,70 @@
   "restrict_to_domain": null,
   "role_name": "CCO",
   "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2025-10-15 09:43:20.429660",
+  "name": "CTO",
+  "restrict_to_domain": null,
+  "role_name": "CTO",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2025-10-15 09:51:15.670980",
+  "name": "GM",
+  "restrict_to_domain": null,
+  "role_name": "GM",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2025-11-08 15:13:00.699373",
+  "name": "Access",
+  "restrict_to_domain": null,
+  "role_name": "Access",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2025-11-08 15:13:38.887093",
+  "name": "Core",
+  "restrict_to_domain": null,
+  "role_name": "Core",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2025-11-08 15:20:50.399259",
+  "name": "PRO",
+  "restrict_to_domain": null,
+  "role_name": "PRO",
+  "two_factor_auth": 0
  }
 ]
