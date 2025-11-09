@@ -107,7 +107,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-11-08 21:47:16.687194",
+  "modified": "2025-11-09 07:04:54.719991",
   "name": "PMO",
   "role_profile": "PMO",
   "roles": [
@@ -122,6 +122,42 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Sales User"
+   },
+   {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels Sales"
+   },
+   {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Sales"
+   },
+   {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "PMO",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Tenders Scope"
    }
   ]
  },
