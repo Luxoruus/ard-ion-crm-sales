@@ -189,7 +189,7 @@
               class="p-6 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200">
               <div class="flex justify-between items-start">
                 <div class="flex-1">
-                  <h3 class="font-semibold text-gray-900 text-lg mb-2">{{ response.title }}</h3>
+                  <h3 class="font-semibold text-gray-900 text-lg mb-2">{{ response.name }}</h3>
                   <div class="space-y-1 text-sm text-gray-600">
                     <p class="flex items-center">
                       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

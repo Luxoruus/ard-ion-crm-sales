@@ -325,6 +325,9 @@
   ::-webkit-datetime-edit-meridiem-field {
     padding-block: 0;
   }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
   :-moz-ui-invalid {
     box-shadow: none;
   }
@@ -1166,5 +1169,4 @@ button:active {
 @property --tw-outline-style { syntax:"*";inherits:false;initial-value:solid }
 @property --tw-duration { syntax:"*";inherits:false }
 @property --tw-ease { syntax:"*";inherits:false }
-/*! tailwindcss v4.1.11 | MIT License | https://tailwindcss.com */
-/*# sourceMappingURL=survey.bundle.YZHNZSCY.css.map */
+/*# sourceMappingURL=survey.bundle.JCNRLYXV.css.map */
