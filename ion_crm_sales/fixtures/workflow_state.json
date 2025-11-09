@@ -201,18 +201,18 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-27 12:51:12.274114",
-  "name": "Surveyed",
+  "modified": "2025-07-29 20:16:45.547039",
+  "name": "Surveying",
   "style": "",
-  "workflow_state_name": "Surveyed"
+  "workflow_state_name": "Surveying"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-07-29 20:16:45.547039",
-  "name": "Surveying",
+  "modified": "2025-07-27 12:51:12.274114",
+  "name": "Surveyed",
   "style": "",
-  "workflow_state_name": "Surveying"
+  "workflow_state_name": "Surveyed"
  }
 ]
