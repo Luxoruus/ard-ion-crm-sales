@@ -17,7 +17,7 @@ def before_save(doc, method):
                         subject="New Maintenance Assigned",
                         message=f"A new Maintenance Item has been added and assigned to you in Maintenance Log: <b>{doc.name}</b>."
                     )
-                    item["notified"] = 1  # Set flag to avoid resending
+                    item.notified = 1  # Set flag to avoid resending
 
     if not doc.workflow_state == "Surveying":
         return

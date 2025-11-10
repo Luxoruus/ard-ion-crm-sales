@@ -200,7 +200,7 @@ frappe.ui.form.on("Hotspot", {
             frm.$wrapper.find("[data-fieldname='technical_tab']").show();
         }
 
-        if ((frm.doc.workflow_state == "Qualifying" && frm.doc.request)) {
+        if ((frm.doc.workflow_state == "Qualifying")) {
             switch (frm.doc.type) {
                 case 'Based on Company Proposal':
                     if (frm.doc.description && frm.doc.items.length > 0) {

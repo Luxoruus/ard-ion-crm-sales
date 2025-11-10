@@ -28,11 +28,14 @@ def create_commission_payment(source_docname, amount, beneficiaries):
     new_doc.date_of_payment = nowdate() # Set payment date to today
     new_doc.status = 'Draft' # Start as Draft
 
+    print(float(amount))
+    print(len(json.loads(beneficiaries)))
+
     for b in json.loads(beneficiaries):
         new_doc.append('beneficiaries', {
             'party': b['party'],
             'beneficiary': b['beneficiary'],
-            'share': (float(amount) / len(beneficiaries)) if len(beneficiaries) > 0 else 0
+            'share': (float(amount) / len(json.loads(beneficiaries))) if len(json.loads(beneficiaries)) > 0 else 0
         })
 
     try:

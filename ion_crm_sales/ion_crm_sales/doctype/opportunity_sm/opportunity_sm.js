@@ -13,21 +13,21 @@ frappe.ui.form.on("Opportunity SM", {
 
         if (!frm.is_new() && doc.status !== "Lost") {
             if (doc.items) {
-                frm.add_custom_button(
-                    __("Supplier Quotation"),
-                    function () {
-                        frm.trigger("make_supplier_quotation");
-                    },
-                    __("Create")
-                );
+                // frm.add_custom_button(
+                //     __("Supplier Quotation"),
+                //     function () {
+                //         frm.trigger("make_supplier_quotation");
+                //     },
+                //     __("Create")
+                // );
 
-                frm.add_custom_button(
-                    __("Request For Quotation"),
-                    function () {
-                        frm.trigger("make_request_for_quotation");
-                    },
-                    __("Create")
-                );
+                // frm.add_custom_button(
+                //     __("Request For Quotation"),
+                //     function () {
+                //         frm.trigger("make_request_for_quotation");
+                //     },
+                //     __("Create")
+                // );
             }
 
             if (frm.doc.opportunity_from != "Customer") {

@@ -65,8 +65,8 @@ def make_quotation(source_name, target_doc=None):
 
 		quotation.run_method("set_missing_values")
 		quotation.run_method("calculate_taxes_and_totals")
-		if not source.get("items", []):
-			quotation.opportunity = source.name
+		# if not source.get("items", []):
+		# 	quotation.opportunity = source.name
 
 	doclist = get_mapped_doc(
 		"Opportunity Tenders",
@@ -79,8 +79,8 @@ def make_quotation(source_name, target_doc=None):
 			"Opportunity Item": {
 				"doctype": "Quotation Item",
 				"field_map": {
-					"parent": "prevdoc_docname",
-					"parenttype": "prevdoc_doctype",
+					# "parent": "prevdoc_docname",
+					# "parenttype": "prevdoc_doctype",
 					"uom": "stock_uom",
 				},
 				"add_if_empty": True,
