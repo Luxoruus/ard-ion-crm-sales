@@ -24,8 +24,15 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Opportunity Type",
-  "modified": "2025-10-03 10:21:41.998489",
-  "name": "S&M"
+  "modified": "2025-10-03 10:21:52.307728",
+  "name": "Tenders"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Opportunity Type",
+  "modified": "2025-11-10 07:58:34.042548",
+  "name": "SM"
  },
  {
   "description": null,
@@ -33,13 +40,6 @@
   "doctype": "Opportunity Type",
   "modified": "2025-10-03 10:21:46.714144",
   "name": "Hotels"
- },
- {
-  "description": null,
-  "docstatus": 0,
-  "doctype": "Opportunity Type",
-  "modified": "2025-10-03 10:21:52.307728",
-  "name": "Tenders"
  },
  {
   "description": null,

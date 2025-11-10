@@ -72,13 +72,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-27 12:52:38.279960",
-  "name": "Survey",
-  "workflow_action_name": "Survey"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2025-07-29 20:43:53.601098",
   "name": "Quote",
   "workflow_action_name": "Quote"
@@ -86,9 +79,9 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-07-29 20:24:14.476591",
-  "name": "Scope",
-  "workflow_action_name": "Scope"
+  "modified": "2025-07-27 12:52:38.279960",
+  "name": "Survey",
+  "workflow_action_name": "Survey"
  },
  {
   "docstatus": 0,
@@ -103,6 +96,13 @@
   "modified": "2025-07-29 20:23:32.774649",
   "name": "Qualify",
   "workflow_action_name": "Qualify"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-07-29 20:24:14.476591",
+  "name": "Scope",
+  "workflow_action_name": "Scope"
  },
  {
   "docstatus": 0,
