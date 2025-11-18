@@ -68,6 +68,7 @@ def make_quotation(source_name, target_doc=None):
 		quotation.run_method("calculate_taxes_and_totals")
 		# if not source.get("items", []):
 		# 	quotation.opportunity = source.name
+		quotation.custom_opportunity_from = "Hotels"
 
 
 	doclist = get_mapped_doc(
