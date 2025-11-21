@@ -4,6 +4,9 @@ import requests
 RMT_API_URL = ""
 API_KEY = ""
 
+
+# /////////////////////////////////////////////
+
 def fetch_rmt_opportunities():
     response = requests.get(RMT_API_URL, headers={"Authorization": f"Bearer {API_KEY}"})
     response.raise_for_status()

@@ -1,6 +1,85 @@
 import frappe
+from ion_crm_sales.ion_crm_sales import doctype
 from ion_crm_sales.technical_survey import load_template_fields
 
+@frappe.whitelist()
+def test_booking():
+    try:
+        frappe.get_doc("Customer", "Salem Al-Fitouri")
+    except Exception as e:
+        if (type(e) == frappe.DoesNotExistError):
+            print("Customer does not exist")
+            return "Shit"
+
+    return "Test Booking Successful"
+
+@frappe.whitelist()
+def bookings(data):
+    customer = None
+
+    if (frappe.db.exists("Customer", data.get("client_name"))):
+        customer = frappe.get_doc("Customer", data.get("client_name"))
+    else:
+        customer = frappe.get_doc({
+            "doctype" : "Customer",
+            "customer_type" : "Individual",
+            "customer_name": data.get("client_name")
+        })
+        customer.insert(ignore_permissions=True)
+            
+
+    # customer.customer_name = data.get("client_name")
+    # customer.customer_type = "Individual"
+
+    doc = frappe.new_doc("Booking")
+    doc.booking_id = "RMT-20250710-0001"
+    doc.client_name = customer.customer_name
+    doc.client_national_id = data.get("client_national_id")
+    doc.client_phone = data.get("client_phone")
+    doc.location = data.get("location")
+    doc.package_id = data.get("package_id")
+    doc.package_price = data.get("package_price")
+    doc.payment_method = data.get("payment_method")
+    doc.payment_amount = data.get("payment_amount")
+    doc.distributor_id = data.get("distributor_id")
+    doc.status = "Pending"
+
+    doc.distributor_commission = frappe.get_doc('Sales Partner', data.get("distributor_id")).commission_rate
+
+
+    if (data.get("payment_amount") > data.get("package_price")):
+        doc.client_credit = data.get("payment_amount") - data.get("package_price")
+
+    doc.insert(ignore_permissions=True)
+    frappe.db.commit()
+
+@frappe.whitelist()
+def bookings_confirm(data):
+    doc = frappe.get_doc("Booking", data.get("booking_id"))
+    doc.status = "Confirmed"
+    doc.contract_number = data.get("contract_number")
+    doc.confirmed_at = data.get("confirmed_at")
+    doc.save(ignore_permissions=True)
+
+@frappe.whitelist()
+def bookings_cancel(data):
+    doc = frappe.get_doc("Booking", data.get("booking_id"))
+    if doc.status == "Pending":
+        doc.status = "Cancelled"
+        doc.reason = data.get("reason")
+        doc.cancelled_at = data.get("cancelled_at")
+    elif doc.status == "Confirmed":
+        doc.status = "Failed"
+        doc.reason = data.get("reason")
+        doc.cancelled_at = data.get("cancelled_at")
+        doc.refund_amount = data.get("refund_amount")
+    
+    doc.save(ignore_permissions=True)
+
+@frappe.whitelist()
+def bookings_get(booking_id):
+    doc = frappe.get_doc("Booking", booking_id)
+    return doc.as_dict()
 
 @frappe.whitelist()
 def save_survey(survey_data):

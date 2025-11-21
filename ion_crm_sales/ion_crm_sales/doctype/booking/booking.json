@@ -1,0 +1,221 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-18 11:11:42.545618",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "core_info_section",
+  "booking_id",
+  "location",
+  "contract_number",
+  "distributor_id",
+  "column_break_vigg",
+  "client_name",
+  "client_national_id",
+  "client_phone",
+  "column_break_lqap",
+  "package_id",
+  "package_price",
+  "status",
+  "finance_section",
+  "payment_method",
+  "payment_amount",
+  "payment_status",
+  "column_break_tupv",
+  "commission_percent",
+  "company_share",
+  "distributor_commission",
+  "client_credit",
+  "audit_section",
+  "created_at",
+  "confirmed_at",
+  "column_break_cnno",
+  "cancelled_at",
+  "refunded_amount",
+  "reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "core_info_section",
+   "fieldtype": "Section Break",
+   "label": "Core Info"
+  },
+  {
+   "fieldname": "booking_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Booking ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Location",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_number",
+   "fieldtype": "Data",
+   "label": "Contract Number"
+  },
+  {
+   "fieldname": "distributor_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Distributor ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_vigg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Client Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_national_id",
+   "fieldtype": "Data",
+   "label": "Client National ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_phone",
+   "fieldtype": "Data",
+   "label": "Client Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_lqap",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "package_id",
+   "fieldtype": "Data",
+   "label": "Package ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "package_price",
+   "fieldtype": "Float",
+   "label": "Package Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "finance_section",
+   "fieldtype": "Section Break",
+   "label": "Finance"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Data",
+   "label": "Payment Method"
+  },
+  {
+   "fieldname": "payment_amount",
+   "fieldtype": "Float",
+   "label": "Payment Amount"
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Data",
+   "label": "Payment Status"
+  },
+  {
+   "fieldname": "column_break_tupv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "commission_percent",
+   "fieldtype": "Float",
+   "label": "Commission Percent"
+  },
+  {
+   "fieldname": "company_share",
+   "fieldtype": "Float",
+   "label": "Company Share"
+  },
+  {
+   "fieldname": "distributor_commission",
+   "fieldtype": "Float",
+   "label": "Distributor Commission"
+  },
+  {
+   "fieldname": "client_credit",
+   "fieldtype": "Float",
+   "label": "Client Credit"
+  },
+  {
+   "fieldname": "audit_section",
+   "fieldtype": "Section Break",
+   "label": "Audit"
+  },
+  {
+   "default": "Now",
+   "fieldname": "created_at",
+   "fieldtype": "Datetime",
+   "label": "Created At"
+  },
+  {
+   "fieldname": "confirmed_at",
+   "fieldtype": "Datetime",
+   "label": "Confirmed At"
+  },
+  {
+   "fieldname": "column_break_cnno",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cancelled_at",
+   "fieldtype": "Datetime",
+   "label": "Cancelled At"
+  },
+  {
+   "fieldname": "refunded_amount",
+   "fieldtype": "Float",
+   "label": "Refunded Amount"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nConfirmed\nCancelled\nFailed"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Data",
+   "label": "Reason"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 19:37:12.298639",
+ "modified_by": "Administrator",
+ "module": "Ion Crm Sales",
+ "name": "Booking",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
