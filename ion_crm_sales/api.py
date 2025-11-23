@@ -3,17 +3,6 @@ from ion_crm_sales.ion_crm_sales import doctype
 from ion_crm_sales.technical_survey import load_template_fields
 
 @frappe.whitelist()
-def test_booking():
-    try:
-        frappe.get_doc("Customer", "Salem Al-Fitouri")
-    except Exception as e:
-        if (type(e) == frappe.DoesNotExistError):
-            print("Customer does not exist")
-            return "Shit"
-
-    return "Test Booking Successful"
-
-@frappe.whitelist()
 def bookings(data):
     customer = None
 
@@ -55,7 +44,7 @@ def bookings(data):
 
 @frappe.whitelist()
 def bookings_confirm(data):
-    doc = frappe.get_doc("Booking", data.get("booking_id"))
+    doc = frappe.get_doc("Booking", {"booking_id": data.get("booking_id")})
     doc.status = "Confirmed"
     doc.contract_number = data.get("contract_number")
     doc.confirmed_at = data.get("confirmed_at")
@@ -63,7 +52,8 @@ def bookings_confirm(data):
 
 @frappe.whitelist()
 def bookings_cancel(data):
-    doc = frappe.get_doc("Booking", data.get("booking_id"))
+    doc = frappe.get_doc("Booking", {"booking_id": data.get("booking_id")})
+
     if doc.status == "Pending":
         doc.status = "Cancelled"
         doc.reason = data.get("reason")
