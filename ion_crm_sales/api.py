@@ -1,6 +1,8 @@
 import frappe
 from ion_crm_sales.ion_crm_sales import doctype
 from ion_crm_sales.technical_survey import load_template_fields
+from erpnext.accounts.doctype.payment_entry.payment_entry import get_payment_entry
+
 
 @frappe.whitelist()
 def bookings(data):
@@ -73,34 +75,15 @@ def bookings_confirm(data):
     invoice.insert(ignore_permissions=True)
     invoice.submit()
 
-    payment = frappe.new_doc("Payment Entry")
-    payment.payment_type = "Receive"
-    payment.party_type = "Customer"
-    payment.party = doc.client_name
-    payment.posting_date = frappe.utils.nowdate()
-    payment.paid_amount = doc.payment_amount
-    payment.received_amount = doc.payment_amount
-    payment.target_exchange_rate = 1
-    payment.source_exchange_rate = 1
-    payment.mode_of_payment = doc.payment_method
-    payment.paid_to = frappe.db.get_value(
-        "Account",
-        {"company": invoice.company, "account_type": "Bank"},
-        "name"
+    payment = get_payment_entry(
+        dt="Sales Invoice",
+        dn=invoice.name,
     )
 
-    payment.paid_to_account_currency = "LYD"
-    payment.company = invoice.company
+    payment.mode_of_payment = doc.payment_method
 
-    payment.append("references", {
-    "reference_doctype": "Sales Invoice",
-    "reference_name": invoice.name,
-    })
-
-
-    payment.set_missing_values()
-    # payment.set_party_account_and_balance()
-    payment.set_amounts()
+    payment.reference_no = doc.booking_id
+    payment.reference_date = frappe.utils.nowdate()
 
 
     payment.insert(ignore_permissions=True)
