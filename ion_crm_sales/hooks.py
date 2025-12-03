@@ -16,7 +16,8 @@ doc_events = {
         # "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
         "before_save": ["ion_crm_sales.ion_crm_sales.doc_events.opportunity_dedicated_handlers.before_save",
                         "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
-                       ]
+                       ],
+        "validate": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.validate"
     },
     "Opportunity SM": {
         "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"

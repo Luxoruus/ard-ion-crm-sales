@@ -13,7 +13,6 @@ def before_save(doc, method):
     changed = []
 
     for name, row in new_rows.items():
-        print(row.as_dict())
         if name in old_rows and row.as_dict().achieved != old_rows[name].as_dict().achieved:
             changed.append(row)
 
@@ -41,4 +40,16 @@ def before_save(doc, method):
         if doc.workflow_state == "Rejected":
             doc.status = "Lost"
 
+def validate(doc, method):
+    if not doc.custom_survey_template:
+        return
     
+    template = frappe.get_doc("Technical Survey Template", doc.custom_survey_template)
+    doc.custom_survey_details = []
+    for field in template.fields:
+        doc.append('custom_survey_details', {
+            "department": field.department,
+            "field_type": field.field_type,
+            "field_label": field.field_label,
+            "field_value": ""
+        })

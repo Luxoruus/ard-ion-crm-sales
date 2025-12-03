@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "field_label",
-  "field_name",
+  "department",
   "field_type",
   "field_value"
  ],
@@ -15,14 +15,10 @@
   {
    "fieldname": "field_label",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Field Label",
-   "read_only": 1
-  },
-  {
-   "fieldname": "field_name",
-   "fieldtype": "Data",
-   "label": "Field Name",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "field_type",
@@ -34,13 +30,21 @@
    "fieldname": "field_value",
    "fieldtype": "Text",
    "label": "Field Value"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Technical Survey Department",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-08-10 19:23:36.258870",
+ "modified": "2025-11-25 15:50:59.696978",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Technical Survey Field",
