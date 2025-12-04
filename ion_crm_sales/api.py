@@ -27,7 +27,6 @@ def bookings(data):
     # customer.customer_type = "Individual"
 
     doc = frappe.new_doc("Booking")
-    doc.booking_id = "RMT-20250710-0009"
     doc.client_name = customer.customer_name
     doc.client_national_id = data.get("client_national_id")
     doc.client_phone = data.get("client_phone")
@@ -39,7 +38,7 @@ def bookings(data):
     doc.distributor_id = data.get("distributor_id")
     doc.status = "Pending"
 
-    doc.distributor_commission = float(frappe.get_doc('Sales Partner', data.get("distributor_id")).commission_rate) * float(data.get("package_price"))
+    doc.distributor_commission = float(frappe.get_doc('Sales Partner', data.get("distributor_id")).commission_rate) * float(data.get("package_price")) / 100
 
 
     if (data.get("payment_amount") > data.get("package_price")):
@@ -48,9 +47,11 @@ def bookings(data):
     doc.insert(ignore_permissions=True)
     frappe.db.commit()
 
+    return doc.as_dict()
+
 @frappe.whitelist()
 def bookings_confirm(data):
-    doc = frappe.get_doc("Booking", {"booking_id": data.get("booking_id")})
+    doc = frappe.get_doc("Booking", data.get("booking_id"))
     doc.status = "Confirmed"
     doc.contract_number = data.get("contract_number")
     doc.confirmed_at = frappe.utils.now()
@@ -75,6 +76,12 @@ def bookings_confirm(data):
     invoice.insert(ignore_permissions=True)
     invoice.submit()
 
+    doc.append("references", {
+        "sales_invoice": invoice.name
+    })
+
+    doc.save(ignore_permissions=True)
+
     payment = get_payment_entry(
         dt="Sales Invoice",
         dn=invoice.name,
@@ -82,16 +89,57 @@ def bookings_confirm(data):
 
     payment.mode_of_payment = doc.payment_method
 
-    payment.reference_no = doc.booking_id
+    payment.reference_no = doc.name
     payment.reference_date = frappe.utils.nowdate()
 
 
     payment.insert(ignore_permissions=True)
     payment.submit()
 
+    make_contract_from_rmt_template(party_name=doc.client_name, start_date=frappe.utils.nowdate(), submit=True)
+
+
+def make_contract_from_rmt_template(party_name, start_date, submit=True):
+    # 1) Create the contract doc
+    contract = frappe.new_doc("Contract")
+    contract.party_type = "Customer"          # e.g., "Customer"
+    contract.party_name = party_name
+    contract.start_date = start_date
+
+    # 2) Set the template
+    template_name = "RMT Contract"
+    contract.contract_template = template_name
+
+    # 3) Copy the terms from the template (server-side)
+    # Try common fieldnames on the template
+    terms = frappe.db.get_value("Contract Template", template_name, "contract_terms")
+    if not terms:
+        terms = frappe.db.get_value("Contract Template", template_name, "terms")
+    if not terms:
+        terms = frappe.db.get_value("Contract Template", template_name, "content")
+
+    # Map to your contract’s terms field
+    if "contract_terms" in contract.as_dict():
+        contract.contract_terms = terms or ""
+    elif "terms" in contract.as_dict():
+        contract.terms = terms or ""
+    elif "content" in contract.as_dict():
+        contract.content = terms or ""
+
+    # 4) Save/submit
+    contract.insert(ignore_permissions=True)
+    if submit:
+        contract.submit()
+
+    contract.is_signed = 1
+    contract.signed_on = frappe.utils.nowdate()
+    contract.signee = party_name
+    contract.save(ignore_permissions=True)
+
+
 @frappe.whitelist()
 def bookings_cancel(data):
-    doc = frappe.get_doc("Booking", {"booking_id": data.get("booking_id")})
+    doc = frappe.get_doc("Booking", data.get("booking_id"))
 
     if doc.status == "Pending":
         doc.status = "Cancelled"
@@ -102,51 +150,43 @@ def bookings_cancel(data):
         doc.reason = data.get("reason")
         doc.cancelled_at = frappe.utils.now()
         doc.refund_amount = data.get("refund_amount")
+        create_credit_note(doc.references[0].sales_invoice, data.get("refund_amount"))
+        
     
     doc.save(ignore_permissions=True)
 
 
-def create_credit_note_programmatically(sales_invoice_name):
-    # Fetch the original Sales Invoice
-    original_sales_invoice = frappe.get_doc("Sales Invoice", sales_invoice_name)
 
-    # Create a new Sales Invoice document for the Credit Note
-    credit_note = frappe.new_doc("Sales Invoice")
+def create_credit_note(original_invoice_name, return_amount=None):
+    # Fetch original invoice
+    original_invoice = frappe.get_doc("Sales Invoice", original_invoice_name)
 
-    # Set relevant fields from the original invoice
-    credit_note.customer = original_sales_invoice.customer
-    credit_note.customer_name = original_sales_invoice.customer_name
-    credit_note.company = original_sales_invoice.company
-    credit_note.posting_date = frappe.utils.today() # Or a specific date
-    credit_note.due_date = frappe.utils.today() # Or a specific date
+    # Create a new Sales Invoice marked as return
+    credit_note = frappe.get_doc({
+        "doctype": "Sales Invoice",
+        "customer": original_invoice.customer,
+        "company": original_invoice.company,
+        "posting_date": frappe.utils.nowdate(),
+        "is_return": 1,  # ✅ This makes it a credit note
+        "return_against": original_invoice.name,  # Link to original invoice
+        "items": []
+    })
 
-    # Indicate it's a return/credit note
-    credit_note.is_return = 1 
-    credit_note.return_against = original_sales_invoice.name
+    # Add items with negative qty or rate
+    for item in original_invoice.items:
+        qty_to_return = item.qty  # or partial qty
+        if return_amount and return_amount < item.amount:
+            # Partial return logic
+            qty_to_return = return_amount / item.rate
 
-    # Add items to the credit note (with negative quantities)
-    for item in original_sales_invoice.items:
         credit_note.append("items", {
-            "item_code": item.item_code,
-            "item_name": item.item_name,
-            "qty": -item.qty,  # Negative quantity for credit note
+                       "item_code": item.item_code,
             "rate": item.rate,
-            "uom": item.uom,
-            "warehouse": item.warehouse,
-            "base_amount": -item.base_amount,
-            "amount": -item.amount
+            "qty": -qty_to_return  # ✅ Negative qty for return
         })
 
-    # Save and Submit the Credit Note
-    try:
-        credit_note.insert()
-        credit_note.submit()
-        frappe.msgprint(f"Credit Note {credit_note.name} created and submitted successfully.")
-        return credit_note.name
-    except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "Error creating Credit Note")
-        frappe.msgprint(f"Error creating Credit Note: {e}")
-        return None
+    credit_note.insert(ignore_permissions=True)
+    credit_note.submit()
 
 
 @frappe.whitelist()

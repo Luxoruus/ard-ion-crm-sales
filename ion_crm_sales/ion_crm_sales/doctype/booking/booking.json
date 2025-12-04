@@ -1,13 +1,12 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:booking_id",
+ "autoname": "format:RMT-{YY}{MM}{DD}-{####}",
  "creation": "2025-11-18 11:11:42.545618",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "core_info_section",
-  "booking_id",
   "location",
   "contract_number",
   "distributor_id",
@@ -34,21 +33,15 @@
   "column_break_cnno",
   "cancelled_at",
   "refunded_amount",
-  "reason"
+  "reason",
+  "references_section",
+  "references"
  ],
  "fields": [
   {
    "fieldname": "core_info_section",
    "fieldtype": "Section Break",
    "label": "Core Info"
-  },
-  {
-   "fieldname": "booking_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Booking ID",
-   "reqd": 1,
-   "unique": 1
   },
   {
    "fieldname": "location",
@@ -192,16 +185,27 @@
    "fieldname": "reason",
    "fieldtype": "Data",
    "label": "Reason"
+  },
+  {
+   "fieldname": "references_section",
+   "fieldtype": "Section Break",
+   "label": "References"
+  },
+  {
+   "fieldname": "references",
+   "fieldtype": "Table",
+   "label": "Invoice References",
+   "options": "Booking References"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-25 16:58:08.709144",
+ "modified": "2025-12-03 12:47:28.326410",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Booking",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
