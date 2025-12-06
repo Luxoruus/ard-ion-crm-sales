@@ -67,7 +67,10 @@ def bookings_confirm(data):
             {
                 "item_code": doc.package_id,
                 "rate": doc.package_price,
-                "qty": 1
+                "qty": 1,
+                "warehouse": frappe.get_doc("Distributor", {
+                    "sales_partner": doc.distributor_id
+                }).warehouse
             }
         ],
         # "booking_reference": doc.name

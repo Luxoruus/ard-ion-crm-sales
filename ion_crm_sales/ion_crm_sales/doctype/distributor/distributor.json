@@ -8,6 +8,8 @@
  "field_order": [
   "distributor_name",
   "distributor_codeid",
+  "sales_partner",
+  "warehouse",
   "distribution_type",
   "column_break_fzdl",
   "status",
@@ -214,12 +216,25 @@
    "fieldname": "pos_password",
    "fieldtype": "Password",
    "label": "POS Password"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "sales_partner",
+   "fieldtype": "Link",
+   "label": "Sales Partner",
+   "options": "Sales Partner",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-10 10:33:41.821242",
+ "modified": "2025-12-04 10:04:31.955972",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Distributor",

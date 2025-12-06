@@ -32,7 +32,8 @@ doc_events = {
         "before_save": "ion_crm_sales.ion_crm_sales.doc_events.hotspot_handlers.before_save"
     },
     "Distributor": {
-        "before_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.before_insert"
+        "before_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.before_insert",
+        "after_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.create_sales_partner_for_distributor"
     },
     "Sales Invoice": {
         "on_submit": "ion_crm_sales.ion_crm_sales.doc_events.sales_invoice_handlers.on_submit",
