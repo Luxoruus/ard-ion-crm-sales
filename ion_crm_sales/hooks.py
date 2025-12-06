@@ -11,22 +11,36 @@ app_license = "mit"
 #     }
 # }
 
+
+# ion_crm_sales/ion_crm_sales/hooks.py
+
 doc_events = {
     "Opportunity": {
-        # "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
-        "before_save": ["ion_crm_sales.ion_crm_sales.doc_events.opportunity_dedicated_handlers.before_save",
-                        "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
-                       ],
-        "validate": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.validate"
+        "before_save": [
+            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_dedicated_handlers.before_save",
+            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+            # Add our notifier at the end so it runs after your validations/updates:
+            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+        ],
+        "validate": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.validate",
     },
     "Opportunity SM": {
-        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
+        "before_save": [
+            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+        ]
     },
     "Opportunity Hotels": {
-        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
+        "before_save": [
+            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+        ]
     },
     "Opportunity Tenders": {
-        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save"
+        "before_save": [
+            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+        ]
     },
     "Hotspot": {
         "before_save": "ion_crm_sales.ion_crm_sales.doc_events.hotspot_handlers.before_save"
@@ -40,6 +54,7 @@ doc_events = {
         "on_change": "ion_crm_sales.ion_crm_sales.doc_events.sales_invoice_handlers.on_change"
     }
 }
+
 
 fixtures = [
     'Client Script', 

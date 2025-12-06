@@ -2,6 +2,7 @@
 // For license information, please see license.txt
 
 frappe.provide("erpnext.crm");
+frappe.provide("ion_crm_sales");
 erpnext.pre_sales.set_as_lost("Opportunity Hotels");
 erpnext.sales_common.setup_selling_controller();
 
@@ -55,6 +56,13 @@ frappe.ui.form.on("Opportunity Hotels", {
                 });
             }
         }
+
+        if (!frm.is_new()) {
+			frappe.contacts.render_address_and_contact(frm);
+			// frm.trigger('render_contact_day_html');
+		} else {
+			frappe.contacts.clear_address_and_contact(frm);
+		}
     },
 
     make_supplier_quotation: function (frm) {
@@ -133,3 +141,32 @@ frappe.ui.form.on("Opportunity Item", {
         frm.trigger("calculate", cdt, cdn);
     },
 });
+
+ion_crm_sales.OpportunityHotels = class OpportunityHotels extends frappe.ui.form.Controller {
+
+    refresh() {
+		this.show_notes();
+		this.show_activities();
+	}
+
+    show_notes() {
+		const crm_notes = new erpnext.utils.CRMNotes({
+			frm: this.frm,
+			notes_wrapper: $(this.frm.fields_dict.notes_html.wrapper),
+		});
+		crm_notes.refresh();
+	}
+
+	show_activities() {
+		const crm_activities = new erpnext.utils.CRMActivities({
+			frm: this.frm,
+			open_activities_wrapper: $(this.frm.fields_dict.open_activities_html.wrapper),
+			all_activities_wrapper: $(this.frm.fields_dict.all_activities_html.wrapper),
+			form_wrapper: $(this.frm.wrapper),
+		});
+		crm_activities.refresh();
+	}
+
+}
+
+extend_cscript(cur_frm.cscript, new ion_crm_sales.OpportunityHotels({ frm: cur_frm }));

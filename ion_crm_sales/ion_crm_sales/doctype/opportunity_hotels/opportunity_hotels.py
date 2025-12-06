@@ -9,9 +9,17 @@ from frappe.model.mapper import get_mapped_doc
 
 from erpnext.setup.utils import get_exchange_rate
 from erpnext.utilities.transaction_base import TransactionBase
+from frappe.contacts.address_and_contact import load_address_and_contact
 
+from erpnext.crm.utils import (
+	CRMNote,
+	copy_comments,
+	link_communications,
+	link_open_events,
+	link_open_tasks,
+)
 
-class OpportunityHotels(Document):
+class OpportunityHotels(TransactionBase, CRMNote):
 	def calculate_totals(self):
 		total = base_total = 0
 		for item in self.get("items"):
@@ -39,6 +47,30 @@ class OpportunityHotels(Document):
 			for key in item_fields:
 				if not d.get(key):
 					d.set(key, item.get(key))
+	
+	def onload(self):
+		ref_doc = frappe.get_doc(self.opportunity_from, self.party_name)
+
+		load_address_and_contact(ref_doc)
+		load_address_and_contact(self)
+
+		ref_doc_contact_list = ref_doc.get("__onload").get("contact_list")
+		opportunity_doc_contact_list = [
+			contact
+			for contact in self.get("__onload").get("contact_list")
+			if contact not in ref_doc_contact_list
+		]
+		ref_doc_contact_list.extend(opportunity_doc_contact_list)
+		ref_doc.set_onload("contact_list", ref_doc_contact_list)
+
+		ref_doc_addr_list = ref_doc.get("__onload").get("addr_list")
+		opportunity_doc_addr_list = [
+			addr for addr in self.get("__onload").get("addr_list") if addr not in ref_doc_addr_list
+		]
+		ref_doc_addr_list.extend(opportunity_doc_addr_list)
+		ref_doc.set_onload("addr_list", ref_doc_addr_list)
+
+		self.set("__onload", ref_doc.get("__onload"))
 
 
 @frappe.whitelist()

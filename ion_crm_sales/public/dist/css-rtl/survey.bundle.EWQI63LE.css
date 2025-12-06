@@ -1,4 +1,4 @@
-/* ../../../../../../tmp/tmp-1429-G4AXLfQJJklE/ion_crm_sales/ion_crm_sales/public/assets/survey.bundle.css */
+/* ../../../../../../tmp/tmp-4424-sLA2wctzajsR/ion_crm_sales/ion_crm_sales/public/assets/survey.bundle.css */
 @layer properties {
   @supports ((-webkit-hyphens:none) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))) {
     *,
@@ -364,7 +364,7 @@
     top: calc(var(--spacing)*4);
   }
   .right-4 {
-    right: calc(var(--spacing)*4);
+    left: calc(var(--spacing)*4);
   }
   .z-50 {
     z-index: 50;
@@ -391,10 +391,10 @@
     margin-top: calc(var(--spacing)*6);
   }
   .mr-2 {
-    margin-right: calc(var(--spacing)*2);
+    margin-left: calc(var(--spacing)*2);
   }
   .mr-3 {
-    margin-right: calc(var(--spacing)*3);
+    margin-left: calc(var(--spacing)*3);
   }
   .-mb-6 {
     margin-bottom: calc(var(--spacing)*-6);
@@ -421,13 +421,13 @@
     margin-bottom: calc(var(--spacing)*8);
   }
   .ml-1 {
-    margin-left: calc(var(--spacing)*1);
+    margin-right: calc(var(--spacing)*1);
   }
   .ml-3 {
-    margin-left: calc(var(--spacing)*3);
+    margin-right: calc(var(--spacing)*3);
   }
   .ml-11 {
-    margin-left: calc(var(--spacing)*11);
+    margin-right: calc(var(--spacing)*11);
   }
   .block {
     display: block;
@@ -595,8 +595,8 @@
     border-radius: var(--radius-xl);
   }
   .rounded-b-lg {
-    border-bottom-right-radius: var(--radius-lg);
     border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
   }
   .border {
     border-style: var(--tw-border-style);
@@ -1019,23 +1019,23 @@
   }
 }
 .rtl {
-  direction: rtl;
+  direction: ltr;
 }
 .rtl .space-x-4 > * + * {
-  margin-left: 0;
-  margin-right: 1rem;
+  margin-right: 0;
+  margin-left: 1rem;
 }
 .rtl .space-x-2 > * + * {
-  margin-left: 0;
-  margin-right: .5rem;
+  margin-right: 0;
+  margin-left: .5rem;
 }
 .rtl .space-x-3 > * + * {
-  margin-left: 0;
-  margin-right: .75rem;
+  margin-right: 0;
+  margin-left: .75rem;
 }
 .rtl .space-x-8 > * + * {
-  margin-left: 0;
-  margin-right: 2rem;
+  margin-right: 0;
+  margin-left: 2rem;
 }
 @keyframes fadeIn {
   0% {
@@ -1056,7 +1056,7 @@
   }
   .space-x-4 > * + * {
     margin-top: 1rem;
-    margin-left: 0;
+    margin-right: 0;
   }
   .flex {
     flex-direction: column;
@@ -1074,7 +1074,7 @@ textarea:focus {
 }
 @keyframes spin {
   to {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
 }
 .animate-spin {
@@ -1125,10 +1125,10 @@ button:active {
 }
 @keyframes shimmer {
   0% {
-    background-position: -200% 0;
+    background-position: 300% 0;
   }
   to {
-    background-position: 200% 0;
+    background-position: -100% 0;
   }
 }
 @property --tw-scale-x { syntax:"*";inherits:false;initial-value:1 }
@@ -1169,4 +1169,4 @@ button:active {
 @property --tw-outline-style { syntax:"*";inherits:false;initial-value:solid }
 @property --tw-duration { syntax:"*";inherits:false }
 @property --tw-ease { syntax:"*";inherits:false }
-/*# sourceMappingURL=survey.bundle.TXDD4MHB.css.map */
+/*# sourceMappingURL=survey.bundle.EWQI63LE.css.map */
