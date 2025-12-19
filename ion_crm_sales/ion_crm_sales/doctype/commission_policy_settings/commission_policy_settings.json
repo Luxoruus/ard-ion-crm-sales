@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-12-19 20:24:12.996085",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "rate_above_140",
+  "expense_account",
+  "payable_account",
+  "count_paid_only",
+  "apportion_by_sales_team",
+  "include_returns",
+  "exclude_taxes_shipping",
+  "exclude_item_groups"
+ ],
+ "fields": [
+  {
+   "default": "7",
+   "fieldname": "rate_above_140",
+   "fieldtype": "Percent",
+   "label": "Rate Above 140%"
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Expense Account",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payable_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Payable Account",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "count_paid_only",
+   "fieldtype": "Check",
+   "label": "Count Paid Only"
+  },
+  {
+   "default": "1",
+   "fieldname": "apportion_by_sales_team",
+   "fieldtype": "Check",
+   "label": "Apportion by Sales Team"
+  },
+  {
+   "default": "1",
+   "fieldname": "include_returns",
+   "fieldtype": "Check",
+   "label": "Include Returns"
+  },
+  {
+   "default": "1",
+   "fieldname": "exclude_taxes_shipping",
+   "fieldtype": "Check",
+   "label": "Exclude Taxes Shipping"
+  },
+  {
+   "fieldname": "exclude_item_groups",
+   "fieldtype": "Small Text",
+   "label": "Exclude Item Groups"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-12-19 20:27:18.469140",
+ "modified_by": "Administrator",
+ "module": "Ion Crm Sales",
+ "name": "Commission Policy Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

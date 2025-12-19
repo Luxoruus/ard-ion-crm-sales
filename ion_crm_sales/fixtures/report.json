@@ -8465,6 +8465,82 @@
   "docstatus": 0,
   "doctype": "Report",
   "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2025-12-19 21:11:05.847407",
+  "module": "Ion Crm Sales",
+  "name": "Target vs Actual vs Commission",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Sales Target and Commission Sheet",
+  "reference_report": null,
+  "report_name": "Target vs Actual vs Commission",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Target vs Actual vs Commission",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2025-12-19 21:13:05.261774",
+  "module": "Ion Crm Sales",
+  "name": "Commission Expense Summary",
+  "prepared_report": 0,
+  "query": "SELECT je.posting_date, je.company, je.user_remark,\n       SUM(acc.debit_in_account_currency) AS expense\nFROM `tabJournal Entry Account` acc\nJOIN `tabJournal Entry` je ON acc.parent = je.name\nWHERE acc.account = %(expense_account)s\n  AND je.company = %(company)s\n  AND je.posting_date BETWEEN %(from_date)s AND %(to_date)s\nGROUP BY je.posting_date, je.company, je.user_remark\nORDER BY je.posting_date",
+  "ref_doctype": "Journal Entry",
+  "reference_report": null,
+  "report_name": "Commission Expense Summary",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Commission Expense Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Commission Expense Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Commission Expense Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Auditor"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
   "is_standard": "Yes",
   "javascript": null,
   "json": null,

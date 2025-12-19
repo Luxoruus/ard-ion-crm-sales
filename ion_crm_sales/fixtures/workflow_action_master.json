@@ -65,6 +65,20 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2025-12-19 21:08:50.540506",
+  "name": "Submit",
+  "workflow_action_name": "Submit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-12-19 21:09:31.921470",
+  "name": "Post",
+  "workflow_action_name": "Post"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2025-08-03 11:31:53.029493",
   "name": "Convert to S&M",
   "workflow_action_name": "Convert to S&M"
