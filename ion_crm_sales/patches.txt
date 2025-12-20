@@ -4,3 +4,4 @@
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
+ion_crm_sales.patches.001_bootstrap_commission_settings

@@ -50,17 +50,12 @@ doc_events = {
         "after_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.create_sales_partner_for_distributor"
     },
     "Sales Invoice": {
-        # "on_submit": "ion_crm_sales.ion_crm_sales.doc_events.sales_invoice_handlers.on_submit",
-        # "on_change": "ion_crm_sales.ion_crm_sales.doc_events.sales_invoice_handlers.on_change"
-
-        "on_submit": "ion_crm_sales.commission.triggers.on_sales_invoice_submit",
-        "on_cancel": "ion_crm_sales.commission.triggers.on_sales_invoice_cancel",
-        # optional: when amended (new version from previous), recompute as needed
-        "on_update_after_submit": "ion_crm_sales.commission.triggers.on_sales_invoice_update_after_submit",
+        "on_submit": "ion_crm_sales.ion_crm_sales.commission.triggers.on_sales_invoice_submit",
+        "on_cancel": "ion_crm_sales.ion_crm_sales.commission.triggers.on_sales_invoice_cancel",
+        "on_update_after_submit": "ion_crm_sales.ion_crm_sales.commission.triggers.on_sales_invoice_update_after_submit",
     },
-    
     "Payment Entry": {
-        "on_submit": "ion_crm_sales.commission.triggers.on_payment_entry_submit"
+        "on_submit": "ion_crm_sales.ion_crm_sales.commission.triggers.on_payment_entry_submit"
     }
 }
 
@@ -84,6 +79,9 @@ fixtures = [
     'Sales Stage',
     'Price List',
     {"dt": "Dashboard Chart", "filters": [["is_standard", "=", 0]]},
+    {"doctype": "DocType", "filters": {"module": ["=", "ION Crm Sales"]}},
+    {"doctype": "Workflow", "filters": {"document_type": ["=", "Sales Target and Commission Sheet"]}},
+    {"doctype": "Report", "filters": {"module": ["=", "ION Crm Sales"]}}
 ]
 
 # scheduler_events = {
