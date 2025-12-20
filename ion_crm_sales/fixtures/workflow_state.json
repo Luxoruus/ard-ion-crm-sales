@@ -138,15 +138,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-11-18 19:25:10.502086",
-  "name": "Draft",
-  "style": "",
-  "workflow_state_name": "Draft"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2025-11-18 19:26:00.431025",
   "name": "Confirmed",
   "style": "",
@@ -227,15 +218,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
-  "icon": "ok-sign",
-  "modified": "2025-07-25 22:36:40.142595",
-  "name": "Approved",
-  "style": "Success",
-  "workflow_state_name": "Approved"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
   "icon": "",
   "modified": "2025-07-29 20:22:19.788897",
   "name": "Qualifying",
@@ -268,5 +250,23 @@
   "name": "Surveyed",
   "style": "",
   "workflow_state_name": "Surveyed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "modified": "2025-07-25 22:36:40.142595",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-11-18 19:25:10.502086",
+  "name": "Draft",
+  "style": "",
+  "workflow_state_name": "Draft"
  }
 ]
