@@ -44,6 +44,7 @@
   {
    "fieldname": "rate",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Rate"
   },
   {
@@ -54,7 +55,8 @@
   {
    "fieldname": "batch_no",
    "fieldtype": "Link",
-   "label": "Batch no",
+   "in_list_view": 1,
+   "label": "Batch No",
    "options": "Batch"
   },
   {
@@ -67,7 +69,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-12-10 13:36:14.317580",
+ "modified": "2025-12-21 19:18:51.503692",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Intercompany Stock Transfer Item",

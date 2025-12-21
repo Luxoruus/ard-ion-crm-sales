@@ -103,6 +103,7 @@
    "fieldname": "issue_source_warehouse",
    "fieldtype": "Link",
    "label": "From Warehouse",
+   "link_filters": "[[\"Warehouse\",\"company\",\"=\",\"eval: doc.issue_company\"]]",
    "options": "Warehouse"
   },
   {
@@ -115,6 +116,7 @@
    "fieldname": "receipt_target_warehouse",
    "fieldtype": "Link",
    "label": "To Warehouse",
+   "link_filters": "[[\"Warehouse\",\"company\",\"=\",\"eval: doc.receipt_company\"]]",
    "options": "Warehouse"
   },
   {
@@ -129,7 +131,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-12-10 14:00:06.213158",
+ "modified": "2025-12-20 19:58:36.878929",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Intercompany Stock Transfer",
