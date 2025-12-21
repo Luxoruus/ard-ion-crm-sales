@@ -62,6 +62,7 @@ doc_events = {
 
 fixtures = [
     'Client Script', 
+    'Server Script',
     'Number Card', 
     'Report', 
     'Gender', 
