@@ -64,5 +64,16 @@
   "name": "Sales Order Script",
   "script": "\nfrappe.ui.form.on('Sales Order', {\n    refresh(frm) {\n        if (frm.doc.docstatus === 0) {\n            frm.add_custom_button(__('Create Contract'), () => {\n                frappe.call({\n                    method: \"create_contract_for_so\",\n                    args: { sales_order: frm.doc.name },\n                    freeze: true,\n                    callback: (r) => {\n                        if (r.message) {\n                            frm.set_value('custom_contract', r.message);\n                            frappe.set_route('Form', 'Contract', r.message);\n                        }\n                    }\n                });\n            }, __('Actions'));\n        }\n    }\n});\n",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Intercompany Stock Transfer",
+  "enabled": 1,
+  "modified": "2025-12-29 15:33:44.772098",
+  "module": "ION Intercompany Transfer",
+  "name": "Intercompany Stock Transfer Rate",
+  "script": "\n// Freeze \"available_qty\" after submit by only calculating it in Draft (docstatus = 0).\n\nfunction is_draft(frm) {\n  return cint(frm.doc.docstatus) === 0;\n}\n\nfunction set_available_qty(frm, cdt, cdn) {\n  // Only compute when in Draft\n  if (!is_draft(frm)) return;\n\n  const row = locals[cdt][cdn];\n  const item = row.item_code;\n  const wh = frm.doc.issue_source_warehouse;\n\n  if (!item || !wh) {\n    frappe.model.set_value(cdt, cdn, 'available_qty', 0);\n    return;\n  }\n\n  // Read Bin (item-warehouse) balance; do not recompute after submit\n  frappe.call({\n    method: 'frappe.client.get_value',\n    args: {\n      doctype: 'Bin',\n      fieldname: ['actual_qty'],\n      filters: { item_code: item, warehouse: wh }\n    }\n  }).then(r => {\n    const qty = (r && r.message && r.message.actual_qty) ? r.message.actual_qty : 0;\n    frappe.model.set_value(cdt, cdn, 'available_qty', qty);\n  }).catch(() => {\n    frappe.model.set_value(cdt, cdn, 'available_qty', 0);\n  });\n}\n\n// Recalculate only in Draft when item changes\nfrappe.ui.form.on('Intercompany Stock Transfer Item', {\n  item_code: function(frm, cdt, cdn) {\n    set_available_qty(frm, cdt, cdn);\n  }\n});\n\n// Recalculate only in Draft when Issue Source Warehouse changes\nfrappe.ui.form.on('Intercompany Stock Transfer', {\n  issue_source_warehouse: function(frm) {\n    if (!is_draft(frm)) return;\n    (frm.doc.items || []).forEach(d => set_available_qty(frm, d.doctype, d.name));\n  },\n\n  // On refresh, compute only in Draft; leaves values untouched after submit/cancel\n  refresh: function(frm) {\n    if (!is_draft(frm)) return;\n    (frm.doc.items || []).forEach(d => set_available_qty(frm, d.doctype, d.name));\n  }\n});\n",
+  "view": "Form"
  }
 ]

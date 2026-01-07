@@ -1,3 +1,5 @@
+
+# ion_crm_sales/ion_crm_sales/commission/gl.py
 import frappe
 from frappe.utils import today, flt
 
@@ -18,14 +20,24 @@ def post_accrual(sheet):
     je.voucher_type = "Journal Entry"
     je.posting_date = today()
     je.company = sheet.company
-    je.user_remark = f"Commission accrual for {sheet.name}"
+    je.user_remark = f"Commission accrual for sheet {sheet.name}"
 
-    je.append("accounts", {"account": expense_acc, "debit_in_account_currency": amount})
-    je.append("accounts", {"account": payable_acc, "credit_in_account_currency": amount})
-    je.append("references", {"reference_doctype":"Sales Target and Commission Sheet","reference_name":sheet.name})
+    # DR expense
+    je.append("accounts", {
+        "account": expense_acc,
+        "debit_in_account_currency": amount,
+    })
+    # CR payable
+    je.append("accounts", {
+        "account": payable_acc,
+        "credit_in_account_currency": amount,
+    })
 
     je.insert()
     je.submit()
+
+    # Optional: leave a comment thread link
+    je.add_comment("Comment", text=f"Accrual posted from Sales Target and Commission Sheet {sheet.name}")
 
     sheet.accrual_posted_amount = amount
     sheet.accrual_je = je.name
@@ -43,18 +55,20 @@ def post_adjustment(sheet):
     je.voucher_type = "Journal Entry"
     je.posting_date = today()
     je.company = sheet.company
-    je.user_remark = f"Commission adjustment for {sheet.name} (delta: {delta:.2f})"
+    je.user_remark = f"Commission adjustment for sheet {sheet.name} (delta: {delta:.2f})"
 
     if delta > 0:
+        # increase accrual
         je.append("accounts", {"account": expense_acc, "debit_in_account_currency": delta})
         je.append("accounts", {"account": payable_acc, "credit_in_account_currency": delta})
     else:
+        # decrease accrual
         je.append("accounts", {"account": payable_acc, "debit_in_account_currency": abs(delta)})
         je.append("accounts", {"account": expense_acc, "credit_in_account_currency": abs(delta)})
 
-    je.append("references", {"reference_doctype":"Sales Target and Commission Sheet","reference_name":sheet.name})
     je.insert()
     je.submit()
+    je.add_comment("Comment", text=f"Adjustment posted from Sales Target and Commission Sheet {sheet.name}")
 
     sheet.accrual_posted_amount = new_total
     sheet.save()

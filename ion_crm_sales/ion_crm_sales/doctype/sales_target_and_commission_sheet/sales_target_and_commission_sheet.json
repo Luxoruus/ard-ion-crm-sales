@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-12-19 21:01:46.631255",
+ "autoname": "format:STCT-{MM}-{YY}-{#####}",
+ "creation": "2025-12-21 19:57:03.703393",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -50,12 +51,14 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
    "options": "Draft\nSubmitted\nApproved\nPosted",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -66,24 +69,28 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_target",
    "fieldtype": "Currency",
    "label": "Total Target",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_actual_sales",
    "fieldtype": "Currency",
    "label": "Total Actual Sales",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_commission",
    "fieldtype": "Currency",
    "label": "Total Commission",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "accrual_posted_amount",
    "fieldtype": "Currency",
@@ -91,6 +98,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "accrual_je",
    "fieldtype": "Link",
    "label": "Accrual JE",
@@ -107,10 +115,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-12-19 21:06:22.391621",
+ "modified": "2026-01-06 19:25:10.073889",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Sales Target and Commission Sheet",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
