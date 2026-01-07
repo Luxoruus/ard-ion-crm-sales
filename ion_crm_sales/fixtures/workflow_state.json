@@ -174,15 +174,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-12-19 21:08:19.401245",
-  "name": "Posted",
-  "style": "",
-  "workflow_state_name": "Posted"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2025-08-03 11:29:28.550859",
   "name": "Converted",
   "style": "",
@@ -268,5 +259,14 @@
   "name": "Draft",
   "style": "",
   "workflow_state_name": "Draft"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-12-19 21:08:19.401245",
+  "name": "Posted",
+  "style": "",
+  "workflow_state_name": "Posted"
  }
 ]

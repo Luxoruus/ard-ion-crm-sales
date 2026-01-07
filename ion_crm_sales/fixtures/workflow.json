@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Sales Target and Commission Sheet",
   "is_active": 1,
-  "modified": "2025-12-19 21:10:06.772766",
+  "modified": "2026-01-03 14:59:05.589069",
   "name": "Commission Sheet Workflow",
   "override_status": 0,
   "send_email_alert": 0,
@@ -117,6 +117,6 @@
   ],
   "workflow_data": null,
   "workflow_name": "Commission Sheet Workflow",
-  "workflow_state_field": "workflow_state"
+  "workflow_state_field": "status"
  }
 ]
