@@ -85,6 +85,12 @@ fixtures = [
     {"doctype": "Report", "filters": {"module": ["=", "ION Crm Sales"]}}
 ]
 
+scheduler_events = {
+    "hourly": [
+        "ion_crm_sales.notifications.send_subscription_expiry_alerts"
+    ]
+}
+
 # scheduler_events = {
 #     "hourly": [
 #         "ion_crm_sales.ion_crm_sales.api_sync.sync_rmt_opportunities"

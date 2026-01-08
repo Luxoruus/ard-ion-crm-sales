@@ -3,6 +3,61 @@ from ion_crm_sales.ion_crm_sales import doctype
 from ion_crm_sales.technical_survey import load_template_fields
 from erpnext.accounts.doctype.payment_entry.payment_entry import get_payment_entry
 
+from frappe.utils import nowdate, add_days, get_link_to_form, date_diff, today
+
+@frappe.whitelist()
+def renew_subscription(subscription_name: str, renewal_window_days: int = 30):
+    """
+    Renew a Subscription only if it is expiring (within window) or expired.
+    - Keeps party_type / party
+    - Copies plans child table (if present)
+    - Carries forward common settings
+    - Retains dynamic origin (custom_originating_doctype + custom_originating_document)
+    - New start_date = end_date + 1 day
+    """
+    src = frappe.get_doc("Subscription", subscription_name)
+
+    end_date = src.get("end_date")
+    if not end_date:
+        frappe.throw("Cannot renew: Subscription has no end_date set.")
+
+    days_to_expiry = date_diff(end_date, today())
+    if days_to_expiry > renewal_window_days:
+        frappe.throw(f"Not due for renewal: {days_to_expiry} days remain (window = {renewal_window_days} days).")
+
+    new_start_date = add_days(end_date, 1)
+
+    dst = frappe.new_doc("Subscription")
+    dst.party_type = src.party_type
+    dst.party = src.party
+    dst.start_date = new_start_date
+
+    # Carry forward common fields (extend as needed)
+    for f in ("days_until_due", "sales_taxes_and_charges_template",
+              "apply_additional_discount", "apply_discount_on",
+              "additional_discount_percentage", "additional_discount_amount"):
+        if src.meta.get_field(f):
+            dst.set(f, src.get(f))
+
+    # Copy plans (so billing keeps working)
+    if src.meta.get_field("plans") and src.get("plans"):
+        for row in src.get("plans"):
+            data = {k: v for k, v in row.as_dict().items()
+                    if k not in ("name", "parent", "parenttype", "parentfield", "idx", "docstatus")}
+            dst.append("plans", data)
+
+    dst.insert()
+    frappe.db.commit()
+
+    # Retain dynamic origin via custom fieldnames
+    if src.get("custom_originating_doctype") and src.get("custom_originating_document"):
+        frappe.db.set_value("Subscription", dst.name, "custom_originating_doctype", src.get("custom_originating_doctype"))
+        frappe.db.set_value("Subscription", dst.name, "custom_originating_document", src.get("custom_originating_document"))
+
+    dst.add_comment('Info', f"Renewed from {subscription_name}")
+    return dst.name
+
+
 
 @frappe.whitelist()
 def bookings(data):
