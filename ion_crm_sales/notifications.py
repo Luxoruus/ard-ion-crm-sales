@@ -74,53 +74,96 @@ def push_subscription_expiry_alerts(window_days: int = 15,
     return results if return_results else None
 
 
-def send_subscription_expiry_alerts(window_days: int = 15,
-                                    account_manager_field: str = "account_manager",
-                                    return_results: bool = False) -> list | None:
+def send_subscription_expiry_alerts(
+    window_days: int = 15,
+    account_manager_field: str = "account_manager",
+    return_results: bool = False
+) -> list | None:
     """
-    Alert Account Managers about Customer subscriptions expiring within `window_days`.
-    Creates Email Queue rows and Notification Log entries.
-    Returns a list of results if return_results=True for test assertions.
+    Robust scheduler-safe and dev-safe version.
+
+    Sends email + in-app notifications (Notification Log)
+    about subscriptions expiring within `window_days`.
+
+    • Captures ALL failures in Error Log
+    • Detects missing outgoing Email Account
+    • Ensures no non-serializable objects are returned
+    • Works with bench execute, bench schedule, and enqueue
+
+    Returns:
+        list if return_results=True, else None
     """
-    # --- defensive: ensure tests can enqueue email ---
+
+    # ------------------------------
+    # 0) Ensure emails are not muted
+    # ------------------------------
     if frappe.flags.get("mute_emails", None) is True:
         frappe.flags.mute_emails = False
 
+    results = []
     start = today()
     end = add_days(start, window_days)
 
-    results = []
+    # ------------------------------
+    # 1) Check outgoing email account
+    # ------------------------------
+    outgoing_exists = bool(
+        frappe.db.exists("Email Account", {"enable_outgoing": 1})
+    )
 
-    # fetch subs that qualify
+    if not outgoing_exists:
+        frappe.log_error(
+            title="No Outgoing Email Account Configured",
+            message=(
+                "send_subscription_expiry_alerts: No outgoing email account found. "
+                "Emails will NOT be sent or queued. Notifications will still be created."
+            )
+        )
+
+    # ------------------------------
+    # 2) Fetch subscriptions in range
+    # ------------------------------
     subs = frappe.get_all(
         "Subscription",
         filters={"party_type": "Customer", "end_date": ["between", [start, end]]},
         fields=["name", "party", "end_date"]
     )
 
+    # ------------------------------
+    # 3) Process each subscription
+    # ------------------------------
     for s in subs:
-        row = {"subscription": s["name"], "customer": s["party"], "end_date": s["end_date"]}
+        row = {
+            "subscription": s["name"],
+            "customer": s["party"],
+            "end_date": s["end_date"],
+        }
+
         try:
-            # resolve account manager (standard field on Customer)
+            # 3a) Find account manager user
             am_user = frappe.db.get_value("Customer", s["party"], account_manager_field)
             row["am_user"] = am_user
-            
-            print(am_user)
 
             if not am_user or not frappe.db.exists("User", am_user):
-                row["skipped"] = "no_account_manager_user"
+                row["skipped"] = "invalid_or_missing_account_manager"
                 results.append(row)
                 continue
 
+            # 3b) Get AM email
             am_email = frappe.db.get_value("User", am_user, "email")
             row["am_email"] = am_email
+
             if not am_email:
-                row["skipped"] = "account_manager_has_no_email"
+                row["skipped"] = "account_manager_missing_email"
                 results.append(row)
                 continue
 
+            # 3c) Build subject + message
             days_left = date_diff(s["end_date"], start)
-            subject = f"[Expiry Alert] Subscription {s['name']} ends on {s['end_date']}"
+            subject = (
+                f"[Expiry Alert] Subscription {s['name']} "
+                f"ends on {s['end_date']}"
+            )
             message = (
                 f"Subscription: {s['name']}\n"
                 f"Customer: {s['party']}\n"
@@ -128,43 +171,64 @@ def send_subscription_expiry_alerts(window_days: int = 15,
                 f"Days to Expiry: {days_left}\n"
             )
 
-            # queue email (reference fields make DB assertions clean across versions)
-            # frappe.sendmail(
-            #     recipients=["Administrator"],
-            #     subject=subject,
-            #     message=message,
-            # )
-            
-            from frappe.core.doctype.communication.email import make
+            # 3d) Email (ONLY if outgoing account exists)
+            if outgoing_exists:
+                try:
+                    q = frappe.sendmail(
+                        recipients=[am_email],
+                        sender = "d.jaziri@ard.ly",
+                        subject=subject,
+                        message=message,
+                        delayed = True
+                    )
+                    row["email_queued"] = True
+                    frappe.db.commit()  # Commit after sending email
+                except Exception as mail_err:
+                    row["email_error"] = str(mail_err)
+                    frappe.log_error(
+                        title="send_subscription_expiry_alerts: Email Failure",
+                        message=f"{subject}\nError: {mail_err}"
+                    )
+                    # Continue to create notification even if mail fails
+            else:
+                row["email_queued"] = False
+                row["email_skipped_no_outgoing"] = True
 
-            test_var = make(subject=subject, content=message, receipients=[am_email], send_email = True, sender = "d.jaziri@ard.ly")
+            # 3e) Notification Log (ALWAYS CREATED)
+            try:
+                nlog = frappe.get_doc({
+                    "doctype": "Notification Log",
+                    "for_user": am_user,
+                    "type": "Alert",
+                    "subject": subject,
+                    "email_content": message,
+                    "document_type": "Subscription",
+                    "document_name": s["name"],
+                }).insert(ignore_permissions=True)
 
-            print(test_var, "Test Var -----------------")
+                row["notification_log"] = nlog.name
 
-            # create in-app notification (bell)
-            nlog = frappe.get_doc({
-                "doctype": "Notification Log",
-                "for_user": am_user,
-                "type": "Alert",
-                "subject": subject,
-                "email_content": message,
-                "document_type": "Subscription",
-                "document_name": s["name"],
-            }).insert(ignore_permissions=True)
+            except Exception as nlog_err:
+                row["notification_log_error"] = str(nlog_err)
+                frappe.log_error(
+                    title="send_subscription_expiry_alerts: Notification Log Failure",
+                    message=f"Subscription={s['name']}\nError={nlog_err}"
+                )
 
-            row["email_queued"] = True
-            row["notification_log"] = nlog.name
             results.append(row)
 
         except Exception as e:
-            # capture any silent failure into the Error Log so you can inspect it
+            # 3f) Catch-all fail-safe
             frappe.log_error(
-                title="send_subscription_expiry_alerts failure",
-                message=f"Sub={s['name']} party={s['party']} error={e}"
+                title="send_subscription_expiry_alerts: Fatal Failure",
+                message=f"Subscription={s['name']} Error={e}"
             )
             row["error"] = str(e)
             results.append(row)
 
+    # ------------------------------
+    # 4) Return results if requested
+    # ------------------------------
     return results if return_results else None
 
 def send_custom_system_notification(user_id, subject, message):
