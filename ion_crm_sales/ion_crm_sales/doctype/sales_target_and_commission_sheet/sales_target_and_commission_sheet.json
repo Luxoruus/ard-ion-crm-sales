@@ -2,14 +2,14 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "format:STCT-{MM}-{YY}-{#####}",
- "creation": "2025-12-21 19:57:03.703393",
+ "creation": "2026-01-08 14:40:55.379360",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_tbau",
-  "amended_from",
   "company",
   "fiscal_year",
+  "quarter",
   "status",
   "commission_lines",
   "total_target",
@@ -17,7 +17,8 @@
   "total_commission",
   "accrual_posted_amount",
   "accrual_je",
-  "remarks"
+  "remarks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -79,6 +80,7 @@
    "allow_on_submit": 1,
    "fieldname": "total_actual_sales",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Total Actual Sales",
    "read_only": 1
   },
@@ -109,13 +111,20 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
+  },
+  {
+   "fieldname": "quarter",
+   "fieldtype": "Select",
+   "label": "Quarter",
+   "options": "Q1\nQ2\nQ3\nQ4",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-06 19:25:10.073889",
+ "modified": "2026-01-25 14:25:15.629491",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Sales Target and Commission Sheet",

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-12-19 20:24:12.996085",
+ "creation": "2026-01-08 14:40:55.179778",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -71,7 +71,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-19 20:27:18.469140",
+ "modified": "2026-01-24 18:22:11.182783",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Commission Policy Settings",

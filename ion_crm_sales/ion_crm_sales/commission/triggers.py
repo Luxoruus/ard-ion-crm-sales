@@ -1,51 +1,76 @@
+
+# -*- coding: utf-8 -*-
 import frappe
-from .compute import compute_totals
-from .gl import post_adjustment
+from frappe.utils import getdate  # normalize dates safely
 
-def _fy_for_date(dt):
-    res = frappe.db.sql("""
-        SELECT name FROM `tabFiscal Year`
-        WHERE %s BETWEEN year_start_date AND year_end_date
-        LIMIT 1
-    """, (dt,), as_dict=True)
-    return res[0]["name"] if res else None
 
-def _refresh_person_in_sheets(sales_person, company, fiscal_year):
-    sheets = frappe.get_all("Sales Target and Commission Sheet",
-        filters={"company": company, "fiscal_year": fiscal_year, "status": ["in", ["Draft","Submitted","Approved"]]},
-        pluck="name"
-    )
-    for s in sheets:
-        doc = frappe.get_doc("Sales Target and Commission Sheet", s)
-        for line in doc.get("commission_lines") or []:
-            if line.sales_person == sales_person:
-                compute_totals(doc)
-                doc.save()
-                if doc.docstatus == 1 and doc.status == "Approved" and doc.accrual_je:
-                    post_adjustment(doc)
-                break
+def _quarter_of_date(d, fy_name):
+    """Return 'Q1'..'Q4' for date d within Fiscal Year fy_name."""
+    d = getdate(d)
 
-def on_sales_invoice_submit(doc, method):
-    for st in doc.get("sales_team") or []:
-        fy = _fy_for_date(doc.posting_date)
-        _refresh_person_in_sheets(st.sales_person, doc.company, fy)
+    fy = frappe.get_doc("Fiscal Year", fy_name)
+    ysd = fy.year_start_date
 
-def on_sales_invoice_cancel(doc, method):
-    for st in doc.get("sales_team") or []:
-        fy = _fy_for_date(doc.posting_date)
-        _refresh_person_in_sheets(st.sales_person, doc.company, fy)
+    from datetime import timedelta
+    def addm(dt, months):
+        from calendar import monthrange
+        y = dt.year + (dt.month - 1 + months) // 12
+        m = (dt.month - 1 + months) % 12 + 1
+        day = min(dt.day, monthrange(y, m)[1])
+        from datetime import date
+        return date(y, m, day)
 
-def on_sales_invoice_update_after_submit(doc, method):
-    for st in doc.get("sales_team") or []:
-        fy = _fy_for_date(doc.posting_date)
-        _refresh_person_in_sheets(st.sales_person, doc.company, fy)
+    bounds = [
+        (ysd,                 addm(ysd, 3) - timedelta(days=1), "Q1"),
+        (addm(ysd, 3),        addm(ysd, 6) - timedelta(days=1), "Q2"),
+        (addm(ysd, 6),        addm(ysd, 9) - timedelta(days=1), "Q3"),
+        (addm(ysd, 9),        addm(ysd,12) - timedelta(days=1), "Q4"),
+    ]
+    for start, end, label in bounds:
+        if start <= d <= end:
+            return label
+    return "Q1"
 
-def on_payment_entry_submit(doc, method):
-    if doc.payment_type != "Receive":
+
+def _touch_related_sheets(doc, method=None):
+    """
+    Triggered from Sales Invoice / Payment Entry events.
+    Finds Sheets for same Company + FY + Quarter and calls the API to recalc.
+    """
+    from .api import recalculate_sheet  # import here to avoid circulars
+
+    company = getattr(doc, "company", None)
+    posting_date = getattr(doc, "posting_date", None)
+    if not company or not posting_date:
         return
-    for ref in doc.get("references") or []:
-        if ref.reference_doctype == "Sales Invoice":
-            inv = frappe.get_doc("Sales Invoice", ref.reference_name)
-            for st in inv.get("sales_team") or []:
-                fy = _fy_for_date(inv.posting_date)
-                _refresh_person_in_sheets(st.sales_person, inv.company, fy)
+
+    posting_date = getdate(posting_date)
+
+    # Resolve fiscal year covering the document date
+    fy = frappe.db.get_value(
+        "Fiscal Year",
+        {"year_start_date": ("<=", posting_date), "year_end_date": (">=", posting_date)},
+        "name"
+    )
+    if not fy:
+        return
+
+    quarter = _quarter_of_date(posting_date, fy)
+
+    # Only fetch existing, standard fields
+    sheets = frappe.get_all(
+        "Sales Target and Commission Sheet",
+        filters={"company": company, "fiscal_year": fy, "status": ["in", ["Draft", "Submitted", "Approved"]]},
+        fields=["name", "quarter"]   # <-- removed custom_quarter to avoid SELECT errors
+    )
+
+    for s in sheets:
+        if s.get("quarter") != quarter:
+            continue
+        try:
+            recalculate_sheet(name=s["name"])
+        except Exception:
+            frappe.log_error(
+                f"ion_crm_sales: failed to auto-recalculate sheet {s['name']}",
+                "Commission Trigger"
+            )

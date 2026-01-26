@@ -1,14 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-12-21 19:57:03.585643",
+ "creation": "2026-01-08 14:40:55.272629",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "sales_person",
   "department",
-  "period",
   "target_value",
   "actual_sales",
   "achievement_pct",
@@ -34,19 +33,10 @@
    "reqd": 1
   },
   {
-   "default": "Annual",
-   "fieldname": "period",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Period",
-   "options": "Annual\nMonthly\nQuarterly"
-  },
-  {
    "fieldname": "target_value",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Target Value",
-   "reqd": 1
+   "label": "Target Value"
   },
   {
    "allow_on_submit": 1,
@@ -86,7 +76,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-01-03 16:22:20.776752",
+ "modified": "2026-01-25 14:23:12.763948",
  "modified_by": "Administrator",
  "module": "Ion Crm Sales",
  "name": "Commission Lines",

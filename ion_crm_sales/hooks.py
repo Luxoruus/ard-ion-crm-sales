@@ -15,80 +15,82 @@ app_license = "mit"
 # ion_crm_sales/ion_crm_sales/hooks.py
 
 doc_events = {
-    "Opportunity": {
-        "before_save": [
-            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_dedicated_handlers.before_save",
-            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
-            # Add our notifier at the end so it runs after your validations/updates:
-            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
-        ],
-        "validate": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.validate",
-    },
-    "Opportunity SM": {
-        "before_save": [
-            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
-            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
-        ]
-    },
-    "Opportunity Hotels": {
-        "before_save": [
-            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
-            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
-        ]
-    },
-    "Opportunity Tenders": {
-        "before_save": [
-            "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
-            "ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
-        ]
-    },
-    "Hotspot": {
-        "before_save": "ion_crm_sales.ion_crm_sales.doc_events.hotspot_handlers.before_save"
-    },
-    "Distributor": {
-        "before_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.before_insert",
-        "after_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.create_sales_partner_for_distributor"
-    },
-    "Sales Invoice": {
-        "on_submit": "ion_crm_sales.ion_crm_sales.commission.triggers.on_sales_invoice_submit",
-        "on_cancel": "ion_crm_sales.ion_crm_sales.commission.triggers.on_sales_invoice_cancel",
-        "on_update_after_submit": "ion_crm_sales.ion_crm_sales.commission.triggers.on_sales_invoice_update_after_submit",
-    },
-    "Payment Entry": {
-        "on_submit": "ion_crm_sales.ion_crm_sales.commission.triggers.on_payment_entry_submit"
-    }
+	"Opportunity": {
+		"before_save": [
+			"ion_crm_sales.ion_crm_sales.doc_events.opportunity_dedicated_handlers.before_save",
+			"ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+			# Add our notifier at the end so it runs after your validations/updates:
+			"ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+		],
+		"validate": "ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.validate",
+	},
+	"Opportunity SM": {
+		"before_save": [
+			"ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+			"ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+		]
+	},
+	"Opportunity Hotels": {
+		"before_save": [
+			"ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+			"ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+		]
+	},
+	"Opportunity Tenders": {
+		"before_save": [
+			"ion_crm_sales.ion_crm_sales.doc_events.opportunity_handlers.before_save",
+			"ion_crm_sales.ion_crm_sales.doc_events.survey_notifications.on_before_save",
+		]
+	},
+	"Hotspot": {
+		"before_save": "ion_crm_sales.ion_crm_sales.doc_events.hotspot_handlers.before_save"
+	},
+	"Distributor": {
+		"before_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.before_insert",
+		"after_insert": "ion_crm_sales.ion_crm_sales.doc_events.distributor_handlers.create_sales_partner_for_distributor"
+	},
+
+	"Sales Invoice": {
+		"on_submit": "ion_crm_sales.ion_crm_sales.commission.triggers._touch_related_sheets",
+		"on_cancel": "ion_crm_sales.ion_crm_sales.commission.triggers._touch_related_sheets",
+		"on_update_after_submit": "ion_crm_sales.ion_crm_sales.commission.triggers._touch_related_sheets",
+	},
+	"Payment Entry": {
+		"on_submit": "ion_crm_sales.ion_crm_sales.commission.triggers._touch_related_sheets",
+	},
+
 }
 
-
 fixtures = [
-    'Client Script', 
-    'Server Script',
-    'Number Card', 
-    'Report', 
-    'Gender', 
-    'Workflow', 
-    'Workflow State', 
-    'Workflow Action Master', 
-    'Custom Field', 
-    'Property Setter', 
-    'Print Format', 
-    'Role', 
-    'Role Profile', 
-    'Custom DocPerm', 
-    'Web Form',
-    'Opportunity Type',
-    'Sales Stage',
-    'Price List',
-    {"dt": "Dashboard Chart", "filters": [["is_standard", "=", 0]]},
-    {"doctype": "DocType", "filters": {"module": ["=", "ION Crm Sales"]}},
-    {"doctype": "Workflow", "filters": {"document_type": ["=", "Sales Target and Commission Sheet"]}},
-    {"doctype": "Report", "filters": {"module": ["=", "ION Crm Sales"]}}
+	'Client Script',
+	'Server Script',
+	'Number Card',
+	'Report',
+	'Gender',
+	'Workflow',
+	'Workflow State',
+	'Workflow Action Master',
+	'Custom Field',
+	'Property Setter',
+	'Print Format',
+	'Role',
+	'Role Profile',
+	'Custom DocPerm',
+	'Web Form',
+	'Opportunity Type',
+	'Sales Stage',
+	'Price List',
+	{"dt": "Dashboard Chart", "filters": [["is_standard", "=", 0]]},
+	{"doctype": "DocType", "filters": {"module": ["=", "ION Crm Sales"]}},
+	{"doctype": "Workflow",
+	 "filters": {"document_type": ["=", "Sales Target and Commission Sheet"]}},
+	{"doctype": "Report", "filters": {"module": ["=", "ION Crm Sales"]}}
 ]
 
 scheduler_events = {
-    "hourly": [
-        "ion_crm_sales.notifications.send_subscription_expiry_alerts"
-    ]
+	"hourly": [
+		"ion_crm_sales.notifications.send_subscription_expiry_alerts"
+	]
 }
 
 # scheduler_events = {
@@ -333,4 +335,3 @@ scheduler_events = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
