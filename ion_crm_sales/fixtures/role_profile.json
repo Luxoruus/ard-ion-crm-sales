@@ -2,111 +2,6 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-11-08 21:15:48.532904",
-  "name": "AM",
-  "role_profile": "AM",
-  "roles": [
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated Sales"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated RG"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated QA"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Dedicated Scope"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Manufacturing User"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Sales User"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels Sales"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels QA"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels RG"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Hotels Scope"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Sales"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M RG"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Scope Small"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M QA Small"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "S&M Scope Medium"
-   },
-   {
-    "parent": "AM",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "Sales Manager"
-   }
-  ]
- },
- {
-  "docstatus": 0,
-  "doctype": "Role Profile",
   "modified": "2025-11-09 07:04:54.719991",
   "name": "PMO",
   "role_profile": "PMO",
@@ -848,6 +743,111 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Core"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-11-08 21:15:48.532904",
+  "name": "AM",
+  "role_profile": "AM",
+  "roles": [
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated Sales"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated RG"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated QA"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Dedicated Scope"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels Sales"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels QA"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels RG"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Hotels Scope"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Sales"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M RG"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Scope Small"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M QA Small"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "S&M Scope Medium"
+   },
+   {
+    "parent": "AM",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Manager"
    }
   ]
  }

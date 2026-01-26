@@ -131,5 +131,24 @@
   "reference_doctype": null,
   "script": "\nfrom ion_crm_sales.notifications import send_subscription_expiry_alerts\nsend_subscription_expiry_alerts(window_days=15)\n",
   "script_type": "Scheduler Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 1,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-01-25 09:28:31.962088",
+  "module": "Ion Crm Sales",
+  "name": "Testing the naming series",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Sales Invoice",
+  "script": "cur_name = doc.name\ncompany = frappe.get_doc(\"Company\", frappe.db.get_value(\"Employee\", {'user_id': frappe.session.user}, \"company\"))\nnew_name = str(company.abbr) + '-' + str(cur_name)\n\ndoc.db_set(\"name\", new_name, commit=True)",
+  "script_type": "DocType Event"
  }
 ]
