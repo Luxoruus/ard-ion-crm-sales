@@ -28,6 +28,14 @@ def execute(filters=None):
         "je.posting_date BETWEEN %(from_date)s AND %(to_date)s",
     ]
 
+
+    # conditions = [
+    # 	"stcs.fiscal_year = %(fiscal_year)s",
+    # 	"stcs.quarter = %(quarter)s",
+    # 	"cl.department = %(department)s",
+    # 	"stcs.company = %(company)s",
+    # ]
+
     # Optional filter: only add WHERE clause if present
     if filters.get("expense_account"):
         conditions.append("acc.account = %(expense_account)s")
@@ -45,14 +53,31 @@ def execute(filters=None):
         ORDER BY je.posting_date
     """
 
+    # query = f"""
+    # 	SELECT
+    # 		cl.sales_person,
+    # 		cl.commission_value,
+    # 	FROM `tabSales Target and Commission Sheet` stcs
+    # 	JOIN `tabCommission Lines` cl ON cl.parent = stcs.name
+    # 	WHERE {" AND ".join(conditions)}
+    # """
+
     data = frappe.db.sql(query, filters, as_dict=True)
 
+    # columns = [
+    #     {"label": _("Sales Person"), "fieldname": "sales_person", "fieldtype": "Link", "options": "Sales Person", "width": 110},
+    #     {"label": _("Commission Value"), "fieldname": "commission_value", "fieldtype": "Currency", "width": 110}
+    # ]
+
     columns = [
-        {"label": _("Posting Date"), "fieldname": "posting_date", "fieldtype": "Date", "width": 110},
-        {"label": _("Company"), "fieldname": "company", "fieldtype": "Link", "options": "Company", "width": 160},
-        {"label": _("User Remark"), "fieldname": "user_remark", "fieldtype": "Small Text", "width": 300},
-        {"label": _("Expense"), "fieldname": "expense", "fieldtype": "Currency", "width": 120},
-    ]
+		{"label": _("Posting Date"), "fieldname": "posting_date", "fieldtype": "Date",
+		 "width": 110},
+		{"label": _("Company"), "fieldname": "company", "fieldtype": "Link", "options": "Company",
+		 "width": 160},
+		{"label": _("User Remark"), "fieldname": "user_remark", "fieldtype": "Small Text",
+		 "width": 300},
+		{"label": _("Expense"), "fieldname": "expense", "fieldtype": "Currency", "width": 120},
+	]
 
     # You can also return (columns, data, message, chart, report_summary, report_chart)
     return columns, data
