@@ -58,7 +58,10 @@ doc_events = {
 	"Payment Entry": {
 		"on_submit": "ion_crm_sales.ion_crm_sales.commission.triggers._touch_related_sheets",
 	},
-
+	"Issue": {
+		"after_insert": "ion_crm_sales.ion_support.support.notifications.new_issue_notification",
+		"on_update": "ion_crm_sales.ion_support.support.notifications.issue_status_update",
+	}
 }
 
 fixtures = [

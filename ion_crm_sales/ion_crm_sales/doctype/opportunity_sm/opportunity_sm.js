@@ -31,6 +31,16 @@ frappe.ui.form.on("Opportunity SM", {
                 // );
             }
 
+			if (frm.doc.opportunity_from == "Customer"){
+				frm.add_custom_button(
+					__("Issue"),
+					function () {
+						frm.trigger("create_issue");
+					},
+					__("Create")
+				)
+			}
+
             if (frm.doc.opportunity_from != "Customer") {
                 frm.add_custom_button(
                     __("Customer"),
@@ -91,6 +101,16 @@ frappe.ui.form.on("Opportunity SM", {
 			method: "erpnext.crm.doctype.opportunity.opportunity.make_customer",
 			frm: cur_frm,
 		});
+	},
+
+	create_issue(){
+		frappe.model.open_mapped_doc({
+			method: "ion_crm_sales.ion_support.support.triggers.create_issue",
+			frm: cur_frm,
+			args: {
+				issue_from_dt: "Opportunity SM"
+			}
+		})
 	},
 
     onload_post_render: function (frm) {
