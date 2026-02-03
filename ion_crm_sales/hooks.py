@@ -65,15 +65,15 @@ doc_events = {
 }
 
 fixtures = [
-	'Client Script',
-	'Server Script',
+	{"dt": "Client Script", "filters": [["module", "=", "Ion Crm Sales"]]},
+	{"dt": "Server Script", "filters": [["module", "=", "Ion Crm Sales"]]},
 	'Number Card',
 	'Report',
 	'Gender',
 	'Workflow',
 	'Workflow State',
 	'Workflow Action Master',
-	'Custom Field',
+	{"dt": "Custom Field", "filters": [["module", "=", "Ion Crm Sales"]]},
 	'Property Setter',
 	'Print Format',
 	'Role',
@@ -84,10 +84,10 @@ fixtures = [
 	'Sales Stage',
 	'Price List',
 	{"dt": "Dashboard Chart", "filters": [["is_standard", "=", 0]]},
-	{"doctype": "DocType", "filters": {"module": ["=", "ION Crm Sales"]}},
-	{"doctype": "Workflow",
-	 "filters": {"document_type": ["=", "Sales Target and Commission Sheet"]}},
-	{"doctype": "Report", "filters": {"module": ["=", "ION Crm Sales"]}}
+	{"doctype": "DocType", "filters": {"module": ["=", "Ion Crm Sales"]}},
+	# {"doctype": "Workflow",
+	#  "filters": {"document_type": ["=", "Sales Target and Commission Sheet"]}},
+	{"doctype": "Report", "filters": {"module": ["=", "Ion Crm Sales"]}}
 ]
 
 scheduler_events = {
